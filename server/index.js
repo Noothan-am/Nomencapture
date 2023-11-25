@@ -1,9 +1,11 @@
+require("dotenv").config();
 const express = require("express");
+// const router = require("./router.js");
+
 const app = express();
 const port = 8000;
 // import the router
-// const router = require("./router.js");
-
+// use dotenv file
 // middleware
 app.use(express.json());
 // app.use("/api", router);

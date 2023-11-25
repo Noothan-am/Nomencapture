@@ -91,50 +91,51 @@ const Login = () => {
 
   return (
     <>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        draggable
-        theme="light"
-      /> */}
-      <SideBar>
-        <p>NOMENCAPTURE</p>
-        <p>Let’s start capturing the sound of your brand’s heartbeat</p>
-      </SideBar>
-
-      <div className={styles["login__become-coins"]}>
-        {/* <img src={becomeCoins} alt="" /> */}
-      </div>
       <div className={styles["login"]}>
-        <form className={styles["login__form"]} method="POST">
-          <div className={styles["login__form-email"]}>
-            <label htmlFor="">Email</label>
-            <input
-              type="email"
-              className={styles["login__form-email-input"]}
-              placeholder="Email address"
-              value={email}
-              name="email"
-              onChange={(event) => setEmail(event.target.value)}
-            />
+        <div className={styles["login-sidebar"]}>
+          <SideBar>
+            <p className={styles["sidebar-text-nomencapture"]}>NOMENCAPTURE</p>
+            <p className={styles["sidebar-description"]}>
+              Let’s start capturing the sound of your brand’s heartbeat
+            </p>
+          </SideBar>
+        </div>
+        <div className={styles["login-form"]}>
+          <div className={styles["login__form-container"]}>
+            <form className={styles.form} method="POST">
+              <div className={styles["login__form-email"]}>
+                <label className={styles["login__form-email-label"]} htmlFor="">
+                  Email ID
+                </label>
+                <input
+                  type="email"
+                  className={styles["login__form-email-input"]}
+                  value={email}
+                  name="email"
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </div>
+              <div className={styles["login__form-password"]}>
+                <label
+                  className={styles["login__form-password-label"]}
+                  htmlFor=""
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className={styles["login__form-password-input"]}
+                  value={password}
+                  name="password"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </div>
+              <div className={styles["login-button"]}>
+                <Button handleClick={handleLoginSubmit} />
+              </div>
+            </form>
           </div>
-          <div className={styles["login__form-password"]}>
-            <label htmlFor="">Password</label>
-            <input
-              type="password"
-              className={styles["login__form-password-input"]}
-              placeholder="Password"
-              value={password}
-              name="password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-          <Button handleClick={handleLoginSubmit} />
-        </form>
+        </div>
       </div>
     </>
   );

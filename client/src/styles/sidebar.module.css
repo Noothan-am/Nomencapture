@@ -1,0 +1,17 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vb;
+  width: 20vw;
+}
+
+.become-logo-image {
+  width: 6rem;
+}
+
+.promise-text {
+  margin-bottom: 3px;
+  color: rgba(0, 0, 0, 0.553);
+  font-size: 12px;
+}

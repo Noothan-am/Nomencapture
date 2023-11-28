@@ -1,0 +1,12 @@
+.text-questions {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-questions > label {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+.text-questions > input {
+}

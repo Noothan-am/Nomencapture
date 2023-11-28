@@ -1,0 +1,12 @@
+.select-questions {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-questions > label {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+.select-questions > input {
+}

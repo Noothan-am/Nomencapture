@@ -2,6 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import "./index.css";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import Forms from "./pages/Forms";
 // import Loading from "./pages/Loading";
 // import ErrorPage from "./pages/ErrorPage";
 // import AllUsersPage from "./pages/AllUsersPage";
@@ -16,7 +19,10 @@ import "./index.css";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Navbar />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/form" element={<Forms />} />
       {/* <Route path="/" element={<Loading />} />
       <Route path="/my-profile/:userId" element={<Home />} />
       <Route path="/my-page/:userId" element={<MyProfile />} />

@@ -131,7 +131,10 @@ const Login = () => {
                 />
               </div>
               <div className={styles["login-button"]}>
-                <Button handleClick={handleLoginSubmit} />
+                <Button
+                  buttonValue={"PROCEED"}
+                  handleClick={handleLoginSubmit}
+                />
               </div>
             </form>
           </div>

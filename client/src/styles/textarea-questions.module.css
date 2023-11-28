@@ -1,12 +1,12 @@
-.select-questions {
+.textarea-questions {
   display: flex;
   flex-direction: column;
 }
 
-.select-questions > label {
+.textarea-questions > label {
   font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 15px;
 }
-.text-questions > input {
+.textarea-questions > input {
 }

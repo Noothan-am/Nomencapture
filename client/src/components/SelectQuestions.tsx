@@ -7,7 +7,9 @@ function SelectQuestions({ question, options }: any) {
       <div className={styles["select-questions"]}>
         <label htmlFor="">{question}</label>
         <select>
-          <option value="Hello"></option>
+          {options.map((option: string) => {
+            return <option value="Hello">{option}</option>;
+          })}
         </select>
       </div>
     </>

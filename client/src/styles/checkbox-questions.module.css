@@ -1,0 +1,31 @@
+.select-questions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select-questions > label {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 0.7rem;
+  width: 100%;
+}
+
+.select-inputs > label {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  margin-bottom: 0.7rem;
+  width: 100%;
+  color: #535353;
+}
+
+.select-questions > input {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #868686;
+  background-color: transparent;
+  margin-bottom: 1rem;
+}

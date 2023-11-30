@@ -7,7 +7,7 @@ function Tabs() {
     <>
       <div className={styles["tabs"]}>
         <div className={styles["tabs-1"]}>
-          <span>Naming Questionnaire</span>
+          Naming Questionnaire
           <span>
             <IoIosLock />
           </span>

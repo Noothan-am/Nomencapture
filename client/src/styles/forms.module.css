@@ -8,6 +8,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 50%;
+  /* max-height: 50%; */
   margin: auto;
+  padding: 2rem 3rem;
+  height: 90%;
+}
+
+.select {
+  margin: 2rem 0rem;
+}
+
+.form-content {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.firstpart,
+.secondpart {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.forms-next-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

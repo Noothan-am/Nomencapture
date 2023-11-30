@@ -1,12 +1,28 @@
 .select-questions {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .select-questions > label {
   font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 15px;
+  margin-bottom: 0.7rem;
+  width: 100%;
 }
-.select-questions > input {
+.select-questions > select {
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  font-size: 13px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #868686;
+  background-color: transparent;
+  margin-bottom: 1rem;
+  color: #686868;
+  width: 100%;
+}
+.select-questions > select::placeholder {
+  color: #868686;
 }

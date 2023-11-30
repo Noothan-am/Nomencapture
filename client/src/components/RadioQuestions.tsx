@@ -9,8 +9,8 @@ function RadioQuestions({ question, options }: any) {
         <span>
           {options.map((option: string, index: number) => (
             <div className={styles["select-inputs"]} key={index}>
-              <label htmlFor={`${index}`}>{option}</label>
               <input type="radio" id={`${index}`} name="options" />
+              <label htmlFor={`${index}`}>{option}</label>
             </div>
           ))}
         </span>

@@ -1,0 +1,29 @@
+.namingset-2-container {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* max-height: 50%; */
+  margin: auto;
+  padding: 2rem 3rem;
+  min-width: 70%;
+  min-height: 74vh;
+}
+
+.namingset-2-hero {
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+}
+
+.heading {
+  width: 100%;
+  text-align: start;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.heading span {
+  font-weight: bold;
+}

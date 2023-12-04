@@ -19,39 +19,38 @@ const selectOptions = [
 function SecondFormPage() {
   return (
     <>
-      <div className={styles["firstpart"]}>
-        <div className={styles["radio"]}>
-          <RadioQuestions
-            question={"What price segment does your product/service fall in?"}
-            options={[
-              "Mass (Affordable)",
-              "Niche (Premium - Affordable)",
-              "Premium",
-              "Luxury",
-            ]}
-          />
-        </div>
-        <div className={styles["radio"]}>
+      <div className={styles["firstpart-2"]}>
+        <div className={styles["email"]}>
           <TextQuestions
             question={
-              "What do you think is the differentiating value you provide / What is your USP?"
+              "Mention the Trademark classes your product/service belongs to? "
             }
           />
         </div>
-        <div className={styles["radio"]}>
+        <div className={styles["email"]}>
           <TextQuestions
+            question={"What need does your product / service cater to?"}
+          />
+        </div>
+
+        <div className={styles["radio"]}>
+          <DescriptionQuestions
             question={
               "Do you see yourself expanding to other cities/states in future? If yes, where?"
             }
           />
         </div>
       </div>
-      <div className={styles["secondpart"]}>
-        <div className={styles["email"]}>
-          <TextQuestions
-            question={"What need does your product / service cater to?"}
-          />
-        </div>
+      <div className={styles["secondpart-2"]}>
+        <RadioQuestions
+          question={"What price segment does your product/service fall in?"}
+          options={[
+            "Mass (Affordable)",
+            "Niche (Premium - Affordable)",
+            "Premium",
+            "Luxury",
+          ]}
+        />
         <div className={styles["email"]}>
           <TextQuestions
             question={
@@ -60,9 +59,10 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["radio"]}>
-          <RadioQuestions
-            question={"Which gender of TG is your product / service for?"}
-            options={["All", "Men", "Women", "Other"]}
+          <DescriptionQuestions
+            question={
+              "What do you think is the differentiating value you provide / What is your USP?"
+            }
           />
         </div>
       </div>

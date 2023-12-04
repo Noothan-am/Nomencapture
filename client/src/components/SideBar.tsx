@@ -3,10 +3,10 @@ const styles = require("../styles/sidebar.module.css").default;
 const NomencaptureLogo = require("../assets/svg/nomencapture-logo.svg").default;
 const becomeLogo = require("../assets/become-logo.png");
 
-function SideBar({ children }: any) {
+function SideBar({ children, isLogin }: any) {
   return (
     <>
-      <div className={styles["sidebar"]}>
+      <div className={isLogin ? styles["sidebar-login"] : styles["sidebar"]}>
         <div className={styles["logo"]}>
           <img src={NomencaptureLogo} alt="" />
         </div>

@@ -7,7 +7,7 @@ function DescriptionQuestions({ question, description }: any) {
       <div className={styles["textarea-questions"]}>
         <label htmlFor="">{question}</label>
         <i>{description}</i>
-        <textarea rows={7} cols={50} placeholder="Your Answer"></textarea>
+        <textarea rows={6} cols={50} placeholder="Your Answer"></textarea>
       </div>
     </>
   );

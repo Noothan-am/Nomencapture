@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Button from "../components/Button";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Button from "../components/Button";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,20 +23,22 @@ const Login = () => {
     const inputEmail = email.trim();
     const inputPassword = password.trim();
 
-    if (!inputEmail || !inputPassword) {
-      //  toast.warn("please fill all details", {
-      //    position: "top-right",
-      //    autoClose: 2000,
-      //    hideProgressBar: false,
-      //    closeOnClick: true,
-      //    draggable: true,
-      //    progress: undefined,
-      //    theme: "dark",
-      //  });
-      setIsLoading(false);
-      console.log("empty fields found");
-      return;
-    }
+    // if (!inputEmail || !inputPassword) {
+    //   //  toast.warn("please fill all details", {
+    //   //    position: "top-right",
+    //   //    autoClose: 2000,
+    //   //    hideProgressBar: false,
+    //   //    closeOnClick: true,
+    //   //    draggable: true,
+    //   //    progress: undefined,
+    //   //    theme: "dark",
+    //   //  });
+    //   setIsLoading(false);
+    //   console.log("empty fields found");
+    //   return;
+    // }
+
+    navigate("/home");
 
     try {
       const result = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
@@ -93,7 +95,7 @@ const Login = () => {
     <>
       <div className={styles["login"]}>
         <div className={styles["login-sidebar"]}>
-          <SideBar>
+          <SideBar isLogin={true}>
             <p className={styles["sidebar-text-nomencapture"]}>NOMENCAPTURE</p>
             <p className={styles["sidebar-description"]}>
               Let’s start capturing the sound of your brand’s heartbeat

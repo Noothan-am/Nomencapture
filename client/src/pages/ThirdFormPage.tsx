@@ -19,7 +19,7 @@ const selectOptions = [
 function SecondFormPage() {
   return (
     <>
-      <div className={styles["firstpart"]}>
+      <div className={styles["firstpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             question={
@@ -39,21 +39,12 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
-            question={
-              "What purchasing behavior is shown by the TG buying your your service / product?"
-            }
-            options={["Need based", "Luxury / Want", "Cost saving"]}
-          />
-        </div>
-        <div className={styles["radio"]}>
-          <TextQuestions
-            question={
-              "Do you see yourself expanding to other cities/states in future? If yes, where?"
-            }
+            question={"Which gender of TG is your product / service for?"}
+            options={["All", "Men", "Women"]}
           />
         </div>
       </div>
-      <div className={styles["secondpart"]}>
+      <div className={styles["secondpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             question={
@@ -69,17 +60,13 @@ function SecondFormPage() {
             ]}
           />
         </div>
+
         <div className={styles["radio"]}>
           <RadioQuestions
-            question={"How often does your TG purchase your product / service?"}
-            options={["Very Often", "Rarely", "One Time", "Frequently"]}
-          />
-        </div>
-        <div className={styles["email"]}>
-          <TextQuestions
             question={
-              "What are the cities/states in India that you're planning to focus on?"
+              "What purchasing behavior is shown by the TG buying your your service / product?"
             }
+            options={["Need based", "Luxury / Want", "Cost saving"]}
           />
         </div>
       </div>

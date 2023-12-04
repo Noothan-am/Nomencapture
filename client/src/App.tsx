@@ -8,7 +8,7 @@ import Forms from "./pages/Forms";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Forms />} />
+      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/form" element={<Forms />} />

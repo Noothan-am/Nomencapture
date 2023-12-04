@@ -168,14 +168,6 @@ function FormFirstPage() {
             options={["Product", "Service"]}
           />
         </div>
-        <div className={styles["textarea"]}>
-          <DescriptionQuestions
-            question={"Describe your Product/Service?"}
-            description={
-              "Ex: Grammarly is a cloud-based typing assistant that reviews spelling, grammar, punctuation, clarity, engagement, and delivery mistakes. It uses artificial intelligence to identify and search for an appropriate replacement for the error it locates."
-            }
-          />
-        </div>
       </div>
       <div className={styles["secondpart"]}>
         <div className={styles["email"]}>
@@ -187,10 +179,18 @@ function FormFirstPage() {
             options={selectOptions}
           />
         </div>
-        <div className={styles["text-2"]}>
+        {/* <div className={styles["text-2"]}>
           <TextQuestions
             question={
               "Mention the Trademark classes your product/service belongs to? "
+            }
+          />
+        </div> */}
+        <div className={styles["textarea"]}>
+          <DescriptionQuestions
+            question={"Describe your Product/Service?"}
+            description={
+              "Ex: Grammarly is a cloud-based typing assistant that reviews spelling, grammar, punctuation, clarity, engagement, and delivery mistakes. It uses artificial intelligence to identify and search for an appropriate replacement for the error it locates."
             }
           />
         </div>

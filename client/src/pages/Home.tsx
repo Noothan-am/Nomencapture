@@ -3,9 +3,14 @@ import Button from "../components/Button";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
 function Home() {
+  const navigate = useNavigate();
+  const handleLoginSubmit = () => {
+    navigate("/form");
+  };
   return (
     <>
       <div className="navbar">
@@ -13,7 +18,7 @@ function Home() {
       </div>
       <div className={styles["home"]}>
         <div className="home-sidebar">
-          <SideBar>
+          <SideBar isLogin={false}>
             <Tabs />
           </SideBar>
         </div>
@@ -41,7 +46,7 @@ function Home() {
                   </span>
                   <span
                     style={{
-                      fontSize: "13px",
+                      fontSize: "16px",
                       fontFamily: "Inter, sans-serif",
                       fontWeight: 400,
                       lineHeight: "normal",
@@ -60,9 +65,9 @@ function Home() {
                     >
                       <span
                         style={{
-                          fontSize: "13px",
+                          fontSize: "15px",
                           fontFamily: "Inter, sans-serif",
-                          fontWeight: 500,
+                          fontWeight: 600,
                           lineHeight: "normal",
                         }}
                       >
@@ -83,8 +88,8 @@ function Home() {
                       <span
                         style={{
                           fontFamily: "Inter, sans-serif",
-                          fontSize: "13px",
-                          fontWeight: 500,
+                          fontSize: "15px",
+                          fontWeight: 600,
                           lineHeight: "normal",
                         }}
                       >
@@ -99,9 +104,9 @@ function Home() {
                   </ul>
                   <span
                     style={{
-                      fontSize: "13px",
+                      fontSize: "15px",
                       fontFamily: "Inter, sans-serif",
-                      fontWeight: 500,
+                      fontWeight: 600,
                       lineHeight: "normal",
                     }}
                   >
@@ -113,7 +118,10 @@ function Home() {
               </div>
               <div className={styles["column-2"]}>
                 <div className={styles["column-2-btn"]}>
-                  <Button buttonValue={"CLICK TO BEGIN"} />
+                  <Button
+                    handleClick={handleLoginSubmit}
+                    buttonValue={"CLICK TO BEGIN"}
+                  />
                 </div>
                 <div className={styles["column-2-img"]}>
                   <img src={homeImg} alt="" />

@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   font-family: "Inter", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   color: #868686;
 }
+
 .tabs-4,
 .tabs-2 {
   margin: 1rem 0rem;
@@ -13,7 +14,15 @@
 
 .tabs-1 {
   color: #000000;
+  font-weight: 600;
 }
 .tabs-1 > span {
   display: none;
+}
+
+.tabs-4 > span,
+.tabs-2 > span,
+.tabs-3 > span,
+.tabs-5 > span {
+  color: #000000;
 }

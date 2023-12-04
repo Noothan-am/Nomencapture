@@ -2,7 +2,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 95vh;
+  height: 90vh;
+  width: 20vw;
+  margin-top: -2rem;
+}
+
+.sidebar-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh;
   width: 20vw;
 }
 

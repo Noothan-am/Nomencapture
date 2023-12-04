@@ -22,6 +22,13 @@
   display: flex;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
+}
+
+.forms-tabs {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 1.7rem;
 }
 
 .firstpart,
@@ -31,6 +38,47 @@
   width: 48%;
   justify-content: space-between;
   margin-bottom: 1rem;
+  height: 40%;
+}
+.forms-container {
+  width: 100%;
+}
+.firstpart-2,
+.secondpart-2,
+.secondpart-9,
+.firstpart-9 {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.previous-btn {
+  margin-right: 1rem;
+}
+
+.firstpart-3,
+.secondpart-3,
+.firstpart-5,
+.secondpart-5 {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  height: 80%;
+}
+.firstpart-4,
+.secondpart-4 {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  height: 95%;
 }
 
 .forms-next-button {

@@ -18,12 +18,6 @@ function Tabs() {
             <IoIosLock />
           </span>
         </div>
-        <div className={styles["tabs-2"]}>
-          Our Understanding
-          <span>
-            <IoIosLock />
-          </span>
-        </div>
         <div className={styles["tabs-3"]}>
           Naming Set 1
           <span>

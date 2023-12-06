@@ -1,0 +1,119 @@
+.input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-arrow input {
+  padding-right: 20px;
+}
+
+.input-arrow > IoIosArrowRoundForward {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: #ccc;
+  cursor: pointer;
+}
+
+.namingset-hero {
+  display: flex;
+}
+
+.namingset-container {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* max-height: 50%; */
+  margin: auto;
+  padding: 2rem 3rem;
+  min-height: 74vh;
+}
+
+.namingset-content-paragraph {
+  width: 70%;
+}
+
+.namingset-content-main-paragraph {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.namingset-paragraph {
+  width: 47%;
+  margin-right: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+.namingset-paragraph p {
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+}
+
+.namingset-content-main-heading {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.namingset-content-main-heading h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 2rem;
+}
+
+.audio-image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.audio-spikes {
+  width: 2rem;
+}
+
+.audio-heading h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  width: 85%;
+  letter-spacing: 2.3px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.audio-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.audio-input {
+  margin-bottom: 2rem;
+}
+.audio-input input {
+  width: 80%;
+  border: 1px solid;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  outline: none;
+  font-weight: 400;
+  padding: 0.4rem 0.3rem;
+  background-color: transparent;
+  border-radius: 5px;
+}
+.namingset-button {
+  width: 88%;
+  margin-top: 1rem;
+}
+
+.audio-image {
+  margin-bottom: 0.4rem;
+}

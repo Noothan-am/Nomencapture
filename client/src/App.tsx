@@ -5,12 +5,12 @@ import "./index.css";
 import Home from "./pages/Home";
 import Forms from "./pages/Forms";
 import AuditPage from "./pages/AuditPage";
-import NamingSet from "./pages/NamingSet";
+import YourName from "./pages/YourName";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<NamingSet />} />
+      <Route path="/" element={<YourName />} />
       <Route path="/1" element={<AuditPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />

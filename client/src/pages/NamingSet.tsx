@@ -2,7 +2,6 @@ import React from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Tabs from "../components/Tabs";
-import AudioPage from "./AudioPage";
 import NameList from "./NameList";
 
 const styles = require("../styles/naming-set.module.css").default;

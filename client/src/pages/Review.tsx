@@ -11,13 +11,13 @@ const styles = require("../styles/review.module.css").default;
 const NamesFeedBack = () => {
   return (
     <>
-      <div className="names-feedback">
+      <div className={styles["names-feedback"]}>
         <h1>Unavanu</h1>
         <p>How aligned are you on this overall?</p>
         <div className={styles["audit-rating-bar"]}>
           <DotsRow />
         </div>
-        <div className="feedback-input">
+        <div className={styles["feedback-input"]}>
           <label htmlFor="">Suggestion/Feedback</label>
           <input type="text" />
         </div>
@@ -42,40 +42,44 @@ export default function Review() {
           <div className={styles["review-container"]}>
             <div className={styles["div"]}>
               <div className={styles["form-content"]}>
-                <div className="first-part">
+                <div className={styles["first-part"]}>
                   <NamesFeedBack />
                   <NamesFeedBack />
                   <NamesFeedBack />
                 </div>
-                <div className="second-part">
-                  <div className="top-part">
-                    <SelectQuestions
-                      question={"Which one you like the most"}
-                      options={["name 1", "name 2", "name 3"]}
-                    />
-                    <div className="second-question">
-                      <div className="question">
+                <div className={styles["second-part"]}>
+                  <div className={styles["top-part"]}>
+                    <div className={styles["select"]}>
+                      <SelectQuestions
+                        question={"Which one you like the most"}
+                        options={["name 1", "name 2", "name 3"]}
+                      />
+                    </div>
+                    <div className={styles["second-question"]}>
+                      <div className={styles["question"]}>
                         <p>Are you completely satisfied with the name?</p>
                       </div>
-                      <div className="options">
+                      <div className={styles["options"]}>
                         <p>Yes</p>
                         <p>No</p>
                       </div>
                     </div>
-                    <div className="third-question">
-                      <div className="question">
+                    <div className={styles["third-question"]}>
+                      <div className={styles["question"]}>
                         <p>Do you prefer another round?</p>
                       </div>
-                      <div className="options">
+                      <div className={styles["options"]}>
                         <p>Yes</p>
                         <p>No</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="third-part">
+                <div className={styles["third-part"]}>
                   <input type="text" placeholder="Elaborate" name="" id="" />
-                  <Button buttonValue={"Submit"} />
+                  <div className={styles["btn"]}>
+                    <Button buttonValue={"Submit"} />
+                  </div>
                 </div>
               </div>
             </div>

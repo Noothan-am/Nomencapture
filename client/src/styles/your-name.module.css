@@ -79,3 +79,6 @@
   font-family: "Inter", sans-serif;
   color: rgba(0, 0, 0, 0.459);
 }
+.top-part li:hover {
+  cursor: pointer;
+}

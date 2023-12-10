@@ -1,18 +1,13 @@
-.namingset-2-container {
-  border-radius: 20px;
-  background-color: #fafafa;
+.name-list-2-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* max-height: 50%; */
   margin: auto;
-  padding: 2rem 3rem;
-  min-width: 70%;
   min-height: 74vh;
 }
 
-.namingset-2-hero {
+.name-list-2-hero {
   display: flex;
   flex-direction: row;
   text-align: start;
@@ -26,4 +21,12 @@
 }
 .heading span {
   font-weight: bold;
+}
+
+.nameset-2-arrows {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.nameset-2-arrows button {
 }

@@ -1,0 +1,24 @@
+.hero {
+  display: flex;
+  flex-direction: row;
+}
+
+.naming-set-container {
+  width: 100%;
+}
+
+.div {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-height: 50%; */
+  margin: auto;
+  padding: 2rem 3rem;
+  height: 90%;
+}
+
+.form-content {
+  width: 100%;
+}

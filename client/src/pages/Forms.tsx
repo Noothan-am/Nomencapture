@@ -77,26 +77,28 @@ function Forms() {
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
               {/* <div className={styles["forms-tabs"]}>.</div> */}
-              <div className={styles["form-content"]}>{currentPage()}</div>
-              <div
-                style={
-                  currentFormPage == 12
-                    ? { display: "none" }
-                    : { display: "flex" }
-                }
-                className={styles["forms-next-button"]}
-              >
-                <div className={styles["previous-btn"]}>
-                  <Button
-                    buttonValue={"PREVIOUS"}
-                    handleClick={handleChangeCurrentPageToPrevious}
-                  />
-                </div>
-                <div className={styles["next-btn"]}>
-                  <Button
-                    buttonValue={"NEXT"}
-                    handleClick={handleChangeCurrentPageToNext}
-                  />
+              <div className={styles["form-content"]}>
+                {currentPage()}
+                <div
+                  style={
+                    currentFormPage == 12
+                      ? { display: "none" }
+                      : { display: "flex" }
+                  }
+                  className={styles["forms-next-button"]}
+                >
+                  <div className={styles["previous-btn"]}>
+                    <Button
+                      buttonValue={"PREVIOUS"}
+                      handleClick={handleChangeCurrentPageToPrevious}
+                    />
+                  </div>
+                  <div className={styles["next-btn"]}>
+                    <Button
+                      buttonValue={"NEXT"}
+                      handleClick={handleChangeCurrentPageToNext}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

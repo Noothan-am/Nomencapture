@@ -43,31 +43,86 @@ function SecondFormPage() {
             options={["All", "Men", "Women"]}
           />
         </div>
-      </div>
-      <div className={styles["secondpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
-            question={
-              "What is the age bracket of your Target Audience Group (TG) ?"
-            }
+            question={"What occupation your TG may have?"}
             options={[
+              "Everyone",
               "Students",
-              "Young entrepreneurs",
-              "Large company decision makers (corporate C level)",
-              "Young CEOs / Founders",
-              "General working adults",
+              "General",
+              "Working",
+              "Adults",
+              "Young",
+              "CEOs",
+              "Founders",
+              "Large",
+              "Company",
+              "Decision",
+              "Makers",
+              "(Corporate",
+              "C",
+              "Level)",
+              "Salaried",
+              "Employees",
+              "Self-Employed",
+              "Retired",
+              "Elders",
+            ]}
+          />
+        </div>
+        <div className={styles["radio"]}>
+          <RadioQuestions
+            question={"How often do you think your product will be purchased?"}
+            options={[
+              "Periodic / Subscription based",
+              "Frequently",
+              "Rarely",
+              "One time",
+            ]}
+          />
+        </div>
+        <div className={styles["text-2"]}>
+          <CheckBoxQuestions
+            question={"Where will your TG find your product / service?"}
+            options={[
+              "Retail Outlets",
+              "Social Media",
+              "E-Commerce Platform",
+              "Directly on Website",
               "Other",
             ]}
           />
         </div>
-
         <div className={styles["radio"]}>
-          <RadioQuestions
-            question={
-              "What purchasing behavior is shown by the TG buying your your service / product?"
+          <DescriptionQuestions
+            question={"What values your TG expects in this product segment?"}
+            description={
+              "You want your TG to choose you over the competitor for what values?"
             }
-            options={["Need based", "Luxury / Want", "Cost saving"]}
           />
+        </div>
+        <div className={styles["text-2"]}>
+          <CheckBoxQuestions
+            question={"How do want your customers to remember you as"}
+            options={[
+              "Straightforward and trustworthy",
+              "Like a good friend to them.",
+              "Pioneers in our field.",
+              "Cutting-edge and innovative.",
+              "A group of miracle-workers.",
+              "Helpful and service-minded.",
+              "Other.",
+            ]}
+          />
+        </div>
+        <div className={styles["radio"]}>
+          <DescriptionQuestions
+            question={"Do you have any additional information about your TG?"}
+            description={"(Desires, Interests etc.)"}
+          />
+        </div>
+        <div className={styles["radio"]}>
+          <TextQuestions question={"A hero you look upto?"} />
         </div>
       </div>
     </>

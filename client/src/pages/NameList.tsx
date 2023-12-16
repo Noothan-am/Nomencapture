@@ -1,6 +1,7 @@
 import React from "react";
 import { FaLessThan } from "react-icons/fa";
 import { FaGreaterThan } from "react-icons/fa";
+import Button from "../components/Button";
 const styles = require("../styles/name-list.module.css").default;
 
 function NameList() {
@@ -16,14 +17,10 @@ function NameList() {
         <div className={styles["nameset-2-names-img"]}>
           <img src="" alt="img for names" />
         </div>
-        <div className={styles["nameset-2-arrows"]}>
-          <button>
-            <FaLessThan />
-          </button>
-          <button>
-            <FaGreaterThan />
-          </button>
-        </div>
+        {/* <div className={styles["nameset-2-arrows"]}>
+          <Button buttonValue={<FaLessThan />} />
+          <Button buttonValue={<FaGreaterThan />} />
+        </div> */}
       </div>
     </>
   );

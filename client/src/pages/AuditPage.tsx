@@ -69,23 +69,6 @@ function AuditPage() {
                   <hr />
                 </div>
               </div>
-              <div className={styles["audit-comments-section"]}>
-                <div className={styles["audit-comments-vote-button"]}>
-                  <BiLike className={styles["audit-comments-like"]} />
-                  <BiDislike className={styles["audit-comments-dislike"]} />
-                </div>
-                <div className={styles["audit-comments-textarea"]}>
-                  <textarea
-                    placeholder="COMMENTS"
-                    id=""
-                    cols={60}
-                    rows={3}
-                  ></textarea>
-                </div>
-              </div>
-              <div className={styles["audit-comments-submit-btn"]}>
-                <Button buttonValue={"SUBMIT"} />
-              </div>
             </div>
             <div className={styles["audit-rating"]}>
               <p className={styles["audit-rating-question"]}>
@@ -93,6 +76,17 @@ function AuditPage() {
               </p>
               <div className={styles["audit-rating-bar"]}>
                 <DotsRow />
+              </div>
+              <div className={styles["audit-comments-textarea"]}>
+                <textarea
+                  placeholder="COMMENTS"
+                  id=""
+                  cols={40}
+                  rows={3}
+                ></textarea>
+              </div>
+              <div className={styles["audit-comments-submit-btn"]}>
+                <Button buttonValue={"SUBMIT"} />
               </div>
               <div className={styles["audit-rating-submit"]}>
                 <Button buttonValue={"PROCEED"} />

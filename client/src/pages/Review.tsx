@@ -29,7 +29,7 @@ const NamesFeedBack = () => {
 export default function Review() {
   return (
     <>
-      <div className={styles["review"]}>
+      {/* <div className={styles["review"]}>
         <div className={styles["navbar"]}>
           <Navbar />
         </div>
@@ -40,52 +40,52 @@ export default function Review() {
             </SideBar>
           </div>
           <div className={styles["review-container"]}>
-            <div className={styles["div"]}>
-              <div className={styles["form-content"]}>
-                <div className={styles["first-part"]}>
-                  <NamesFeedBack />
-                  <NamesFeedBack />
-                  <NamesFeedBack />
-                </div>
-                <div className={styles["second-part"]}>
-                  <div className={styles["top-part"]}>
-                    <div className={styles["select"]}>
-                      <SelectQuestions
-                        question={"Which one you like the most"}
-                        options={["name 1", "name 2", "name 3"]}
-                      />
-                    </div>
-                    <div className={styles["second-question"]}>
-                      <div className={styles["question"]}>
-                        <p>Are you completely satisfied with the name?</p>
-                      </div>
-                      <div className={styles["options"]}>
-                        <p>Yes</p>
-                        <p>No</p>
-                      </div>
-                    </div>
-                    <div className={styles["third-question"]}>
-                      <div className={styles["question"]}>
-                        <p>Do you prefer another round?</p>
-                      </div>
-                      <div className={styles["options"]}>
-                        <p>Yes</p>
-                        <p>No</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles["third-part"]}>
-                  <input type="text" placeholder="Elaborate" name="" id="" />
-                  <div className={styles["btn"]}>
-                    <Button buttonValue={"Submit"} />
-                  </div>
-                </div>
+            <div className={styles["div"]}> */}
+      <div className={styles["form-content"]}>
+        <div className={styles["first-part"]}>
+          <NamesFeedBack />
+          <NamesFeedBack />
+          <NamesFeedBack />
+        </div>
+        <div className={styles["second-part"]}>
+          <div className={styles["top-part"]}>
+            <div className={styles["select"]}>
+              <SelectQuestions
+                question={"Which one you like the most"}
+                options={["name 1", "name 2", "name 3"]}
+              />
+            </div>
+            <div className={styles["second-question"]}>
+              <div className={styles["question"]}>
+                <p>Are you completely satisfied with the name?</p>
+              </div>
+              <div className={styles["options"]}>
+                <p>Yes</p>
+                <p>No</p>
+              </div>
+            </div>
+            <div className={styles["third-question"]}>
+              <div className={styles["question"]}>
+                <p>Do you prefer another round?</p>
+              </div>
+              <div className={styles["options"]}>
+                <p>Yes</p>
+                <p>No</p>
               </div>
             </div>
           </div>
         </div>
+        <div className={styles["third-part"]}>
+          <input type="text" placeholder="Elaborate" name="" id="" />
+          <div className={styles["btn"]}>
+            <Button buttonValue={"Submit"} />
+          </div>
+        </div>
       </div>
+      {/* </div>
+          </div>
+        </div>
+      </div> */}
     </>
   );
 }

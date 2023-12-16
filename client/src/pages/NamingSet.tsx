@@ -3,6 +3,11 @@ import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Tabs from "../components/Tabs";
 import NameList from "./NameList";
+import { FaGreaterThan, FaLessThan } from "react-icons/fa";
+import Button from "../components/Button";
+import AudioPage from "./AudioPage";
+import YourName from "./YourName";
+import Review from "./Review";
 
 const styles = require("../styles/naming-set.module.css").default;
 
@@ -22,7 +27,7 @@ function NamingSet() {
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
               {/* <div className={styles["forms-tabs"]}>.</div> */}
-              <div className={styles["form-content"]}>{<NameList />}</div>
+              <div className={styles["form-content"]}>{<Review />}</div>
               {/* <div
                 style={
                   currentFormPage == 12
@@ -43,6 +48,10 @@ function NamingSet() {
                     handleClick={handleChangeCurrentPageToNext}
                   />
                 </div> */}
+              <div className={styles["nameset-2-arrows"]}>
+                <Button buttonValue={<FaLessThan />} />
+                <Button buttonValue={<FaGreaterThan />} />
+              </div>
             </div>
           </div>
         </div>

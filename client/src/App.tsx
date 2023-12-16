@@ -5,13 +5,12 @@ import "./index.css";
 import Home from "./pages/Home";
 import Forms from "./pages/Forms";
 import AuditPage from "./pages/AuditPage";
-import Review from "./pages/Review";
-import FinalGreetings from "./pages/FinalGreetings";
+import NamingSet from "./pages/NamingSet";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<FinalGreetings />} />
+      <Route path="/" element={<Forms />} />
       <Route path="/1" element={<AuditPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />

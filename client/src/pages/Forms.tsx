@@ -11,14 +11,6 @@ import FormFirstPage from "./FormFirstPage";
 import SecondFormPage from "./SecondFormPage";
 import ThirdFormPage from "./ThirdFormPage";
 import FourthFormPage from "./FourthFormPage";
-import FifthFormPage from "./FifthFormPage";
-import SixthFormPage from "./SixthFormPage";
-import SeventhFormPage from "./SeventhFormPage";
-import EighthFormPage from "./EighthFormPage";
-import NineFormPage from "./NineFormPage";
-import TenthFormPage from "./TenthFormPage";
-import Circle from "../components/Circle";
-import EleventhFormPage from "./EleventhFormPage";
 import Thankyou from "./Thankyou";
 // import CheckBoxQuestions from "../components/CheckBoxQuestions";
 const styles = require("../styles/forms.module.css").default;
@@ -45,20 +37,6 @@ function Forms() {
       case 4:
         return <FourthFormPage />;
       case 5:
-        return <FifthFormPage />;
-      case 6:
-        return <SixthFormPage />;
-      case 7:
-        return <SeventhFormPage />;
-      case 8:
-        return <EighthFormPage />;
-      case 9:
-        return <NineFormPage />;
-      case 10:
-        return <TenthFormPage />;
-      case 11:
-        return <EleventhFormPage />;
-      case 12:
         return <Thankyou />;
     }
   };
@@ -81,13 +59,20 @@ function Forms() {
                 {currentPage()}
                 <div
                   style={
-                    currentFormPage == 12
+                    currentFormPage == 5
                       ? { display: "none" }
                       : { display: "flex" }
                   }
                   className={styles["forms-next-button"]}
                 >
-                  <div className={styles["previous-btn"]}>
+                  <div
+                    style={
+                      currentFormPage == 1
+                        ? { display: "none" }
+                        : { display: "flex" }
+                    }
+                    className={styles["previous-btn"]}
+                  >
                     <Button
                       buttonValue={"PREVIOUS"}
                       handleClick={handleChangeCurrentPageToPrevious}

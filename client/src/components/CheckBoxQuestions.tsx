@@ -1,6 +1,6 @@
 import React from "react";
 const styles = require("../styles/checkbox-questions.module.css").default;
-function CheckBoxQuestions({ question, options, onInputChange }: any) {
+function CheckBoxQuestions({ question, options, onInputChange, value }: any) {
   let selectOptions: any = [];
   const handleChange = (event: any) => {
     const value = event.target.value;

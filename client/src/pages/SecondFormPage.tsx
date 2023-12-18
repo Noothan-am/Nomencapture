@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TextQuestions from "../components/TextQuestions";
 import RadioQuestions from "../components/RadioQuestions";
 import DescriptionQuestions from "../components/DescriptionQuestions";
 import SelectQuestions from "../components/SelectQuestions";
 import CheckBoxQuestions from "../components/CheckBoxQuestions";
+import useLocalStorage from "../hooks/useLocalStorage";
+import useFormData from "../context/FormContext";
 const styles = require("../styles/forms.module.css").default;
 
 const selectOptions = [
@@ -17,42 +19,116 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
-  const handleProductCaterChange = (value: any) => {
-    console.log(value);
-  };
-  const handleUspChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductSegmentChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductExpansionChange = (value: any) => {
-    console.log(value);
-  };
-  const handleLastPhotoDetailsChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductLikenessChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductUnLikenessChange = (value: any) => {
-    console.log(value);
-  };
-  const handleDressColorChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductImpactAsPersonChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductAchievementChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductImpactChange = (value: any) => {
-    console.log(value);
-  };
-  const handleProductValuesChange = (value: any) => {
-    console.log(value);
-  };
+  const [usp, setUsp] = useState("");
+  const [dressColor, setDressColor] = useState("");
+  const [productCater, setProductCater] = useState("");
+  const [productValues, setProductValues] = useState("");
+  const [productImpact, setProductImpact] = useState("");
+  const [productSegment, setProductSegment] = useState("");
+  const [productLikeness, setProductLikeness] = useState([]);
+  const [productExpansion, setProductExpansion] = useState("");
+  const [lastPhotoDetails, setLastPhotoDetails] = useState("");
+  const [productUnLikeness, setProductUnLikeness] = useState([]);
+  const [productAchievement, setProductAchievement] = useState("");
+  const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
+
+  // const handleProductCaterChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleUspChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductSegmentChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductExpansionChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleLastPhotoDetailsChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductLikenessChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductUnLikenessChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleDressColorChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductImpactAsPersonChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductAchievementChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductImpactChange = (value: any) => {
+  //   console.log(value);
+  // };
+  // const handleProductValuesChange = (value: any) => {
+  //   console.log(value);
+  // };
+
+  const { getItem } = useLocalStorage();
+  const { form, setForm }: any = useFormData();
+
+  const setFormDetails = useCallback(() => {
+    const data = {
+      ...form,
+      productCater,
+      usp,
+      productSegment,
+      productExpansion,
+      lastPhotoDetails,
+      productLikeness,
+      productUnLikeness,
+      dressColor,
+      productImpactAsPerson,
+      productAchievement,
+      productImpact,
+      productValues,
+    };
+    setForm(data);
+  }, [
+    productCater,
+    usp,
+    productSegment,
+    productExpansion,
+    lastPhotoDetails,
+    productLikeness,
+    productUnLikeness,
+    dressColor,
+    productImpactAsPerson,
+    productAchievement,
+    productImpact,
+    productValues,
+  ]);
+
+  useEffect(() => {
+    setFormDetails();
+  }, [setFormDetails]);
+
+  const setDataFromLocalStorage = useCallback(() => {
+    const data = getItem();
+    if (data) {
+      setProductCater(data.productCater);
+      setUsp(data.usp);
+      setProductSegment(data.productSegment);
+      setProductExpansion(data.productExpansion);
+      setLastPhotoDetails(data.lastPhotoDetails);
+      setProductLikeness(data.productLikeness);
+      setProductUnLikeness(data.productUnLikeness);
+      setDressColor(data.dressColor);
+      setProductImpactAsPerson(data.productImpactAsPerson);
+      setProductAchievement(data.productAchievement);
+      setProductImpact(data.productImpact);
+      setProductValues(data.productValues);
+    }
+  }, []);
+
+  useEffect(() => {
+    setDataFromLocalStorage();
+  }, [setDataFromLocalStorage]);
 
   return (
     <>
@@ -60,15 +136,15 @@ function SecondFormPage() {
         <div className={styles["email"]}>
           <TextQuestions
             question={"What need does your product / service cater to?"}
-            onInputChange={handleProductCaterChange}
+            onInputChange={setProductCater}
+            value={productCater}
           />
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
-            question={
-              "What do you think is the differentiating value you provide / What is your USP?"
-            }
-            onInputChange={handleUspChange}
+            question={"What is your USP?"}
+            onInputChange={setUsp}
+            value={usp}
           />
         </div>
         <RadioQuestions
@@ -80,14 +156,16 @@ function SecondFormPage() {
             "Luxury",
           ]}
           showOthersInput={false}
-          onInputChange={handleProductSegmentChange}
+          onInputChange={setProductSegment}
+          value={productSegment}
         />
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={
               "Do you see yourself expanding to other cities/states in future? If yes, where?"
             }
-            onInputChange={handleProductExpansionChange}
+            onInputChange={setProductExpansion}
+            value={productExpansion}
           />
         </div>
         <div className={styles["email"]}>
@@ -95,7 +173,8 @@ function SecondFormPage() {
             question={
               "If your product / service were a person, list the values or beliefs it will always stand by? "
             }
-            onInputChange={handleProductValuesChange}
+            onInputChange={setProductValues}
+            value={productValues}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -106,7 +185,8 @@ function SecondFormPage() {
             description={
               "Ex. This would be Google's response: To provide access to the world’s information in one click"
             }
-            onInputChange={handleProductImpactChange}
+            onInputChange={setProductImpact}
+            value={productImpact}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -117,7 +197,8 @@ function SecondFormPage() {
             description={
               "Ex. This would be Google's response: To organize the world’s information and make it universally accessible and useful"
             }
-            onInputChange={handleProductAchievementChange}
+            onInputChange={setProductAchievement}
+            value={productAchievement}
           />
         </div>
         <div className={styles["email"]}>
@@ -131,14 +212,16 @@ function SecondFormPage() {
               "Connect with people, be a partner",
               "Lead, inform and educate",
             ]}
-            onInputChange={handleProductImpactAsPersonChange}
+            onInputChange={setProductImpactAsPerson}
             showOthersInput={true}
+            value={productImpactAsPerson}
           />
         </div>
         <div className={styles["email"]}>
           <TextQuestions
             question={"What is the color of the dress you wore yesterday?"}
-            onInputChange={handleDressColorChange}
+            onInputChange={setDressColor}
+            value={dressColor}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -146,7 +229,7 @@ function SecondFormPage() {
             question={
               "If your product / service were a person, how would you definitely like it to come across as?"
             }
-            onInputChange={handleProductLikenessChange}
+            onInputChange={setProductLikeness}
             options={[
               "Rebellious",
               "Combative",
@@ -184,6 +267,7 @@ function SecondFormPage() {
               "Sensual",
               "Loving",
             ]}
+            value={productLikeness}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -191,7 +275,7 @@ function SecondFormPage() {
             question={
               "If your product / service were a person, how would you definitely not like it to come across as?"
             }
-            onInputChange={handleProductUnLikenessChange}
+            onInputChange={setProductUnLikeness}
             options={[
               "Rebellious",
               "Combative",
@@ -229,12 +313,14 @@ function SecondFormPage() {
               "Sensual",
               "Loving",
             ]}
+            value={productUnLikeness}
           />
         </div>
         <div className={styles["email"]}>
           <TextQuestions
             question={"What was the object you last took a photo of?"}
-            onInputChange={handleLastPhotoDetailsChange}
+            onInputChange={setLastPhotoDetails}
+            value={lastPhotoDetails}
           />
         </div>
       </div>

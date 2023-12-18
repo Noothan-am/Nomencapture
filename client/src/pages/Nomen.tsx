@@ -175,4 +175,4 @@ function Nomen() {
   );
 }
 
-export default Nomen;
+export default NomenContentTemplate;

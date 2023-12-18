@@ -6,7 +6,7 @@ const TextQuestions = ({ question }: any) => {
     <>
       <div className={styles["text-questions"]}>
         <label htmlFor="">{question}</label>
-        <input type="text" />
+        <input placeholder="Your Answer" type="text" />
       </div>
     </>
   );

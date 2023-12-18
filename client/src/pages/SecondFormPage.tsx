@@ -40,6 +40,7 @@ function SecondFormPage() {
             "Premium",
             "Luxury",
           ]}
+          showOthersInput={false}
         />
         <div className={styles["radio"]}>
           <DescriptionQuestions
@@ -86,6 +87,7 @@ function SecondFormPage() {
               "Connect with people, be a partner",
               "Lead, inform and educate",
             ]}
+            showOthersInput={true}
           />
         </div>
         <div className={styles["email"]}>

@@ -2,21 +2,37 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
-// import TextQuestions from "../components/TextQuestions";
-// import SelectQuestions from "../components/SelectQuestions";
-// import RadioQuestions from "../components/RadioQuestions";
-// import DescriptionQuestions from "../components/DescriptionQuestions";
 import Button from "../components/Button";
 import FormFirstPage from "./FormFirstPage";
 import SecondFormPage from "./SecondFormPage";
 import ThirdFormPage from "./ThirdFormPage";
 import FourthFormPage from "./FourthFormPage";
 import Thankyou from "./Thankyou";
+// import { Step, Stepper } from "react-form-stepper";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import { StepButton, StepLabel } from "@mui/material";
+
+const steps = [
+  "Understand the basics",
+  "The Foundation",
+  "Target Audience",
+  "Preference",
+];
+// const Stepper = require("react-stepper-horizontal");
+// import TextQuestions from "../components/TextQuestions";
+// import SelectQuestions from "../components/SelectQuestions";
+// import RadioQuestions from "../components/RadioQuestions";
+// import DescriptionQuestions from "../components/DescriptionQuestions";
+
 // import CheckBoxQuestions from "../components/CheckBoxQuestions";
 const styles = require("../styles/forms.module.css").default;
 
 function Forms() {
   const [currentFormPage, setCurrentFormPage] = useState(1);
+  const [completed, setCompleted] = React.useState<{
+    [k: number]: boolean;
+  }>({});
 
   const handleChangeCurrentPageToNext = () => {
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
@@ -24,6 +40,10 @@ function Forms() {
 
   const handleChangeCurrentPageToPrevious = () => {
     setCurrentFormPage((currentFormPage) => currentFormPage - 1);
+  };
+
+  const handleStep = (step: number) => () => {
+    setCurrentFormPage(step + 1);
   };
 
   const currentPage = () => {
@@ -54,7 +74,39 @@ function Forms() {
           </div>
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
-              {/* <div className={styles["forms-tabs"]}>.</div> */}
+              <div className={styles["stepper"]}>
+                {currentFormPage !== 5 && (
+                  <Stepper
+                    style={{ color: "black" }}
+                    activeStep={currentFormPage - 1}
+                  >
+                    {steps.map((label, index) => (
+                      <Step
+                        key={label}
+                        style={{ color: "black" }}
+                        completed={completed[index]}
+                      >
+                        <StepButton
+                          style={{ color: "black" }}
+                          onClick={handleStep(index)}
+                        >
+                          {label}
+                        </StepButton>
+                      </Step>
+                    ))}
+                  </Stepper>
+                  // <Stepper nonLinear activeStep={currentFormPage - 1}>
+                  //   {steps.map((label, index) => (
+                  //     <Step key={label} completed={completed[index]}>
+                  //       <StepButton color="inherit" onClick={handleStep(index)}>
+                  //         {label}
+                  //       </StepButton>
+                  //       {/* <StepLabel>{label}</StepLabel> */}
+                  //     </Step>
+                  //   ))}
+                  // </Stepper>
+                )}
+              </div>
               <div className={styles["form-content"]}>
                 {currentPage()}
                 <div

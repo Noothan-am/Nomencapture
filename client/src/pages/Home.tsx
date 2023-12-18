@@ -4,8 +4,10 @@ import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
+
 function Home() {
   const navigate = useNavigate();
   const handleLoginSubmit = () => {

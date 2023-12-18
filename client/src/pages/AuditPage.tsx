@@ -5,10 +5,15 @@ import Navbar from "../components/Navbar";
 import Button from "../components/Button";
 import { BiLike, BiDislike } from "react-icons/bi";
 import DotsRow from "../components/DotRows";
+import { useNavigate } from "react-router-dom";
 
 const styles = require("../styles/audit.module.css").default;
 
 function AuditPage() {
+  const navigate = useNavigate();
+  const navigateToNamingSet = () => {
+    navigate("/audio-page");
+  };
   return (
     <>
       <div className={styles["audit-page"]}>
@@ -72,7 +77,7 @@ function AuditPage() {
             </div>
             <div className={styles["audit-rating"]}>
               <p className={styles["audit-rating-question"]}>
-                How aligned are you on this overall?
+                On scale of 1-5, how aligned are you on this overall?
               </p>
               <div className={styles["audit-rating-bar"]}>
                 <DotsRow />
@@ -89,7 +94,10 @@ function AuditPage() {
                 <Button buttonValue={"SUBMIT"} />
               </div>
               <div className={styles["audit-rating-submit"]}>
-                <Button buttonValue={"PROCEED"} />
+                <Button
+                  handleClick={navigateToNamingSet}
+                  buttonValue={"PROCEED"}
+                />
               </div>
             </div>
           </div>

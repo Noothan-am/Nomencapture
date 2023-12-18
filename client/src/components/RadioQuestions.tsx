@@ -1,7 +1,7 @@
 import React from "react";
 const styles = require("../styles/radio-questions.module.css").default;
 
-function RadioQuestions({ question, options }: any) {
+function RadioQuestions({ question, options, showOthersInput }: any) {
   return (
     <>
       <div className={styles["select-questions"]}>
@@ -14,6 +14,15 @@ function RadioQuestions({ question, options }: any) {
             </div>
           ))}
         </span>
+        {showOthersInput && (
+          <>
+            <div className={styles["select-inputs"]} key={10}>
+              <input type="radio" name="options" />
+              <label>{"Others"}</label>
+            </div>
+            <input type="text" name="" id="" />
+          </>
+        )}
       </div>
     </>
   );

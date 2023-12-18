@@ -41,6 +41,7 @@ function SecondFormPage() {
           <RadioQuestions
             question={"Which gender of TG is your product / service for?"}
             options={["All", "Men", "Women"]}
+            showOthersInput={true}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -79,6 +80,7 @@ function SecondFormPage() {
               "Rarely",
               "One time",
             ]}
+            showOthersInput={false}
           />
         </div>
         <div className={styles["text-2"]}>

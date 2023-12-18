@@ -169,6 +169,7 @@ function FormFirstPage() {
           <RadioQuestions
             question={"What are we naming?"}
             options={["Product", "Service"]}
+            showOthersInput={true}
           />
         </div>
         <div className={styles["select"]}>

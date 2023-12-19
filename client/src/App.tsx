@@ -11,7 +11,7 @@ import NamingSet from "./pages/NamingSet";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Forms />} />
+      <Route path="/" element={<Login />} />
       <Route path="/understanding" element={<AuditPage />} />
       <Route path="/audio-page" element={<AudioPage />} />
       <Route path="/naming-set" element={<NamingSet />} />

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import { IoLockClosed } from "react-icons/io5";
+import { IoMdRadioButtonOn } from "react-icons/io";
 
 const styles = require("../styles/nomen.module.css").default;
 
@@ -32,10 +33,12 @@ const NomenContentTemplate = () => {
               </div>
               <div className={styles["available-domains"]}>
                 <p>
-                  <span></span>.com
+                  <IoMdRadioButtonOn />
+                  <span>.com</span>
                 </p>
                 <p>
-                  <span></span>.in
+                  <IoMdRadioButtonOn />
+                  <span>.in</span>
                 </p>
               </div>
             </div>

@@ -9,7 +9,7 @@ function Thankyou() {
   useEffect(() => {
     setTimeout(() => {
       navigate("/understanding");
-    }, 4000);
+    }, 2000);
   }, [navigate]);
 
   return (

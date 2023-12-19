@@ -33,6 +33,7 @@
   padding: 0px 12px;
   border-left: none;
   border-right: none;
+  height: 6.6rem;
 }
 
 .name h1 {
@@ -115,6 +116,10 @@
 .available-domains {
   text-align: start;
 }
+/* .available-domains > span {
+  position: absolute;
+  margin-top: 7rem;
+} */
 .names-more-details {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -202,8 +207,8 @@
 .middlepart {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  /* justify-content: space-between; */
+  height: fit-content;
   border: 1.5px solid;
   padding: 0px 0px;
   border-top: none;
@@ -214,7 +219,7 @@
 .lastpart {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 100%;
 }
 

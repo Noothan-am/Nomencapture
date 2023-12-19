@@ -37,7 +37,7 @@ const AudioComponent = ({ data }: any) => {
             className={styles["input-arrow"]}
             placeholder="Type what you heard"
           />
-          <IoIosArrowRoundForward width={"2rem"} />
+          {/* <IoIosArrowRoundForward width={"2rem"} /> */}
         </div>
       </div>
     </div>

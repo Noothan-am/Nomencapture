@@ -1,24 +1,3 @@
-.hero {
-  display: flex;
-  flex-direction: row;
-}
-
-.review-container {
-  width: 100%;
-}
-
-.div {
-  border-radius: 20px;
-  background-color: #fafafa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* max-height: 50%; */
-  margin: auto;
-  padding: 3rem 2rem;
-  height: 80%;
-}
-
 .form-content {
   position: absolute;
   top: 55%;

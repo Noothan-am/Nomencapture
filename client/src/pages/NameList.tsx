@@ -15,7 +15,10 @@ function NameList() {
           </p>
         </div>
         <div className={styles["nameset-2-names-img"]}>
-          <img src="" alt="img for names" />
+          <img
+            src={require("../assets/images/names.png")}
+            alt="img for names"
+          />
         </div>
         {/* <div className={styles["nameset-2-arrows"]}>
           <Button buttonValue={<FaLessThan />} />

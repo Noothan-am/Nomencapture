@@ -16,8 +16,7 @@
 }
 .div-2 {
   width: 90%;
-  padding: 3rem;
-  /* margin: 116px 0 107px; */
+  padding: 2rem;
 }
 @media (max-width: 991px) {
   .div-2 {

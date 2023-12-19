@@ -9,13 +9,15 @@
 
 .tabs-4,
 .tabs-2 {
-  margin: 1rem 0rem;
+  /* margin: 1rem 0rem; */
 }
 
 .tabs-1 {
   color: #000000;
   font-weight: 600;
+  margin: 10px 0px;
 }
+
 .tabs-1 > span {
   display: none;
 }
@@ -25,4 +27,7 @@
 .tabs-3 > span,
 .tabs-5 > span {
   color: #000000;
+}
+.tabs-5 {
+  margin: 0.5rem 0rem;
 }

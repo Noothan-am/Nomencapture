@@ -69,7 +69,7 @@ function Forms() {
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
-              <Tabs />
+              <Tabs show={1} />
             </SideBar>
           </div>
           <div className={styles["forms-container"]}>

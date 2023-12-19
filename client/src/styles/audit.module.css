@@ -23,6 +23,8 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 2rem;
+  min-height: 90%;
+  width: 100%;
 }
 
 .audit-questions {
@@ -33,6 +35,7 @@
   font-weight: bold;
   font-size: 17px;
 }
+
 .audit-questions p {
   color: #383838;
   font-weight: 400;
@@ -60,6 +63,17 @@
 .audit-comments-textarea textarea::placeholder {
   font-size: 11px;
   font-family: "Inter", sans-serif;
+}
+
+.question {
+  padding: 0.4rem 0rem;
+  cursor: pointer;
+}
+
+.accordion-title {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .audit-rating-question {

@@ -25,17 +25,9 @@ const AudioComponent = ({ data }: any) => {
         <div className={styles["play-button"]}>
           <FaRegCirclePlay />
         </div>
-        <div
-          style={{
-            width: "30px",
-            height: "2px",
-            backgroundColor: "black",
-            marginLeft: "10px",
-            marginRight: "10px",
-          }}
-        ></div>
+
         <div className={styles["audio-spikes"]}>
-          <GiSoundWaves width={"2rem"} />
+          <img src={require("../assets/svg/Playy-voice.svg").default} alt="" />
         </div>
       </div>
       <div className={styles["audio-input"]}>
@@ -66,7 +58,7 @@ const AudioPage = () => {
       <div className={styles["hero"]}>
         <div className={styles["sidebar"]}>
           <SideBar isLogin={false}>
-            <Tabs />
+            <Tabs show={3} />
           </SideBar>
         </div>
         <div className={styles["naming-set-container"]}>

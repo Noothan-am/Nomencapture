@@ -59,6 +59,19 @@
   cursor: pointer;
 }
 
+.circle-table > label {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 0.9rem;
+  width: 70%;
+  line-height: 1.3rem;
+}
+
+.circle-box-container {
+  margin-top: 1rem;
+}
+
 .stepper {
   margin: auto;
   margin-bottom: 1.5rem;

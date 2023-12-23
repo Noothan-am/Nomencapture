@@ -17,6 +17,42 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
+  const [targetAudienceAge, setTargetAudienceAge] = React.useState("");
+
+  const handleTargetAudienceAgeChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleHeroChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleTargetAudienceInfoChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleMemorableImpressionChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleTargetAudienceExpectationChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleProductAvailabilityChange = (value: any) => {
+    console.log(value);
+  };
+
+  const handleProductPurchaseFrequencyChange = (value: any) => {
+    console.log(value);
+  };
+  const handleTargetAudienceOccupationChange = (value: any) => {
+    console.log(value);
+  };
+  const handleTargetAudienceGenderChange = (value: any) => {
+    console.log(value);
+  };
+
   return (
     <>
       <div className={styles["firstpart-3"]}>
@@ -35,6 +71,7 @@ function SecondFormPage() {
               "61-70",
               "70+",
             ]}
+            onInputChange={handleTargetAudienceAgeChange}
           />
         </div>
         <div className={styles["radio"]}>
@@ -42,6 +79,7 @@ function SecondFormPage() {
             question={"Which gender of TG is your product / service for?"}
             options={["All", "Men", "Women"]}
             showOthersInput={true}
+            onInputChange={handleTargetAudienceGenderChange}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -69,6 +107,7 @@ function SecondFormPage() {
               "Retired",
               "Elders",
             ]}
+            onInputChange={handleTargetAudienceOccupationChange}
           />
         </div>
         <div className={styles["radio"]}>
@@ -80,6 +119,7 @@ function SecondFormPage() {
               "Rarely",
               "One time",
             ]}
+            onInputChange={handleProductPurchaseFrequencyChange}
             showOthersInput={false}
           />
         </div>
@@ -93,6 +133,7 @@ function SecondFormPage() {
               "Directly on Website",
               "Other",
             ]}
+            onInputChange={handleProductAvailabilityChange}
           />
         </div>
         <div className={styles["radio"]}>
@@ -101,6 +142,7 @@ function SecondFormPage() {
             description={
               "You want your TG to choose you over the competitor for what values?"
             }
+            onInputChange={handleTargetAudienceExpectationChange}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -115,16 +157,21 @@ function SecondFormPage() {
               "Helpful and service-minded.",
               "Other.",
             ]}
+            onInputChange={handleMemorableImpressionChange}
           />
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={"Do you have any additional information about your TG?"}
             description={"(Desires, Interests etc.)"}
+            onInputChange={handleTargetAudienceInfoChange}
           />
         </div>
         <div className={styles["radio"]}>
-          <TextQuestions question={"A hero you look upto?"} />
+          <TextQuestions
+            question={"A hero you look upto?"}
+            onInputChange={handleHeroChange}
+          />
         </div>
       </div>
     </>

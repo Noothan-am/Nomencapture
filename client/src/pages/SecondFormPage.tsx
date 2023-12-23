@@ -35,6 +35,9 @@ function SecondFormPage() {
   const handleProductLikenessChange = (value: any) => {
     console.log(value);
   };
+  const handleProductUnLikenessChange = (value: any) => {
+    console.log(value);
+  };
   const handleDressColorChange = (value: any) => {
     console.log(value);
   };
@@ -167,7 +170,52 @@ function SecondFormPage() {
               "Authoritative",
               "Refined",
               "Articulate",
-              "Knowledgable",
+              "Knowledgeable",
+              "Well",
+              "Informed",
+              "Playful",
+              "Fun-Loving",
+              "Caring",
+              "Warm",
+              "Empathetic",
+              "Mystical",
+              "Visionary",
+              "Intimate",
+              "Sensual",
+              "Loving",
+            ]}
+          />
+        </div>
+        <div className={styles["text-2"]}>
+          <CheckBoxQuestions
+            question={
+              "If your product / service were a person, how would you definitely not like it to come across as?"
+            }
+            onInputChange={handleProductUnLikenessChange}
+            options={[
+              "Rebellious",
+              "Combative",
+              "Disruptive",
+              "Bold",
+              "Brave",
+              "Honest",
+              "Humble",
+              "Sincere",
+              "Optimistic",
+              "Hopeful",
+              "Fearless",
+              "Excited",
+              "Inspirational",
+              "Provocative",
+              "Passionate",
+              "Authentic",
+              "Relatable",
+              "Friendly",
+              "Commanding",
+              "Authoritative",
+              "Refined",
+              "Articulate",
+              "Knowledgeable",
               "Well",
               "Informed",
               "Playful",

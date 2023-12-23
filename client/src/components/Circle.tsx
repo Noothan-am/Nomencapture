@@ -1,9 +1,21 @@
 import React from "react";
-const styles = require("../styles/circle.module.css").default;
+require("../styles/circle.module.css");
 
-const Circle = ({ question, options, initialText, finalText }: any) => {
+const Circle = ({
+  question,
+  options,
+  initialText,
+  finalText,
+  onInputChange,
+}: any) => {
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    // onInputChange(value);
+    console.log({ question, value });
+  };
+
   return (
-    <table>
+    <table key={initialText}>
       <thead>
         <tr>
           <th colSpan={7}>{question}</th>
@@ -12,10 +24,16 @@ const Circle = ({ question, options, initialText, finalText }: any) => {
       <tbody>
         <tr>
           <td>{initialText}</td>
-          {options.map((option: any) => {
+          {options.map((option: any, index: number) => {
             return (
-              <td>
-                <div>{option}</div> <input type="radio" name="choice" />
+              <td key={index}>
+                <div>{option}</div>{" "}
+                <input
+                  onChange={(e) => handleChange(e)}
+                  type="radio"
+                  name="choice"
+                  value={option}
+                />
               </td>
             );
           })}

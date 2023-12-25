@@ -17,12 +17,47 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
+  const handleProductCaterChange = (value: any) => {
+    console.log(value);
+  };
+  const handleUspChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductSegmentChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductExpansionChange = (value: any) => {
+    console.log(value);
+  };
+  const handleLastPhotoDetailsChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductLikenessChange = (value: any) => {
+    console.log(value);
+  };
+  const handleDressColorChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductImpactAsPersonChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductAchievementChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductImpactChange = (value: any) => {
+    console.log(value);
+  };
+  const handleProductValuesChange = (value: any) => {
+    console.log(value);
+  };
+
   return (
     <>
       <div className={styles["firstpart-2"]}>
         <div className={styles["email"]}>
           <TextQuestions
             question={"What need does your product / service cater to?"}
+            onInputChange={handleProductCaterChange}
           />
         </div>
         <div className={styles["radio"]}>
@@ -30,6 +65,7 @@ function SecondFormPage() {
             question={
               "What do you think is the differentiating value you provide / What is your USP?"
             }
+            onInputChange={handleUspChange}
           />
         </div>
         <RadioQuestions
@@ -41,12 +77,14 @@ function SecondFormPage() {
             "Luxury",
           ]}
           showOthersInput={false}
+          onInputChange={handleProductSegmentChange}
         />
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={
               "Do you see yourself expanding to other cities/states in future? If yes, where?"
             }
+            onInputChange={handleProductExpansionChange}
           />
         </div>
         <div className={styles["email"]}>
@@ -54,6 +92,7 @@ function SecondFormPage() {
             question={
               "If your product / service were a person, list the values or beliefs it will always stand by? "
             }
+            onInputChange={handleProductValuesChange}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -64,6 +103,7 @@ function SecondFormPage() {
             description={
               "Ex. This would be Google's response: To provide access to the world’s information in one click"
             }
+            onInputChange={handleProductImpactChange}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -74,6 +114,7 @@ function SecondFormPage() {
             description={
               "Ex. This would be Google's response: To organize the world’s information and make it universally accessible and useful"
             }
+            onInputChange={handleProductAchievementChange}
           />
         </div>
         <div className={styles["email"]}>
@@ -87,12 +128,14 @@ function SecondFormPage() {
               "Connect with people, be a partner",
               "Lead, inform and educate",
             ]}
+            onInputChange={handleProductImpactAsPersonChange}
             showOthersInput={true}
           />
         </div>
         <div className={styles["email"]}>
           <TextQuestions
             question={"What is the color of the dress you wore yesterday?"}
+            onInputChange={handleDressColorChange}
           />
         </div>
         <div className={styles["text-2"]}>
@@ -100,6 +143,7 @@ function SecondFormPage() {
             question={
               "If your product / service were a person, how would you definitely like it to come across as?"
             }
+            onInputChange={handleProductLikenessChange}
             options={[
               "Rebellious",
               "Combative",
@@ -142,6 +186,7 @@ function SecondFormPage() {
         <div className={styles["email"]}>
           <TextQuestions
             question={"What was the object you last took a photo of?"}
+            onInputChange={handleLastPhotoDetailsChange}
           />
         </div>
       </div>

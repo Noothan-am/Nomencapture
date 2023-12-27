@@ -4,8 +4,10 @@ import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
+
 function Home() {
   const navigate = useNavigate();
   const handleLoginSubmit = () => {
@@ -19,7 +21,7 @@ function Home() {
       <div className={styles["home"]}>
         <div className="home-sidebar">
           <SideBar isLogin={false}>
-            <Tabs />
+            <Tabs show={1} />
           </SideBar>
         </div>
         <div className={styles["div"]}>
@@ -46,7 +48,7 @@ function Home() {
                   </span>
                   <span
                     style={{
-                      fontSize: "16px",
+                      fontSize: "13px",
                       fontFamily: "Inter, sans-serif",
                       fontWeight: 400,
                       lineHeight: "normal",
@@ -65,7 +67,7 @@ function Home() {
                     >
                       <span
                         style={{
-                          fontSize: "15px",
+                          fontSize: "13px",
                           fontFamily: "Inter, sans-serif",
                           fontWeight: 600,
                           lineHeight: "normal",
@@ -88,7 +90,7 @@ function Home() {
                       <span
                         style={{
                           fontFamily: "Inter, sans-serif",
-                          fontSize: "15px",
+                          fontSize: "13px",
                           fontWeight: 600,
                           lineHeight: "normal",
                         }}
@@ -104,7 +106,7 @@ function Home() {
                   </ul>
                   <span
                     style={{
-                      fontSize: "15px",
+                      fontSize: "13px",
                       fontFamily: "Inter, sans-serif",
                       fontWeight: 600,
                       lineHeight: "normal",

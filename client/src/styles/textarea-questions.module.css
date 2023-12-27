@@ -3,19 +3,22 @@
   flex-direction: column;
 }
 
-.textarea-questions i {
+.textarea-questions > i {
   font-family: "Inter", sans-serif;
   font-weight: 200;
   font-size: 11px;
   line-height: 1.5;
   margin: 0.5rem 0rem;
-  color: #5b5b5b;
+  color: #464646;
+  width: 45%;
 }
 
 .textarea-questions > label {
   font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 14px;
+  line-height: 1.3rem;
+  width: 80%;
 }
 .textarea-questions > textarea {
   font-family: "Inter", sans-serif;
@@ -26,6 +29,7 @@
   padding: 10px 10px;
   margin-bottom: 1rem;
   background-color: transparent;
+  width: 45%;
 }
 
 .textarea-questions > textarea::placeholder {

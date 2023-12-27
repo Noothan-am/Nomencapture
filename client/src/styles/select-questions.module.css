@@ -21,7 +21,7 @@
   background-color: transparent;
   margin-bottom: 1rem;
   color: #686868;
-  width: 100%;
+  width: 95%;
 }
 .select-questions > select::placeholder {
   color: #868686;

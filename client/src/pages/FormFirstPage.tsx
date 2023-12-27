@@ -162,16 +162,15 @@ function FormFirstPage() {
         <div className={styles["name"]}>
           <TextQuestions question={"Your Name"} />
         </div>
+        <div className={styles["email"]}>
+          <TextQuestions question={"Your Email"} />
+        </div>
         <div className={styles["radio"]}>
           <RadioQuestions
             question={"What are we naming?"}
             options={["Product", "Service"]}
+            showOthersInput={true}
           />
-        </div>
-      </div>
-      <div className={styles["secondpart"]}>
-        <div className={styles["email"]}>
-          <TextQuestions question={"Your Email"} />
         </div>
         <div className={styles["select"]}>
           <SelectQuestions
@@ -179,13 +178,6 @@ function FormFirstPage() {
             options={selectOptions}
           />
         </div>
-        {/* <div className={styles["text-2"]}>
-          <TextQuestions
-            question={
-              "Mention the Trademark classes your product/service belongs to? "
-            }
-          />
-        </div> */}
         <div className={styles["textarea"]}>
           <DescriptionQuestions
             question={"Describe your Product/Service?"}
@@ -193,6 +185,14 @@ function FormFirstPage() {
               "Ex: Grammarly is a cloud-based typing assistant that reviews spelling, grammar, punctuation, clarity, engagement, and delivery mistakes. It uses artificial intelligence to identify and search for an appropriate replacement for the error it locates."
             }
           />
+        </div>
+        <div className={styles["name"]}>
+          <TextQuestions
+            question={"Which sector does your product / service belong to?"}
+          />
+        </div>
+        <div className={styles["name"]}>
+          <TextQuestions question={"Your favourite go to place for peace?"} />
         </div>
       </div>
     </>

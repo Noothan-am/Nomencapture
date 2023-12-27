@@ -1,0 +1,46 @@
+.name-list-2-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  min-height: 74vh;
+}
+
+.name-list-2-hero {
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+}
+
+.heading {
+  width: 100%;
+  text-align: start;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+.heading span {
+  font-weight: bold;
+}
+
+.nameset-2-arrows {
+  display: flex;
+  flex-direction: row;
+  width: 7%;
+  bottom: 0.5rem;
+  position: absolute;
+  right: 2rem;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+.nameset-2-arrows > button {
+  width: 3.4rem;
+  padding: 0.4rem 0rem;
+  right: 2rem;
+  border-radius: 0;
+}
+
+.nameset-2-names-img img {
+  width: 100%;
+  height: 100%;
+}

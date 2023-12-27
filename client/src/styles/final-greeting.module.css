@@ -1,0 +1,14 @@
+.form-content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-content h1 {
+  font-family: "Inter", sans-serif;
+  line-height: 3rem;
+  width: 96%;
+  margin: auto;
+  font-size: 2rem;
+}

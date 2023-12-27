@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const styles = require("../styles/thankyou.module.css").default;
 
 function Thankyou() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/understanding");
+    }, 2000);
+  }, [navigate]);
+
   return (
     <>
       <div className={styles["thankyou"]}>

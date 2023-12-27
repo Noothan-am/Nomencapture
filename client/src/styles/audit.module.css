@@ -22,6 +22,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 2rem;
+  min-height: 90%;
+  width: 100%;
 }
 
 .audit-questions {
@@ -32,6 +35,7 @@
   font-weight: bold;
   font-size: 17px;
 }
+
 .audit-questions p {
   color: #383838;
   font-weight: 400;
@@ -49,6 +53,9 @@
   display: flex;
   flex-direction: row;
 }
+.audit-comments-textarea {
+  margin-top: 2rem;
+}
 
 .audit-comments-textarea textarea {
   padding: 8px;
@@ -56,6 +63,17 @@
 .audit-comments-textarea textarea::placeholder {
   font-size: 11px;
   font-family: "Inter", sans-serif;
+}
+
+.question {
+  padding: 0.4rem 0rem;
+  cursor: pointer;
+}
+
+.accordion-title {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .audit-rating-question {
@@ -66,9 +84,10 @@
 
 .audit-rating-submit {
   margin-top: 1.4rem;
-  width: 100%;
+  width: 40%;
   display: flex;
   justify-content: flex-start;
+  margin-top: 6rem;
 }
 
 .audit-comments-vote-button {
@@ -78,13 +97,6 @@
 }
 
 .audit-comments-submit-btn {
-  margin-left: 3rem;
-}
-
-/* .audit-each-question p {
-  display: none;
-} */
-
-.audit-comments-dislike,
-.audit-comments-like {
+  margin-top: 1rem;
+  width: 6rem;
 }

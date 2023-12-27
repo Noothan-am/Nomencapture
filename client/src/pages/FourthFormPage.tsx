@@ -1,60 +1,157 @@
 import React from "react";
-import DescriptionQuestions from "../components/DescriptionQuestions";
-import CheckBoxQuestions from "../components/CheckBoxQuestions";
+
+import Circle from "../components/Circle";
+import TextQuestions from "../components/TextQuestions";
+import RadioQuestions from "../components/RadioQuestions";
 const styles = require("../styles/forms.module.css").default;
 
 function SecondFormPage() {
   return (
     <>
       <div className={styles["firstpart-4"]}>
-        <div className={styles["text-2"]}>
-          <CheckBoxQuestions
-            question={"Where will your TG find your product / service?"}
+        <div className={styles["circle-table"]}>
+          <label htmlFor="">
+            Where would you like your brand name in the following scales?
+          </label>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Clever / Straightforward"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Clever"}
+              finalText={"Straightforward"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Global / Local"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Global"}
+              finalText={"Local"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Formal / Friendly"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Formal"}
+              finalText={"Friendly"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Modern / Traditional"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Modern"}
+              finalText={"Traditional"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Emotional / Logical"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Emotional"}
+              finalText={"Logical"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Scientific / General"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Scientific"}
+              finalText={"General"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Whimsical / Serious"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Whimsical"}
+              finalText={"Serious"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Mature / Youthful"}
+              options={["1", "2", "3", "4", "5"]}
+              initialText={"Mature"}
+              finalText={"Youthful"}
+            />
+          </div>
+        </div>
+        <div className={styles["radio"]}>
+          <TextQuestions
+            question={
+              "List your competitors (mention website links if available)"
+            }
+          />
+        </div>
+        <div className={styles["radio"]}>
+          <TextQuestions question={"Competitor/other brand names you like"} />
+        </div>
+        <div className={styles["radio"]}>
+          <TextQuestions
+            question={"Competitor/other brand names you dislike"}
+          />
+        </div>
+        <div className={styles["secondpart-9d"]}>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Direct (Ex. The Container Store, VitaminWater)"}
+              options={["1", "2", "3", "None"]}
+              initialText={"Min"}
+              finalText={"Max"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Indirect (Ex. The Better Home, Twitter, Netflix)"}
+              options={["1", "2", "3", "None"]}
+              initialText={"Min"}
+              finalText={"Max"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <Circle
+              question={"Abstract (Ex. Amazon, Bluefly, Elephant Design)"}
+              options={["1", "2", "3", "None"]}
+              initialText={"Min"}
+              finalText={"Max"}
+            />
+          </div>
+          <div className={styles["radio"]}>
+            <TextQuestions
+              question={"Connotations or ideas you want to completely avoid?"}
+            />
+          </div>
+        </div>
+        <div className={styles["radio"]}>
+          <RadioQuestions
+            question={"What appeal do you want the name to have?"}
             options={[
-              "Retail Outlets",
-              "Social Media",
-              "E-Commerce Platform",
-              "Directly on Website",
-              "Other",
+              "Colloquial/Informal (Blinkit, Mango)",
+              "Vernacular / Regional (Language: Soch, Ayush, Patanjali)",
+              "Formal (Reliance, Apollo)",
+              "Global (Global appeal: Vistara, Lenovo, Westside, Medanta)",
             ]}
           />
         </div>
         <div className={styles["radio"]}>
-          <DescriptionQuestions
-            question={
-              "What is the ultimate impact you want to create with your product / service? Or WHY does your product / service exist?"
-            }
-            description={
-              "Ex. This would be Google's response: To provide access to the world’s information in one click"
-            }
-          />
-        </div>
-      </div>
-      <div className={styles["secondpart-4"]}>
-        <div className={styles["radio"]}>
-          <DescriptionQuestions
-            question={
-              "If your product / service were a person, list the values or beliefs it will always stand by? "
-            }
+          <TextQuestions
+            question={"Emotions or ideas you want the name to evoke?"}
           />
         </div>
         <div className={styles["radio"]}>
-          <DescriptionQuestions
-            question={
-              "How do you think your product / service can achieve the above?"
-            }
-            description={
-              "Ex. This would be Google's response: To organize the world’s information and make it universally accessible and useful"
-            }
+          <TextQuestions
+            question={"Connotations or ideas you want to completely avoid?"}
           />
         </div>
-        {/* <div className={styles["email"]}>
+        <div className={styles["radio"]}>
           <TextQuestions
             question={
-              "What are the cities/states in India that you're planning to focus on?"
+              "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?"
             }
           />
-        </div> */}
+        </div>
       </div>
     </>
   );

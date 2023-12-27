@@ -9,11 +9,17 @@ const userLogin = async (req, res) => {
       return res.status(400).send("User not found");
     }
     const isValidPassword = user.password === password;
-    if (!(password === user.password)) {
+    if (!isValidPassword) {
       return res.status(401).json({ message: "invalid credentials" });
     }
     const token = jwt.sign({ _id: user._id }, "hello this is secrate key", {
-      expiresIn: "3hr",
+      expiresIn: "15hr",
+    });
+
+    res.cookie("token", token, {
+      path: "/",
+      expiresIn: new Date(Date.now() + 1000 * 15),
+      httpOnly: true,
     });
 
     return res
@@ -27,7 +33,6 @@ const userLogin = async (req, res) => {
 
 const makeuser = async (req, res) => {
   try {
-    // const { email, password } = req.body;
     const user = new userDetails({ email: "hello", password: "hello" });
     await user.save();
     return res.status(200).send({ message: "User created successfully" });
@@ -36,4 +41,14 @@ const makeuser = async (req, res) => {
   }
 };
 
-module.exports = { userLogin, makeuser };
+const handleVerifyAuth = async (req, res) => {
+  try {
+    const user = await userDetails.findById(req.id, "-password");
+    return res.status(200).send({ message: "User verified", user: user });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Internal server error");
+  }
+};
+
+module.exports = { userLogin, makeuser, handleVerifyAuth };

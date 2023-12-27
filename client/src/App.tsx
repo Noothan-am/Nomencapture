@@ -13,13 +13,13 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/understanding" element={<AuditPage />} />
-      <Route path="/audio-page" element={<AudioPage />} />
-      <Route path="/naming-set" element={<NamingSet />} />
       <Route path="/login" element={<Login />} />
       <Route path="/form" element={<Forms />} />
-      <Route element={<ProtectedRoutes auth={false} />}>
-        <Route element={<Home />} path="/home" />
+      <Route element={<ProtectedRoutes auth={true} />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/understanding" element={<AuditPage />} />
+        <Route path="/naming-set" element={<NamingSet />} />
+        <Route path="/audio-page" element={<AudioPage />} />
       </Route>
     </Routes>
   );

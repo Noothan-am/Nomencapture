@@ -1,18 +1,20 @@
 require("dotenv").config();
+import("./connection/db-connections.js");
 const express = require("express");
-// const router = require("./router.js");
-
+const cors = require("cors");
+const authRouter = require("./routes/user-routes");
 const app = express();
-const port = 8000;
-// import the router
-// use dotenv file
-// middleware
+const port = process.env.PORT || 8000;
+
 app.use(express.json());
-// app.use("/api", router);
-app.get("/", () => {
-  console.log("ram");
-});
-// start server
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+app.use("/api", authRouter);
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });

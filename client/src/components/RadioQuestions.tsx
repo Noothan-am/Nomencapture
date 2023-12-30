@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 const styles = require("../styles/radio-questions.module.css").default;
 
-function RadioQuestions({ question, options, showOthersInput }: any) {
+function RadioQuestions({
+  question,
+  options,
+  showOthersInput,
+  onInputChange,
+}: any) {
+  const [inputValue, setInputValue] = useState("Product");
+  const [othersInputValue, setOthersInputValue] = useState("");
+
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    onInputChange(value);
+    setInputValue(value);
+    if (value !== "Others") setOthersInputValue("");
+  };
+
   return (
     <>
       <div className={styles["select-questions"]}>
@@ -9,7 +24,16 @@ function RadioQuestions({ question, options, showOthersInput }: any) {
         <span>
           {options.map((option: string, index: number) => (
             <div className={styles["select-inputs"]} key={index}>
-              <input type="radio" id={`${index}`} name="options" />
+              <input
+                type="radio"
+                id={`${index}`}
+                name="options"
+                onChange={(e) => {
+                  handleChange(e);
+                  setInputValue(e.target.value);
+                }}
+                value={option}
+              />
               <label htmlFor={`${index}`}>{option}</label>
             </div>
           ))}
@@ -17,10 +41,24 @@ function RadioQuestions({ question, options, showOthersInput }: any) {
         {showOthersInput && (
           <>
             <div className={styles["select-inputs"]} key={10}>
-              <input type="radio" name="options" />
-              <label>{"Others"}</label>
+              <input
+                onChange={(e) => handleChange(e)}
+                type="radio"
+                name="options"
+                value="Others"
+              />
+              <label>Others</label>
             </div>
-            <input type="text" name="" id="" />
+            <input
+              onChange={(e) => {
+                setOthersInputValue(e.target.value);
+              }}
+              value={othersInputValue}
+              disabled={inputValue.trim() !== "Others"}
+              type="text"
+              name=""
+              id=""
+            />
           </>
         )}
       </div>

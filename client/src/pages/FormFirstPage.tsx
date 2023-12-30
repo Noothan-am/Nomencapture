@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextQuestions from "../components/TextQuestions";
 import RadioQuestions from "../components/RadioQuestions";
 import DescriptionQuestions from "../components/DescriptionQuestions";
@@ -156,26 +156,70 @@ const selectOptions = [
 ];
 
 function FormFirstPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [sector, setSector] = useState("");
+  const [goToPlace, setGoToPlace] = useState("");
+  const [naming, setNaming] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productSector, setProductSector] = useState("");
+
+  const handleNameChange = (value: any) => {
+    setName(value);
+  };
+
+  const handleEmailChange = (value: any) => {
+    setEmail(value);
+  };
+
+  const handleSectorChange = (value: any) => {
+    setSector(value);
+  };
+
+  const handleGoToPlaceChange = (value: any) => {
+    setGoToPlace(value);
+  };
+
+  const handleNamingChange = (value: any) => {
+    setNaming(value);
+  };
+
+  const handleDescribeProductChange = (value: any) => {
+    setProductDescription(value);
+  };
+
+  const handleProductSectorChange = (value: any) => {
+    setProductSector(value);
+  };
+
   return (
     <>
       <div className={styles["firstpart"]}>
         <div className={styles["name"]}>
-          <TextQuestions question={"Your Name"} />
+          <TextQuestions
+            onInputChange={handleNameChange}
+            question={"Your Name"}
+          />
         </div>
         <div className={styles["email"]}>
-          <TextQuestions question={"Your Email"} />
+          <TextQuestions
+            onInputChange={handleEmailChange}
+            question={"Your Email"}
+          />
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
             question={"What are we naming?"}
             options={["Product", "Service"]}
             showOthersInput={true}
+            onInputChange={handleNamingChange}
           />
         </div>
         <div className={styles["select"]}>
           <SelectQuestions
             question={"Which sector does your product / service belong to?"}
             options={selectOptions}
+            onInputChange={handleProductSectorChange}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -184,15 +228,20 @@ function FormFirstPage() {
             description={
               "Ex: Grammarly is a cloud-based typing assistant that reviews spelling, grammar, punctuation, clarity, engagement, and delivery mistakes. It uses artificial intelligence to identify and search for an appropriate replacement for the error it locates."
             }
+            onInputChange={handleDescribeProductChange}
+          />
+        </div>
+        <div className={styles["sector"]}>
+          <TextQuestions
+            question={"Which sector does your product / service belong to?"}
+            onInputChange={handleSectorChange}
           />
         </div>
         <div className={styles["name"]}>
           <TextQuestions
-            question={"Which sector does your product / service belong to?"}
+            question={"Your favorite go to place for peace?"}
+            onInputChange={handleGoToPlaceChange}
           />
-        </div>
-        <div className={styles["name"]}>
-          <TextQuestions question={"Your favourite go to place for peace?"} />
         </div>
       </div>
     </>

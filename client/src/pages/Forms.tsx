@@ -12,6 +12,8 @@ import Thankyou from "./Thankyou";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import { StepButton, StepLabel } from "@mui/material";
+import useFormData from "../context/FormContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const steps = [
   "Understand the basics",
@@ -33,8 +35,11 @@ function Forms() {
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
+  const { form }: any = useFormData();
+  const { setItem } = useLocalStorage();
 
   const handleChangeCurrentPageToNext = () => {
+    setItem(form);
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
   };
 
@@ -147,3 +152,6 @@ function Forms() {
 }
 
 export default Forms;
+function setItem(data: any) {
+  throw new Error("Function not implemented.");
+}

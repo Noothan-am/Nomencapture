@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import TextQuestions from "../components/TextQuestions";
 import RadioQuestions from "../components/RadioQuestions";
 import DescriptionQuestions from "../components/DescriptionQuestions";
 import SelectQuestions from "../components/SelectQuestions";
+import useLocalStorage from "../hooks/useLocalStorage";
+import useFormData, { FormDataProvider } from "../context/FormContext";
 const styles = require("../styles/forms.module.css").default;
 
 const selectOptions = [
@@ -158,68 +160,99 @@ const selectOptions = [
 function FormFirstPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [sector, setSector] = useState("");
   const [goToPlace, setGoToPlace] = useState("");
-  const [naming, setNaming] = useState("");
+  const [naming, setNaming] = useState({});
   const [productDescription, setProductDescription] = useState("");
   const [productSector, setProductSector] = useState("");
+  const [trademark, setTrademark] = useState("");
 
-  const handleNameChange = (value: any) => {
-    setName(value);
-  };
+  const { getItem } = useLocalStorage();
+  const { form, setForm }: any = useFormData();
 
-  const handleEmailChange = (value: any) => {
-    setEmail(value);
-  };
+  const setFormDetails = useCallback(() => {
+    const data = {
+      ...form,
+      name,
+      email,
+      goToPlace,
+      naming,
+      productDescription,
+      productSector,
+      trademark,
+    };
+    setForm(data);
+  }, [
+    email,
+    goToPlace,
+    name,
+    naming,
+    productDescription,
+    productSector,
+    trademark,
+  ]);
 
-  const handleSectorChange = (value: any) => {
-    setSector(value);
-  };
+  useEffect(() => {
+    setFormDetails();
+  }, [setFormDetails]);
 
-  const handleGoToPlaceChange = (value: any) => {
-    setGoToPlace(value);
-  };
+  const setDataFromLocalStorage = useCallback(() => {
+    const data = getItem();
+    if (data) {
+      setName(data.name);
+      setEmail(data.email);
+      setGoToPlace(data.goToPlace);
+      setNaming(data.naming);
+      setProductDescription(data.productDescription);
+      setProductSector(data.productSector);
+      setTrademark(data.trademark);
+    }
+  }, []);
 
-  const handleNamingChange = (value: any) => {
-    setNaming(value);
-  };
-
-  const handleDescribeProductChange = (value: any) => {
-    setProductDescription(value);
-  };
-
-  const handleProductSectorChange = (value: any) => {
-    setProductSector(value);
-  };
+  useEffect(() => {
+    setDataFromLocalStorage();
+  }, [setDataFromLocalStorage]);
 
   return (
     <>
       <div className={styles["firstpart"]}>
         <div className={styles["name"]}>
           <TextQuestions
-            onInputChange={handleNameChange}
+            value={name}
+            onInputChange={setName}
             question={"Your Name"}
           />
         </div>
         <div className={styles["email"]}>
           <TextQuestions
-            onInputChange={handleEmailChange}
+            value={email}
+            onInputChange={setEmail}
             question={"Your Email"}
           />
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
+            value={naming}
             question={"What are we naming?"}
             options={["Product", "Service"]}
             showOthersInput={true}
-            onInputChange={handleNamingChange}
+            onInputChange={setNaming}
           />
         </div>
         <div className={styles["select"]}>
           <SelectQuestions
+            value={productSector}
             question={"Which sector does your product / service belong to?"}
             options={selectOptions}
-            onInputChange={handleProductSectorChange}
+            onInputChange={setProductSector}
+          />
+        </div>
+        <div className={styles["trademark"]}>
+          <TextQuestions
+            value={trademark}
+            question={
+              "Mention the Trademark classes your product/service belongs to? "
+            }
+            onInputChange={setTrademark}
           />
         </div>
         <div className={styles["textarea"]}>
@@ -228,19 +261,15 @@ function FormFirstPage() {
             description={
               "Ex: Grammarly is a cloud-based typing assistant that reviews spelling, grammar, punctuation, clarity, engagement, and delivery mistakes. It uses artificial intelligence to identify and search for an appropriate replacement for the error it locates."
             }
-            onInputChange={handleDescribeProductChange}
-          />
-        </div>
-        <div className={styles["sector"]}>
-          <TextQuestions
-            question={"Which sector does your product / service belong to?"}
-            onInputChange={handleSectorChange}
+            value={productDescription}
+            onInputChange={setProductDescription}
           />
         </div>
         <div className={styles["name"]}>
           <TextQuestions
+            value={goToPlace}
             question={"Your favorite go to place for peace?"}
-            onInputChange={handleGoToPlaceChange}
+            onInputChange={setGoToPlace}
           />
         </div>
       </div>

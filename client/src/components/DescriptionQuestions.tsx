@@ -1,10 +1,15 @@
 import React from "react";
 const styles = require("../styles/textarea-questions.module.css").default;
 
-function DescriptionQuestions({ question, description, onInputChange }: any) {
+function DescriptionQuestions({
+  question,
+  description,
+  onInputChange,
+  value,
+}: any) {
   const handleChange = (event: any) => {
-    const value = event.target.value;
-    onInputChange(value);
+    const data = event.target.value;
+    onInputChange(data);
   };
   return (
     <>
@@ -14,6 +19,7 @@ function DescriptionQuestions({ question, description, onInputChange }: any) {
         <textarea
           rows={6}
           cols={50}
+          value={value}
           placeholder="Your Answer"
           onChange={handleChange}
         ></textarea>

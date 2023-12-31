@@ -6,15 +6,19 @@ function RadioQuestions({
   options,
   showOthersInput,
   onInputChange,
+  value,
 }: any) {
   const [inputValue, setInputValue] = useState("Product");
   const [othersInputValue, setOthersInputValue] = useState("");
 
   const handleChange = (event: any) => {
-    const value = event.target.value;
-    onInputChange(value);
-    setInputValue(value);
-    if (value !== "Others") setOthersInputValue("");
+    const data = event.target.value;
+    console.log({ [inputValue]: othersInputValue });
+    onInputChange({ [inputValue]: othersInputValue });
+    setInputValue(data);
+    if (data !== "Others") {
+      setOthersInputValue("");
+    }
   };
 
   return (

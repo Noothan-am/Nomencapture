@@ -2,14 +2,8 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import client from "../utils/sanity-client";
-// import Button from "../components/Button";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import LoadingScreen from "./LoadingScreen";
-// import moment from "moment";
+
 const styles = require("../styles/login.module.css").default;
-// const becomeCoins = require("../assets/svg/loading-logo.svg").default;
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,23 +11,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
-
-  const query = '*[_type == "User"]';
-
-  const fetchUser = async () => {
-    client
-      .fetch(query)
-      .then((users) => {
-        console.log({ users });
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

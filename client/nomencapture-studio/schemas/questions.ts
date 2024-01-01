@@ -11,43 +11,39 @@ export default {
     },
     {
       name: 'Title1',
-      type: 'string',
       title: '1st Question',
-    },
-    {
-      name: 'Description1',
-      type: 'string',
-      title: 'Description',
+      type: 'object',
+      fields: [
+        {name: 'question', type: 'string'},
+        {name: 'description', type: 'string'},
+      ],
     },
     {
       name: 'Title2',
-      type: 'string',
-      title: '2nd Question',
-    },
-    {
-      name: 'Description2',
-      type: 'string',
-      title: 'Description',
+      title: '1st Question',
+      type: 'object',
+      fields: [
+        {name: 'question', type: 'string'},
+        {name: 'description', type: 'string'},
+      ],
     },
     {
       name: 'Title3',
-      type: 'string',
       title: '3rd Question',
-    },
-    {
-      name: 'Description3',
-      type: 'string',
-      title: 'Description',
+      type: 'object',
+      fields: [
+        {name: 'question', type: 'string'},
+        {name: 'description', type: 'string'},
+      ],
     },
     {
       name: 'Title4',
-      type: 'string',
       title: '4th Question',
-    },
-    {
-      name: 'Description4',
-      type: 'string',
-      title: 'Description',
+      type: 'object',
+      fields: [
+        {name: 'question', type: 'string'},
+        {name: 'description', type: 'string'},
+      ],
     },
   ],
 }

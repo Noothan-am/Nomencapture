@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
@@ -7,12 +7,13 @@ import DotsRow from "../components/DotRows";
 import { useNavigate } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
+import client from "../utils/sanity-client";
 
 const styles = require("../styles/audit.module.css").default;
 
 const Accordion = ({ title, content }: any) => {
   const [isActive, setIsActive] = useState(false);
-
+  useEffect(() => console.log(title, content, []));
   return (
     <div className={styles["question"]} onClick={() => setIsActive(!isActive)}>
       <div className={styles["accordion-title"]}>
@@ -26,35 +27,38 @@ const Accordion = ({ title, content }: any) => {
 };
 
 function AuditPage() {
+  const [accordion, setAccordion] = useState([]);
   const navigate = useNavigate();
   const navigateToNamingSet = () => {
     navigate("/audio-page");
   };
-  const accordionData = [
-    {
-      title: "How?",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
-      laborum cupiditate possimus labore, hic temporibus velit dicta earum
-      suscipit commodi eum enim atque at?`,
-    },
-    {
-      title: "Who?",
-      content: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia veniam
-      reprehenderit nam assumenda voluptatem ut. Ipsum eius dicta, officiis
-      quaerat iure quos dolorum accusantium ducimus in illum vero commodi
-      pariatur? Impedit autem esse nostrum quasi,`,
-    },
-    {
-      title: "Why?",
-      content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
-      quam sint dolore pariatur`,
-    },
-    {
-      title: "What?",
-      content: `Sapiente expedita hic obcaecati, laboriosam similique omnis architecto ducimus magnam accusantium corrupti
-      quam sint dolore pariatur perspiciatis,`,
-    },
-  ];
+  const query =
+    '*[_type == "AuditPage"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+  // const query =
+  //   '*[_type == "AuditPage"] {Title1, Description1, Title2, Description2, Title3, Description3, Title4, Description4}';
+
+  const fetchUser = useCallback(async () => {
+    client
+      .fetch(query)
+      .then((users) => {
+        let accordionData: any = Object.entries(users[0]).map((data: any) => {
+          return {
+            title: data[1].question,
+            content: data[1].description,
+          };
+        });
+        setAccordion(accordionData);
+        console.log(accordionData);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
   return (
     <>
       <div className={styles["audit-page"]}>
@@ -103,7 +107,7 @@ function AuditPage() {
                   </p>
                   <hr />
                 </div> */}
-                {accordionData.map(({ title, content }) => (
+                {accordion.map(({ title, content }: any) => (
                   <Accordion title={title} content={content} />
                 ))}
               </div>

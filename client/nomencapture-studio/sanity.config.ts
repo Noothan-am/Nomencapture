@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'Nomencapture Studio',
 
-  projectId: 'xv4nbbd4',
+  projectId: 'un81dg1q',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],

@@ -34,8 +34,6 @@ function AuditPage() {
   };
   const query =
     '*[_type == "AuditPage"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
-  // const query =
-  //   '*[_type == "AuditPage"] {Title1, Description1, Title2, Description2, Title3, Description3, Title4, Description4}';
 
   const fetchUser = useCallback(async () => {
     client

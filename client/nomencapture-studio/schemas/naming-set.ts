@@ -77,10 +77,4 @@ export default {
       ],
     },
   ],
-  preview: {
-    select: {
-      title: 'Userddd',
-      media: 'Nadme',
-    },
-  },
 }

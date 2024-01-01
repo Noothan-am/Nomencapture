@@ -19,6 +19,13 @@
   height: 90%;
 }
 
+.play-button {
+  background: none;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+}
+
 .form-content {
   width: 100%;
 }

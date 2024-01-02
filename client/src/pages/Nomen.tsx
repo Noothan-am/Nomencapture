@@ -1,43 +1,98 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import { IoLockClosed } from "react-icons/io5";
-import { IoMdRadioButtonOn } from "react-icons/io";
+import { IoMdRadioButtonOn, IoMdRadioButtonOff } from "react-icons/io";
+import client from "../utils/sanity-client";
 
 const styles = require("../styles/nomen.module.css").default;
 
 const NomenContentTemplate = () => {
+  const SamplesImage = useRef<any>(null);
+  const GraphImage = useRef<any>(null);
+  const [nameDetais, setNameDetais] = useState<any>({});
+
+  const query = `*[_type == "NameDetails"]{
+      Name,
+      Related,
+      Syllable,
+      NameDescription,
+      LLPNameAvailability,
+      Trademarkability,
+      "GraphImage": GraphImage.asset->url,
+      "SamplesImage": SamplesImage.asset->url,
+      MultilingualNames,
+      NameBenefits,
+      ChatDescription,
+      DomainExtensions,
+      Domains,
+      Dropdown
+    }`;
+
+  const getAudioPageData = useCallback(() => {
+    client
+      .fetch(query)
+      .then((users) => {
+        console.log("users", users[1]);
+        GraphImage.current = users[1].GraphImage;
+        SamplesImage.current = users[1].SamplesImage;
+        setNameDetais(users[1]);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, [query]);
+
+  useEffect(() => {
+    getAudioPageData();
+  }, [getAudioPageData]);
+
   return (
     <>
       <div className={styles["nomen-hero-container"]}>
         <section className={styles["nomen-name-container"]}>
           <div className={styles["nomen-leftpart"]}>
             <div className={styles["name"]}>
-              <h1>Unavanu</h1>
+              <h1>{nameDetais.Name}</h1>
             </div>
             <ul>
-              <li>உனவானு</li>
-              <li>उनवणु</li>
-              <li>ఉనవను</li>
+              {nameDetais.MultilingualNames &&
+                Object.keys(nameDetais.MultilingualNames).map((key: any) => {
+                  return (
+                    <>
+                      <li>{nameDetais.MultilingualNames[key]}</li>
+                    </>
+                  );
+                })}
             </ul>
-            <p>Food / Atom / Matter / Important</p>
+            <p>{nameDetais.Related}</p>
           </div>
           <div className={styles["nomen-rightpart"]}>
             <div className={styles["top-part"]}>
-              <div className={styles["values"]}>Abstract</div>
+              <div className={styles["values"]}>{nameDetais.Dropdown}</div>
               <div className={styles["syllables"]}>
                 <p>
-                  <span>4</span> Syllables
+                  <span>{nameDetais.Syllable}</span> Syllables
                 </p>
               </div>
               <div className={styles["available-domains"]}>
                 <p>
-                  <IoMdRadioButtonOn />
+                  {nameDetais.DomainExtensions &&
+                  nameDetais.DomainExtensions.includes(".com") ? (
+                    <IoMdRadioButtonOn />
+                  ) : (
+                    <IoMdRadioButtonOff />
+                  )}
                   <span>.com</span>
                 </p>
                 <p>
-                  <IoMdRadioButtonOn />
+                  {nameDetais.DomainExtensions &&
+                  nameDetais.DomainExtensions.includes(".in") ? (
+                    <IoMdRadioButtonOn />
+                  ) : (
+                    <IoMdRadioButtonOff />
+                  )}
                   <span>.in</span>
                 </p>
               </div>
@@ -52,9 +107,14 @@ const NomenContentTemplate = () => {
           </div>
         </section>
         <section className={styles["name-info"]}>
-          <p>+ Unique</p>
-          <p>+ Emphasizes on the importance of grains</p>
-          <p>+ Scalable & future friendly</p>
+          {nameDetais.NameBenefits &&
+            Object.keys(nameDetais.NameBenefits).map((key: any) => {
+              return (
+                <>
+                  <p>+ {nameDetais.NameBenefits[key]}</p>
+                </>
+              );
+            })}
         </section>
         <div className={styles["names-more-details"]}>
           <div className={styles["firstpart"]}>
@@ -66,7 +126,8 @@ const NomenContentTemplate = () => {
                 />
                 <div className={styles["text-container"]}>
                   <p>
-                    Elevate your well-being with Unavanu's grain-based wonders.
+                    {nameDetais.ChatDescription &&
+                      nameDetais.ChatDescription.Chatbox1}
                   </p>
                 </div>
               </div>
@@ -76,7 +137,10 @@ const NomenContentTemplate = () => {
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
-                  <p>Anna, Unavanu Millet Upma thanga. Unavanu iruka?</p>
+                  <p>
+                    {nameDetais.ChatDescription &&
+                      nameDetais.ChatDescription.Chatbox2}
+                  </p>
                 </div>
               </div>
               <div className={styles["container"]}>
@@ -86,9 +150,8 @@ const NomenContentTemplate = () => {
                 />
                 <div className={styles["text-container"]}>
                   <p>
-                    Unavanu makes delicious & healthy food super affordable.
-                    Harnessing the inherent power of grains is evident in their
-                    range of health-conscious offerings.
+                    {nameDetais.ChatDescription &&
+                      nameDetais.ChatDescription.Chatbox3}
                   </p>
                 </div>
               </div>
@@ -100,7 +163,7 @@ const NomenContentTemplate = () => {
                   <span>
                     <IoLockClosed />
                   </span>
-                  https://www.unavanu.com
+                  {nameDetais.Domains && nameDetais.Domains.Domain1}
                 </p>
               </div>
               <div className={styles["domain-box"]}>
@@ -108,7 +171,7 @@ const NomenContentTemplate = () => {
                   <span>
                     <IoLockClosed />
                   </span>
-                  https://www.getunavanu.com
+                  {nameDetais.Domains && nameDetais.Domains.Domain2}
                 </p>
               </div>
             </div>
@@ -117,15 +180,12 @@ const NomenContentTemplate = () => {
             <div className={styles["name-availability"]}>
               <h4>LLP NAME AVAILABILITY</h4>
               <div className={styles["availability-info"]}>
-                <h5>NO MATCH FOUND</h5>
+                <h5>{nameDetais.LLPNameAvailability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
               </div>
             </div>
             <div className={styles["graph-image"]}>
-              <img
-                src={require("../assets/images/Screenshot 2023-05-16 at 2.26 17.png")}
-                alt=""
-              />
+              <img ref={GraphImage} src={`${GraphImage.current}`} alt="" />
             </div>
           </div>
           <div className={styles["lastpart"]}>
@@ -135,15 +195,12 @@ const NomenContentTemplate = () => {
                 <h5>CLASS 29,30,31,32</h5>
               </div>
               <div className={styles["availability-info"]}>
-                <h5>NO MATCH FOUND</h5>
+                <h5>{nameDetais.Trademarkability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
               </div>
             </div>
             <div className={styles["name-product-preview"]}>
-              <img
-                src={require("../assets/images/Screenshot 2023-05-16 at 2.26 17.png")}
-                alt=""
-              />
+              <img ref={SamplesImage} src={`${SamplesImage.current}`} alt="" />
             </div>
           </div>
         </div>
@@ -151,31 +208,5 @@ const NomenContentTemplate = () => {
     </>
   );
 };
-
-function Nomen() {
-  return (
-    <>
-      <div className={styles["nomen"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
-        <div className={styles["hero"]}>
-          <div className={styles["sidebar"]}>
-            <SideBar isLogin={false}>
-              <Tabs />
-            </SideBar>
-          </div>
-          <div className={styles["nomen-container"]}>
-            <div className={styles["div"]}>
-              <div className={styles["form-content"]}>
-                {<NomenContentTemplate />}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
 
 export default NomenContentTemplate;

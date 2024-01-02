@@ -1,10 +1,28 @@
-import React from "react";
-import { FaLessThan } from "react-icons/fa";
-import { FaGreaterThan } from "react-icons/fa";
-import Button from "../components/Button";
+import React, { useCallback, useEffect, useRef } from "react";
+import client from "../utils/sanity-client";
+
 const styles = require("../styles/name-list.module.css").default;
 
 function NameList() {
+  const nameListImg = useRef<any>(null);
+  const query =
+    '*[_type == "NamingSet"]{"PlayersNames": PlayersNames.asset->url}';
+  const getAudioPageData = useCallback(() => {
+    client
+      .fetch(query)
+      .then((users) => {
+        console.log("users", users);
+        nameListImg.current.src = users[0].PlayersNames;
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    getAudioPageData();
+  }, [getAudioPageData]);
+
   return (
     <>
       <div className={styles["name-list-2-container"]}>
@@ -15,15 +33,8 @@ function NameList() {
           </p>
         </div>
         <div className={styles["nameset-2-names-img"]}>
-          <img
-            src={require("../assets/images/names.png")}
-            alt="img for names"
-          />
+          <img ref={nameListImg} alt="img for names" />
         </div>
-        {/* <div className={styles["nameset-2-arrows"]}>
-          <Button buttonValue={<FaLessThan />} />
-          <Button buttonValue={<FaGreaterThan />} />
-        </div> */}
       </div>
     </>
   );

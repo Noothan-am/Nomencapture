@@ -56,8 +56,8 @@ export default {
       ],
       options: {
         list: [
-          {title: '.com', value: 'com'},
-          {title: '.in', value: 'in'},
+          {title: '.com', value: '.com'},
+          {title: '.in', value: '.in'},
         ],
       },
     },

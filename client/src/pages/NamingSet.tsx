@@ -8,7 +8,6 @@ import Button from "../components/Button";
 import YourName from "./YourName";
 import Review from "./Review";
 import Nomen from "./Nomen";
-import Thankyou from "./Thankyou";
 import FinalGreetings from "./FinalGreetings";
 
 const styles = require("../styles/naming-set.module.css").default;

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const styles = require("../styles/login.module.css").default;
 
 const Login = () => {
@@ -18,25 +19,23 @@ const Login = () => {
     const inputEmail = email.trim();
     const inputPassword = password.trim();
 
-    // if (!inputEmail || !inputPassword) {
-    //   //  toast.warn("please fill all details", {
-    //   //    position: "top-right",
-    //   //    autoClose: 2000,
-    //   //    hideProgressBar: false,
-    //   //    closeOnClick: true,
-    //   //    draggable: true,
-    //   //    progress: undefined,
-    //   //    theme: "dark",
-    //   //  });
-    //   setIsLoading(false);
-    //   console.log("empty fields found");
-    //   return;
-    // }
-
-    navigate("/home");
+    if (!inputEmail || !inputPassword) {
+      toast.warn("please fill all details", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setIsLoading(false);
+      console.log("empty fields found");
+      return;
+    }
 
     try {
-      const result = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      const result = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,40 +45,40 @@ const Login = () => {
       });
       setIsLoading(false);
       if (result.ok) {
-        //    toast.success("Login Succesfull", {
-        //      position: "top-right",
-        //      autoClose: 2000,
-        //      hideProgressBar: false,
-        //      closeOnClick: true,
-        //      draggable: true,
-        //      progress: undefined,
-        //      theme: "dark",
-        //    });
+        console.log(result.ok);
+        toast.success("Login Succesfull", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/home");
         const data = await result.json();
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        //    localStorage.setItem("lastLoginDate", moment().format("MM"));
       } else {
-        //    toast.error("please enter valid credentials", {
-        //      position: "top-right",
-        //      autoClose: 2000,
-        //      hideProgressBar: false,
-        //      closeOnClick: true,
-        //      draggable: true,
-        //      progress: undefined,
-        //      theme: "dark",
-        //    });
+        toast.error("please enter valid credentials", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
       setIsLoading(false);
-      //  toast.error("Internal server error!!", {
-      //    position: "top-right",
-      //    autoClose: 2000,
-      //    hideProgressBar: false,
-      //    closeOnClick: true,
-      //    draggable: true,
-      //    progress: undefined,
-      //    theme: "dark",
-      //  });
+      toast.error("Internal server error!!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       console.log("error while login: ", error);
     }
   };
@@ -88,6 +87,7 @@ const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className={styles["login"]}>
         <div className={styles["login-sidebar"]}>
           <SideBar isLogin={true}>

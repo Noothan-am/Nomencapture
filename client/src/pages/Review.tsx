@@ -29,18 +29,6 @@ const NamesFeedBack = () => {
 export default function Review() {
   return (
     <>
-      {/* <div className={styles["review"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
-        <div className={styles["hero"]}>
-          <div className={styles["sidebar"]}>
-            <SideBar isLogin={false}>
-              <Tabs />
-            </SideBar>
-          </div>
-          <div className={styles["review-container"]}>
-            <div className={styles["div"]}> */}
       <div className={styles["form-content"]}>
         <div className={styles["first-part"]}>
           <NamesFeedBack />
@@ -82,10 +70,6 @@ export default function Review() {
           </div>
         </div>
       </div>
-      {/* </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

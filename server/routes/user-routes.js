@@ -6,7 +6,7 @@ const {
 } = require("../controllers/user-controllers");
 const { verifyAuthToken } = require("../middlewares/auth-middleware");
 
-router.get("/", userLogin);
+router.post("/login", userLogin);
 router.post("/make", makeuser);
 router.post("/verify", verifyAuthToken, handleVerifyAuth);
 

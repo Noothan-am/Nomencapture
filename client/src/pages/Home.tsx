@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
@@ -13,6 +13,25 @@ function Home() {
   const handleLoginSubmit = () => {
     navigate("/form");
   };
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then(() => {
+        console.log("verified");
+      })
+      .catch(() => {
+        navigate("/login");
+        console.log("not verified");
+      });
+  }, []);
+
   return (
     <>
       <div className="navbar">

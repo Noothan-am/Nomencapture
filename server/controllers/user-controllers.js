@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
+    console.log({ email, password });
     let user = await userDetails.findOne({ email: email });
     if (!user) {
       return res.status(400).send("User not found");
@@ -12,19 +13,22 @@ const userLogin = async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).json({ message: "invalid credentials" });
     }
-    const token = jwt.sign({ _id: user._id }, "hello this is secrate key", {
+    const authToken = jwt.sign({ _id: user._id }, "hello this is secrate key", {
       expiresIn: "15hr",
     });
 
-    res.cookie("token", token, {
+    res.cookie("authToken", authToken, {
       path: "/",
-      expiresIn: new Date(Date.now() + 1000 * 15),
+      expiresIn: new Date(Date.now() + 1000 * 150),
       httpOnly: true,
+      sameSite: "lax",
     });
 
-    return res
-      .status(200)
-      .send({ message: "Login successful", userDetails: user, token: token });
+    return res.status(200).send({
+      message: "Login successful",
+      userDetails: user,
+      token: authToken,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
@@ -44,6 +48,9 @@ const makeuser = async (req, res) => {
 const handleVerifyAuth = async (req, res) => {
   try {
     const user = await userDetails.findById(req.id, "-password");
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
     return res.status(200).send({ message: "User verified", user: user });
   } catch (err) {
     console.error(err);

@@ -29,6 +29,7 @@ const Accordion = ({ title, content }: any) => {
 function AuditPage() {
   const [accordion, setAccordion] = useState([]);
   const [selectedDot, setSelectedDot] = useState([]);
+  const [comments, setComments] = useState([]);
 
   const navigate = useNavigate();
   const navigateToNamingSet = () => {
@@ -54,6 +55,39 @@ function AuditPage() {
       });
   }, []);
 
+  const handleSubmitButtonClick = useCallback(async () => {
+    try {
+      const response = await fetch(
+        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: [
+              {
+                "How aligned are you on our Observation": selectedDot[0],
+                Comments: comments,
+              },
+            ],
+          }),
+        }
+      );
+      if (response.status === 200) {
+        const excel = await response.json();
+        console.log({ excel });
+      } else {
+        console.log({ response });
+        console.log(response.status);
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
     // fetchUser();
   }, [fetchUser]);
@@ -73,9 +107,9 @@ function AuditPage() {
           <div className={styles["audit-content"]}>
             <div className={styles["audit-questions"]}>
               <div className={styles["audit-each-question"]}>
-                {/* {accordion.map(({ title, content }: any) => (
+                {accordion.map(({ title, content }: any) => (
                   <Accordion title={title} content={content} />
-                ))} */}
+                ))}
               </div>
             </div>
             <div className={styles["audit-rating"]}>
@@ -95,10 +129,15 @@ function AuditPage() {
                   id=""
                   cols={40}
                   rows={3}
+                  value={comments}
+                  onChange={(e: any) => setComments(e.target.value)}
                 ></textarea>
               </div>
               <div className={styles["audit-comments-submit-btn"]}>
-                <Button buttonValue={"SUBMIT"} />
+                <Button
+                  handleClick={handleSubmitButtonClick}
+                  buttonValue={"SUBMIT"}
+                />
               </div>
               <div className={styles["audit-rating-submit"]}>
                 <Button

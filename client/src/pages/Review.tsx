@@ -60,10 +60,10 @@ export default function Review() {
           body: JSON.stringify({
             data: [
               {
-                "How aligned are you on our Observation": elaborate,
-                "Hear it First - Voice One": selectedDot[0],
-                "Hear it First - Voice Two": selectedDot[1],
-                "Hear it First - Voice Three": selectedDot[2],
+                Elaborate: elaborate,
+                "Name set One Rating": selectedDot[0],
+                "Name set Two Rating": selectedDot[1],
+                "Name set Three Rating": selectedDot[2],
                 "Name Set One - Suggestion/Feedback": feedback[0],
                 "Name Set Two - Suggestion/Feedback": feedback[1],
                 "Name Set Three - Suggestion/Feedback": feedback[2],
@@ -83,7 +83,7 @@ export default function Review() {
   };
 
   const handleSubmitButtonClick = () => {
-    // fetchData();
+    fetchData();
     console.log({
       feedback,
       favoriteName,

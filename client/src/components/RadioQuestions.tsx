@@ -13,12 +13,13 @@ function RadioQuestions({
 
   const handleChange = (event: any) => {
     const data = event.target.value;
-    console.log({ [inputValue]: othersInputValue });
-    onInputChange({ [inputValue]: othersInputValue });
-    setInputValue(data);
-    if (data !== "Others") {
-      setOthersInputValue("");
-    }
+    setOthersInputValue("");
+    onInputChange({ [data]: "" });
+  };
+
+  const handleOthersChange = (event: any) => {
+    const data = event.target.value;
+    onInputChange({ Others: othersInputValue });
   };
 
   return (
@@ -33,8 +34,8 @@ function RadioQuestions({
                 id={`${index}`}
                 name="options"
                 onChange={(e) => {
-                  handleChange(e);
                   setInputValue(e.target.value);
+                  handleChange(e);
                 }}
                 value={option}
               />
@@ -46,7 +47,10 @@ function RadioQuestions({
           <>
             <div className={styles["select-inputs"]} key={10}>
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  handleOthersChange(e);
+                }}
                 type="radio"
                 name="options"
                 value="Others"
@@ -56,6 +60,7 @@ function RadioQuestions({
             <input
               onChange={(e) => {
                 setOthersInputValue(e.target.value);
+                handleOthersChange(e);
               }}
               value={othersInputValue}
               disabled={inputValue.trim() !== "Others"}

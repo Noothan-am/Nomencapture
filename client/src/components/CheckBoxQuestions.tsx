@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 const styles = require("../styles/checkbox-questions.module.css").default;
 function CheckBoxQuestions({ question, options, onInputChange, value }: any) {
-  let selectOptions: any = [];
-  const handleChange = (event: any) => {
-    const value = event.target.value;
-    selectOptions.push(value);
-    onInputChange(selectOptions);
+  // const handleChange = (event: any) => {
+  //   const data: any = event.target.value;
+  //   onInputChange([value, data]);
+  // };
+
+  // useEffect(() => {
+  //   console.log(value);
+  // }, [value]);
+  const [checkedItems, setCheckedItems] = useState<any>({});
+
+  const handleCheckboxChange = (event: any) => {
+    const { name, checked } = event.target;
+    setCheckedItems((prevCheckedItems: any) => ({
+      ...prevCheckedItems,
+      [name]: checked,
+    }));
+    onInputChange((prevCheckedItems: any) => ({
+      ...prevCheckedItems,
+      [name]: checked,
+    }));
+
+    console.log(checkedItems);
   };
+
   return (
     <>
       <div className={styles["checkbox-questions"]}>
@@ -16,10 +34,16 @@ function CheckBoxQuestions({ question, options, onInputChange, value }: any) {
             <div className={styles["checkbox-inputs"]} key={index}>
               <input
                 type="checkbox"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) =>
+                  // onInputChange({
+                  //   [option]: value ? !value[option] : false,
+                  // })
+                  handleCheckboxChange(e)
+                }
                 id={`${index}`}
-                name="options"
+                name={`${option}`}
                 value={option}
+                checked={checkedItems.option}
               />
               <label htmlFor={`${index}`}>{option}</label>
             </div>

@@ -32,43 +32,6 @@ function SecondFormPage() {
   const [productAchievement, setProductAchievement] = useState("");
   const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
 
-  // const handleProductCaterChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleUspChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductSegmentChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductExpansionChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleLastPhotoDetailsChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductLikenessChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductUnLikenessChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleDressColorChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductImpactAsPersonChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductAchievementChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductImpactChange = (value: any) => {
-  //   console.log(value);
-  // };
-  // const handleProductValuesChange = (value: any) => {
-  //   console.log(value);
-  // };
-
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();
 

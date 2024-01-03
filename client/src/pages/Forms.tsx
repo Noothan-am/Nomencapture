@@ -35,11 +35,13 @@ function Forms() {
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
+
   const { form }: any = useFormData();
   const { setItem } = useLocalStorage();
 
   const handleChangeCurrentPageToNext = () => {
     setItem(form);
+
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
   };
 

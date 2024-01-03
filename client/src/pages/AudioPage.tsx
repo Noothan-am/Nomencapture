@@ -18,7 +18,12 @@ const Paragraph = ({ data }: any) => {
   );
 };
 
-const AudioComponent = ({ audiofile }: any) => {
+const AudioComponent = ({
+  audiofile,
+  soundNo,
+  voiceHeard,
+  handleChange,
+}: any) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<any>(null);
 
@@ -51,6 +56,8 @@ const AudioComponent = ({ audiofile }: any) => {
             type="text"
             className={styles["input-arrow"]}
             placeholder="Type what you heard"
+            value={voiceHeard[soundNo] || ""}
+            onChange={(e) => handleChange(e, soundNo)}
           />
         </div>
       </div>
@@ -60,11 +67,38 @@ const AudioComponent = ({ audiofile }: any) => {
 
 const AudioPage = () => {
   const [audioPageDetails, setAudioPageDetails] = useState<any>([]);
+  const [voiceHeard, setHeardVoice] = useState<any>({});
 
   const navigate = useNavigate();
-  const handleClicktoNextPage = () => {
-    navigate("/naming-set");
-  };
+  const handleClickToNextPage = useCallback(async () => {
+    console.log({ voiceHeard });
+    // try {
+    //   const response = await fetch(
+    //     "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         data: [
+    //           {
+    //             "Hear it First - Voice One": voiceHeard[0],
+    //             "Hear it First - Voice Two": voiceHeard[1],
+    //             "Hear it First - Voice Three": voiceHeard[2],
+    //           },
+    //         ],
+    //       }),
+    //     }
+    //   );
+    //   const excel = await response.json();
+    //   console.log({ excel });
+    //   navigate("/naming-set");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }, [navigate]);
 
   const getAudioPageData = useCallback(() => {
     client
@@ -99,6 +133,14 @@ const AudioPage = () => {
     getAudioPageData();
   }, [getAudioPageData]);
 
+  const handleChange = (e: any, no: any) => {
+    setHeardVoice((prev: any) => ({
+      ...prev,
+      [no]: e.target.value,
+    }));
+    console.log(voiceHeard);
+  };
+
   return (
     <div className={styles["naming-set"]}>
       <div className={styles["navbar"]}>
@@ -130,30 +172,25 @@ const AudioPage = () => {
                     <h3>HEAR IT FIRST</h3>
                   </div>
                   <div className={styles["audio-content"]}>
-                    {/* <AudioComponent
-                      audiofile={audioPageDetails.audioFiles}
-                      handlePlayBtnClick={handlePlayBtnClick}
-                    />
-                    <AudioComponent
-                      audiofile={audioPageDetails.audioFiles}
-                      handlePlayBtnClick={handlePlayBtnClick}
-                    />
-                    <AudioComponent
-                      audiofile={audioPageDetails.audioFiles}
-                      handlePlayBtnClick={handlePlayBtnClick}
-                    /> */}
                     {audioPageDetails.audioFiles &&
                       audioPageDetails.audioFiles.map(
                         (audioFile: any, index: any) => {
                           return (
-                            <AudioComponent key={index} audiofile={audioFile} />
+                            <AudioComponent
+                              key={index}
+                              soundNo={index}
+                              voiceHeard={voiceHeard}
+                              // setHeardVoice={setHeardVoice}
+                              handleChange={handleChange}
+                              audiofile={audioFile}
+                            />
                           );
                         }
                       )}
                   </div>
                   <div className={styles["audio-page-button"]}>
                     <Button
-                      handleClick={handleClicktoNextPage}
+                      handleClick={handleClickToNextPage}
                       buttonValue={"PROCEED"}
                     />
                   </div>

@@ -1,13 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 const verifyAuthToken = async (req, res, next) => {
-  const cookie = req.headers.authToken;
-  console.log({ cookie });
-
-  if (!cookie) {
-    return res.status(403).send("A token is required for authentication");
-  }
-  const token = cookie.split("=")[1];
+  const cookies = req.cookies["authToken"];
+  console.log(cookies);
+  // if (!cookie) {
+  //   return res.status(403).send("A token is required for authentication");
+  // }
+  const token = cookies.split("=")[1];
   try {
     jwt.verify(token, "hello this is secrate key", (err, data) => {
       if (err) {

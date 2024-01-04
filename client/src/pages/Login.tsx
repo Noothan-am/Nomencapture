@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addUserToSpreadsheet } from "../utils/sheet-api";
 const styles = require("../styles/login.module.css").default;
 
 const Login = () => {
@@ -55,7 +56,9 @@ const Login = () => {
           progress: undefined,
           theme: "dark",
         });
-        navigate("/home");
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
         const data = await result.json();
       } else {
         toast.error("please enter valid credentials", {
@@ -82,8 +85,13 @@ const Login = () => {
       console.log("error while login: ", error);
     }
   };
-
+  const login = async () => {
+    console.log("userog", await addUserToSpreadsheet());
+  };
   //   if (isLoading) return <LoadingScreen />;
+  useEffect(() => {
+    login();
+  }, []);
 
   return (
     <>

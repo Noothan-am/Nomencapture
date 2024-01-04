@@ -28,6 +28,8 @@ const Accordion = ({ title, content }: any) => {
 
 function AuditPage() {
   const [accordion, setAccordion] = useState([]);
+  const [selectedDot, setSelectedDot] = useState([]);
+
   const navigate = useNavigate();
   const navigateToNamingSet = () => {
     navigate("/audio-page");
@@ -46,7 +48,6 @@ function AuditPage() {
           };
         });
         setAccordion(accordionData);
-        console.log(accordionData);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -54,7 +55,7 @@ function AuditPage() {
   }, []);
 
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
   }, [fetchUser]);
 
   return (
@@ -72,42 +73,9 @@ function AuditPage() {
           <div className={styles["audit-content"]}>
             <div className={styles["audit-questions"]}>
               <div className={styles["audit-each-question"]}>
-                {/* <div className={styles["question-how"]}>
-                  How?
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nemo, commodi? Sunt nihil voluptatem repudiandae? Aspernatur
-                    tempore quam soluta, ea voluptatum odit eveniet laudantium
-                    dicta quas perferendis quibusdam alias. Pariatur,
-                    consectetur?
-                  </p>
-                  <hr />
-                </div>
-                <div className={styles["question-who"]}>
-                  Who?
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nemo, commodi? Sunt nihil voluptatem repudiandae? Aspernatur
-                    tempore quam soluta, ea voluptatum odit eveniet laudantium
-                    dicta quas perferendis quibusdam alias. Pariatur,
-                    consectetur?
-                  </p>
-                  <hr />
-                </div>
-                <div className={styles["question-why"]}>
-                  Why?
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Nemo, commodi? Sunt nihil voluptatem repudiandae? Aspernatur
-                    tempore quam soluta, ea voluptatum odit eveniet laudantium
-                    dicta quas perferendis quibusdam alias. Pariatur,
-                    consectetur?
-                  </p>
-                  <hr />
-                </div> */}
-                {accordion.map(({ title, content }: any) => (
+                {/* {accordion.map(({ title, content }: any) => (
                   <Accordion title={title} content={content} />
-                ))}
+                ))} */}
               </div>
             </div>
             <div className={styles["audit-rating"]}>
@@ -115,7 +83,11 @@ function AuditPage() {
                 On scale of 1-5, how aligned are you on this overall?
               </p>
               <div className={styles["audit-rating-bar"]}>
-                <DotsRow />
+                <DotsRow
+                  index={0}
+                  selectedDot={selectedDot}
+                  setSelectedDot={setSelectedDot}
+                />
               </div>
               <div className={styles["audit-comments-textarea"]}>
                 <textarea

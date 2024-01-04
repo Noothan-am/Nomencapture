@@ -4,6 +4,7 @@ import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import { addUserToSpreadsheet } from "../utils/sheet-api";
 
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
@@ -13,24 +14,6 @@ function Home() {
   const handleLoginSubmit = () => {
     navigate("/form");
   };
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then(() => {
-        console.log("verified");
-      })
-      .catch(() => {
-        navigate("/login");
-        console.log("not verified");
-      });
-  }, []);
 
   return (
     <>

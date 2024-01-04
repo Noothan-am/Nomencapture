@@ -34,7 +34,6 @@ const NomenContentTemplate = () => {
     client
       .fetch(query)
       .then((users) => {
-        console.log("users", users[1]);
         GraphImage.current = users[1].GraphImage;
         SamplesImage.current = users[1].SamplesImage;
         setNameDetais(users[1]);

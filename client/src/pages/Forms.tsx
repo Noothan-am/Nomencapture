@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
@@ -11,7 +11,7 @@ import Thankyou from "./Thankyou";
 // import { Step, Stepper } from "react-form-stepper";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
-import { StepButton, StepLabel } from "@mui/material";
+import { StepButton } from "@mui/material";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -65,6 +65,24 @@ function Forms() {
         return <Thankyou />;
     }
   };
+
+  // useEffect(() => {
+  //   fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     credentials: "include",
+  //   })
+  //     .then(() => {
+  //       console.log("verified");
+  //     })
+  //     .catch(() => {
+  //       console.log("not verified");
+  //     });
+  // }, []);
+
   return (
     <>
       <div className={styles["forms"]}>
@@ -152,6 +170,3 @@ function Forms() {
 }
 
 export default Forms;
-function setItem(data: any) {
-  throw new Error("Function not implemented.");
-}

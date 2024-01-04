@@ -11,7 +11,6 @@ function NameList() {
     client
       .fetch(query)
       .then((users) => {
-        console.log("users", users);
         nameListImg.current.src = users[0].PlayersNames;
       })
       .catch((error) => {

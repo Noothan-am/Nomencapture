@@ -43,7 +43,6 @@ function SecondFormPage() {
     };
     setForm(data);
   }, [
-    form,
     brandNameScale,
     competitors,
     likedCompetitorNames,

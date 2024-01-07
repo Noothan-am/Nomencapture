@@ -50,7 +50,6 @@ function SecondFormPage() {
     };
     setForm(data);
   }, [
-    form,
     targetAudienceAge,
     hero,
     targetAudienceGender,

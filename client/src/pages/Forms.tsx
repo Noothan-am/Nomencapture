@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
@@ -37,7 +37,7 @@ function Forms() {
   }>({});
 
   const { form }: any = useFormData();
-  const { setItem } = useLocalStorage();
+  const { setItem, getItem } = useLocalStorage();
 
   const handleChangeCurrentPageToNext = () => {
     setItem(form);
@@ -53,7 +53,100 @@ function Forms() {
     setCurrentFormPage(step + 1);
   };
 
+  const setFormDataToExcel = useCallback(async () => {
+    const {
+      name,
+      email,
+      naming,
+      productSector,
+      trademark,
+      productDescription,
+      goToPlace,
+      productCater,
+      usp,
+      productSegment,
+      productExpansion,
+      lastPhotoDetails,
+      productLikeness,
+      productUnLikeness,
+      dressColor,
+      productImpactAsPerson,
+      productAchievement,
+      productImpact,
+      productValues,
+      productFocusOnCity,
+    } = getItem();
+
+    const data = {
+      "Your Name": name,
+      "Your Email": email,
+      "What are we naming?": Object.keys(naming)[0],
+      "Which sector does your product / service belong to?": productSector,
+      "Mention the Trademark classes your product/service belongs to?":
+        trademark,
+      "Describe your Product/Service?": productDescription,
+      "Your favourite go to place for peace?": goToPlace,
+      "What need does your product / service cater to?": productCater,
+      "What do you think is the differentiating value you provide / What is your USP? ":
+        usp,
+      "What price segment does your product/service fall in?": productSegment,
+      "Do you see yourself expanding to other cities/states in future? If yes, where?":
+        productExpansion,
+      "What are the cities/states in India that you're planning to focus on?":
+        productFocusOnCity,
+      "If your product / service were a person, list the values or beliefs it will always stand by?":
+        productValues,
+      "What is the ultimate impact you want to create with your product / service? Or WHY does your product / service exist?":
+        productImpact,
+      "How do you think your product / service can achieve the above?":
+        productAchievement,
+      "If your product / service were a person, what kind of impact it would want to create?":
+        productImpactAsPerson,
+      "What is the color of the dress you wore yesterday?": dressColor,
+      "If your product / service were a person, how would you definitely like it to come across as?":
+        productLikeness,
+      "If your product / service were a person, how would you definitely not like it to come across as?":
+        productUnLikeness,
+      "What was the object you last took a photo of?": lastPhotoDetails,
+    };
+
+    try {
+      const response = await fetch(
+        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=form-responses",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: [
+              {
+                ...data,
+              },
+            ],
+          }),
+        }
+      );
+      if (response.ok) {
+        console.log("Success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [getItem]);
+
   const currentPage = () => {
+    if (currentFormPage === 5) {
+      setFormDataToExcel()
+        .then(() => {
+          console.log("Current page is 5");
+        })
+        .catch(() => {
+          console.log("Error");
+          return;
+        });
+    }
     switch (currentFormPage) {
       case 1:
         return <FormFirstPage />;
@@ -63,8 +156,8 @@ function Forms() {
         return <ThirdFormPage />;
       case 4:
         return <FourthFormPage />;
-      case 5:
-        return <Thankyou />;
+      // case 5:
+      //   return <Thankyou />;
     }
   };
 
@@ -136,7 +229,7 @@ function Forms() {
                 {currentPage()}
                 <div
                   style={
-                    currentFormPage == 5
+                    currentFormPage === 5
                       ? { display: "none" }
                       : { display: "flex" }
                   }
@@ -144,7 +237,7 @@ function Forms() {
                 >
                   <div
                     style={
-                      currentFormPage == 1
+                      currentFormPage === 1
                         ? { display: "none" }
                         : { display: "flex" }
                     }
@@ -157,7 +250,7 @@ function Forms() {
                   </div>
                   <div className={styles["next-btn"]}>
                     <Button
-                      buttonValue={"NEXT"}
+                      buttonValue={currentFormPage === 4 ? "SUBMIT" : "NEXT"}
                       handleClick={handleChangeCurrentPageToNext}
                     />
                   </div>

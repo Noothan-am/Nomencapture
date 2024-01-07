@@ -2,21 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import TextQuestions from "../components/TextQuestions";
 import RadioQuestions from "../components/RadioQuestions";
 import DescriptionQuestions from "../components/DescriptionQuestions";
-import SelectQuestions from "../components/SelectQuestions";
 import CheckBoxQuestions from "../components/CheckBoxQuestions";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useFormData from "../context/FormContext";
 const styles = require("../styles/forms.module.css").default;
-
-const selectOptions = [
-  "Accounting",
-  "Airlines/Aviation",
-  "Alternative Dispute Resolution",
-  "Alternative Medicine",
-  "Animation",
-  "Apparel/Fashion",
-  "Architecture/Planning",
-];
 
 function SecondFormPage() {
   const [usp, setUsp] = useState("");
@@ -31,6 +20,7 @@ function SecondFormPage() {
   const [productUnLikeness, setProductUnLikeness] = useState([]);
   const [productAchievement, setProductAchievement] = useState("");
   const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
+  const [productFocusOnCity, setProductFocusOnCity] = useState("");
 
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();
@@ -50,6 +40,7 @@ function SecondFormPage() {
       productAchievement,
       productImpact,
       productValues,
+      productFocusOnCity,
     };
     setForm(data);
   }, [
@@ -61,6 +52,7 @@ function SecondFormPage() {
     productLikeness,
     productUnLikeness,
     dressColor,
+    productFocusOnCity,
     productImpactAsPerson,
     productAchievement,
     productImpact,
@@ -86,6 +78,7 @@ function SecondFormPage() {
       setProductAchievement(data.productAchievement);
       setProductImpact(data.productImpact);
       setProductValues(data.productValues);
+      setProductFocusOnCity(data.productFocusOnCity);
     }
   }, []);
 
@@ -105,7 +98,9 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
-            question={"What is your USP?"}
+            question={
+              "What do you think is the differentiating value you provide / What is your USP?"
+            }
             onInputChange={setUsp}
             value={usp}
           />
@@ -125,6 +120,15 @@ function SecondFormPage() {
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={
+              "What are the cities/states in India that you're planning to focus on?"
+            }
+            onInputChange={setProductFocusOnCity}
+            value={productFocusOnCity}
+          />
+        </div>
+        <div className={styles["radio"]}>
+          <DescriptionQuestions
+            question={
               "Do you see yourself expanding to other cities/states in future? If yes, where?"
             }
             onInputChange={setProductExpansion}
@@ -132,9 +136,9 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["email"]}>
-          <TextQuestions
+          <DescriptionQuestions
             question={
-              "If your product / service were a person, list the values or beliefs it will always stand by? "
+              "If your product / service were a person, list the values or beliefs it will always stand by?"
             }
             onInputChange={setProductValues}
             value={productValues}

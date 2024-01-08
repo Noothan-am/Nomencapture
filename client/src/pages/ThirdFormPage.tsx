@@ -88,7 +88,7 @@ function SecondFormPage() {
     <>
       <div className={styles["firstpart-3"]}>
         <div className={styles["text-2"]}>
-          {/* <CheckBoxQuestions
+          <CheckBoxQuestions
             question={
               "What is the age bracket of your Target Audience Group (TG)?"
             }
@@ -104,7 +104,7 @@ function SecondFormPage() {
             ]}
             onInputChange={setTargetAudienceAge}
             value={targetAudienceAge}
-          /> */}
+          />
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
@@ -116,7 +116,7 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["text-2"]}>
-          {/* <CheckBoxQuestions
+          <CheckBoxQuestions
             question={"What occupation your TG may have?"}
             options={[
               "Everyone",
@@ -142,7 +142,7 @@ function SecondFormPage() {
             ]}
             onInputChange={setTargetAudienceOccupation}
             value={targetAudienceOccupation}
-          /> */}
+          />
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
@@ -159,7 +159,7 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["text-2"]}>
-          {/* <CheckBoxQuestions
+          <CheckBoxQuestions
             question={"Where will your TG find your product / service?"}
             options={[
               "Retail Outlets",
@@ -170,7 +170,7 @@ function SecondFormPage() {
             ]}
             onInputChange={setProductAvailability}
             value={productAvailability}
-          /> */}
+          />
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
@@ -183,7 +183,7 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["text-2"]}>
-          {/* <CheckBoxQuestions
+          <CheckBoxQuestions
             question={"How do want your customers to remember you as"}
             options={[
               "Straightforward and trustworthy",
@@ -196,7 +196,7 @@ function SecondFormPage() {
             ]}
             onInputChange={setMemorableImpression}
             value={memorableImpression}
-          /> */}
+          />
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions

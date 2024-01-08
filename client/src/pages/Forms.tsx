@@ -75,6 +75,15 @@ function Forms() {
       productImpact,
       productValues,
       productFocusOnCity,
+      targetAudienceAge,
+      hero,
+      targetAudienceGender,
+      targetAudienceInfo,
+      memorableImpression,
+      targetAudienceExpectation,
+      productAvailability,
+      productPurchaseFrequency,
+      targetAudienceOccupation,
     } = getItem();
 
     const data = {
@@ -108,6 +117,19 @@ function Forms() {
       "If your product / service were a person, how would you definitely not like it to come across as?":
         productUnLikeness,
       "What was the object you last took a photo of?": lastPhotoDetails,
+      "What is the age bracket of your Target Audience Group (TG) ?":
+        targetAudienceAge,
+      "Which gender of TG is your product / service for?": targetAudienceGender,
+      "What occupation your TG may have?": targetAudienceOccupation,
+      "How often do you think your product will be purchased?":
+        productPurchaseFrequency,
+      "Where will your TG find your product / service?": productAvailability,
+      "How do want your customers to remember you as": memorableImpression,
+      "Do you have any additional information about your TG?":
+        targetAudienceInfo,
+      "A hero you look upto?": hero,
+      "What values your TG expects in this product segment?":
+        targetAudienceExpectation,
     };
 
     try {

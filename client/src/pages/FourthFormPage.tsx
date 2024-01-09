@@ -6,6 +6,7 @@ import RadioQuestions from "../components/RadioQuestions";
 import SelectQuestions from "../components/SelectQuestions";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useFormData from "../context/FormContext";
+import DescriptionQuestions from "../components/DescriptionQuestions";
 const styles = require("../styles/forms.module.css").default;
 
 const selectOptions = [
@@ -226,7 +227,7 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["radio"]}>
-          <TextQuestions
+          <DescriptionQuestions
             question={
               "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?"
             }

@@ -84,6 +84,15 @@ function Forms() {
       productAvailability,
       productPurchaseFrequency,
       targetAudienceOccupation,
+      brandNameScale,
+      competitors,
+      likedCompetitorNames,
+      dislikedCompetitorNames,
+      meaningAssociation,
+      desiredAllure,
+      nameIdeas,
+      avoidedConnotations,
+      blankImagination,
     } = getItem();
 
     const data = {
@@ -130,6 +139,15 @@ function Forms() {
       "A hero you look upto?": hero,
       "What values your TG expects in this product segment?":
         targetAudienceExpectation,
+      "List your competitors (mention website links if available)": competitors,
+      "Competitor/other brand names you like": likedCompetitorNames,
+      "Competitor/other brand names you dislike": dislikedCompetitorNames,
+      "What appeal do you want the name to have?": desiredAllure,
+      "Emotions or ideas you want the name to evoke?": nameIdeas,
+      "Connotations or ideas you want to completely avoid?":
+        avoidedConnotations,
+      "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
+        blankImagination,
     };
 
     try {

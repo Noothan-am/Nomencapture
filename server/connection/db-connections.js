@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 mongoose
-  .connect("mongodb://localhost:27017/nomen")
+  .connect(process.env.MONGODB_URL)
   .then(() => {
-    console.log("mongoose connected succesfully");
+    console.log("mongoose connected successfully");
   })
   .catch((error) => {
     console.error("connection error:", error.message);

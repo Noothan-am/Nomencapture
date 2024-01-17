@@ -13,7 +13,7 @@ const userLogin = async (req, res) => {
     if (!isValidPassword) {
       return res.status(401).json({ message: "invalid credentials" });
     }
-    const authToken = jwt.sign({ _id: user._id }, "hello this is secrate key", {
+    const authToken = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "15hr",
     });
 

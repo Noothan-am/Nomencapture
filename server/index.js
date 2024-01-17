@@ -16,6 +16,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
 app.use("/api", authRouter);
 
 app.listen(port, () => {

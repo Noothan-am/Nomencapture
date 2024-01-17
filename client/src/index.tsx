@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { FormContext } from "./context/FormContext";
+import { UserDataContext } from "./context/UserDataContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <FormContext>
-        <App />
-      </FormContext>
+      <UserDataContext>
+        <FormContext>
+          <App />
+        </FormContext>
+      </UserDataContext>
     </Router>
   </React.StrictMode>
 );

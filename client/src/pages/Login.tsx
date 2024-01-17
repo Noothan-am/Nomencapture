@@ -47,7 +47,7 @@ const Login = () => {
       setIsLoading(false);
       if (result.ok) {
         console.log(result.ok);
-        toast.success("Login Succesfull", {
+        toast.success("Login Successful", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -59,7 +59,6 @@ const Login = () => {
         setTimeout(() => {
           navigate("/home");
         }, 1000);
-        const data = await result.json();
       } else {
         toast.error("please enter valid credentials", {
           position: "top-right",
@@ -89,8 +88,35 @@ const Login = () => {
     console.log("userog", await addUserToSpreadsheet());
   };
   //   if (isLoading) return <LoadingScreen />;
+  // useEffect(() => {
+  //   login();
+  // }, []);
+
+  const checkUserValidity = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/verify`,
+        {
+          method: "POST",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      if (response.ok) {
+        console.log("user is valid", response.json());
+      } else {
+        console.log("user is not valid", response.status);
+      }
+    } catch (error) {
+      console.log("error while checking user validity: ", error);
+    }
+  };
+
   useEffect(() => {
-    login();
+    checkUserValidity();
   }, []);
 
   return (

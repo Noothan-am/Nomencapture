@@ -14,7 +14,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/form" element={<Forms />} />
-      <Route element={<ProtectedRoutes auth={true} />}>
+      <Route element={<ProtectedRoutes />}>
         <Route path="/home" element={<Home />} />
         <Route path="/understanding" element={<AuditPage />} />
         <Route path="/naming-set" element={<NamingSet />} />

@@ -16,7 +16,7 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
-  const [brandNameScale, setBrandNameScale] = useState("");
+  const [brandNameScale, setBrandNameScale] = useState({});
   const [competitors, setCompetitors] = useState("");
   const [likedCompetitorNames, setLikedCompetitorNames] = useState("");
   const [dislikedCompetitorNames, setDislikedCompetitorNames] = useState("");

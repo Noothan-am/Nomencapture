@@ -7,11 +7,11 @@ const Circle = ({
   initialText,
   finalText,
   onInputChange,
+  value,
 }: any) => {
   const handleChange = (event: any) => {
-    const value = event.target.value;
-    // onInputChange(value);
-    console.log({ question, value });
+    const data = event.target.value;
+    onInputChange({ ...value, [question]: data });
   };
 
   return (
@@ -31,8 +31,9 @@ const Circle = ({
                 <input
                   onChange={(e) => handleChange(e)}
                   type="radio"
-                  name="choice"
+                  name={question}
                   value={option}
+                  checked={value && value[question] === option}
                 />
               </td>
             );

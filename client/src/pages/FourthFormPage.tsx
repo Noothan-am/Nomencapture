@@ -193,7 +193,9 @@ function SecondFormPage() {
         </div>
         <div className={styles["secondpart-9d"]}>
           <RadioQuestions
-            question={"What meaning-association would you prefer the most?"}
+            question={
+              "Choose one OR write the order of priority of what meaning-association would you prefer for the name?"
+            }
             options={selectOptions}
             onInputChange={setMeaningAssociation}
             value={meaningAssociation}

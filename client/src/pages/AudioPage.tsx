@@ -71,33 +71,38 @@ const AudioPage = () => {
 
   const navigate = useNavigate();
   const handleClickToNextPage = useCallback(async () => {
-    // try {
-    //   const response = await fetch(
-    //     "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         data: [
-    //           {
-    //             "Hear it First - Voice One": voiceHeard[0],
-    //             "Hear it First - Voice Two": voiceHeard[1],
-    //             "Hear it First - Voice Three": voiceHeard[2],
-    //           },
-    //         ],
-    //       }),
-    //     }
-    //   );
-    //   const excel = await response.json();
-    //   console.log({ excel });
-    navigate("/naming-set");
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  }, [navigate]);
+    const { email } = await JSON.parse(
+      localStorage.getItem("userDetails") || ""
+    );
+    try {
+      const response = await fetch(
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+        {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: [
+              {
+                "Hear it First - Voice One": voiceHeard[0],
+                "Hear it First - Voice Two": voiceHeard[1],
+                "Hear it First - Voice Three": voiceHeard[2],
+              },
+            ],
+          }),
+        }
+      );
+      if (response.ok) {
+        const excel = await response.json();
+        console.log({ excel });
+        navigate("/naming-set");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [navigate, voiceHeard]);
 
   const getAudioPageData = useCallback(() => {
     client

@@ -120,7 +120,7 @@ function SecondFormPage() {
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={
-              "What are the cities/states in India that you're planning to focus on?"
+              "What are the cities/regions you're planning to focus on?"
             }
             onInputChange={setProductFocusOnCity}
             value={productFocusOnCity}
@@ -129,7 +129,7 @@ function SecondFormPage() {
         <div className={styles["radio"]}>
           <DescriptionQuestions
             question={
-              "Do you see yourself expanding to other cities/states in future? If yes, where?"
+              "Do you see yourself expanding to other cities/regions in future? If yes, where?"
             }
             onInputChange={setProductExpansion}
             value={productExpansion}

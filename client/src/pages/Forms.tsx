@@ -96,21 +96,22 @@ function Forms() {
     } = getItem();
 
     const data = {
+      Timestamp: new Date().toLocaleString(),
       "Your Name": name,
       "Your Email": email,
-      "What are we naming?": Object.keys(naming)[0],
+      "What are we naming?": naming,
       "Which sector does your product / service belong to?": productSector,
       "Mention the Trademark classes your product/service belongs to?":
         trademark,
       "Describe your Product/Service?": productDescription,
       "Your favourite go to place for peace?": goToPlace,
       "What need does your product / service cater to?": productCater,
-      "What do you think is the differentiating value you provide / What is your USP? ":
+      "What do you think is the differentiating value you provide / What is your USP?":
         usp,
       "What price segment does your product/service fall in?": productSegment,
-      "Do you see yourself expanding to other cities/states in future? If yes, where?":
+      "Do you see yourself expanding to other cities/regions in future? If yes, where?":
         productExpansion,
-      "What are the cities/states in India that you're planning to focus on?":
+      "What are the cities/regions you're planning to focus on?":
         productFocusOnCity,
       "If your product / service were a person, list the values or beliefs it will always stand by?":
         productValues,
@@ -126,7 +127,7 @@ function Forms() {
       "If your product / service were a person, how would you definitely not like it to come across as?":
         productUnLikeness,
       "What was the object you last took a photo of?": lastPhotoDetails,
-      "What is the age bracket of your Target Audience Group (TG) ?":
+      "What is the age bracket of your Target Audience Group (TG)?":
         targetAudienceAge,
       "Which gender of TG is your product / service for?": targetAudienceGender,
       "What occupation your TG may have?": targetAudienceOccupation,
@@ -137,7 +138,7 @@ function Forms() {
       "Do you have any additional information about your TG?":
         targetAudienceInfo,
       "A hero you look upto?": hero,
-      "What values your TG expects in this product segment?":
+      "For what values you want your TG to choose you over the competitor?":
         targetAudienceExpectation,
       "List your competitors (mention website links if available)": competitors,
       "Competitor/other brand names you like": likedCompetitorNames,
@@ -146,9 +147,21 @@ function Forms() {
       "Emotions or ideas you want the name to evoke?": nameIdeas,
       "Connotations or ideas you want to completely avoid?":
         avoidedConnotations,
+      "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
+        meaningAssociation,
       "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
         blankImagination,
+      "Clever / Straightforward": brandNameScale["Clever / Straightforward"],
+      "Global / Local": brandNameScale["Global / Local"],
+      "Modern / Traditional": brandNameScale["Modern / Traditional"],
+      "Emotional / Logical": brandNameScale["Emotional / Logical"],
+      "Scientific / General": brandNameScale["Scientific / General"],
+      "Whimsical / Serious": brandNameScale["Whimsical / Serious"],
+      "Mature / Youthful ": brandNameScale["Mature / Youthful"],
+      "Formal / Friendly": brandNameScale["Formal / Friendly"],
     };
+
+    console.log(JSON.stringify(data));
 
     try {
       const response = await fetch(
@@ -177,16 +190,16 @@ function Forms() {
   }, [getItem]);
 
   const currentPage = () => {
-    // if (currentFormPage === 5) {
-    //   setFormDataToExcel()
-    //     .then(() => {
-    //       console.log("Current page is 5");
-    //     })
-    //     .catch(() => {
-    //       console.log("Error");
-    //       return;
-    //     });
-    // }
+    if (currentFormPage === 5) {
+      setFormDataToExcel()
+        .then(() => {
+          console.log("Current page is 5");
+        })
+        .catch(() => {
+          console.log("Error");
+          return;
+        });
+    }
     switch (currentFormPage) {
       case 1:
         return <FormFirstPage />;
@@ -240,7 +253,7 @@ function Forms() {
                   >
                     {steps.map((label, index) => (
                       <Step
-                        key={label}
+                        key={index}
                         style={{ color: "black" }}
                         completed={completed[index]}
                       >

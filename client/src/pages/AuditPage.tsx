@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import client from "../utils/sanity-client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const styles = require("../styles/audit.module.css").default;
 
@@ -57,11 +59,14 @@ function AuditPage() {
   }, []);
 
   const handleSubmitButtonClick = useCallback(async () => {
+    const { name, email } = await JSON.parse(
+      localStorage.getItem("userDetails") || ""
+    );
     try {
       const response = await fetch(
-        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -69,6 +74,8 @@ function AuditPage() {
           body: JSON.stringify({
             data: [
               {
+                Name: name,
+                Email: email,
                 "How aligned are you on our Observation": selectedDot[0],
                 Comments: comments,
               },
@@ -76,9 +83,16 @@ function AuditPage() {
           }),
         }
       );
-      if (response.status === 200) {
-        const excel = await response.json();
-        console.log({ excel });
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Response submitted", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       } else {
         console.log({ response });
         console.log(response.status);
@@ -87,7 +101,7 @@ function AuditPage() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [comments, selectedDot]);
 
   useEffect(() => {
     fetchUser();

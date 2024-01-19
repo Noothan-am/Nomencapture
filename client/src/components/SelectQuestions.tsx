@@ -12,9 +12,9 @@ function SelectQuestions({ question, options, onInputChange, value }: any) {
         <label htmlFor="">{question}</label>
         <select onChange={(e) => handleChange(e)}>
           <option>Choose</option>
-          {options.map((option: string) => {
+          {options.map((option: string, index: number) => {
             return (
-              <option selected={option === value} value={option}>
+              <option key={index} value={option}>
                 {option}
               </option>
             );

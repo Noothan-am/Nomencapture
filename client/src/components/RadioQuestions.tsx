@@ -7,6 +7,7 @@ function RadioQuestions({
   showOthersInput,
   onInputChange,
   value,
+  defaultAddedValue,
 }: any) {
   const [inputValue, setInputValue] = useState("Product");
   const [othersInputValue, setOthersInputValue] = useState("");
@@ -32,7 +33,7 @@ function RadioQuestions({
               <input
                 type="radio"
                 id={`${index}`}
-                name="options"
+                name={question}
                 onChange={(e) => {
                   setInputValue(e.target.value);
                   handleChange(e);

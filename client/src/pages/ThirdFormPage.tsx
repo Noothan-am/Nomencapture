@@ -174,9 +174,8 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
-            question={"What values your TG expects in this product segment?"}
-            description={
-              "You want your TG to choose you over the competitor for what values?"
+            question={
+              "For what values you want your TG to choose you over the competitor?"
             }
             onInputChange={setTargetAudienceExpectation}
             value={targetAudienceExpectation}

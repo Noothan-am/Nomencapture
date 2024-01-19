@@ -23,9 +23,15 @@ const userLogin = async (req, res) => {
       sameSite: "lax",
     });
 
+    const userData = {
+      email: user.email,
+      name: user.name,
+      accessPages: user.accessPages,
+    };
+
     return res.status(200).send({
       message: "Login successful",
-      userDetails: user,
+      userDetails: userData,
       token: authToken,
     });
   } catch (error) {

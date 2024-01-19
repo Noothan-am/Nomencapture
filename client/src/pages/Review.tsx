@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SelectQuestions from "../components/SelectQuestions";
 import Button from "../components/Button";
 import DotsRow from "../components/DotRows";
-import Nomen from "./Nomen";
 import Navbar from "../components/Navbar";
 import Tabs from "../components/Tabs";
 import SideBar from "../components/SideBar";
@@ -55,12 +54,15 @@ export default function Review() {
 
   const navigate = useNavigate();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
+    const { email } = await JSON.parse(
+      localStorage.getItem("userDetails") || ""
+    );
     try {
       const response = await fetch(
-        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -88,13 +90,25 @@ export default function Review() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [
+    elaborate,
+    favoriteName,
+    feedback,
+    nameSatisfied,
+    nextRoundPreference,
+    selectedDot,
+  ]);
 
   const handleSubmitButtonClick = () => {
-    // fetchData();
-    if (!nextRoundPreference) {
-      navigate("/final-name");
-    }
+    fetchData()
+      .then(() => {
+        if (!nextRoundPreference) {
+          navigate("/final-name");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log({
       feedback,
       favoriteName,

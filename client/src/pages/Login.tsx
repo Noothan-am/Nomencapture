@@ -3,9 +3,9 @@ import SideBar from "../components/SideBar";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { addUserToSpreadsheet } from "../utils/sheet-api";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 const styles = require("../styles/login.module.css").default;
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const { setItem } = useLocalStorageForUserDetails();
 
   const handleLoginSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,7 +48,9 @@ const Login = () => {
       });
       setIsLoading(false);
       if (result.ok) {
-        console.log(result.ok);
+        const { userDetails } = await result.json();
+        setItem(userDetails);
+        console.log("userDetails", userDetails);
         toast.success("Login Successful", {
           position: "top-right",
           autoClose: 2000,
@@ -85,13 +88,6 @@ const Login = () => {
       console.log("error while login: ", error);
     }
   };
-  const login = async () => {
-    console.log("userog", await addUserToSpreadsheet());
-  };
-  //   if (isLoading) return <LoadingScreen />;
-  // useEffect(() => {
-  //   login();
-  // }, []);
 
   const checkUserValidity = async () => {
     try {
@@ -117,7 +113,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    checkUserValidity();
+    // checkUserValidity();
   }, []);
 
   return (

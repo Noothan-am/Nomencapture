@@ -177,16 +177,16 @@ function Forms() {
   }, [getItem]);
 
   const currentPage = () => {
-    if (currentFormPage === 5) {
-      setFormDataToExcel()
-        .then(() => {
-          console.log("Current page is 5");
-        })
-        .catch(() => {
-          console.log("Error");
-          return;
-        });
-    }
+    // if (currentFormPage === 5) {
+    //   setFormDataToExcel()
+    //     .then(() => {
+    //       console.log("Current page is 5");
+    //     })
+    //     .catch(() => {
+    //       console.log("Error");
+    //       return;
+    //     });
+    // }
     switch (currentFormPage) {
       case 1:
         return <FormFirstPage />;
@@ -196,8 +196,8 @@ function Forms() {
         return <ThirdFormPage />;
       case 4:
         return <FourthFormPage />;
-      // case 5:
-      //   return <Thankyou />;
+      case 5:
+        return <Thankyou />;
     }
   };
 

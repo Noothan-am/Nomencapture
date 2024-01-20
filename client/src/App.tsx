@@ -8,6 +8,9 @@ import AuditPage from "./pages/AuditPage";
 import AudioPage from "./pages/AudioPage";
 import NamingSet from "./pages/NamingSet";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Review from "./pages/Review";
+import YourName from "./pages/YourName";
+import FinalGreetings from "./pages/FinalGreetings";
 function App() {
   return (
     <Routes>
@@ -18,7 +21,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/understanding" element={<AuditPage />} />
         <Route path="/naming-set" element={<NamingSet />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/final-name" element={<YourName />} />
         <Route path="/audio-page" element={<AudioPage />} />
+        <Route path="/final-greeting" element={<FinalGreetings />} />
       </Route>
     </Routes>
   );

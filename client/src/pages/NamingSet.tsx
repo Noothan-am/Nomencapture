@@ -9,11 +9,13 @@ import YourName from "./YourName";
 import Review from "./Review";
 import Nomen from "./Nomen";
 import FinalGreetings from "./FinalGreetings";
+import { useNavigate } from "react-router-dom";
 
 const styles = require("../styles/naming-set.module.css").default;
 
 function NamingSet() {
   const [currentFormPage, setCurrentFormPage] = useState(1);
+  const navigate = useNavigate();
 
   const handleNextButtonClick = () => {
     setCurrentFormPage(currentFormPage + 1);
@@ -29,11 +31,12 @@ function NamingSet() {
       case 2:
         return <Nomen />;
       case 3:
-        return <Review />;
-      case 4:
-        return <YourName />;
-      case 5:
-        return <FinalGreetings />;
+        navigate("/review");
+        return;
+      // case 4:
+      //   return <YourName />;
+      // case 5:
+      //   return <FinalGreetings />;
     }
   };
   return (

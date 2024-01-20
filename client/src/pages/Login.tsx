@@ -3,8 +3,9 @@ import SideBar from "../components/SideBar";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { addUserToSpreadsheet } from "../utils/sheet-api";
+
+import "react-toastify/dist/ReactToastify.css";
 const styles = require("../styles/login.module.css").default;
 
 const Login = () => {

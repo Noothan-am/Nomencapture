@@ -71,7 +71,6 @@ const AudioPage = () => {
 
   const navigate = useNavigate();
   const handleClickToNextPage = useCallback(async () => {
-    console.log({ voiceHeard });
     // try {
     //   const response = await fetch(
     //     "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
@@ -94,7 +93,7 @@ const AudioPage = () => {
     //   );
     //   const excel = await response.json();
     //   console.log({ excel });
-    //   navigate("/naming-set");
+    navigate("/naming-set");
     // } catch (error) {
     //   console.log(error);
     // }

@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import client from "../utils/sanity-client";
+import FlagStepper from "../components/FlagStepper";
 
 const styles = require("../styles/name-list.module.css").default;
 
 function NameList() {
   const nameListImg = useRef<any>(null);
   const query =
-    '*[_type == "NamingSet" && User->Name == "Ram"]{"PlayersNames": PlayersNames.asset->url}';
+    '*[_type == "NamingSet" && User->Name == "Noothan"]{"PlayersNames": PlayersNames.asset->url}';
   const getAudioPageData = useCallback(() => {
     client
       .fetch(query)
@@ -25,6 +26,7 @@ function NameList() {
 
   return (
     <>
+      {/* <FlagStepper /> */}
       <div className={styles["name-list-2-container"]}>
         <div className={styles["heading"]}>
           <p>

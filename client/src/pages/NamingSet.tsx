@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
 import Tabs from "../components/Tabs";
@@ -10,12 +10,18 @@ import Review from "./Review";
 import Nomen from "./Nomen";
 import FinalGreetings from "./FinalGreetings";
 import { useNavigate } from "react-router-dom";
+import FlagStepper from "../components/FlagStepper";
 
 const styles = require("../styles/naming-set.module.css").default;
 
 function NamingSet() {
   const [currentFormPage, setCurrentFormPage] = useState(1);
+  const [currentData, setCurrentData] = useState(1);
+
   const navigate = useNavigate();
+  const handleNomenButtonClick = (number: any) => {
+    setCurrentData(number);
+  };
 
   const handleNextButtonClick = () => {
     setCurrentFormPage(currentFormPage + 1);
@@ -24,12 +30,16 @@ function NamingSet() {
   const handlePreviousButtonClick = () => {
     setCurrentFormPage(currentFormPage - 1);
   };
+  useEffect(() => {
+    console.log(currentData);
+  }, [currentData]);
+
   const currentPage = () => {
     switch (currentFormPage) {
       case 1:
         return <NameList />;
       case 2:
-        return <Nomen />;
+        return <Nomen currentData={currentData} />;
       case 3:
         navigate("/review");
         return;
@@ -53,6 +63,7 @@ function NamingSet() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
+              <FlagStepper handleNomenButtonClick={handleNomenButtonClick} />
               <div className={styles["form-content"]}>{currentPage()}</div>
               <div
                 style={{

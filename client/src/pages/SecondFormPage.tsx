@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import TextQuestions from "../components/TextQuestions";
 import RadioQuestions from "../components/RadioQuestions";
 import DescriptionQuestions from "../components/DescriptionQuestions";
@@ -21,11 +21,13 @@ function SecondFormPage() {
   const [productAchievement, setProductAchievement] = useState("");
   const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
   const [productFocusOnCity, setProductFocusOnCity] = useState("");
+  const containerRef = useRef<any>(null);
 
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();
 
   const setFormDetails = useCallback(() => {
+    window.location.hash = "#secondform";
     const data = {
       ...form,
       productCater,
@@ -88,7 +90,7 @@ function SecondFormPage() {
 
   return (
     <>
-      <div className={styles["firstpart-2"]}>
+      <div id="secondform" className={styles["firstpart-2"]}>
         <div className={styles["email"]}>
           <TextQuestions
             question={"What need does your product / service cater to?"}

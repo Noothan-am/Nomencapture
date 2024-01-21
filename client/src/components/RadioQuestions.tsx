@@ -53,7 +53,7 @@ function RadioQuestions({
                   handleOthersChange(e);
                 }}
                 type="radio"
-                name="options"
+                name={question}
                 value="Others"
               />
               <label>Others</label>
@@ -66,7 +66,7 @@ function RadioQuestions({
               value={othersInputValue}
               disabled={inputValue.trim() !== "Others"}
               type="text"
-              name=""
+              name={question}
               id=""
             />
           </>

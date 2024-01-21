@@ -64,9 +64,9 @@ function AuditPage() {
     );
     try {
       const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9/?sheet=feedback-sheet`,
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

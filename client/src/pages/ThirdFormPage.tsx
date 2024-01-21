@@ -36,6 +36,7 @@ function SecondFormPage() {
   const { form, setForm }: any = useFormData();
 
   const setFormDetails = useCallback(() => {
+    window.location.hash = "#thirdform";
     const data = {
       ...form,
       targetAudienceAge,
@@ -86,7 +87,7 @@ function SecondFormPage() {
 
   return (
     <>
-      <div className={styles["firstpart-3"]}>
+      <div id="thirdform" className={styles["firstpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             question={

@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import Tabs from "../components/Tabs";
 import SideBar from "../components/SideBar";
 import { useNavigate } from "react-router-dom";
+import FlagStepper from "../components/FlagStepper";
+import client from "../utils/sanity-client";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -15,11 +17,12 @@ const NamesFeedBack = ({
   setFeedback,
   setSelectedDot,
   selectedDot,
+  name,
 }: any) => {
   return (
     <>
       <div className={styles["names-feedback"]}>
-        <h1>Unavanu</h1>
+        <h1>{name}</h1>
         <p>How aligned are you on this overall?</p>
         <div className={styles["audit-rating-bar"]}>
           <DotsRow
@@ -51,10 +54,11 @@ export default function Review() {
   const [nextRoundPreference, setNextRoundPreference] = useState("");
   const [selectedDot, setSelectedDot] = useState<any>({});
   const [currentFormPage, setCurrentFormPage] = useState(3);
+  const [allNames, setAllNames] = useState([]);
 
   const navigate = useNavigate();
 
-  const fetchData = useCallback(async () => {
+  const setDataToExcel = useCallback(async () => {
     const { email } = await JSON.parse(
       localStorage.getItem("userDetails") || ""
     );
@@ -100,10 +104,12 @@ export default function Review() {
   ]);
 
   const handleSubmitButtonClick = () => {
-    fetchData()
+    setDataToExcel()
       .then(() => {
-        if (!nextRoundPreference) {
+        if (nextRoundPreference === "No") {
           navigate("/final-name");
+        } else {
+          navigate("/naming-set");
         }
       })
       .catch((err) => {
@@ -126,6 +132,27 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
+  const query = `*[_type == "NameDetails" && User->Name == "Noothan"]{
+      Name,
+    }`;
+
+  const fetchAllNames = useCallback(async () => {
+    client
+      .fetch(query)
+      .then(async (users) => {
+        setAllNames(users);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, [query]);
+
+  useEffect(() => {
+    fetchAllNames()
+      .then(() => {})
+      .catch(() => {});
+  }, [fetchAllNames]);
+
   useEffect(() => {}, [
     favoriteName,
     nameSatisfied,
@@ -147,20 +174,25 @@ export default function Review() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
+              <FlagStepper />
               <div className={styles["form-content"]}>
                 {/* {currentPage()} */}
                 <div className={styles["form-content"]}>
                   <div className={styles["first-part"]}>
-                    {Array.from({ length: 3 }, (_, index) => (
-                      <NamesFeedBack
-                        key={index}
-                        index={index}
-                        feedback={feedback}
-                        setFeedback={setFeedback}
-                        selectedDot={selectedDot}
-                        setSelectedDot={setSelectedDot}
-                      />
-                    ))}
+                    {allNames &&
+                      allNames.map(({ Name }, index) => (
+                        <>
+                          <NamesFeedBack
+                            key={index}
+                            index={index}
+                            feedback={feedback}
+                            setFeedback={setFeedback}
+                            selectedDot={selectedDot}
+                            setSelectedDot={setSelectedDot}
+                            name={Name}
+                          />
+                        </>
+                      ))}
                   </div>
                   <div className={styles["second-part"]}>
                     <div className={styles["top-part"]}>
@@ -169,7 +201,11 @@ export default function Review() {
                           value={favoriteName}
                           onInputChange={setFavoriteName}
                           question={"Which one you like the most"}
-                          options={["name 1", "name 2", "name 3"]}
+                          options={[
+                            `${allNames[0] && allNames[0]["Name"]}`,
+                            `${allNames[1] && allNames[1]["Name"]}`,
+                            `${allNames[2] && allNames[2]["Name"]}`,
+                          ]}
                         />
                       </div>
                       <div className={styles["second-question"]}>

@@ -41,7 +41,6 @@ function Forms() {
 
   const handleChangeCurrentPageToNext = () => {
     setItem(form);
-
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
   };
 

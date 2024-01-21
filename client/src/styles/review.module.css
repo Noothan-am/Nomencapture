@@ -13,14 +13,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 50%; */
   margin: auto;
   padding: 3rem 2rem;
   height: 90%;
+  width: 100%;
 }
 
 .form-content {
   width: 100%;
+  margin-top: 0.5rem;
 }
 
 .first-part {

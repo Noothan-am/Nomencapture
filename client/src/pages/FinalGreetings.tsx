@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import Navbar from "../components/Navbar";
-
 import Tabs from "../components/Tabs";
 
 const styles = require("../styles/final-greeting.module.css").default;
 
 function FinalGreetings() {
   const [currentFormPage, setCurrentFormPage] = useState(4);
-
   return (
     <>
       <div className={styles["review"]}>

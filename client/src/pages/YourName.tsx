@@ -6,6 +6,7 @@ import { FaRegCirclePlay } from "react-icons/fa6";
 import Button from "../components/Button";
 import { FaGreaterThan } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import FlagStepper from "../components/FlagStepper";
 const styles = require("../styles/your-name.module.css").default;
 
 function YourName() {
@@ -31,6 +32,7 @@ function YourName() {
           </div>
           {/* <div className={styles["naming-set-container"]}> */}
           <div className={styles["div"]}>
+            <FlagStepper />
             <div className={styles["form-content"]}>
               <div className={styles["content"]}>
                 <div className={styles["top-part"]}>

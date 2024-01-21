@@ -7,6 +7,7 @@ import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import client from "../utils/sanity-client";
 import { FaRegCirclePause } from "react-icons/fa6";
+import FlagStepper from "../components/FlagStepper";
 
 const styles = require("../styles/audio-page.module.css").default;
 
@@ -74,41 +75,42 @@ const AudioPage = () => {
     const { email } = await JSON.parse(
       localStorage.getItem("userDetails") || ""
     );
-    try {
-      const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
-        {
-          method: "PATCH",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: [
-              {
-                "Hear it First - Voice One": voiceHeard[0],
-                "Hear it First - Voice Two": voiceHeard[1],
-                "Hear it First - Voice Three": voiceHeard[2],
-              },
-            ],
-          }),
-        }
-      );
-      if (response.ok) {
-        const excel = await response.json();
-        console.log({ excel });
-        navigate("/naming-set");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const response = await fetch(
+    //     `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+    //     {
+    //       method: "PATCH",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         data: [
+    //           {
+    //             "Hear it First - Voice One": voiceHeard[0],
+    //             "Hear it First - Voice Two": voiceHeard[1],
+    //             "Hear it First - Voice Three": voiceHeard[2],
+    //           },
+    //         ],
+    //       }),
+    //     }
+    //   );
+    //   if (response.status === 200 || response.status === 201) {
+    //     const excel = await response.json();
+    //     console.log({ excel });
+    //     navigate("/naming-set");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    navigate("/naming-set");
   }, [navigate, voiceHeard]);
 
   const getAudioPageData = useCallback(() => {
     client
       .fetch(
         `
-      *[_type == "NamingSet" && User->Name == "Ram"] {
+      *[_type == "NamingSet" && User->Name == "Noothan"] {
           MainDescription,
           Description1,
           Description2,
@@ -156,6 +158,7 @@ const AudioPage = () => {
         </div>
         <div className={styles["naming-set-container"]}>
           <div className={styles["div"]}>
+            <FlagStepper />
             <div className={styles["form-content"]}>
               <div className={styles["audio-page-container"]}>
                 <div className={styles["audio-page-content-paragraph"]}>
@@ -182,7 +185,6 @@ const AudioPage = () => {
                               key={index}
                               soundNo={index}
                               voiceHeard={voiceHeard}
-                              // setHeardVoice={setHeardVoice}
                               handleChange={handleChange}
                               audiofile={audioFile}
                             />

@@ -11,6 +11,9 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Review from "./pages/Review";
 import YourName from "./pages/YourName";
 import FinalGreetings from "./pages/FinalGreetings";
+import Nomen from "./pages/Nomen";
+import SecondRoundNomen from "./pages/SecondRoundNomen";
+
 function App() {
   return (
     <Routes>
@@ -25,6 +28,7 @@ function App() {
         <Route path="/final-name" element={<YourName />} />
         <Route path="/audio-page" element={<AudioPage />} />
         <Route path="/final-greeting" element={<FinalGreetings />} />
+        <Route path="/second-round" element={<SecondRoundNomen />} />
       </Route>
     </Routes>
   );

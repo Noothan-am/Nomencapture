@@ -8,12 +8,17 @@ import client from "../utils/sanity-client";
 
 const styles = require("../styles/nomen.module.css").default;
 
-const NomenContentTemplate = () => {
+const NomenContentTemplate = ({ currentData }: any) => {
   const SamplesImage = useRef<any>(null);
   const GraphImage = useRef<any>(null);
   const [nameDetais, setNameDetais] = useState<any>({});
+  const [allNamesDetais, setAllNamesDetais] = useState<any>({});
 
-  const query = `*[_type == "NameDetails" &&  User->Name == "Ram"]{
+  useEffect(() => {
+    console.log(currentData);
+  }, [currentData]);
+
+  const query = `*[_type == "NameDetails"]{
       Name,
       Related,
       Syllable,
@@ -30,22 +35,26 @@ const NomenContentTemplate = () => {
       Dropdown
     }`;
 
-  const getAudioPageData = useCallback(() => {
-    client
-      .fetch(query)
-      .then((users) => {
-        GraphImage.current = users[1].GraphImage;
-        SamplesImage.current = users[1].SamplesImage;
-        setNameDetais(users[1]);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
-  }, [query]);
+  const getAudioPageData = useCallback(
+    (currentData: any) => {
+      client
+        .fetch(query)
+        .then((users) => {
+          GraphImage.current = users[currentData].GraphImage;
+          SamplesImage.current = users[currentData].SamplesImage;
+          setNameDetais(users[currentData]);
+          setAllNamesDetais(users);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    },
+    [query]
+  );
 
   useEffect(() => {
-    getAudioPageData();
-  }, [getAudioPageData]);
+    getAudioPageData(currentData);
+  }, [getAudioPageData, currentData]);
 
   return (
     <>

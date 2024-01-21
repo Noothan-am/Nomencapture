@@ -30,6 +30,7 @@ function SecondFormPage() {
   const { form, setForm }: any = useFormData();
 
   const setFormDetails = useCallback(() => {
+    window.location.hash = "#fourthpage";
     const data = {
       ...form,
       brandNameScale,
@@ -80,7 +81,7 @@ function SecondFormPage() {
 
   return (
     <>
-      <div className={styles["firstpart-4"]}>
+      <div id="fourthpage" className={styles["firstpart-4"]}>
         <div className={styles["circle-table"]}>
           <label htmlFor="">
             Where would you like your brand name in the following scales?

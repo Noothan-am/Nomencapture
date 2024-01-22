@@ -158,7 +158,7 @@ const AudioPage = () => {
         </div>
         <div className={styles["naming-set-container"]}>
           <div className={styles["div"]}>
-            <FlagStepper />
+            <FlagStepper isDisabled={false} currentPage={"Home"} />
             <div className={styles["form-content"]}>
               <div className={styles["audio-page-container"]}>
                 <div className={styles["audio-page-content-paragraph"]}>

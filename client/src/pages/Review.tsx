@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import SelectQuestions from "../components/SelectQuestions";
 import Button from "../components/Button";
 import DotsRow from "../components/DotRows";
@@ -107,7 +107,7 @@ export default function Review() {
     setDataToExcel()
       .then(() => {
         if (nextRoundPreference === "No") {
-          navigate("/final-name");
+          navigate(`/final-name/${favoriteName}`);
         } else {
           navigate("/naming-set");
         }
@@ -174,9 +174,8 @@ export default function Review() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper />
+              <FlagStepper isDisabled={1} currentPage={"Home"} />
               <div className={styles["form-content"]}>
-                {/* {currentPage()} */}
                 <div className={styles["form-content"]}>
                   <div className={styles["first-part"]}>
                     {allNames &&

@@ -115,5 +115,24 @@ export default {
       title: 'Samples Image',
       type: 'image',
     },
+    {
+      name: 'PhonemicSymbol',
+      type: 'string',
+      title: 'Phonemic Symbol',
+    },
+    {
+      name: 'NameAudioFile',
+      title: 'Name Audio File',
+      type: 'file',
+      description: 'Upload name audio file',
+      options: {
+        accept: 'audio/*',
+      },
+    },
+    {
+      name: 'ShortDescription',
+      type: 'text',
+      title: 'ShortDescription',
+    },
   ],
 }

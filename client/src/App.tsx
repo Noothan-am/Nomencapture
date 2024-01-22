@@ -25,7 +25,7 @@ function App() {
         <Route path="/understanding" element={<AuditPage />} />
         <Route path="/naming-set" element={<NamingSet />} />
         <Route path="/review" element={<Review />} />
-        <Route path="/final-name" element={<YourName />} />
+        <Route path="/final-name/:name" element={<YourName />} />
         <Route path="/audio-page" element={<AudioPage />} />
         <Route path="/final-greeting" element={<FinalGreetings />} />
         <Route path="/second-round" element={<SecondRoundNomen />} />

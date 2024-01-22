@@ -1,22 +1,65 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import Navbar from "../components/Navbar";
-import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaRegCirclePause, FaRegCirclePlay } from "react-icons/fa6";
 import Button from "../components/Button";
 import { FaGreaterThan } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
+import client from "../utils/sanity-client";
 const styles = require("../styles/your-name.module.css").default;
 
 function YourName() {
   const [currentFormPage, setCurrentFormPage] = useState(4);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [finalNameDetails, setFinalNameDetails] = useState<any>([]);
+
+  const audioRef = useRef<any>(null);
+  const { name } = useParams();
 
   const navigate = useNavigate();
 
   const handleNextButtonClick = () => {
     navigate("/final-greeting");
   };
+
+  const handlePlayBtnClick = async () => {
+    if (audioRef.current.paused) {
+      await audioRef.current.play();
+    } else {
+      await audioRef.current.pause();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const fetchFavoriteNameDetails = useCallback(() => {
+    const query = `*[_type == "NameDetails" && User->Name == "Noothan" && Name == "${name}"]{
+      Name,
+      PhonemicSymbol,
+      ShortDescription,
+      "audioFiles": [
+       NameAudioFile.asset->url,
+      ]
+    }`;
+    try {
+      client
+        .fetch(query)
+        .then(async (users) => {
+          console.log(users[0].audioFiles[0]);
+          setFinalNameDetails(users[0]);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [name]);
+
+  useEffect(() => {
+    fetchFavoriteNameDetails();
+  }, [fetchFavoriteNameDetails]);
 
   return (
     <>
@@ -30,9 +73,8 @@ function YourName() {
               <Tabs show={currentFormPage >= 3 ? currentFormPage + 1 : 3} />
             </SideBar>
           </div>
-          {/* <div className={styles["naming-set-container"]}> */}
           <div className={styles["div"]}>
-            <FlagStepper />
+            <FlagStepper isDisabled={1} currentPage={"Final"} />
             <div className={styles["form-content"]}>
               <div className={styles["content"]}>
                 <div className={styles["top-part"]}>
@@ -44,22 +86,36 @@ function YourName() {
                     <li>Request Brand Identity &#62;</li>
                   </ul>
                 </div>
-                <h1>Noover</h1>
+                <h1>{name}</h1>
                 <div className={styles["alt"]}>
                   <p>
-                    / noo-ver /
-                    <span>
-                      {" "}
-                      <FaRegCirclePlay style={{ marginBottom: "-.3rem" }} />
+                    {finalNameDetails && finalNameDetails.PhonemicSymbol}
+                    <span onClick={handlePlayBtnClick}>
+                      {isPlaying ? (
+                        <FaRegCirclePause
+                          style={{ marginBottom: "-.3rem" }}
+                          className={styles["audio-btn"]}
+                        />
+                      ) : (
+                        <FaRegCirclePlay
+                          style={{ marginBottom: "-.3rem" }}
+                          className={styles["audio-btn"]}
+                        />
+                      )}
                     </span>
+                    <audio ref={audioRef}>
+                      <source
+                        src={`${
+                          finalNameDetails.audioFiles &&
+                          finalNameDetails.audioFiles[0]
+                        }`}
+                        type="audio/mp3"
+                      />
+                      Your browser does not support the audio files.
+                    </audio>
                   </p>
                 </div>
-                <p>
-                  Derived from the word Manoeuvre, the name captures the ideas
-                  of tact and how the dashboard helps the users ultimately
-                  achieve their goal by leveraging intelligent market insights.
-                  The name is quirky, easy to remember and unique.
-                </p>
+                <p>{finalNameDetails && finalNameDetails.ShortDescription}</p>
               </div>
             </div>
             <div className={styles["nameset-2-arrows"]}>

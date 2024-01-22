@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
-import SideBar from "../components/SideBar";
+import { useEffect, useState } from "react";
+import { FaGreaterThan, FaLessThan } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
+import FlagStepper from "../components/FlagStepper";
 import Navbar from "../components/Navbar";
+import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import NameList from "./NameList";
-import { FaGreaterThan, FaLessThan } from "react-icons/fa";
-import Button from "../components/Button";
-import YourName from "./YourName";
-import Review from "./Review";
 import Nomen from "./Nomen";
-import FinalGreetings from "./FinalGreetings";
-import { useNavigate } from "react-router-dom";
-import FlagStepper from "../components/FlagStepper";
 
 const styles = require("../styles/naming-set.module.css").default;
 
@@ -63,7 +60,11 @@ function NamingSet() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper handleNomenButtonClick={handleNomenButtonClick} />
+              <FlagStepper
+                isDisabled={currentFormPage}
+                currentPage={currentFormPage === 1 ? "Home" : ""}
+                handleNomenButtonClick={handleNomenButtonClick}
+              />
               <div className={styles["form-content"]}>{currentPage()}</div>
               <div
                 style={{

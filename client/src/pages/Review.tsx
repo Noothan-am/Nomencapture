@@ -62,6 +62,7 @@ export default function Review() {
     const { email } = await JSON.parse(
       localStorage.getItem("userDetails") || ""
     );
+    console.log(email);
     try {
       const response = await fetch(
         `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,

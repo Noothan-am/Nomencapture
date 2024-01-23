@@ -59,14 +59,14 @@ function AuditPage() {
   }, []);
 
   const handleSubmitButtonClick = useCallback(async () => {
-    const { name, email } = await JSON.parse(
+    const { email } = await JSON.parse(
       localStorage.getItem("userDetails") || ""
     );
     try {
       const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/?sheet=feedback-sheet`,
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
         {
-          method: "POST",
+          method: "PATCH",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -74,8 +74,6 @@ function AuditPage() {
           body: JSON.stringify({
             data: [
               {
-                Name: name,
-                Email: email,
                 "How aligned are you on our Observation": selectedDot[0],
                 Comments: comments,
               },

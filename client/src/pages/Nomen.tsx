@@ -13,7 +13,7 @@ const NomenContentTemplate = () => {
   const GraphImage = useRef<any>(null);
   const [nameDetais, setNameDetais] = useState<any>({});
 
-  const query = `*[_type == "NameDetails"]{
+  const query = `*[_type == "NameDetails" &&  User->Name == "Ram"]{
       Name,
       Related,
       Syllable,

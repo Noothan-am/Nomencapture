@@ -103,10 +103,7 @@ const AudioPage = () => {
     client
       .fetch(
         `
-      *[_type == "NamingSet"] {
-          name,
-          title,
-          type,
+      *[_type == "NamingSet" && User->Name == "Ram"] {
           MainDescription,
           Description1,
           Description2,
@@ -121,6 +118,7 @@ const AudioPage = () => {
     `
       )
       .then((users) => {
+        console.log({ users });
         setAudioPageDetails(users[0]);
       })
       .catch((error) => {

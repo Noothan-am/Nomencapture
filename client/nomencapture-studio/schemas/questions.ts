@@ -20,7 +20,7 @@ export default {
     },
     {
       name: 'Title2',
-      title: '1st Question',
+      title: '2nd Question',
       type: 'object',
       fields: [
         {name: 'question', type: 'string'},

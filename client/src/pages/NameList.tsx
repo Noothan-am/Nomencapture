@@ -6,11 +6,12 @@ const styles = require("../styles/name-list.module.css").default;
 function NameList() {
   const nameListImg = useRef<any>(null);
   const query =
-    '*[_type == "NamingSet"]{"PlayersNames": PlayersNames.asset->url}';
+    '*[_type == "NamingSet" && User->Name == "Ram"]{"PlayersNames": PlayersNames.asset->url}';
   const getAudioPageData = useCallback(() => {
     client
       .fetch(query)
       .then((users) => {
+        console.log({ users });
         nameListImg.current.src = users[0].PlayersNames;
       })
       .catch((error) => {

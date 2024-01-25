@@ -36,12 +36,13 @@ function AuditPage() {
     navigate("/audio-page");
   };
   const query =
-    '*[_type == "AuditPage"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+    '*[_type == "AuditPage" && User->Name == "Noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
     client
       .fetch(query)
       .then((users) => {
+        console.log({ users });
         let accordionData: any = Object.entries(users[0]).map((data: any) => {
           return {
             title: data[1].question,
@@ -89,7 +90,7 @@ function AuditPage() {
   }, []);
 
   useEffect(() => {
-    // fetchUser();
+    fetchUser();
   }, [fetchUser]);
 
   return (

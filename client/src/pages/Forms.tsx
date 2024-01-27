@@ -14,6 +14,7 @@ import Step from "@mui/material/Step";
 import { StepButton } from "@mui/material";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { sendMailFromUser } from "../utils/mail";
 
 const steps = [
   "Understand the basics",
@@ -160,8 +161,6 @@ function Forms() {
       "Formal / Friendly": brandNameScale["Formal / Friendly"],
     };
 
-    console.log(JSON.stringify(data));
-
     try {
       const response = await fetch(
         "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=form-responses",
@@ -192,7 +191,13 @@ function Forms() {
     if (currentFormPage === 5) {
       setFormDataToExcel()
         .then(() => {
-          console.log("Current page is 5");
+          sendMailFromUser()
+            .then(() => {
+              console.log("mail sent to user");
+            })
+            .catch((error) => {
+              console.log("couldn't send mail to user", error);
+            });
         })
         .catch(() => {
           console.log("Error");

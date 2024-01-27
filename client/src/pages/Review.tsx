@@ -8,6 +8,7 @@ import SideBar from "../components/SideBar";
 import { useNavigate } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
+import { sendMailFromUser } from "../utils/mail";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -110,7 +111,14 @@ export default function Review() {
         if (nextRoundPreference === "No") {
           navigate(`/final-name/${favoriteName}`);
         } else {
-          navigate("/naming-set");
+          sendMailFromUser()
+            .then(() => {
+              console.log("Mail sent successfully");
+              navigate("/naming-set");
+            })
+            .catch(() => {
+              console.log("Mail not sent");
+            });
         }
       })
       .catch((err) => {

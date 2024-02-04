@@ -53,6 +53,10 @@ function Forms() {
     setCurrentFormPage(step + 1);
   };
 
+  const giveKeysFromObject = async (data: any) => {
+    return `${Object.keys(data)}`;
+  };
+
   const setFormDataToExcel = useCallback(async () => {
     const {
       name,
@@ -99,7 +103,9 @@ function Forms() {
       Timestamp: new Date().toLocaleString(),
       "Your Name": name,
       "Your Email": email,
-      "What are we naming?": naming,
+      "What are we naming?": naming["Others"]
+        ? naming
+        : await giveKeysFromObject(naming),
       "Which sector does your product / service belong to?": productSector,
       "Mention the Trademark classes your product/service belongs to?":
         trademark,
@@ -108,7 +114,8 @@ function Forms() {
       "What need does your product / service cater to?": productCater,
       "What do you think is the differentiating value you provide / What is your USP?":
         usp,
-      "What price segment does your product/service fall in?": productSegment,
+      "What price segment does your product/service fall in?":
+        await giveKeysFromObject(productSegment),
       "Do you see yourself expanding to other cities/regions in future? If yes, where?":
         productExpansion,
       "What are the cities/regions you're planning to focus on?":
@@ -120,21 +127,32 @@ function Forms() {
       "How do you think your product / service can achieve the above?":
         productAchievement,
       "If your product / service were a person, what kind of impact it would want to create?":
-        productImpactAsPerson,
+        productImpactAsPerson["Others"]
+          ? productImpactAsPerson
+          : await giveKeysFromObject(productImpactAsPerson),
       "What is the color of the dress you wore yesterday?": dressColor,
       "If your product / service were a person, how would you definitely like it to come across as?":
-        productLikeness,
+        await giveKeysFromObject(productLikeness),
       "If your product / service were a person, how would you definitely not like it to come across as?":
-        productUnLikeness,
+        await giveKeysFromObject(productUnLikeness),
       "What was the object you last took a photo of?": lastPhotoDetails,
       "What is the age bracket of your Target Audience Group (TG)?":
-        targetAudienceAge,
-      "Which gender of TG is your product / service for?": targetAudienceGender,
-      "What occupation your TG may have?": targetAudienceOccupation,
+        await giveKeysFromObject(targetAudienceAge),
+      "Which gender of TG is your product / service for?": targetAudienceGender[
+        "Others"
+      ]
+        ? targetAudienceGender
+        : await giveKeysFromObject(targetAudienceGender),
+      "What occupation your TG may have?": await giveKeysFromObject(
+        targetAudienceOccupation
+      ),
       "How often do you think your product will be purchased?":
-        productPurchaseFrequency,
-      "Where will your TG find your product / service?": productAvailability,
-      "How do want your customers to remember you as": memorableImpression,
+        await giveKeysFromObject(productPurchaseFrequency),
+      "Where will your TG find your product / service?":
+        await giveKeysFromObject(productAvailability),
+      "How do want your customers to remember you as": await giveKeysFromObject(
+        memorableImpression
+      ),
       "Do you have any additional information about your TG?":
         targetAudienceInfo,
       "A hero you look upto?": hero,
@@ -143,12 +161,14 @@ function Forms() {
       "List your competitors (mention website links if available)": competitors,
       "Competitor/other brand names you like": likedCompetitorNames,
       "Competitor/other brand names you dislike": dislikedCompetitorNames,
-      "What appeal do you want the name to have?": desiredAllure,
+      "What appeal do you want the name to have?": await giveKeysFromObject(
+        desiredAllure
+      ),
       "Emotions or ideas you want the name to evoke?": nameIdeas,
       "Connotations or ideas you want to completely avoid?":
         avoidedConnotations,
       "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
-        meaningAssociation,
+        await giveKeysFromObject(meaningAssociation),
       "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
         blankImagination,
       "Clever / Straightforward": brandNameScale["Clever / Straightforward"],
@@ -157,7 +177,7 @@ function Forms() {
       "Emotional / Logical": brandNameScale["Emotional / Logical"],
       "Scientific / General": brandNameScale["Scientific / General"],
       "Whimsical / Serious": brandNameScale["Whimsical / Serious"],
-      "Mature / Youthful ": brandNameScale["Mature / Youthful"],
+      "Mature / Youthful": brandNameScale["Mature / Youthful"],
       "Formal / Friendly": brandNameScale["Formal / Friendly"],
     };
 

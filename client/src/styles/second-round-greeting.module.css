@@ -1,0 +1,36 @@
+.hero {
+  display: flex;
+  flex-direction: row;
+  height: 82vh;
+  scroll-behavior: smooth;
+}
+
+.div {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 90%;
+  margin: auto;
+  padding: 2rem 3rem;
+  min-height: 90%;
+  min-width: 67vw;
+}
+.SecondRoundGreetings {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 55%;
+  left: 60%;
+}
+.form-content {
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.forms-tabs {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 1.7rem;
+}

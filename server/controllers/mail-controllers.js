@@ -3,6 +3,7 @@ const Mailgen = require("mailgen");
 
 const sendMail = async (req, res) => {
   const { userName, userEmail } = req.body;
+  console.log(userName, userEmail);
   try {
     let service = {
       service: "gmail",
@@ -21,7 +22,7 @@ const sendMail = async (req, res) => {
       },
     });
 
-    const response = {
+    const userMessage = {
       body: {
         name: userName, // it will show Hi with this name as heading
         intro:
@@ -31,19 +32,37 @@ const sendMail = async (req, res) => {
       },
     };
 
-    const mail = MailGenerator.generate(response);
-    const message = {
-      from: mail,
+    const userMail = await MailGenerator.generate(userMessage);
+    const userMailOptions = {
+      from: userMail,
       to: userEmail,
-      subject: "Hello", // main title before opening the mail
-      html: mail,
+      subject: "Nomencapture", // main title before opening the mail
+      html: userMail,
+    };
+
+    const teamMessage = {
+      body: {
+        name: "Nomencapture Team", // it will show Hi with this name as heading
+        intro: `User Has Filled the Form On ${new Date()}`, // message after heading
+      },
+    };
+
+    const teamMail = await MailGenerator.generate(teamMessage);
+    const teamMailOptions = {
+      from: teamMail,
+      to: userEmail,
+      subject: "Nomencapture", // main title before opening the mail
+      html: teamMail,
     };
 
     transport
-      .sendMail(message)
-      .then((response) => {
-        return res.status(200).send({
-          msg: "message sent successfully",
+      .sendMail(userMailOptions)
+      .then(async (response) => {
+        console.log("response");
+        transport.sendMail(teamMailOptions).then(() => {
+          return res.status(200).send({
+            msg: "Messages sent successfully",
+          });
         });
       })
       .catch((err) => {

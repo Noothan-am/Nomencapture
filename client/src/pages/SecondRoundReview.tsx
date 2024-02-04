@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
 import { sendMailFromUser } from "../utils/mail";
+import SecondroundStepper from "../components/SecondRoundStepper";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -47,7 +48,7 @@ const NamesFeedBack = ({
   );
 };
 
-export default function Review() {
+export default function SecondRoundReview() {
   const [feedback, setFeedback] = useState([]);
   const [favoriteName, setFavoriteName] = useState({});
   const [elaborate, setElaborate] = useState("");
@@ -56,7 +57,7 @@ export default function Review() {
   const [selectedDot, setSelectedDot] = useState<any>({});
   const [currentFormPage, setCurrentFormPage] = useState(3);
   const [allNames, setAllNames] = useState([]);
-
+  const [currentData, setCurrentData] = useState(0);
   const navigate = useNavigate();
 
   const setDataToExcel = useCallback(async () => {
@@ -105,34 +106,23 @@ export default function Review() {
     selectedDot,
   ]);
 
-  const handleSubmitButtonClick = useCallback(() => {
+  const handleSubmitButtonClick = () => {
     setDataToExcel()
       .then(() => {
-        if (nextRoundPreference === "No") {
-          sendMailFromUser()
-            .then(() => {
-              console.log("mail sent to user");
-              navigate(`/final-name/${favoriteName}`);
-            })
-            .catch((error) => {
-              console.log("couldn't send mail to user", error);
-            });
-        } else {
-          sendMailFromUser()
-            .then(() => {
-              console.log("Mail sent successfully");
-              navigate("/second-round-thankyou");
-            })
-            .catch(() => {
-              console.log("Mail not sent");
-            });
-        }
+        navigate(`/final-name/${favoriteName}`);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [favoriteName, navigate, nextRoundPreference, setDataToExcel]);
-
+    console.log({
+      feedback,
+      favoriteName,
+      elaborate,
+      nameSatisfied,
+      nextRoundPreference,
+      selectedDot,
+    });
+  };
   const handleSatisfiedClick = (value: string) => {
     setNameSatisfied(value);
   };
@@ -169,6 +159,10 @@ export default function Review() {
     selectedDot,
   ]);
 
+  const handleNomenButtonClick = (number: any) => {
+    setCurrentData(number);
+  };
+
   return (
     <>
       <div className={styles["naming-set"]}>
@@ -183,7 +177,12 @@ export default function Review() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper isDisabled={1} currentPage={"Home"} />
+              {/* <FlagStepper isDisabled={1} currentPage={"Home"} /> */}
+              <SecondroundStepper
+                isDisabled={1}
+                currentPage={"Home"}
+                handleNomenButtonClick={handleNomenButtonClick}
+              />
               <div className={styles["form-content"]}>
                 <div className={styles["form-content"]}>
                   <div className={styles["first-part"]}>

@@ -13,6 +13,9 @@ import YourName from "./pages/YourName";
 import FinalGreetings from "./pages/FinalGreetings";
 import Nomen from "./pages/Nomen";
 import SecondRoundNomen from "./pages/SecondRoundNomen";
+import Thankyou from "./pages/Thankyou";
+import SecondRoundReview from "./pages/SecondRoundReview";
+import SecondRoundGreetings from "./pages/SecondRoundGreetings";
 
 function App() {
   return (
@@ -20,6 +23,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/form" element={<Forms />} />
+      <Route path="/thankyou" element={<Thankyou />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/home" element={<Home />} />
         <Route path="/understanding" element={<AuditPage />} />
@@ -29,6 +33,11 @@ function App() {
         <Route path="/audio-page" element={<AudioPage />} />
         <Route path="/final-greeting" element={<FinalGreetings />} />
         <Route path="/second-round" element={<SecondRoundNomen />} />
+        <Route path="/second-round-review" element={<SecondRoundReview />} />
+        <Route
+          path="/second-round-thankyou"
+          element={<SecondRoundGreetings />}
+        />
       </Route>
     </Routes>
   );

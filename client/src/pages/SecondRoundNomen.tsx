@@ -7,25 +7,38 @@ import { IoMdRadioButtonOn, IoMdRadioButtonOff } from "react-icons/io";
 import client from "../utils/sanity-client";
 import SecondroundStepper from "../components/SecondRoundStepper";
 import Button from "../components/Button";
-import { FaGreaterThan } from "react-icons/fa6";
+import { FaGreaterThan, FaLessThan } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const styles = require("../styles/nomen.module.css").default;
 
 const SecondRoundNomen = () => {
   const SamplesImage = useRef<any>(null);
   const GraphImage = useRef<any>(null);
-  const [currentFormPage, setCurrentFormPage] = useState(4);
   const [nameDetais, setNameDetais] = useState<any>({});
+  const [allNamesDetais, setAllNamesDetais] = useState<any>({});
+  const [currentFormPage, setCurrentFormPage] = useState<any>(1);
+  const [currentData, setCurrentData] = useState(1);
+
+  const navigation = useNavigate();
 
   const handleNextButtonClick = () => {
     setCurrentFormPage(currentFormPage + 1);
+    if (currentData >= 2) {
+      navigation("/second-round-review");
+    }
+    setCurrentData((prev) => prev + 1);
   };
 
   const handlePreviousButtonClick = () => {
     setCurrentFormPage(currentFormPage - 1);
+    if (currentData < 2) {
+      return;
+    }
+    setCurrentData((prev) => prev - 1);
   };
 
-  const query = `*[_type == "NameDetails"]{
+  const query = `*[_type == "NameDetails"  ]{
       Name,
       Related,
       Syllable,
@@ -42,22 +55,30 @@ const SecondRoundNomen = () => {
       Dropdown
     }`;
 
-  const getAudioPageData = useCallback(() => {
-    client
-      .fetch(query)
-      .then((users) => {
-        GraphImage.current = users[1].GraphImage;
-        SamplesImage.current = users[1].SamplesImage;
-        setNameDetais(users[1]);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
-  }, [query]);
+  const getAudioPageData = useCallback(
+    (currentData: any) => {
+      client
+        .fetch(query)
+        .then((users) => {
+          GraphImage.current = users[currentData].GraphImage;
+          SamplesImage.current = users[currentData].SamplesImage;
+          console.log(users[currentData]);
+          setNameDetais(users[currentData]);
+          setAllNamesDetais(users);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    },
+    [query]
+  );
+  const handleNomenButtonClick = (number: any) => {
+    setCurrentData(number);
+  };
 
   useEffect(() => {
-    getAudioPageData();
-  }, [getAudioPageData]);
+    getAudioPageData(currentData);
+  }, [getAudioPageData, currentData]);
 
   return (
     <>
@@ -68,11 +89,15 @@ const SecondRoundNomen = () => {
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
-              <Tabs show={currentFormPage >= 3 ? currentFormPage + 1 : 3} />
+              <Tabs show={3} />
             </SideBar>
           </div>
           <div className={styles["nomen-hero-container"]}>
-            <SecondroundStepper />
+            <SecondroundStepper
+              isDisabled={0}
+              currentPage={"Home"}
+              handleNomenButtonClick={handleNomenButtonClick}
+            />
             <section className={styles["nomen-name-container"]}>
               <div className={styles["nomen-leftpart"]}>
                 <div className={styles["name"]}>
@@ -231,16 +256,23 @@ const SecondRoundNomen = () => {
                   />
                 </div>
               </div>
-              <div
-                style={{
-                  display: currentFormPage === 5 ? "none" : "flex",
-                }}
-                className={styles["nameset-2-arrows"]}
-              >
+            </div>
+            <div
+              style={{
+                display: currentFormPage === 5 ? "none" : "flex",
+                width: "100%",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+              }}
+              className={styles["nameset-2-arrows"]}
+            >
+              <div className="btn_1">
                 <Button
                   handleClick={handlePreviousButtonClick}
-                  buttonValue={<FaGreaterThan />}
+                  buttonValue={<FaLessThan />}
                 />
+              </div>
+              <div className="btn_2">
                 <Button
                   handleClick={handleNextButtonClick}
                   buttonValue={<FaGreaterThan />}

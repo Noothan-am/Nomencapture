@@ -109,19 +109,17 @@ export default function SecondRoundReview() {
   const handleSubmitButtonClick = () => {
     setDataToExcel()
       .then(() => {
-        navigate(`/final-name/${favoriteName}`);
+        sendMailFromUser()
+          .then(() => {
+            navigate(`/final-name/${favoriteName}`);
+          })
+          .catch((error) => {
+            console.log("couldn't send mail to user", error);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log({
-      feedback,
-      favoriteName,
-      elaborate,
-      nameSatisfied,
-      nextRoundPreference,
-      selectedDot,
-    });
   };
   const handleSatisfiedClick = (value: string) => {
     setNameSatisfied(value);

@@ -24,7 +24,7 @@ function SecondRoundGreetings() {
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
-              <Tabs show={1} />
+              <Tabs show={3} />
             </SideBar>
           </div>
           <div className={styles["forms-container"]}>

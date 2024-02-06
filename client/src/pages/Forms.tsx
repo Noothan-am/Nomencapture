@@ -209,20 +209,20 @@ function Forms() {
 
   const currentPage = () => {
     if (currentFormPage === 5) {
-      // setFormDataToExcel()
-      //   .then(() => {
-      sendMailFromUser()
+      setFormDataToExcel()
         .then(() => {
-          console.log("mail sent to user");
+          sendMailFromUser()
+            .then(() => {
+              console.log("mail sent to user");
+            })
+            .catch((error) => {
+              console.log("couldn't send mail to user", error);
+            });
         })
-        .catch((error) => {
-          console.log("couldn't send mail to user", error);
+        .catch(() => {
+          console.log("Error");
+          return;
         });
-      // })
-      // .catch(() => {
-      // console.log("Error");
-      // return;
-      // });
     }
     switch (currentFormPage) {
       case 1:

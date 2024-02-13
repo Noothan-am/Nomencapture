@@ -146,7 +146,8 @@ function Forms() {
         "Others"
       ]
         ? targetAudienceGender
-        : await giveKeysFromObject(targetAudienceGender),
+        : // : await giveKeysFromObject(targetAudienceGender),
+          targetAudienceGender,
       "What occupation your TG may have?": await giveKeysFromObject(
         targetAudienceOccupation
       ),

@@ -107,9 +107,14 @@ export default function SecondRoundReview() {
   ]);
 
   const handleSubmitButtonClick = () => {
+    const data: any = localStorage.getItem("userDetails");
+    const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
-        sendMailFromUser()
+        sendMailFromUser({
+          userMailMessage: "Thankyou for your reviews.",
+          teamMailMessage: `${name} Has given reviews on new names ${new Date()}`,
+        })
           .then(() => {
             navigate(`/final-name/${favoriteName}`);
           })

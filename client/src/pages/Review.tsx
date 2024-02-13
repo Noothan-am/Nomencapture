@@ -106,10 +106,15 @@ export default function Review() {
   ]);
 
   const handleSubmitButtonClick = useCallback(() => {
+    const data: any = localStorage.getItem("userDetails");
+    const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
         if (nextRoundPreference === "No") {
-          sendMailFromUser()
+          sendMailFromUser({
+            userMailMessage: "Thankyou for your reviews.",
+            teamMailMessage: `${name} Has given reviews on suggested names ${new Date()}`,
+          })
             .then(() => {
               console.log("mail sent to user");
               navigate(`/final-name/${favoriteName}`);
@@ -118,7 +123,11 @@ export default function Review() {
               console.log("couldn't send mail to user", error);
             });
         } else {
-          sendMailFromUser()
+          sendMailFromUser({
+            userMailMessage:
+              "Thankyou for your reviews. We will get back to you in 2-3 working days with new names",
+            teamMailMessage: `${name} has requested for new names ${new Date()}`,
+          })
             .then(() => {
               console.log("Mail sent successfully");
               navigate("/second-round-thankyou");

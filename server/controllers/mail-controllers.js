@@ -2,8 +2,8 @@ const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 
 const sendMail = async (req, res) => {
-  const { userName, userEmail } = req.body;
-  console.log(userName, userEmail);
+  const { userName, userEmail, teamMailMessage, userMailMessage } = req.body;
+
   try {
     let service = {
       service: "gmail",
@@ -25,8 +25,7 @@ const sendMail = async (req, res) => {
     const userMessage = {
       body: {
         name: userName, // it will show Hi with this name as heading
-        intro:
-          "Thankyou for filling the form we will get back to you in 2-3 working days", // message after heading
+        intro: userMailMessage, // message after heading
         outro:
           "Need help, or have questions? Just ask your query to this mail ink@become.team, sam@become.team", // end it will be written like this
       },
@@ -43,14 +42,14 @@ const sendMail = async (req, res) => {
     const teamMessage = {
       body: {
         name: "Nomencapture Team", // it will show Hi with this name as heading
-        intro: `User Has Filled the Form On ${new Date()}`, // message after heading
+        intro: teamMailMessage, // message after heading
       },
     };
 
     const teamMail = await MailGenerator.generate(teamMessage);
     const teamMailOptions = {
       from: teamMail,
-      to: userEmail,
+      to: process.env.FROM_ADMIN_MAIL,
       subject: "Nomencapture", // main title before opening the mail
       html: teamMail,
     };

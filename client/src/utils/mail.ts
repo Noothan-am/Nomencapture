@@ -1,4 +1,7 @@
-export const sendMailFromUser = async () => {
+export const sendMailFromUser = async ({
+  userMailMessage,
+  teamMailMessage,
+}: any) => {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/api/send-mail`,
@@ -10,6 +13,8 @@ export const sendMailFromUser = async () => {
         body: JSON.stringify({
           userName: "Noothan",
           userEmail: "amnoothan@gmail.com",
+          userMailMessage,
+          teamMailMessage,
         }),
       }
     );

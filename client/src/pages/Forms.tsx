@@ -208,10 +208,16 @@ function Forms() {
   }, [getItem]);
 
   const currentPage = () => {
+    const data: any = localStorage.getItem("userDetails");
+    const { name } = JSON.parse(data);
     if (currentFormPage === 5) {
       setFormDataToExcel()
         .then(() => {
-          sendMailFromUser()
+          sendMailFromUser({
+            userMailMessage:
+              "Thankyou for filling the form we will get back to you in 2-3 working days",
+            teamMailMessage: `${name} Has Filled the Form On ${new Date()}`,
+          })
             .then(() => {
               console.log("mail sent to user");
             })

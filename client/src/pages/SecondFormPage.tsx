@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import TextQuestions from "../components/TextQuestions";
-import RadioQuestions from "../components/RadioQuestions";
-import DescriptionQuestions from "../components/DescriptionQuestions";
+import { useCallback, useEffect, useState } from "react";
 import CheckBoxQuestions from "../components/CheckBoxQuestions";
-import useLocalStorage from "../hooks/useLocalStorage";
+import DescriptionQuestions from "../components/DescriptionQuestions";
+import RadioQuestions from "../components/RadioQuestions";
+import TextQuestions from "../components/TextQuestions";
 import useFormData from "../context/FormContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 const styles = require("../styles/forms.module.css").default;
 
 function SecondFormPage() {
@@ -21,10 +21,32 @@ function SecondFormPage() {
   const [productAchievement, setProductAchievement] = useState("");
   const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
   const [productFocusOnCity, setProductFocusOnCity] = useState("");
-  const containerRef = useRef<any>(null);
 
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();
+
+  const setDataFromLocalStorage = useCallback(() => {
+    const data = getItem();
+    if (data) {
+      setProductCater(data.productCater);
+      setUsp(data.usp);
+      setProductSegment(data.productSegment);
+      setProductExpansion(data.productExpansion);
+      setLastPhotoDetails(data.lastPhotoDetails);
+      setProductLikeness(data.productLikeness);
+      setProductUnLikeness(data.productUnLikeness);
+      setDressColor(data.dressColor);
+      setProductImpactAsPerson(data.productImpactAsPerson);
+      setProductAchievement(data.productAchievement);
+      setProductImpact(data.productImpact);
+      setProductValues(data.productValues);
+      setProductFocusOnCity(data.productFocusOnCity);
+    }
+  }, []);
+
+  useEffect(() => {
+    setDataFromLocalStorage();
+  }, [setDataFromLocalStorage]);
 
   const setFormDetails = useCallback(() => {
     window.location.hash = "#secondform";
@@ -64,29 +86,6 @@ function SecondFormPage() {
   useEffect(() => {
     setFormDetails();
   }, [setFormDetails]);
-
-  const setDataFromLocalStorage = useCallback(() => {
-    const data = getItem();
-    if (data) {
-      setProductCater(data.productCater);
-      setUsp(data.usp);
-      setProductSegment(data.productSegment);
-      setProductExpansion(data.productExpansion);
-      setLastPhotoDetails(data.lastPhotoDetails);
-      setProductLikeness(data.productLikeness);
-      setProductUnLikeness(data.productUnLikeness);
-      setDressColor(data.dressColor);
-      setProductImpactAsPerson(data.productImpactAsPerson);
-      setProductAchievement(data.productAchievement);
-      setProductImpact(data.productImpact);
-      setProductValues(data.productValues);
-      setProductFocusOnCity(data.productFocusOnCity);
-    }
-  }, []);
-
-  useEffect(() => {
-    setDataFromLocalStorage();
-  }, [setDataFromLocalStorage]);
 
   return (
     <>

@@ -34,6 +34,7 @@ function RadioQuestions({
                 type="radio"
                 id={`${index}`}
                 name={question}
+                checked={value && Object.keys(value)[0] === option}
                 onChange={(e) => {
                   setInputValue(e.target.value);
                   handleChange(e);
@@ -55,6 +56,7 @@ function RadioQuestions({
                 type="radio"
                 name={question}
                 value="Others"
+                checked={value && Object.keys(value)[0] === "Others"}
               />
               <label>Others</label>
             </div>

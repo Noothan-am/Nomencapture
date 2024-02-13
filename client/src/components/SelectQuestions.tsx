@@ -14,7 +14,7 @@ function SelectQuestions({ question, options, onInputChange, value }: any) {
           <option>Choose</option>
           {options.map((option: string, index: number) => {
             return (
-              <option key={index} value={option}>
+              <option selected={value === option} key={index} value={option}>
                 {option}
               </option>
             );

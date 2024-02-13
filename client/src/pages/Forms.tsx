@@ -41,7 +41,8 @@ function Forms() {
   const { setItem, getItem } = useLocalStorage();
 
   const handleChangeCurrentPageToNext = () => {
-    setItem(form);
+    const data = getItem();
+    setItem({ ...data, ...form });
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
   };
 
@@ -54,7 +55,7 @@ function Forms() {
   };
 
   const giveKeysFromObject = async (data: any) => {
-    return `${Object.keys(data)}`;
+    return `${Object.keys(data).filter((key) => data[key])}`;
   };
 
   const setFormDataToExcel = useCallback(async () => {
@@ -105,7 +106,8 @@ function Forms() {
       "Your Email": email,
       "What are we naming?": naming["Others"]
         ? naming
-        : await giveKeysFromObject(naming),
+        : // : await giveKeysFromObject(naming),
+          naming,
       "Which sector does your product / service belong to?": productSector,
       "Mention the Trademark classes your product/service belongs to?":
         trademark,
@@ -115,7 +117,8 @@ function Forms() {
       "What do you think is the differentiating value you provide / What is your USP?":
         usp,
       "What price segment does your product/service fall in?":
-        await giveKeysFromObject(productSegment),
+        // await giveKeysFromObject(productSegment),
+        productSegment,
       "Do you see yourself expanding to other cities/regions in future? If yes, where?":
         productExpansion,
       "What are the cities/regions you're planning to focus on?":
@@ -129,7 +132,8 @@ function Forms() {
       "If your product / service were a person, what kind of impact it would want to create?":
         productImpactAsPerson["Others"]
           ? productImpactAsPerson
-          : await giveKeysFromObject(productImpactAsPerson),
+          : // : await giveKeysFromObject(productImpactAsPerson),
+            productAchievement,
       "What is the color of the dress you wore yesterday?": dressColor,
       "If your product / service were a person, how would you definitely like it to come across as?":
         await giveKeysFromObject(productLikeness),
@@ -147,7 +151,8 @@ function Forms() {
         targetAudienceOccupation
       ),
       "How often do you think your product will be purchased?":
-        await giveKeysFromObject(productPurchaseFrequency),
+        // await giveKeysFromObject(productPurchaseFrequency),
+        productPurchaseFrequency,
       "Where will your TG find your product / service?":
         await giveKeysFromObject(productAvailability),
       "How do want your customers to remember you as": await giveKeysFromObject(
@@ -161,14 +166,17 @@ function Forms() {
       "List your competitors (mention website links if available)": competitors,
       "Competitor/other brand names you like": likedCompetitorNames,
       "Competitor/other brand names you dislike": dislikedCompetitorNames,
-      "What appeal do you want the name to have?": await giveKeysFromObject(
-        desiredAllure
-      ),
+      "What appeal do you want the name to have?":
+        // await giveKeysFromObject(
+        // desiredAllure
+        // ),
+        desiredAllure,
       "Emotions or ideas you want the name to evoke?": nameIdeas,
       "Connotations or ideas you want to completely avoid?":
         avoidedConnotations,
       "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
-        await giveKeysFromObject(meaningAssociation),
+        // await giveKeysFromObject(meaningAssociation),
+        meaningAssociation,
       "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
         blankImagination,
       "Clever / Straightforward": brandNameScale["Clever / Straightforward"],

@@ -15,6 +15,8 @@ import { StepButton } from "@mui/material";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { sendMailFromUser } from "../utils/mail";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const steps = [
   "Understand the basics",
@@ -40,10 +42,136 @@ function Forms() {
   const { form }: any = useFormData();
   const { setItem, getItem } = useLocalStorage();
 
+  const checkBoxValidCheck = (data: any) => {
+    return Object.keys(data).filter((key) => data[key]).length;
+  };
+
+  const checkFields = () => {
+    console.log("Checking", form.brandNameScale);
+    switch (currentFormPage) {
+      case 1:
+        if (
+          form.name &&
+          form.name.trim() &&
+          form.email &&
+          form.email.trim() &&
+          form.naming &&
+          Object.keys(form.naming).length &&
+          form.productSector &&
+          form.productSector.trim() &&
+          form.trademark &&
+          form.trademark.trim() &&
+          form.productDescription &&
+          form.productDescription.trim() &&
+          form.goToPlace &&
+          form.goToPlace.trim()
+        ) {
+          return true;
+        }
+        break;
+      case 2:
+        if (
+          form.usp &&
+          form.usp.trim() &&
+          form.dressColor &&
+          form.dressColor.trim() &&
+          form.productCater &&
+          form.productCater.trim() &&
+          form.productValues &&
+          form.productValues.trim() &&
+          form.productImpact &&
+          form.productImpact.trim() &&
+          form.productSegment &&
+          Object.keys(form.productSegment).length &&
+          form.productLikeness &&
+          checkBoxValidCheck(form.productLikeness) &&
+          form.productExpansion &&
+          form.productExpansion.trim() &&
+          form.lastPhotoDetails &&
+          form.lastPhotoDetails.trim() &&
+          form.productUnLikeness &&
+          checkBoxValidCheck(form.productUnLikeness) &&
+          form.productAchievement &&
+          form.productAchievement.trim() &&
+          form.productImpactAsPerson &&
+          Object.keys(form.productImpactAsPerson).length &&
+          form.productFocusOnCity &&
+          form.productFocusOnCity.trim()
+        ) {
+          return true;
+        }
+        break;
+      case 3:
+        if (
+          form.targetAudienceAge &&
+          checkBoxValidCheck(form.targetAudienceAge) &&
+          form.hero &&
+          form.hero.trim() &&
+          form.targetAudienceGender &&
+          Object.keys(form.targetAudienceGender).length &&
+          form.targetAudienceInfo &&
+          form.targetAudienceInfo.trim() &&
+          form.memorableImpression &&
+          checkBoxValidCheck(form.memorableImpression) &&
+          form.targetAudienceExpectation &&
+          form.targetAudienceExpectation.trim() &&
+          form.productAvailability &&
+          checkBoxValidCheck(form.productAvailability) &&
+          form.productPurchaseFrequency &&
+          Object.keys(form.productPurchaseFrequency).length &&
+          form.targetAudienceOccupation &&
+          checkBoxValidCheck(form.targetAudienceOccupation)
+        ) {
+          return true;
+        }
+        break;
+      case 4:
+        if (
+          form.brandNameScale &&
+          Object.keys(form.brandNameScale).length &&
+          form.competitors &&
+          form.competitors.trim() &&
+          form.likedCompetitorNames &&
+          form.likedCompetitorNames.trim() &&
+          form.dislikedCompetitorNames &&
+          form.dislikedCompetitorNames.trim() &&
+          form.meaningAssociation &&
+          Object.keys(form.meaningAssociation).length &&
+          form.desiredAllure &&
+          Object.keys(form.desiredAllure).length &&
+          form.nameIdeas &&
+          form.nameIdeas.trim() &&
+          form.avoidedConnotations &&
+          form.avoidedConnotations.trim() &&
+          form.blankImagination &&
+          form.blankImagination.trim()
+        ) {
+          return true;
+        }
+        break;
+
+      default:
+        return false;
+    }
+  };
+
   const handleChangeCurrentPageToNext = () => {
-    const data = getItem();
-    setItem({ ...data, ...form });
-    setCurrentFormPage((currentFormPage) => currentFormPage + 1);
+    const isValid = checkFields();
+    if (false) {
+      const data = getItem();
+      setItem({ ...data, ...form });
+      setCurrentFormPage((currentFormPage) => currentFormPage + 1);
+    } else {
+      toast.error("Please fill all details", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   const handleChangeCurrentPageToPrevious = () => {
@@ -239,6 +367,7 @@ function Forms() {
           return;
         });
     }
+
     switch (currentFormPage) {
       case 1:
         return <FormFirstPage />;
@@ -273,6 +402,7 @@ function Forms() {
   return (
     <>
       <div className={styles["forms"]}>
+        <ToastContainer />
         <div className={styles["navbar"]}>
           <Navbar />
         </div>

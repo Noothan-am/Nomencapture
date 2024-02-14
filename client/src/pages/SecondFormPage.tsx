@@ -13,13 +13,13 @@ function SecondFormPage() {
   const [productCater, setProductCater] = useState("");
   const [productValues, setProductValues] = useState("");
   const [productImpact, setProductImpact] = useState("");
-  const [productSegment, setProductSegment] = useState("");
+  const [productSegment, setProductSegment] = useState({});
   const [productLikeness, setProductLikeness] = useState([]);
   const [productExpansion, setProductExpansion] = useState("");
   const [lastPhotoDetails, setLastPhotoDetails] = useState("");
   const [productUnLikeness, setProductUnLikeness] = useState([]);
   const [productAchievement, setProductAchievement] = useState("");
-  const [productImpactAsPerson, setProductImpactAsPerson] = useState("");
+  const [productImpactAsPerson, setProductImpactAsPerson] = useState({});
   const [productFocusOnCity, setProductFocusOnCity] = useState("");
 
   const { getItem } = useLocalStorage();

@@ -19,18 +19,18 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
-  const [targetAudienceAge, setTargetAudienceAge] = React.useState("");
+  const [targetAudienceAge, setTargetAudienceAge] = React.useState([]);
   const [hero, setHero] = React.useState("");
-  const [targetAudienceGender, setTargetAudienceGender] = React.useState("");
+  const [targetAudienceGender, setTargetAudienceGender] = React.useState({});
   const [targetAudienceInfo, setTargetAudienceInfo] = React.useState("");
-  const [memorableImpression, setMemorableImpression] = React.useState("");
+  const [memorableImpression, setMemorableImpression] = React.useState([]);
   const [targetAudienceExpectation, setTargetAudienceExpectation] =
     React.useState("");
-  const [productAvailability, setProductAvailability] = React.useState("");
+  const [productAvailability, setProductAvailability] = React.useState([]);
   const [productPurchaseFrequency, setProductPurchaseFrequency] =
-    React.useState("");
+    React.useState({});
   const [targetAudienceOccupation, setTargetAudienceOccupation] =
-    React.useState("");
+    React.useState([]);
 
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();

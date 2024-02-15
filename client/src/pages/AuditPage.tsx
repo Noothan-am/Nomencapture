@@ -43,7 +43,7 @@ function AuditPage() {
   const fetchUser = useCallback(async () => {
     client
       .fetch(query)
-      .then((users) => {
+      .then((users: any) => {
         console.log({ users });
         let accordionData: any = Object.entries(users[0]).map((data: any) => {
           return {
@@ -53,7 +53,7 @@ function AuditPage() {
         });
         setAccordion(accordionData);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         console.error("Error fetching users:", error);
       });
   }, []);
@@ -92,11 +92,27 @@ function AuditPage() {
           theme: "dark",
         });
       } else {
-        console.log({ response });
-        console.log(response.status);
+        toast.error("Failed to submit response!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         console.log("error");
       }
     } catch (error) {
+      toast.error("Internal server error!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       console.log(error);
     }
   }, [comments, selectedDot]);
@@ -107,6 +123,7 @@ function AuditPage() {
 
   return (
     <>
+    <ToastContainer/>
       <div className={styles["audit-page"]}>
         <div className={styles["navbar"]}>
           <Navbar />

@@ -8,6 +8,7 @@ import Tabs from "../components/Tabs";
 import client from "../utils/sanity-client";
 import { FaRegCirclePause } from "react-icons/fa6";
 import FlagStepper from "../components/FlagStepper";
+import { ToastContainer, toast } from "react-toastify";
 
 const styles = require("../styles/audio-page.module.css").default;
 
@@ -96,11 +97,37 @@ const AudioPage = () => {
         }
       );
       if (response.status === 200 || response.status === 201) {
-        const excel = await response.json();
-        console.log({ excel });
+        toast.success("Response submitted!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         navigate("/naming-set");
+      } else {
+        toast.error("Failed to submit!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
+      toast.error("Internal Server Error!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       console.log(error);
     }
     navigate("/naming-set");
@@ -125,7 +152,6 @@ const AudioPage = () => {
     `
       )
       .then((users) => {
-        console.log({ users });
         setAudioPageDetails(users[0]);
       })
       .catch((error) => {
@@ -146,6 +172,8 @@ const AudioPage = () => {
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className={styles["naming-set"]}>
       <div className={styles["navbar"]}>
         <Navbar />
@@ -205,6 +233,7 @@ const AudioPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

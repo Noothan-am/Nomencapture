@@ -15,6 +15,7 @@ import { StepButton } from "@mui/material";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { sendMailFromUser } from "../utils/mail";
+import { ToastContainer, toast } from "react-toastify";
 
 const steps = [
   "Understand the basics",
@@ -43,6 +44,15 @@ function Forms() {
   const handleChangeCurrentPageToNext = () => {
     const data = getItem();
     setItem({ ...data, ...form });
+    toast.success("Form Saved!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     setCurrentFormPage((currentFormPage) => currentFormPage + 1);
   };
 
@@ -272,6 +282,7 @@ function Forms() {
 
   return (
     <>
+    <ToastContainer/>
       <div className={styles["forms"]}>
         <div className={styles["navbar"]}>
           <Navbar />

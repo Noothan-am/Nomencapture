@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
 import { sendMailFromUser } from "../utils/mail";
+import { ToastContainer, toast } from "react-toastify";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -91,9 +92,38 @@ export default function Review() {
           }),
         }
       );
-      const excel = await response.json();
-      console.log({ excel });
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Response submitted!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/naming-set");
+      } else {
+        toast.error("Failed to submit!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
     } catch (error) {
+      toast.error("Internal Server Error!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       console.log(error);
     }
   }, [
@@ -180,6 +210,7 @@ export default function Review() {
 
   return (
     <>
+    <ToastContainer/>
       <div className={styles["naming-set"]}>
         <div className={styles["navbar"]}>
           <Navbar />

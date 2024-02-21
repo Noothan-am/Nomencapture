@@ -180,7 +180,7 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "Noothan"]{
+  const query = `*[_type == "NameDetails" && User->Name == "Mock"]{
       Name,
     }`;
 
@@ -210,7 +210,7 @@ export default function Review() {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className={styles["naming-set"]}>
         <div className={styles["navbar"]}>
           <Navbar />

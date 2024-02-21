@@ -17,7 +17,7 @@ function Home() {
   const { name, email } = getItem();
 
   const query =
-    '*[_type == "Greetings" && User->Name == "Noothan"]{Intro, FirstPoint, SecondPoint, Outro}';
+    '*[_type == "Greetings" && User->Name == "Mock"]{Intro, FirstPoint, SecondPoint, Outro}';
   const fetchGreetingsData = useCallback(async () => {
     client
       .fetch(query)

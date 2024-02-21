@@ -38,7 +38,7 @@ function AuditPage() {
     navigate("/audio-page");
   };
   const query =
-    '*[_type == "AuditPage" && User->Name == "Noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+    '*[_type == "AuditPage" && User->Name == "Mock"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
     client
@@ -123,7 +123,7 @@ function AuditPage() {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className={styles["audit-page"]}>
         <div className={styles["navbar"]}>
           <Navbar />

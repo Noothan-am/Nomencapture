@@ -137,7 +137,7 @@ const AudioPage = () => {
     client
       .fetch(
         `
-      *[_type == "NamingSet" && User->Name == "Noothan"] {
+      *[_type == "NamingSet" && User->Name == "Mock"] {
           MainDescription,
           Description1,
           Description2,
@@ -173,58 +173,61 @@ const AudioPage = () => {
 
   return (
     <>
-    <ToastContainer/>
-    <div className={styles["naming-set"]}>
-      <div className={styles["navbar"]}>
-        <Navbar />
-      </div>
-      <div className={styles["hero"]}>
-        <div className={styles["sidebar"]}>
-          <SideBar isLogin={false}>
-            <Tabs show={3} />
-          </SideBar>
+      <ToastContainer />
+      <div className={styles["naming-set"]}>
+        <div className={styles["navbar"]}>
+          <Navbar />
         </div>
-        <div className={styles["naming-set-container"]}>
-          <div className={styles["div"]}>
-            <FlagStepper isDisabled={false} currentPage={"Home"} />
-            <div className={styles["form-content"]}>
-              <div className={styles["audio-page-container"]}>
-                <div className={styles["audio-page-content-paragraph"]}>
-                  <div className={styles["audio-page-content-main-heading"]}>
-                    <h4>{audioPageDetails.MainDescription}</h4>
+        <div className={styles["hero"]}>
+          <div className={styles["sidebar"]}>
+            <SideBar isLogin={false}>
+              <Tabs show={3} />
+            </SideBar>
+          </div>
+          <div className={styles["naming-set-container"]}>
+            <div className={styles["div"]}>
+              <FlagStepper isDisabled={false} currentPage={"Home"} />
+              <div className={styles["form-content"]}>
+                <div className={styles["audio-page-container"]}>
+                  <div className={styles["audio-page-content-paragraph"]}>
+                    <div className={styles["audio-page-content-main-heading"]}>
+                      <h4>{audioPageDetails.MainDescription}</h4>
+                    </div>
+                    <div
+                      className={styles["audio-page-content-main-paragraph"]}
+                    >
+                      <Paragraph data={audioPageDetails.Description1} />
+                      <Paragraph data={audioPageDetails.Description2} />
+                      <Paragraph data={audioPageDetails.Description3} />
+                      <Paragraph data={audioPageDetails.Description4} />
+                    </div>
                   </div>
-                  <div className={styles["audio-page-content-main-paragraph"]}>
-                    <Paragraph data={audioPageDetails.Description1} />
-                    <Paragraph data={audioPageDetails.Description2} />
-                    <Paragraph data={audioPageDetails.Description3} />
-                    <Paragraph data={audioPageDetails.Description4} />
-                  </div>
-                </div>
-                <div className={styles["audio-page-content-audio"]}>
-                  <div className={styles["audio-heading"]}>
-                    <h3>HEAR IT FIRST</h3>
-                  </div>
-                  <div className={styles["audio-content"]}>
-                    {audioPageDetails.audioFiles &&
-                      audioPageDetails.audioFiles.map(
-                        (audioFile: any, index: any) => {
-                          return (
-                            <AudioComponent
-                              key={index}
-                              soundNo={index}
-                              voiceHeard={voiceHeard}
-                              handleChange={handleChange}
-                              audiofile={audioFile}
-                            />
-                          );
-                        }
-                      )}
-                  </div>
-                  <div className={styles["audio-page-button"]}>
-                    <Button
-                      handleClick={handleClickToNextPage}
-                      buttonValue={"PROCEED"}
-                    />
+                  <div className={styles["audio-page-content-audio"]}>
+                    <div className={styles["audio-heading"]}>
+                      <h3>HEAR IT FIRST</h3>
+                    </div>
+                    <div className={styles["audio-content"]}>
+                      {audioPageDetails.audioFiles &&
+                        audioPageDetails.audioFiles.map(
+                          (audioFile: any, index: any) => {
+                            return (
+                              <AudioComponent
+                                key={index}
+                                soundNo={index}
+                                voiceHeard={voiceHeard}
+                                handleChange={handleChange}
+                                audiofile={audioFile}
+                              />
+                            );
+                          }
+                        )}
+                    </div>
+                    <div className={styles["audio-page-button"]}>
+                      <Button
+                        handleClick={handleClickToNextPage}
+                        buttonValue={"PROCEED"}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -232,7 +235,6 @@ const AudioPage = () => {
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

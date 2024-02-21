@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Button from "../components/Button";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
@@ -6,13 +6,34 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 // import { addUserToSpreadsheet } from "../utils/sheet-api";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+import client from "../utils/sanity-client";
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
 
 function Home() {
+  const [greetingsData, setGreetingsData] = useState({} as any);
   const navigate = useNavigate();
   const { getItem }: any = useLocalStorageForUserDetails();
   const { name, email } = getItem();
+
+  const query =
+    '*[_type == "Greetings" && User->Name == "Noothan"]{Intro, FirstPoint, SecondPoint, Outro}';
+  const fetchGreetingsData = useCallback(async () => {
+    client
+      .fetch(query)
+      .then((users) => {
+        console.log({ users });
+        setGreetingsData({
+          intro: users[0].Intro,
+          firstPoint: users[0].FirstPoint,
+          secondPoint: users[0].SecondPoint,
+          outro: users[0].Outro,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, []);
 
   const handleLoginSubmit = () => {
     navigate("/form");
@@ -21,7 +42,7 @@ function Home() {
   const addUserToSpreadsheet = useCallback(async () => {
     try {
       await fetch(
-        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",
+        `https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet`,
         {
           method: "POST",
           headers: {
@@ -68,8 +89,13 @@ function Home() {
   }, [email, name]);
 
   useEffect(() => {
-    addUserToSpreadsheet();
-  }, [addUserToSpreadsheet]);
+    fetchGreetingsData().then(() => {
+      console.log("fetched data");
+      addUserToSpreadsheet().then(() => {
+        console.log("added user to spreadsheet");
+      });
+    });
+  }, [addUserToSpreadsheet, fetchGreetingsData]);
 
   return (
     <>
@@ -94,7 +120,7 @@ function Home() {
                       marginBottom: "10px",
                     }}
                   >
-                    Greetings, Samshritha!
+                    {`Greetings, ${name}!`}
                   </span>
                   <span
                     style={{
@@ -112,10 +138,7 @@ function Home() {
                       lineHeight: "normal",
                     }}
                   >
-                    Get ready for an exciting journey with our in-depth
-                    questionnaire! While we anticipate it may take between 15 to
-                    30 minutes of your valuable time, the significance is
-                    profound:
+                    {greetingsData.intro}
                   </span>
                   <ul>
                     <li
@@ -131,11 +154,7 @@ function Home() {
                           lineHeight: "normal",
                         }}
                       >
-                        1. Engage in a thoughtful reflection on your
-                        expectations, actively contributing to the formation of
-                        your business vision. This exercise is not just about
-                        answering questions; it's a personal journey that
-                        enhances your clarity and confidence.
+                        1. {greetingsData.firstPoint}
                       </span>
                     </li>
                   </ul>
@@ -153,12 +172,7 @@ function Home() {
                           lineHeight: "normal",
                         }}
                       >
-                        2. Your responses serve as the building blocks of our
-                        naming process, delving into the emotions, aspirations,
-                        and sheer power emanating from your business. Our goal
-                        is to craft a name that not only fits but resonates
-                        profoundly—a moniker you'll take pride in, uttering with
-                        conviction.
+                        2. {greetingsData.secondPoint}
                       </span>
                     </li>
                   </ul>
@@ -170,9 +184,7 @@ function Home() {
                       lineHeight: "normal",
                     }}
                   >
-                    Your insights are pivotal in unraveling the true essence of
-                    your business. Join us on this meaningful journey as we
-                    collaboratively shape the perfect identity for your venture!
+                    {greetingsData.outro}
                   </span>
                 </div>
               </div>

@@ -14,7 +14,7 @@ const userDetails = new Schema({
     type: String,
     required: true,
   },
-  accessPages: {
+  accessedPages: {
     type: Object,
     properties: {
       forms: {
@@ -25,9 +25,22 @@ const userDetails = new Schema({
         type: Boolean,
         default: false,
       },
-      names: {
+      namingSet: {
         type: Boolean,
         default: false,
+      },
+      finalName: {
+        type: Object,
+        properties: {
+          isRequired: {
+            type: Boolean,
+            default: false,
+          },
+          hasSeen: {
+            type: Boolean,
+            default: false,
+          },
+        },
       },
       finalName: {
         type: Boolean,

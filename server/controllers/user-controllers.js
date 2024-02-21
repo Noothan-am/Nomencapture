@@ -18,9 +18,10 @@ const userLogin = async (req, res) => {
 
     res.cookie("authToken", authToken, {
       path: "/",
-      expiresIn: new Date(Date.now() + 1000 * 150),
       httpOnly: true,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
+      maxAge: 60 * 60 * 1000 * 15,
     });
 
     const userData = {
@@ -32,7 +33,6 @@ const userLogin = async (req, res) => {
     return res.status(200).send({
       message: "Login successful",
       userDetails: userData,
-      token: authToken,
     });
   } catch (error) {
     console.error(error);
@@ -54,7 +54,7 @@ const handleVerifyAuth = async (req, res) => {
   try {
     const user = await userDetails.findById(req.id, "-password");
     if (!user) {
-      return res.status(404).send("User not found");
+      return res.status(404).send({ message: "User not found" });
     }
     return res.status(200).send({ message: "User verified", user: user });
   } catch (err) {

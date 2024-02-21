@@ -1,21 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
+import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
-import Button from "../components/Button";
 import FormFirstPage from "./FormFirstPage";
-import SecondFormPage from "./SecondFormPage";
-import ThirdFormPage from "./ThirdFormPage";
 import FourthFormPage from "./FourthFormPage";
+import SecondFormPage from "./SecondFormPage";
 import Thankyou from "./Thankyou";
+import ThirdFormPage from "./ThirdFormPage";
 // import { Step, Stepper } from "react-form-stepper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
 import { StepButton } from "@mui/material";
+import Step from "@mui/material/Step";
+import Stepper from "@mui/material/Stepper";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { sendMailFromUser } from "../utils/mail";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   "Understand the basics",
@@ -23,13 +25,7 @@ const steps = [
   "Target Audience",
   "Preference",
 ];
-// const Stepper = require("react-stepper-horizontal");
-// import TextQuestions from "../components/TextQuestions";
-// import SelectQuestions from "../components/SelectQuestions";
-// import RadioQuestions from "../components/RadioQuestions";
-// import DescriptionQuestions from "../components/DescriptionQuestions";
 
-// import CheckBoxQuestions from "../components/CheckBoxQuestions";
 const styles = require("../styles/forms.module.css").default;
 
 function Forms() {
@@ -38,22 +34,140 @@ function Forms() {
     [k: number]: boolean;
   }>({});
 
+  const navigator = useNavigate();
   const { form }: any = useFormData();
   const { setItem, getItem } = useLocalStorage();
 
+  const checkBoxValidCheck = (data: any) => {
+    return Object.keys(data).filter((key) => data[key]).length;
+  };
+
+  const checkFields = () => {
+    console.log("Checking", form);
+    switch (currentFormPage) {
+      case 1:
+        if (
+          form.name &&
+          form.name.trim() &&
+          form.email &&
+          form.email.trim() &&
+          form.naming &&
+          Object.keys(form.naming).length &&
+          form.productSector &&
+          form.productSector.trim() &&
+          form.trademark &&
+          form.trademark.trim() &&
+          form.productDescription &&
+          form.productDescription.trim() &&
+          form.goToPlace &&
+          form.goToPlace.trim()
+        ) {
+          return true;
+        }
+        break;
+      case 2:
+        if (
+          form.usp &&
+          form.usp.trim() &&
+          form.dressColor &&
+          form.dressColor.trim() &&
+          form.productCater &&
+          form.productCater.trim() &&
+          form.productValues &&
+          form.productValues.trim() &&
+          form.productImpact &&
+          form.productImpact.trim() &&
+          form.productSegment &&
+          Object.keys(form.productSegment).length &&
+          form.productLikeness &&
+          checkBoxValidCheck(form.productLikeness) &&
+          form.productExpansion &&
+          form.productExpansion.trim() &&
+          form.lastPhotoDetails &&
+          form.lastPhotoDetails.trim() &&
+          form.productUnLikeness &&
+          checkBoxValidCheck(form.productUnLikeness) &&
+          form.productAchievement &&
+          form.productAchievement.trim() &&
+          form.productImpactAsPerson &&
+          Object.keys(form.productImpactAsPerson).length &&
+          form.productFocusOnCity &&
+          form.productFocusOnCity.trim()
+        ) {
+          return true;
+        }
+        break;
+      case 3:
+        if (
+          form.targetAudienceAge &&
+          checkBoxValidCheck(form.targetAudienceAge) &&
+          form.hero &&
+          form.hero.trim() &&
+          form.targetAudienceGender &&
+          Object.keys(form.targetAudienceGender).length &&
+          form.targetAudienceInfo &&
+          form.targetAudienceInfo.trim() &&
+          form.memorableImpression &&
+          checkBoxValidCheck(form.memorableImpression) &&
+          form.targetAudienceExpectation &&
+          form.targetAudienceExpectation.trim() &&
+          form.productAvailability &&
+          checkBoxValidCheck(form.productAvailability) &&
+          form.productPurchaseFrequency &&
+          Object.keys(form.productPurchaseFrequency).length &&
+          form.targetAudienceOccupation &&
+          checkBoxValidCheck(form.targetAudienceOccupation)
+        ) {
+          return true;
+        }
+        break;
+      case 4:
+        if (
+          form.brandNameScale &&
+          Object.keys(form.brandNameScale).length &&
+          form.competitors &&
+          form.competitors.trim() &&
+          form.likedCompetitorNames &&
+          form.likedCompetitorNames.trim() &&
+          form.dislikedCompetitorNames &&
+          form.dislikedCompetitorNames.trim() &&
+          form.meaningAssociation &&
+          Object.keys(form.meaningAssociation).length &&
+          form.desiredAllure &&
+          Object.keys(form.desiredAllure).length &&
+          form.nameIdeas &&
+          form.nameIdeas.trim() &&
+          form.avoidedConnotations &&
+          form.avoidedConnotations.trim() &&
+          form.blankImagination &&
+          form.blankImagination.trim()
+        ) {
+          return true;
+        }
+        break;
+
+      default:
+        return false;
+    }
+  };
+
   const handleChangeCurrentPageToNext = () => {
-    const data = getItem();
-    setItem({ ...data, ...form });
-    toast.success("Form Saved!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-    setCurrentFormPage((currentFormPage) => currentFormPage + 1);
+    const isValid = checkFields();
+    if (isValid) {
+      const data = getItem();
+      setItem({ ...data, ...form });
+      setCurrentFormPage((currentFormPage) => currentFormPage + 1);
+    } else {
+      toast.error("Please fill all details", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   const handleChangeCurrentPageToPrevious = () => {
@@ -249,6 +363,7 @@ function Forms() {
           return;
         });
     }
+
     switch (currentFormPage) {
       case 1:
         return <FormFirstPage />;
@@ -263,27 +378,33 @@ function Forms() {
     }
   };
 
-  // useEffect(() => {
-  //   fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     credentials: "include",
-  //   })
-  //     .then(() => {
-  //       console.log("verified");
-  //     })
-  //     .catch(() => {
-  //       console.log("not verified");
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          const result = await res.json();
+          console.log("verified", result.user);
+        } else {
+          navigator("/login");
+        }
+      })
+      .catch(() => {
+        console.log("not verified");
+      });
+  }, []);
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <div className={styles["forms"]}>
+        <ToastContainer />
         <div className={styles["navbar"]}>
           <Navbar />
         </div>

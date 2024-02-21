@@ -44,6 +44,7 @@ const Login = () => {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
+        credentials: "include",
         body: JSON.stringify({ email: inputEmail, password: inputPassword }),
       });
       setIsLoading(false);

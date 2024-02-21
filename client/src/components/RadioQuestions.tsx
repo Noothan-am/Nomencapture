@@ -9,7 +9,7 @@ function RadioQuestions({
   value,
   defaultAddedValue,
 }: any) {
-  const [inputValue, setInputValue] = useState("Product");
+  const [inputValue, setInputValue] = useState("");
   const [othersInputValue, setOthersInputValue] = useState("");
 
   const handleChange = (event: any) => {

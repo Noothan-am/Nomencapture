@@ -8,10 +8,23 @@
   font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 14px;
-  margin-bottom: 0.7rem;
   width: 70%;
   line-height: 1.3rem;
 }
+
+.text-questions > p {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 12.4px;
+  width: 70%;
+  text-decoration: none;
+  line-height: 1.3rem;
+}
+
+.text-questions > p > a {
+  text-decoration: none;
+}
+
 .text-questions > input {
   font-family: "Inter", sans-serif;
   font-size: 13px;

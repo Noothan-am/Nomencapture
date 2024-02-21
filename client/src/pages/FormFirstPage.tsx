@@ -249,8 +249,9 @@ function FormFirstPage() {
         <div className={styles["trademark"]}>
           <TextQuestions
             value={trademark}
+            showLink={true}
             question={
-              "Mention the Trademark classes your product/service belongs to? "
+              "Mention the Trademark classes your product/service belongs to?"
             }
             onInputChange={setTrademark}
           />

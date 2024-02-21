@@ -19,18 +19,18 @@ const selectOptions = [
 ];
 
 function SecondFormPage() {
-  const [targetAudienceAge, setTargetAudienceAge] = React.useState("");
+  const [targetAudienceAge, setTargetAudienceAge] = React.useState([]);
   const [hero, setHero] = React.useState("");
-  const [targetAudienceGender, setTargetAudienceGender] = React.useState("");
+  const [targetAudienceGender, setTargetAudienceGender] = React.useState({});
   const [targetAudienceInfo, setTargetAudienceInfo] = React.useState("");
-  const [memorableImpression, setMemorableImpression] = React.useState("");
+  const [memorableImpression, setMemorableImpression] = React.useState([]);
   const [targetAudienceExpectation, setTargetAudienceExpectation] =
     React.useState("");
-  const [productAvailability, setProductAvailability] = React.useState("");
+  const [productAvailability, setProductAvailability] = React.useState([]);
   const [productPurchaseFrequency, setProductPurchaseFrequency] =
-    React.useState("");
+    React.useState({});
   const [targetAudienceOccupation, setTargetAudienceOccupation] =
-    React.useState("");
+    React.useState([]);
 
   const { getItem } = useLocalStorage();
   const { form, setForm }: any = useFormData();
@@ -90,6 +90,7 @@ function SecondFormPage() {
       <div id="thirdform" className={styles["firstpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            showSubHeading={false}
             question={
               "What is the age bracket of your Target Audience Group (TG)?"
             }
@@ -118,28 +119,18 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            showSubHeading={false}
             question={"What occupation your TG may have?"}
             options={[
               "Everyone",
               "Students",
-              "General",
-              "Working",
-              "Adults",
-              "Young",
-              "CEOs",
+              "General Working Adults",
+              "Young/ CEOs",
               "Founders",
-              "Large",
-              "Company",
-              "Decision",
-              "Makers",
-              "(Corporate",
-              "C",
-              "Level)",
-              "Salaried",
-              "Employees",
+              "Large Company Decision Makers (Corporate C Level)",
+              "Salaried Employees",
               "Self-Employed",
-              "Retired",
-              "Elders",
+              "Retired Elders",
             ]}
             onInputChange={setTargetAudienceOccupation}
             value={targetAudienceOccupation}
@@ -161,11 +152,12 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            showSubHeading={false}
             question={"Where will your TG find your product / service?"}
             options={[
               "Retail Outlets",
               "Social Media",
-              "E-Commerce Platform",
+              "E-Commerce Platform / App",
               "Directly on Website",
               "Other",
             ]}
@@ -184,6 +176,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            showSubHeading={false}
             question={"How do want your customers to remember you as"}
             options={[
               "Straightforward and trustworthy",
@@ -192,7 +185,7 @@ function SecondFormPage() {
               "Cutting-edge and innovative.",
               "A group of miracle-workers.",
               "Helpful and service-minded.",
-              "Other.",
+              "Other",
             ]}
             onInputChange={setMemorableImpression}
             value={memorableImpression}

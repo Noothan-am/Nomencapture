@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const verifyAuthToken = async (req, res, next) => {
   const cookies = req.cookies["authToken"];
-  console.log({ cookies });
+  console.log(cookies);
   if (!cookies) {
     return res.status(403).send("A token is required for authentication");
   }

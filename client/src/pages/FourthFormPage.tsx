@@ -20,8 +20,8 @@ function SecondFormPage() {
   const [competitors, setCompetitors] = useState("");
   const [likedCompetitorNames, setLikedCompetitorNames] = useState("");
   const [dislikedCompetitorNames, setDislikedCompetitorNames] = useState("");
-  const [meaningAssociation, setMeaningAssociation] = useState("");
-  const [desiredAllure, setDesiredAllure] = useState("");
+  const [meaningAssociation, setMeaningAssociation] = useState({});
+  const [desiredAllure, setDesiredAllure] = useState({});
   const [nameIdeas, setIdeas] = useState("");
   const [avoidedConnotations, setAvoidedConnotations] = useState("");
   const [blankImagination, setBlankImagination] = useState("");

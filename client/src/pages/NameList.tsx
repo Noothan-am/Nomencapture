@@ -7,7 +7,7 @@ const styles = require("../styles/name-list.module.css").default;
 function NameList() {
   const nameListImg = useRef<any>(null);
   const query =
-    '*[_type == "NamingSet" && User->Name == "Mock"]{"PlayersNames": PlayersNames.asset->url}';
+    '*[_type == "NamingSet" && User->Name == "Noothan"]{"PlayersNames": PlayersNames.asset->url}';
   const getAudioPageData = useCallback(() => {
     client
       .fetch(query)

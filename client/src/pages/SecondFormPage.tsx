@@ -195,7 +195,7 @@ function SecondFormPage() {
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             question={
-              "If your product / service were a person, how would you definitely like it to come across as?"
+              "If your product / service were a person, how would you DECENTLY LIKE it to come across as?"
             }
             showSubHeading={true}
             onInputChange={setProductLikeness}
@@ -242,7 +242,7 @@ function SecondFormPage() {
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             question={
-              "If your product / service were a person, how would you definitely not like it to come across as?"
+              "If your product / service were a person, how would you DECENTLY NOT LIKE it to come across as?"
             }
             onInputChange={setProductUnLikeness}
             showSubHeading={true}

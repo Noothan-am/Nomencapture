@@ -38,6 +38,7 @@
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  margin-top: 1.7rem;
 }
 
 .audio-page-heading h3 {
@@ -72,6 +73,21 @@
 
 .audio-page-content-paragraph {
   width: 70%;
+}
+
+.inital {
+  width: 100%;
+}
+
+.inital > h3 {
+  color: black;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  margin: 0;
+  text-align: left;
+  margin-top: 2rem;
+  position: absolute;
 }
 
 .audio-page-button {

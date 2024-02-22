@@ -31,14 +31,31 @@ const Accordion = ({ title, content }: any) => {
 function AuditPage() {
   const [accordion, setAccordion] = useState([]);
   const [selectedDot, setSelectedDot] = useState([]);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState("");
+
+  const checkReview = () => {
+    return selectedDot[0] && comments.trim();
+  };
 
   const navigate = useNavigate();
-  const navigateToNamingSet = () => {
-    navigate("/audio-page");
+  const navigateToNamingSet = async () => {
+    const hasFilled = checkReview();
+    if (!hasFilled) {
+      toast.error("Please fill review!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      await submitReview();
+    }
   };
   const query =
-    '*[_type == "AuditPage" && User->Name == "Mock"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+    '*[_type == "AuditPage" && User->Name == "Noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
     client
@@ -58,7 +75,7 @@ function AuditPage() {
       });
   }, []);
 
-  const handleSubmitButtonClick = useCallback(async () => {
+  const submitReview = useCallback(async () => {
     const { email } = await JSON.parse(
       localStorage.getItem("userDetails") || ""
     );
@@ -91,6 +108,7 @@ function AuditPage() {
           progress: undefined,
           theme: "dark",
         });
+        navigate("/audio-page");
       } else {
         toast.error("Failed to submit response!", {
           position: "top-right",
@@ -115,7 +133,7 @@ function AuditPage() {
       });
       console.log(error);
     }
-  }, [comments, selectedDot]);
+  }, [comments, navigate, selectedDot]);
 
   useEffect(() => {
     fetchUser();
@@ -136,6 +154,7 @@ function AuditPage() {
           </div>
           <div className={styles["audit-content"]}>
             <div className={styles["audit-questions"]}>
+              <h2>Brand Fundamentals</h2>
               <div className={styles["audit-each-question"]}>
                 {accordion.map(({ title, content }: any) => (
                   <Accordion title={title} content={content} />
@@ -163,16 +182,10 @@ function AuditPage() {
                   onChange={(e: any) => setComments(e.target.value)}
                 ></textarea>
               </div>
-              <div className={styles["audit-comments-submit-btn"]}>
-                <Button
-                  handleClick={handleSubmitButtonClick}
-                  buttonValue={"SUBMIT"}
-                />
-              </div>
               <div className={styles["audit-rating-submit"]}>
                 <Button
                   handleClick={navigateToNamingSet}
-                  buttonValue={"PROCEED"}
+                  buttonValue={"PROCEED AND CONTINUE"}
                 />
               </div>
             </div>

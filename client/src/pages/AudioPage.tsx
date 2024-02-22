@@ -137,7 +137,7 @@ const AudioPage = () => {
     client
       .fetch(
         `
-      *[_type == "NamingSet" && User->Name == "Mock"] {
+      *[_type == "NamingSet" && User->Name == "Noothan"] {
           MainDescription,
           Description1,
           Description2,
@@ -187,6 +187,9 @@ const AudioPage = () => {
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
               <FlagStepper isDisabled={false} currentPage={"Home"} />
+              <div className={styles["inital"]}>
+                <h3>Market Considerations</h3>
+              </div>
               <div className={styles["form-content"]}>
                 <div className={styles["audio-page-container"]}>
                   <div className={styles["audio-page-content-paragraph"]}>

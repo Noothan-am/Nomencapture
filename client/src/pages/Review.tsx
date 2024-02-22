@@ -180,7 +180,7 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "Mock"]{
+  const query = `*[_type == "NameDetails" && User->Name == "Noothan"]{
       Name,
     }`;
 

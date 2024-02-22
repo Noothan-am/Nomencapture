@@ -34,7 +34,7 @@ function YourName() {
   };
 
   const fetchFavoriteNameDetails = useCallback(() => {
-    const query = `*[_type == "NameDetails" && User->Name == "Mock" && Name == "${name}"]{
+    const query = `*[_type == "NameDetails" && User->Name == "Noothan" && Name == "${name}"]{
       Name,
       PhonemicSymbol,
       ShortDescription,

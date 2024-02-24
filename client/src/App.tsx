@@ -1,30 +1,29 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import "./index.css";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import Forms from "./pages/Forms";
-import AuditPage from "./pages/AuditPage";
-import AudioPage from "./pages/AudioPage";
-import NamingSet from "./pages/NamingSet";
+import { Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
-import Review from "./pages/Review";
-import YourName from "./pages/YourName";
+import AudioPage from "./pages/AudioPage";
+import AuditPage from "./pages/AuditPage";
 import FinalGreetings from "./pages/FinalGreetings";
-import Nomen from "./pages/Nomen";
-import SecondRoundNomen from "./pages/SecondRoundNomen";
-import Thankyou from "./pages/Thankyou";
-import SecondRoundReview from "./pages/SecondRoundReview";
+import Forms from "./pages/Forms";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NamingSet from "./pages/NamingSet";
+import Review from "./pages/Review";
 import SecondRoundGreetings from "./pages/SecondRoundGreetings";
+import SecondRoundNomen from "./pages/SecondRoundNomen";
+import SecondRoundReview from "./pages/SecondRoundReview";
+import Thankyou from "./pages/Thankyou";
+import YourName from "./pages/YourName";
+
+import "./index.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/form" element={<Forms />} />
-      <Route path="/thankyou" element={<Thankyou />} />
       <Route element={<ProtectedRoutes />}>
+        <Route path="/thankyou" element={<Thankyou />} />
+        <Route path="/form" element={<Forms />} />
         <Route path="/home" element={<Home />} />
         <Route path="/understanding" element={<AuditPage />} />
         <Route path="/naming-set" element={<NamingSet />} />

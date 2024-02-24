@@ -4,7 +4,6 @@ const styles = require("../styles/dotsrow.module.css").default;
 const DotsRow = ({ index, selectedDot, setSelectedDot }: any) => {
   const handleDotClick = (value: any) => {
     setSelectedDot({ ...selectedDot, [index]: value + 1 });
-    console.log(selectedDot);
   };
 
   return (

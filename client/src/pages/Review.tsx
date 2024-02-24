@@ -10,6 +10,7 @@ import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
 import { sendMailFromUser } from "../utils/mail";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -59,12 +60,14 @@ export default function Review() {
   const [allNames, setAllNames] = useState([]);
 
   const navigate = useNavigate();
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email, name } = userData.user;
 
   const setDataToExcel = useCallback(async () => {
-    const { email } = await JSON.parse(
-      localStorage.getItem("userDetails") || ""
-    );
-    console.log(email);
+    // const { email } = await JSON.parse(
+    //   localStorage.getItem("userDetails") || ""
+    // );
     try {
       const response = await fetch(
         `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
@@ -136,8 +139,8 @@ export default function Review() {
   ]);
 
   const handleSubmitButtonClick = useCallback(() => {
-    const data: any = localStorage.getItem("userDetails");
-    const { name } = JSON.parse(data);
+    // const data: any = localStorage.getItem("userDetails");
+    // const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
         if (nextRoundPreference === "No") {

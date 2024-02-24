@@ -1,4 +1,6 @@
-const useAuth = async () => {
+import { useEffect, useState } from "react";
+
+export const login = async () => {
   try {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/api/verify`,
@@ -26,4 +28,15 @@ const useAuth = async () => {
   }
 };
 
-export default useAuth;
+export const useAuth = () => {
+  const [auth, setAuth] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const auth: any = await login();
+      setAuth(auth.isValid);
+    })();
+  }, []);
+
+  return auth;
+};

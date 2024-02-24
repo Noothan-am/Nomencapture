@@ -1,7 +1,6 @@
 export const addUserToSpreadsheet = async () => {
-  const { name, email } = await JSON.parse(
-    localStorage.getItem("userDetails") || ""
-  );
+  const userData = await JSON.parse(localStorage.getItem("userDetails") || "");
+  const { name, email } = userData.user;
   try {
     await fetch(
       "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=feedback-sheet",

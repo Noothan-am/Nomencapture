@@ -10,6 +10,7 @@ import { RxCross2 } from "react-icons/rx";
 import client from "../utils/sanity-client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/audit.module.css").default;
 
@@ -32,6 +33,8 @@ function AuditPage() {
   const [accordion, setAccordion] = useState([]);
   const [selectedDot, setSelectedDot] = useState([]);
   const [comments, setComments] = useState("");
+
+  const { getItem }: any = useLocalStorageForUserDetails();
 
   const checkReview = () => {
     return selectedDot[0] && comments.trim();
@@ -76,9 +79,11 @@ function AuditPage() {
   }, []);
 
   const submitReview = useCallback(async () => {
-    const { email } = await JSON.parse(
-      localStorage.getItem("userDetails") || ""
-    );
+    const userData = getItem();
+    const { email } = userData.user;
+    // const { email } = await JSON.parse(
+    //   localStorage.getItem("userDetails") || ""
+    // );
     try {
       const response = await fetch(
         `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,

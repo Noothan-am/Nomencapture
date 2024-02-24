@@ -30,13 +30,14 @@ const userLogin = async (req, res) => {
       accessPages: user.accessPages,
     };
 
-    return res.status(200).send({
-      message: "Login successful",
-      userDetails: userData,
-    });
+    return res.status(200).send({ user: { ...userData }, isValid: true });
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Internal server error");
+    return res.status(500).send({
+      message: "Internal server error",
+      user: { userData },
+      isValid: true,
+    });
   }
 };
 
@@ -54,9 +55,9 @@ const handleVerifyAuth = async (req, res) => {
   try {
     const user = await userDetails.findById(req.id, "-password");
     if (!user) {
-      return res.status(404).send({ message: "User not found" });
+      return res.status(404).send({ user: {}, isValid: false });
     }
-    return res.status(200).send({ message: "User verified", user: user });
+    return res.status(200).send({ user: user, isValid: true });
   } catch (err) {
     console.error(err);
     return res.status(500).send("Internal server error");

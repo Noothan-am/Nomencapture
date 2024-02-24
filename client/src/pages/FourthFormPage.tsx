@@ -1,26 +1,53 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Circle from "../components/Circle";
-import TextQuestions from "../components/TextQuestions";
-import RadioQuestions from "../components/RadioQuestions";
-import SelectQuestions from "../components/SelectQuestions";
-import useLocalStorage from "../hooks/useLocalStorage";
-import useFormData from "../context/FormContext";
 import DescriptionQuestions from "../components/DescriptionQuestions";
+import RadioQuestions from "../components/RadioQuestions";
+import TextQuestions from "../components/TextQuestions";
+import useFormData from "../context/FormContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 const styles = require("../styles/forms.module.css").default;
 
-const selectOptions = [
-  "Direct (Ex. The Container Store, VitaminWater)",
-  "Indirect (Ex. The Better Home, Twitter, Netflix)",
-  "Abstract (Ex. Amazon, Bluefly, Elephant Design)",
-];
+const TgQuestion = ({ meaningAssociation, setMeaningAssociation }: any) => {
+  return (
+    <div className={styles["textarea-questions"]}>
+      <label htmlFor="">
+        {
+          "Choose one OR write the order of priority of what meaning-association would you prefer for the name?"
+        }
+      </label>
+      <div className={styles["desc"]}>
+        <i>{"1. Direct (Ex. The Container Store, VitaminWater)"}</i>
+      </div>
+      <div className={styles["desc"]}>
+        <i>{"2. Indirect (Ex. The Better Home, Twitter, Netflix)"}</i>
+      </div>
+      <div className={styles["desc"]}>
+        <i>{"3. Abstract (Ex. Amazon, Bluefly, Elephant Design)"}</i>
+      </div>
+      <div className={styles["desc"]}>
+        <p>
+          {
+            "For ex: You can say 1>2>3 with 1 to be preferred the most and 3 to be prefered the least."
+          }
+        </p>
+      </div>
+      <input
+        placeholder="Your Answer"
+        onChange={(e) => setMeaningAssociation(e.target.value)}
+        value={meaningAssociation}
+        type="text"
+      />
+    </div>
+  );
+};
 
 function SecondFormPage() {
   const [brandNameScale, setBrandNameScale] = useState({});
   const [competitors, setCompetitors] = useState("");
   const [likedCompetitorNames, setLikedCompetitorNames] = useState("");
   const [dislikedCompetitorNames, setDislikedCompetitorNames] = useState("");
-  const [meaningAssociation, setMeaningAssociation] = useState({});
+  const [meaningAssociation, setMeaningAssociation] = useState("");
   const [desiredAllure, setDesiredAllure] = useState({});
   const [nameIdeas, setIdeas] = useState("");
   const [avoidedConnotations, setAvoidedConnotations] = useState("");
@@ -193,13 +220,9 @@ function SecondFormPage() {
           />
         </div>
         <div className={styles["secondpart-9d"]}>
-          <RadioQuestions
-            question={
-              "Choose one OR write the order of priority of what meaning-association would you prefer for the name?"
-            }
-            options={selectOptions}
-            onInputChange={setMeaningAssociation}
-            value={meaningAssociation}
+          <TgQuestion
+            setMeaningAssociation={setMeaningAssociation}
+            meaningAssociation={meaningAssociation}
           />
         </div>
         <div className={styles["radio"]}>

@@ -11,6 +11,7 @@ import client from "../utils/sanity-client";
 import { sendMailFromUser } from "../utils/mail";
 import SecondroundStepper from "../components/SecondRoundStepper";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -61,10 +62,14 @@ export default function SecondRoundReview() {
   const [currentData, setCurrentData] = useState(0);
   const navigate = useNavigate();
 
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { name, email } = userData.user;
+
   const setDataToExcel = useCallback(async () => {
-    const { email } = await JSON.parse(
-      localStorage.getItem("userDetails") || ""
-    );
+    // const { email } = await JSON.parse(
+    //   localStorage.getItem("userDetails") || ""
+    // );
     console.log(email);
     try {
       const response = await fetch(
@@ -137,8 +142,8 @@ export default function SecondRoundReview() {
   ]);
 
   const handleSubmitButtonClick = () => {
-    const data: any = localStorage.getItem("userDetails");
-    const { name } = JSON.parse(data);
+    // const data: any = localStorage.getItem("userDetails");
+    // const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
         sendMailFromUser({

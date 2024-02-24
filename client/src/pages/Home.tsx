@@ -14,7 +14,8 @@ function Home() {
   const [greetingsData, setGreetingsData] = useState({} as any);
   const navigate = useNavigate();
   const { getItem }: any = useLocalStorageForUserDetails();
-  const { name, email } = getItem();
+  const userData = getItem();
+  const { name, email } = userData.user;
 
   const query =
     '*[_type == "Greetings" && User->Name == "Noothan"]{Intro, FirstPoint, SecondPoint, Outro}';

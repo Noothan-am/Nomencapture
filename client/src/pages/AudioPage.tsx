@@ -9,6 +9,7 @@ import client from "../utils/sanity-client";
 import { FaRegCirclePause } from "react-icons/fa6";
 import FlagStepper from "../components/FlagStepper";
 import { ToastContainer, toast } from "react-toastify";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/audio-page.module.css").default;
 
@@ -70,12 +71,15 @@ const AudioComponent = ({
 const AudioPage = () => {
   const [audioPageDetails, setAudioPageDetails] = useState<any>([]);
   const [voiceHeard, setHeardVoice] = useState<any>({});
+  const { getItem }: any = useLocalStorageForUserDetails();
 
   const navigate = useNavigate();
   const handleClickToNextPage = useCallback(async () => {
-    const { email } = await JSON.parse(
-      localStorage.getItem("userDetails") || ""
-    );
+    const userData = getItem();
+    const { email } = userData.user;
+    // const { email } = await JSON.parse(
+    //   localStorage.getItem("userDetails") || ""
+    // );
     try {
       const response = await fetch(
         `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,

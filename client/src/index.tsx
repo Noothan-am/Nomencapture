@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { FormContext } from "./context/FormContext";
 import { UserDataContext } from "./context/UserDataContext";
+import { AuthContext } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,7 +14,9 @@ root.render(
     <Router>
       <UserDataContext>
         <FormContext>
-          <App />
+          <AuthContext>
+            <App />
+          </AuthContext>
         </FormContext>
       </UserDataContext>
     </Router>

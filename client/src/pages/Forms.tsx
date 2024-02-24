@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
@@ -8,16 +8,15 @@ import FourthFormPage from "./FourthFormPage";
 import SecondFormPage from "./SecondFormPage";
 import Thankyou from "./Thankyou";
 import ThirdFormPage from "./ThirdFormPage";
-// import { Step, Stepper } from "react-form-stepper";
 import { StepButton } from "@mui/material";
 import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { sendMailFromUser } from "../utils/mail";
-import { useNavigate } from "react-router-dom";
 
 const steps = [
   "Understand the basics",
@@ -34,7 +33,6 @@ function Forms() {
     [k: number]: boolean;
   }>({});
 
-  const navigator = useNavigate();
   const { form }: any = useFormData();
   const { setItem, getItem } = useLocalStorage();
 
@@ -132,7 +130,7 @@ function Forms() {
           form.dislikedCompetitorNames &&
           form.dislikedCompetitorNames.trim() &&
           form.meaningAssociation &&
-          Object.keys(form.meaningAssociation).length &&
+          form.meaningAssociation.trim() &&
           form.desiredAllure &&
           Object.keys(form.desiredAllure).length &&
           form.nameIdeas &&
@@ -300,7 +298,6 @@ function Forms() {
       "Connotations or ideas you want to completely avoid?":
         avoidedConnotations,
       "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
-        // await giveKeysFromObject(meaningAssociation),
         meaningAssociation,
       "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
         blankImagination,
@@ -341,8 +338,11 @@ function Forms() {
   }, [getItem]);
 
   const currentPage = () => {
-    const data: any = localStorage.getItem("userDetails");
-    const { name } = JSON.parse(data);
+    // const data: any = localStorage.getItem("userDetails");
+    // const { name } = JSON.parse(data);
+    const userData = JSON.parse(localStorage.getItem("userDetails") || "");
+    const { name } = userData.user;
+
     if (currentFormPage === 5) {
       setFormDataToExcel()
         .then(() => {
@@ -377,28 +377,6 @@ function Forms() {
         return <Thankyou />;
     }
   };
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/verify`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then(async (res) => {
-        if (res.ok) {
-          const result = await res.json();
-          console.log("verified", result.user);
-        } else {
-          navigator("/login");
-        }
-      })
-      .catch(() => {
-        console.log("not verified");
-      });
-  }, []);
 
   return (
     <>
@@ -437,16 +415,6 @@ function Forms() {
                       </Step>
                     ))}
                   </Stepper>
-                  // <Stepper nonLinear activeStep={currentFormPage - 1}>
-                  //   {steps.map((label, index) => (
-                  //     <Step key={label} completed={completed[index]}>
-                  //       <StepButton color="inherit" onClick={handleStep(index)}>
-                  //         {label}
-                  //       </StepButton>
-                  //       {/* <StepLabel>{label}</StepLabel> */}
-                  //     </Step>
-                  //   ))}
-                  // </Stepper>
                 )}
               </div>
               <div className={styles["form-content"]}>

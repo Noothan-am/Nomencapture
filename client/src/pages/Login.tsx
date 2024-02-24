@@ -1,11 +1,11 @@
+import "react-toastify/dist/ReactToastify.css";
 import React, { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+
 const styles = require("../styles/login.module.css").default;
 
 const Login = () => {
@@ -38,6 +38,7 @@ const Login = () => {
     }
 
     try {
+      setIsLoading(false);
       const result = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: {
@@ -47,11 +48,9 @@ const Login = () => {
         credentials: "include",
         body: JSON.stringify({ email: inputEmail, password: inputPassword }),
       });
-      setIsLoading(false);
       if (result.ok) {
-        const { userDetails } = await result.json();
+        const userDetails = await result.json();
         setItem(userDetails);
-        console.log("userDetails", userDetails);
         toast.success("Login Successful", {
           position: "top-right",
           autoClose: 2000,
@@ -91,6 +90,8 @@ const Login = () => {
   };
 
   const checkUserValidity = async () => {
+    console.log("checking user validity");
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/verify`,
@@ -104,7 +105,13 @@ const Login = () => {
         }
       );
       if (response.ok) {
-        console.log("user is valid", response.json());
+        console.log("checking user validity 2");
+        const data = await response.json();
+        if (data.isValid) {
+          console.log("checking user validity 3");
+          setItem(data);
+          navigate("/home");
+        }
       } else {
         console.log("user is not valid", response.status);
       }
@@ -114,9 +121,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // checkUserValidity();
+    checkUserValidity();
   }, []);
 
+  if (isLoading) return <h1>Loading...</h1>;
   return (
     <>
       <ToastContainer />

@@ -7,7 +7,6 @@ function RadioQuestions({
   showOthersInput,
   onInputChange,
   value,
-  defaultAddedValue,
 }: any) {
   const [inputValue, setInputValue] = useState("");
   const [othersInputValue, setOthersInputValue] = useState("");
@@ -19,7 +18,6 @@ function RadioQuestions({
   };
 
   const handleOthersChange = (event: any) => {
-    const data = event.target.value;
     onInputChange({ Others: othersInputValue });
   };
 
@@ -60,17 +58,19 @@ function RadioQuestions({
               />
               <label>Others</label>
             </div>
-            <input
-              onChange={(e) => {
-                setOthersInputValue(e.target.value);
-                handleOthersChange(e);
-              }}
-              value={othersInputValue}
-              disabled={inputValue.trim() !== "Others"}
-              type="text"
-              name={question}
-              id=""
-            />
+            {(inputValue.trim() === "Others" || (value && value["Others"])) && (
+              <input
+                onChange={(e) => {
+                  setOthersInputValue(e.target.value);
+                  handleOthersChange(e);
+                }}
+                value={value["Others"]}
+                disabled={inputValue.trim() !== "Others"}
+                type="text"
+                name={question}
+                id=""
+              />
+            )}
           </>
         )}
       </div>

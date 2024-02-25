@@ -173,7 +173,7 @@ export default function Review() {
       .catch((err) => {
         console.log(err);
       });
-  }, [favoriteName, navigate, nextRoundPreference, setDataToExcel]);
+  }, [favoriteName, name, navigate, nextRoundPreference, setDataToExcel]);
 
   const handleSatisfiedClick = (value: string) => {
     setNameSatisfied(value);

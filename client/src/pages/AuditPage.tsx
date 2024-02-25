@@ -64,7 +64,6 @@ function AuditPage() {
     client
       .fetch(query)
       .then((users: any) => {
-        console.log({ users });
         let accordionData: any = Object.entries(users[0]).map((data: any) => {
           return {
             title: data[1].question,

@@ -41,7 +41,6 @@ function Forms() {
   };
 
   const checkFields = () => {
-    console.log("Checking", form);
     switch (currentFormPage) {
       case 1:
         if (

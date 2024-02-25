@@ -62,7 +62,6 @@ const SecondRoundNomen = () => {
         .then((users) => {
           GraphImage.current = users[currentData].GraphImage;
           SamplesImage.current = users[currentData].SamplesImage;
-          console.log(users[currentData]);
           setNameDetais(users[currentData]);
           setAllNamesDetais(users);
         })

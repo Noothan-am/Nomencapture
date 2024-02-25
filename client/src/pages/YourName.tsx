@@ -46,7 +46,6 @@ function YourName() {
       client
         .fetch(query)
         .then(async (users) => {
-          console.log(users[0].audioFiles[0]);
           setFinalNameDetails(users[0]);
         })
         .catch((error) => {

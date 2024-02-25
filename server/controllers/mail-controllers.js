@@ -57,7 +57,6 @@ const sendMail = async (req, res) => {
     transport
       .sendMail(userMailOptions)
       .then(async (response) => {
-        console.log("response");
         transport.sendMail(teamMailOptions).then(() => {
           return res.status(200).send({
             msg: "Messages sent successfully",

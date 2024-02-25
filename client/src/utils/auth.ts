@@ -17,7 +17,7 @@ export const login = async () => {
       const data = await response.json();
       return { data, isValid: data.isValid };
     } else {
-      console.log("user is not valid", response.status);
+      console.log("user is not valid");
       const data = {};
       return { data, isValid: false };
     }

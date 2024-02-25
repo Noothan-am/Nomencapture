@@ -172,7 +172,6 @@ const AudioPage = () => {
       ...prev,
       [no]: e.target.value,
     }));
-    console.log(voiceHeard);
   };
 
   return (

@@ -23,7 +23,6 @@ function Home() {
     client
       .fetch(query)
       .then((users) => {
-        console.log({ users });
         setGreetingsData({
           intro: users[0].Intro,
           firstPoint: users[0].FirstPoint,

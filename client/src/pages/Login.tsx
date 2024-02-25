@@ -33,7 +33,6 @@ const Login = () => {
         theme: "dark",
       });
       setIsLoading(false);
-      console.log("empty fields found");
       return;
     }
 
@@ -90,8 +89,6 @@ const Login = () => {
   };
 
   const checkUserValidity = async () => {
-    console.log("checking user validity");
-
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/verify`,
@@ -105,15 +102,13 @@ const Login = () => {
         }
       );
       if (response.ok) {
-        console.log("checking user validity 2");
         const data = await response.json();
         if (data.isValid) {
-          console.log("checking user validity 3");
           setItem(data);
           navigate("/home");
         }
       } else {
-        console.log("user is not valid", response.status);
+        console.log("user is not valid");
       }
     } catch (error) {
       console.log("error while checking user validity: ", error);

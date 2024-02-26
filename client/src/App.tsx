@@ -15,12 +15,14 @@ import Thankyou from "./pages/Thankyou";
 import YourName from "./pages/YourName";
 
 import "./index.css";
+import Admin from "./admin/pages/Admin";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<Admin />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/thankyou" element={<Thankyou />} />
         <Route path="/form" element={<Forms />} />

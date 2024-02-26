@@ -1,0 +1,21 @@
+.row-component {
+  margin-top: 1rem;
+  border-bottom: 1px solid black;
+}
+
+.values {
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.values > p {
+  width: 10rem;
+  cursor: pointer;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  color: #060606;
+  font-size: 0.9rem;
+}

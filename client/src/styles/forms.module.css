@@ -5,6 +5,10 @@
   scroll-behavior: smooth;
 }
 
+.client-forms {
+  height: 90vh;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

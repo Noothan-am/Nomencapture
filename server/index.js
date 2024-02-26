@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/user-routes");
 const mailRouter = require("./routes/mail-routes");
+const excelRouter = require("./routes/excel-routes");
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,11 +17,12 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   })
 );
 app.use("/api", authRouter);
 app.use("/api", mailRouter);
+app.use("/api", excelRouter);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

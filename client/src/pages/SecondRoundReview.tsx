@@ -168,7 +168,7 @@ export default function SecondRoundReview() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "Noothan"]{
+  const query = `*[_type == "NameDetails" && User->Name == "noothan"]{
       Name,
     }`;
 

@@ -1,66 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import client from "../utils/sanity-client";
-export const AllNamesData = createContext({});
 export const AllUsersData = createContext({});
-
-export const AllNamesDataContext = ({ children }: any) => {
-  const [allNamesData, setAllNamesData] = useState<any>();
-  const query = `*[_type == "NameDetails"]{
-      Name,
-      Related,
-      Syllable,
-      NameDescription,
-      LLPNameAvailability,
-      Trademarkability,
-      "GraphImage": GraphImage.asset->url,
-      "SamplesImage": SamplesImage.asset->url,
-      MultilingualNames,
-      NameBenefits,
-      ChatDescription,
-      DomainExtensions,
-      Domains,
-      Dropdown
-    }`;
-
-  useEffect(() => {
-    client
-      .fetch(query)
-      .then((allNames) => {
-        console.log("sanity function running");
-        var data: any = {};
-        allNames.map((eachName: any) => {
-          data[eachName.Name] = eachName;
-        });
-        setAllNamesData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [query]);
-
-  return (
-    <AllNamesData.Provider value={allNamesData}>
-      {children}
-    </AllNamesData.Provider>
-  );
-};
-
-export const useAllNamesData = () => {
-  const context = useContext(AllNamesData);
-  if (!context) {
-    throw new Error(
-      "useAllNamesData must be used within a AllNamesDataProvider"
-    );
-  }
-  return context;
-};
 
 export const AllUsersDataContextProvider = ({ children }: any) => {
   const [allUsersData, setAllUsersData] = useState<any>(null);
+  const [allUserFeedbackData, setAllUserFeedbackData] = useState<any>(null);
 
   useEffect(() => {
     (async () => {
-      fetch("https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=form-responses", {
+      fetch(`${process.env.REACT_APP_API_URL}/api/get-form-data`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -68,11 +15,29 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
       })
         .then((res) => res.json())
         .then((allUserFormData) => {
-          var data: any = {};
-          allUserFormData.map((eachName: any) => {
-            data[eachName["Your Name"]] = eachName;
-          });
-          setAllUsersData(data);
+          console.log(allUserFormData);
+
+          setAllUsersData(allUserFormData);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      fetch(`${process.env.REACT_APP_API_URL}/api/get-feedback-data`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((allUserFeedbackData) => {
+          console.log(allUserFeedbackData);
+
+          setAllUserFeedbackData(allUserFeedbackData);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -81,7 +46,7 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <AllUsersData.Provider value={{ allUsersData }}>
+    <AllUsersData.Provider value={{ allUsersData, allUserFeedbackData }}>
       {children}
     </AllUsersData.Provider>
   );

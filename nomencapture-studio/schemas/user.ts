@@ -8,5 +8,10 @@ export default {
       type: 'string',
       title: 'User Name',
     },
+    {
+      name: 'Email',
+      type: 'string',
+      title: 'Email Name',
+    },
   ],
 }

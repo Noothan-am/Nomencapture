@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 
-import Circle from "../components/Circle";
-import DescriptionQuestions from "../components/DescriptionQuestions";
-import RadioQuestions from "../components/RadioQuestions";
-import TextQuestions from "../components/TextQuestions";
-import useFormData from "../context/FormContext";
-import useLocalStorage from "../hooks/useLocalStorage";
-const styles = require("../styles/forms.module.css").default;
+import Circle from "../../components/Circle";
+import DescriptionQuestions from "../../components/DescriptionQuestions";
+import RadioQuestions from "../../components/RadioQuestions";
+import TextQuestions from "../../components/TextQuestions";
+const styles = require("../../styles/forms.module.css").default;
 
 const TgQuestion = ({ meaningAssociation, setMeaningAssociation }: any) => {
   return (
@@ -34,6 +32,7 @@ const TgQuestion = ({ meaningAssociation, setMeaningAssociation }: any) => {
       </div>
       <input
         placeholder="Your Answer"
+        disabled={true}
         onChange={(e) => setMeaningAssociation(e.target.value)}
         value={meaningAssociation}
         type="text"
@@ -42,7 +41,7 @@ const TgQuestion = ({ meaningAssociation, setMeaningAssociation }: any) => {
   );
 };
 
-function SecondFormPage() {
+function ClientFourthFormPage({ allUsersData }: any) {
   const [brandNameScale, setBrandNameScale] = useState({});
   const [competitors, setCompetitors] = useState("");
   const [likedCompetitorNames, setLikedCompetitorNames] = useState("");
@@ -53,52 +52,39 @@ function SecondFormPage() {
   const [avoidedConnotations, setAvoidedConnotations] = useState("");
   const [blankImagination, setBlankImagination] = useState("");
 
-  const { getItem } = useLocalStorage();
-  const { form, setForm }: any = useFormData();
-
-  const setFormDetails = useCallback(() => {
-    // window.location.hash = "#fourthpage";
-    const data = {
-      ...form,
-      brandNameScale,
-      competitors,
-      likedCompetitorNames,
-      dislikedCompetitorNames,
-      meaningAssociation,
-      desiredAllure,
-      nameIdeas,
-      avoidedConnotations,
-      blankImagination,
-    };
-    setForm(data);
-  }, [
-    brandNameScale,
-    competitors,
-    likedCompetitorNames,
-    dislikedCompetitorNames,
-    meaningAssociation,
-    desiredAllure,
-    nameIdeas,
-    avoidedConnotations,
-    blankImagination,
-  ]);
-
-  useEffect(() => {
-    setFormDetails();
-  }, [setFormDetails]);
-
   const setDataFromLocalStorage = useCallback(() => {
-    const data = getItem();
-    if (data) {
-      setBrandNameScale(data.brandNameScale);
-      setCompetitors(data.competitors);
-      setLikedCompetitorNames(data.likedCompetitorNames);
-      setDislikedCompetitorNames(data.dislikedCompetitorNames);
-      setMeaningAssociation(data.meaningAssociation);
-      setDesiredAllure(data.desiredAllure);
-      setIdeas(data.nameIdeas);
-      setAvoidedConnotations(data.avoidedConnotations);
-      setBlankImagination(data.blankImagination);
+    // window.location.hash = "#fourthpage";
+
+    if (allUsersData) {
+      setBrandNameScale(allUsersData.brandNameScale);
+      setCompetitors(
+        allUsersData[
+          "List your competitors (mention website links if available)"
+        ]
+      );
+      setLikedCompetitorNames(
+        allUsersData["Competitor/other brand names you like"]
+      );
+      setDislikedCompetitorNames(
+        allUsersData["Competitor/other brand names you dislike"]
+      );
+      setMeaningAssociation(
+        allUsersData[
+          "Choose one OR write the order of priority of what meaning-association would you prefer for the name?"
+        ]
+      );
+      setDesiredAllure(
+        allUsersData["What appeal do you want the name to have?"]
+      );
+      setIdeas(allUsersData["Emotions or ideas you want the name to evoke?"]);
+      setAvoidedConnotations(
+        allUsersData["Connotations or ideas you want to completely avoid?"]
+      );
+      setBlankImagination(
+        allUsersData[
+          "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?"
+        ]
+      );
     }
   }, []);
 
@@ -198,6 +184,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             question={
               "List your competitors (mention website links if available)"
             }
@@ -207,6 +194,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             question={"Competitor/other brand names you like"}
             onInputChange={setLikedCompetitorNames}
             value={likedCompetitorNames}
@@ -214,6 +202,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             onInputChange={setDislikedCompetitorNames}
             question={"Competitor/other brand names you dislike"}
             value={dislikedCompetitorNames}
@@ -227,6 +216,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
+            disabled={true}
             question={"What appeal do you want the name to have?"}
             options={[
               "Colloquial/Informal (Blinkit, Mango)",
@@ -240,6 +230,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             question={"Emotions or ideas you want the name to evoke?"}
             onInputChange={setIdeas}
             value={nameIdeas}
@@ -247,6 +238,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             question={"Connotations or ideas you want to completely avoid?"}
             onInputChange={setAvoidedConnotations}
             value={avoidedConnotations}
@@ -254,6 +246,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?"
             }
@@ -266,4 +259,4 @@ function SecondFormPage() {
   );
 }
 
-export default SecondFormPage;
+export default ClientFourthFormPage;

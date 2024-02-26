@@ -6,6 +6,7 @@ function DescriptionQuestions({
   description,
   onInputChange,
   value,
+  disabled,
 }: any) {
   const handleChange = (event: any) => {
     const data = event.target.value;
@@ -22,6 +23,7 @@ function DescriptionQuestions({
           value={value}
           placeholder="Your Answer"
           onChange={handleChange}
+          disabled={disabled}
         ></textarea>
       </div>
     </>

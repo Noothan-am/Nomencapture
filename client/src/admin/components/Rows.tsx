@@ -6,7 +6,7 @@ function Rows({ rows, navigate }: any) {
   return (
     <div className={styles["row-component"]}>
       <div className={styles["values"]}>
-        <Link to={`/admin/name/${navigate}`}>
+        <Link to={navigate}>
           <p className={styles["heading"]}>{rows[0]}</p>
         </Link>
         <p>{rows[1]}</p>

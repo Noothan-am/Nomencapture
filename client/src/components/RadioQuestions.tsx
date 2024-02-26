@@ -7,6 +7,7 @@ function RadioQuestions({
   showOthersInput,
   onInputChange,
   value,
+  disabled,
 }: any) {
   const [inputValue, setInputValue] = useState("");
   const [othersInputValue, setOthersInputValue] = useState("");
@@ -37,6 +38,7 @@ function RadioQuestions({
                   setInputValue(e.target.value);
                   handleChange(e);
                 }}
+                disabled={disabled}
                 value={option}
               />
               <label htmlFor={`${index}`}>{option}</label>
@@ -54,6 +56,7 @@ function RadioQuestions({
                 type="radio"
                 name={question}
                 value="Others"
+                disabled={disabled}
                 checked={value && Object.keys(value)[0] === "Others"}
               />
               <label>Others</label>
@@ -65,8 +68,9 @@ function RadioQuestions({
                   handleOthersChange(e);
                 }}
                 value={value["Others"]}
-                disabled={inputValue.trim() !== "Others"}
+                // disabled={inputValue.trim() !== "Others"}
                 type="text"
+                disabled={disabled}
                 name={question}
                 id=""
               />

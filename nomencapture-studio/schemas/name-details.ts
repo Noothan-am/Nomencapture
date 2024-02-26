@@ -135,5 +135,10 @@ export default {
       type: 'text',
       title: 'ShortDescription',
     },
+    {
+      name: 'Captured',
+      type: 'string',
+      title: 'Captured',
+    },
   ],
 }

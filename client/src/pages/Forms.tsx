@@ -35,7 +35,7 @@ function Forms() {
 
   const { form }: any = useFormData();
   const { setItem, getItem } = useLocalStorage();
-
+  const navigate = useNavigate();
   const checkBoxValidCheck = (data: any) => {
     return Object.keys(data).filter((key) => data[key]).length;
   };
@@ -240,10 +240,10 @@ function Forms() {
       "What price segment does your product/service fall in?":
         // await giveKeysFromObject(productSegment),
         productSegment,
-      "Do you see yourself expanding to other cities/regions in future? If yes, where?":
-        productExpansion,
       "What are the cities/regions you're planning to focus on?":
         productFocusOnCity,
+      "Do you see yourself expanding to other cities/regions in future? If yes, where?":
+        productExpansion,
       "If your product / service were a person, list the values or beliefs it will always stand by?":
         productValues,
       "What is the ultimate impact you want to create with your product / service? Or WHY does your product / service exist?":
@@ -277,29 +277,14 @@ function Forms() {
         productPurchaseFrequency,
       "Where will your TG find your product / service?":
         await giveKeysFromObject(productAvailability),
+      "For what values you want your TG to choose you over the competitor?":
+        targetAudienceExpectation,
       "How do want your customers to remember you as": await giveKeysFromObject(
         memorableImpression
       ),
       "Do you have any additional information about your TG?":
         targetAudienceInfo,
       "A hero you look upto?": hero,
-      "For what values you want your TG to choose you over the competitor?":
-        targetAudienceExpectation,
-      "List your competitors (mention website links if available)": competitors,
-      "Competitor/other brand names you like": likedCompetitorNames,
-      "Competitor/other brand names you dislike": dislikedCompetitorNames,
-      "What appeal do you want the name to have?":
-        // await giveKeysFromObject(
-        // desiredAllure
-        // ),
-        desiredAllure,
-      "Emotions or ideas you want the name to evoke?": nameIdeas,
-      "Connotations or ideas you want to completely avoid?":
-        avoidedConnotations,
-      "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
-        meaningAssociation,
-      "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
-        blankImagination,
       "Clever / Straightforward": brandNameScale["Clever / Straightforward"],
       "Global / Local": brandNameScale["Global / Local"],
       "Modern / Traditional": brandNameScale["Modern / Traditional"],
@@ -308,11 +293,87 @@ function Forms() {
       "Whimsical / Serious": brandNameScale["Whimsical / Serious"],
       "Mature / Youthful": brandNameScale["Mature / Youthful"],
       "Formal / Friendly": brandNameScale["Formal / Friendly"],
+      "List your competitors (mention website links if available)": competitors,
+      "Competitor/other brand names you like": likedCompetitorNames,
+      "Competitor/other brand names you dislike": dislikedCompetitorNames,
+      "Choose one OR write the order of priority of what meaning-association would you prefer for the name?":
+        meaningAssociation,
+      "What appeal do you want the name to have?":
+        // await giveKeysFromObject(
+        // desiredAllure
+        // ),
+        desiredAllure,
+      "Emotions or ideas you want the name to evoke?": nameIdeas,
+      "Connotations or ideas you want to completely avoid?":
+        avoidedConnotations,
+      "Imagine you're painting. You have no reference and you're in an empty room with no window. What will you draw on your canvas?":
+        blankImagination,
+      Pricing: 2,
+      "Name Given": "no",
+      Captured: "yes",
     };
+
+    const dataArray = [
+      new Date().toLocaleString(),
+      name,
+      email,
+      naming["Others"] ? JSON.stringify(naming) : JSON.stringify(naming),
+      productSector,
+      trademark,
+      productDescription,
+      goToPlace,
+      productCater,
+      usp,
+      JSON.stringify(productSegment),
+      productFocusOnCity,
+      productExpansion,
+      productValues,
+      productImpact,
+      productAchievement,
+      productImpactAsPerson["Others"]
+        ? JSON.stringify(productImpactAsPerson)
+        : JSON.stringify(productAchievement),
+      dressColor,
+      await giveKeysFromObject(productLikeness),
+      await giveKeysFromObject(productUnLikeness),
+      lastPhotoDetails.toString(),
+      await giveKeysFromObject(targetAudienceAge),
+      targetAudienceGender["Others"]
+        ? JSON.stringify(targetAudienceGender)
+        : JSON.stringify(targetAudienceGender),
+      await giveKeysFromObject(targetAudienceOccupation),
+      JSON.stringify(productPurchaseFrequency),
+      await giveKeysFromObject(productAvailability),
+      targetAudienceExpectation,
+      await giveKeysFromObject(memorableImpression),
+      targetAudienceInfo.toString(),
+      hero,
+      brandNameScale["Clever / Straightforward"],
+      brandNameScale["Global / Local"],
+      brandNameScale["Modern / Traditional"],
+      brandNameScale["Emotional / Logical"],
+      brandNameScale["Scientific / General"],
+      brandNameScale["Whimsical / Serious"],
+      brandNameScale["Mature / Youthful"],
+      brandNameScale["Formal / Friendly"],
+      competitors,
+      likedCompetitorNames,
+      dislikedCompetitorNames,
+      meaningAssociation,
+      meaningAssociation,
+      JSON.stringify(desiredAllure),
+      nameIdeas,
+      avoidedConnotations,
+      blankImagination,
+      2,
+      "no",
+      "yes",
+    ];
+    console.log(dataArray);
 
     try {
       const response = await fetch(
-        "https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=form-responses",
+        `${process.env.REACT_APP_API_URL}/api/set-form-data`,
         {
           method: "POST",
           headers: {
@@ -320,11 +381,7 @@ function Forms() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            data: [
-              {
-                ...data,
-              },
-            ],
+            data: dataArray,
           }),
         }
       );

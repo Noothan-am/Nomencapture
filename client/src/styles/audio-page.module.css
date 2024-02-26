@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 50%; */
   margin: auto;
   padding: 2rem 3rem;
   height: 90%;
@@ -32,13 +31,12 @@
 
 .audio-page-container {
   border-radius: 20px;
-  background-color: #fafafa;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  margin-top: 1.7rem;
+  margin-top: -1.5rem;
 }
 
 .audio-page-heading h3 {
@@ -87,7 +85,7 @@
   margin: 0;
   text-align: left;
   margin-top: 2rem;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .audio-page-button {

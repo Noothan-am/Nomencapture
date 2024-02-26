@@ -13,6 +13,7 @@ import SecondRoundNomen from "./pages/SecondRoundNomen";
 import SecondRoundReview from "./pages/SecondRoundReview";
 import Thankyou from "./pages/Thankyou";
 import YourName from "./pages/YourName";
+import UserFormsData from "./admin/pages/UserFormsData";
 
 import "./index.css";
 import Admin from "./admin/pages/Admin";
@@ -26,6 +27,7 @@ function App() {
       <Route element={<AdminProtectedRoutes />}>
         <Route path="/admin/home" element={<Admin />} />
         <Route path="/admin/name/:name" element={<Name />} />
+        <Route path="/admin/form/:usermail" element={<UserFormsData />} />
       </Route>
       <Route element={<ClientProtectedRoutes />}>
         <Route path="/thankyou" element={<Thankyou />} />

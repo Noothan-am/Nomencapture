@@ -3,7 +3,7 @@ import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import { IoLockClosed } from "react-icons/io5";
 import client from "../../utils/sanity-client";
 import { useParams } from "react-router-dom";
-import { useAllNamesData } from "../../context/AdminContext";
+import { useAllNamesData } from "../../context/AllNamesDataContext";
 
 const styles = require("../styles/name.module.css").default;
 
@@ -16,9 +16,9 @@ const Name = () => {
   const { name }: any = useParams();
 
   useEffect(() => {
-    const nameData = allNamesData[name];
-    GraphImage.current = allNamesData[name].GraphImage;
-    SamplesImage.current = allNamesData[name].SamplesImage;
+    const nameData = allNamesData.allNamesData[name];
+    GraphImage.current = allNamesData.allNamesData[name].GraphImage;
+    SamplesImage.current = allNamesData.allNamesData[name].SamplesImage;
     setNameDetais(nameData);
   }, [allNamesData, name]);
 

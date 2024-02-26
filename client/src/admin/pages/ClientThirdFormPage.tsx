@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect } from "react";
-import TextQuestions from "../components/TextQuestions";
-import RadioQuestions from "../components/RadioQuestions";
-import DescriptionQuestions from "../components/DescriptionQuestions";
-import SelectQuestions from "../components/SelectQuestions";
-import CheckBoxQuestions from "../components/CheckBoxQuestions";
-import useLocalStorage from "../hooks/useLocalStorage";
-import useFormData from "../context/FormContext";
-const styles = require("../styles/forms.module.css").default;
+import TextQuestions from "../../components/TextQuestions";
+import RadioQuestions from "../../components/RadioQuestions";
+import DescriptionQuestions from "../../components/DescriptionQuestions";
+import SelectQuestions from "../../components/SelectQuestions";
+import CheckBoxQuestions from "../../components/CheckBoxQuestions";
+const styles = require("../../styles/forms.module.css").default;
 
 const selectOptions = [
   "Accounting",
@@ -18,7 +16,7 @@ const selectOptions = [
   "Architecture/Planning",
 ];
 
-function SecondFormPage() {
+function ClientThirdFormPage({ allUsersData }: any) {
   const [targetAudienceAge, setTargetAudienceAge] = React.useState([]);
   const [hero, setHero] = React.useState("");
   const [targetAudienceGender, setTargetAudienceGender] = React.useState({});
@@ -32,52 +30,39 @@ function SecondFormPage() {
   const [targetAudienceOccupation, setTargetAudienceOccupation] =
     React.useState([]);
 
-  const { getItem } = useLocalStorage();
-  const { form, setForm }: any = useFormData();
-
-  const setFormDetails = useCallback(() => {
-    // window.location.hash = "#thirdform";
-    const data = {
-      ...form,
-      targetAudienceAge,
-      hero,
-      targetAudienceGender,
-      targetAudienceInfo,
-      memorableImpression,
-      targetAudienceExpectation,
-      productAvailability,
-      productPurchaseFrequency,
-      targetAudienceOccupation,
-    };
-    setForm(data);
-  }, [
-    targetAudienceAge,
-    hero,
-    targetAudienceGender,
-    targetAudienceInfo,
-    memorableImpression,
-    targetAudienceExpectation,
-    productAvailability,
-    productPurchaseFrequency,
-    targetAudienceOccupation,
-  ]);
-
-  useEffect(() => {
-    setFormDetails();
-  }, [setFormDetails]);
-
   const setDataFromLocalStorage = useCallback(() => {
-    const data = getItem();
-    if (data) {
-      setTargetAudienceAge(data.targetAudienceAge);
-      setHero(data.hero);
-      setTargetAudienceGender(data.targetAudienceGender);
-      setTargetAudienceInfo(data.targetAudienceInfo);
-      setMemorableImpression(data.memorableImpression);
-      setTargetAudienceExpectation(data.targetAudienceExpectation);
-      setProductAvailability(data.productAvailability);
-      setProductPurchaseFrequency(data.productPurchaseFrequency);
-      setTargetAudienceOccupation(data.targetAudienceOccupation);
+    if (allUsersData) {
+      setTargetAudienceAge(
+        allUsersData[
+          "What is the age bracket of your Target Audience Group (TG)?"
+        ]
+      );
+      setHero(allUsersData["A hero you look upto?"]);
+      setTargetAudienceGender(
+        allUsersData[
+          "What is the age bracket of your Target Audience Group (TG)?"
+        ]
+      );
+      setTargetAudienceInfo(
+        allUsersData["Do you have any additional information about your TG?"]
+      );
+      setMemorableImpression(
+        allUsersData["How do want your customers to remember you as"]
+      );
+      setTargetAudienceExpectation(
+        allUsersData[
+          "For what values you want your TG to choose you over the competitor?"
+        ]
+      );
+      setProductAvailability(
+        allUsersData["Where will your TG find your product / service?"]
+      );
+      setProductPurchaseFrequency(
+        allUsersData["How often do you think your product will be purchased?"]
+      );
+      setTargetAudienceOccupation(
+        allUsersData["What occupation your TG may have?"]
+      );
     }
   }, []);
 
@@ -90,6 +75,7 @@ function SecondFormPage() {
       <div id="thirdform" className={styles["firstpart-3"]}>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            disabled={true}
             showSubHeading={false}
             question={
               "What is the age bracket of your Target Audience Group (TG)?"
@@ -110,6 +96,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
+            disabled={true}
             question={"Which gender of TG is your product / service for?"}
             options={["All", "Men", "Women"]}
             showOthersInput={true}
@@ -119,6 +106,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            disabled={true}
             showSubHeading={false}
             question={"What occupation your TG may have?"}
             options={[
@@ -138,6 +126,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <RadioQuestions
+            disabled={true}
             question={"How often do you think your product will be purchased?"}
             options={[
               "Periodic / Subscription based",
@@ -153,6 +142,7 @@ function SecondFormPage() {
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             showSubHeading={false}
+            disabled={true}
             question={"Where will your TG find your product / service?"}
             options={[
               "Retail Outlets",
@@ -167,6 +157,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "For what values you want your TG to choose you over the competitor?"
             }
@@ -177,6 +168,7 @@ function SecondFormPage() {
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
             showSubHeading={false}
+            disabled={true}
             question={"How do want your customers to remember you as"}
             options={[
               "Straightforward and trustworthy",
@@ -193,6 +185,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={"Do you have any additional information about your TG?"}
             description={"(Desires, Interests etc.)"}
             onInputChange={setTargetAudienceInfo}
@@ -201,6 +194,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <TextQuestions
+            disabled={true}
             question={"A hero you look up to?"}
             onInputChange={setHero}
             value={hero}
@@ -211,4 +205,4 @@ function SecondFormPage() {
   );
 }
 
-export default SecondFormPage;
+export default ClientThirdFormPage;

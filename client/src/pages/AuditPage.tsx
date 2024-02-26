@@ -58,7 +58,7 @@ function AuditPage() {
     }
   };
   const query =
-    '*[_type == "AuditPage" && User->Name == "Noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+    '*[_type == "AuditPage" && User->Name == "noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
     client
@@ -85,7 +85,7 @@ function AuditPage() {
     // );
     try {
       const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+        `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
         {
           method: "PATCH",
           headers: {
@@ -93,12 +93,9 @@ function AuditPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            data: [
-              {
-                "How aligned are you on our Observation": selectedDot[0],
-                Comments: comments,
-              },
-            ],
+            email,
+            value: [selectedDot[0], comments],
+            columnToUpdate: "C",
           }),
         }
       );

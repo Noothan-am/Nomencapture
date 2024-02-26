@@ -70,7 +70,7 @@ export default function Review() {
     // );
     try {
       const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+        `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
         {
           method: "PATCH",
           headers: {
@@ -78,20 +78,34 @@ export default function Review() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            data: [
-              {
-                Elaborate: elaborate,
-                "Name set One Rating": selectedDot[0],
-                "Name set Two Rating": selectedDot[1],
-                "Name set Three Rating": selectedDot[2],
-                "Name Set One - Suggestion/Feedback": feedback[0],
-                "Name Set Two - Suggestion/Feedback": feedback[1],
-                "Name Set Three - Suggestion/Feedback": feedback[2],
-                "Which naming set you like the most": favoriteName,
-                "Do you prefer another round?": nextRoundPreference,
-                "Are you completely satisfied with the name?": nameSatisfied,
-              },
+            // data: [
+            //   {
+            //     Elaborate: elaborate,
+            //     "Name set One Rating": selectedDot[0],
+            //     "Name set Two Rating": selectedDot[1],
+            //     "Name set Three Rating": selectedDot[2],
+            //     "Name Set One - Suggestion/Feedback": feedback[0],
+            //     "Name Set Two - Suggestion/Feedback": feedback[1],
+            //     "Name Set Three - Suggestion/Feedback": feedback[2],
+            //     "Which naming set you like the most": favoriteName,
+            //     "Do you prefer another round?": nextRoundPreference,
+            //     "Are you completely satisfied with the name?": nameSatisfied,
+            //   },
+            // ],
+            email,
+            value: [
+              selectedDot[0],
+              selectedDot[1],
+              selectedDot[2],
+              feedback[0],
+              feedback[1],
+              feedback[2],
+              favoriteName,
+              nameSatisfied,
+              nextRoundPreference,
+              elaborate,
             ],
+            columnToUpdate: "H",
           }),
         }
       );
@@ -183,7 +197,7 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "Noothan"]{
+  const query = `*[_type == "NameDetails" && User->Name == "noothan"]{
       Name,
     }`;
 

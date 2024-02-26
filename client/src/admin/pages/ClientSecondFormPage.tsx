@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import CheckBoxQuestions from "../components/CheckBoxQuestions";
-import DescriptionQuestions from "../components/DescriptionQuestions";
-import RadioQuestions from "../components/RadioQuestions";
-import TextQuestions from "../components/TextQuestions";
-import useFormData from "../context/FormContext";
-import useLocalStorage from "../hooks/useLocalStorage";
-const styles = require("../styles/forms.module.css").default;
+import CheckBoxQuestions from "../../components/CheckBoxQuestions";
+import DescriptionQuestions from "../../components/DescriptionQuestions";
+import RadioQuestions from "../../components/RadioQuestions";
+import TextQuestions from "../../components/TextQuestions";
+const styles = require("../../styles/forms.module.css").default;
 
-function SecondFormPage() {
+function ClientSecondFormPage({ allUsersData }: any) {
   const [usp, setUsp] = useState("");
   const [dressColor, setDressColor] = useState("");
   const [productCater, setProductCater] = useState("");
@@ -22,70 +20,72 @@ function SecondFormPage() {
   const [productImpactAsPerson, setProductImpactAsPerson] = useState({});
   const [productFocusOnCity, setProductFocusOnCity] = useState("");
 
-  const { getItem } = useLocalStorage();
-  const { form, setForm }: any = useFormData();
-
   const setDataFromLocalStorage = useCallback(() => {
-    const data = getItem();
-    if (data) {
-      setProductCater(data.productCater);
-      setUsp(data.usp);
-      setProductSegment(data.productSegment);
-      setProductExpansion(data.productExpansion);
-      setLastPhotoDetails(data.lastPhotoDetails);
-      setProductLikeness(data.productLikeness);
-      setProductUnLikeness(data.productUnLikeness);
-      setDressColor(data.dressColor);
-      setProductImpactAsPerson(data.productImpactAsPerson);
-      setProductAchievement(data.productAchievement);
-      setProductImpact(data.productImpact);
-      setProductValues(data.productValues);
-      setProductFocusOnCity(data.productFocusOnCity);
+    window.location.hash = "#secondform";
+    if (allUsersData) {
+      setProductCater(
+        allUsersData["What need does your product / service cater to?"]
+      );
+      setUsp(
+        allUsersData[
+          "What do you think is the differentiating value you provide / What is your USP?"
+        ]
+      );
+      setProductSegment(
+        allUsersData["What price segment does your product/service fall in?"]
+      );
+      setProductExpansion(
+        allUsersData[
+          "Do you see yourself expanding to other cities/regions in future? If yes, where?"
+        ]
+      );
+      setLastPhotoDetails(
+        allUsersData["What was the object you last took a photo of?"]
+      );
+      setProductLikeness(
+        allUsersData[
+          "If your product / service were a person, how would you definitely like it to come across as?"
+        ]
+      );
+      setProductUnLikeness(
+        allUsersData[
+          "If your product / service were a person, how would you definitely not like it to come across as?"
+        ]
+      );
+      setDressColor(
+        allUsersData["What is the color of the dress you wore yesterday?"]
+      );
+      setProductImpactAsPerson(
+        allUsersData[
+          "If your product / service were a person, what kind of impact it would want to create?"
+        ]
+      );
+      setProductAchievement(
+        allUsersData[
+          "How do you think your product / service can achieve the above?"
+        ]
+      );
+      setProductImpact(
+        allUsersData[
+          "What is the ultimate impact you want to create with your product / service? Or WHY does your product / service exist?"
+        ]
+      );
+      setProductValues(
+        allUsersData[
+          "If your product / service were a person, list the values or beliefs it will always stand by?"
+        ]
+      );
+      setProductFocusOnCity(
+        allUsersData[
+          "Do you see yourself expanding to other cities/regions in future? If yes, where?"
+        ]
+      );
     }
   }, []);
 
   useEffect(() => {
     setDataFromLocalStorage();
   }, [setDataFromLocalStorage]);
-
-  const setFormDetails = useCallback(() => {
-    // window.location.hash = "#secondform";
-    const data = {
-      ...form,
-      productCater,
-      usp,
-      productSegment,
-      productExpansion,
-      lastPhotoDetails,
-      productLikeness,
-      productUnLikeness,
-      dressColor,
-      productImpactAsPerson,
-      productAchievement,
-      productImpact,
-      productValues,
-      productFocusOnCity,
-    };
-    setForm(data);
-  }, [
-    productCater,
-    usp,
-    productSegment,
-    productExpansion,
-    lastPhotoDetails,
-    productLikeness,
-    productUnLikeness,
-    dressColor,
-    productFocusOnCity,
-    productImpactAsPerson,
-    productAchievement,
-    productImpact,
-    productValues,
-  ]);
-
-  useEffect(() => {
-    setFormDetails();
-  }, [setFormDetails]);
 
   return (
     <>
@@ -94,11 +94,13 @@ function SecondFormPage() {
           <TextQuestions
             question={"What need does your product / service cater to?"}
             onInputChange={setProductCater}
+            disabled={true}
             value={productCater}
           />
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "What do you think is the differentiating value you provide / What is your USP?"
             }
@@ -107,6 +109,7 @@ function SecondFormPage() {
           />
         </div>
         <RadioQuestions
+          disabled={true}
           question={"What price segment does your product/service fall in?"}
           options={[
             "Mass (Affordable)",
@@ -120,6 +123,7 @@ function SecondFormPage() {
         />
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "What are the cities/regions you're planning to focus on?"
             }
@@ -129,6 +133,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["radio"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "Do you see yourself expanding to other cities/regions in future? If yes, where?"
             }
@@ -138,6 +143,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["email"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "If your product / service were a person, list the values or beliefs it will always stand by?"
             }
@@ -147,6 +153,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["textarea"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "What is the ultimate impact you want to create with your product / service? Or WHY does your product / service exist?"
             }
@@ -159,6 +166,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["textarea"]}>
           <DescriptionQuestions
+            disabled={true}
             question={
               "How do you think your product / service can achieve the above?"
             }
@@ -171,6 +179,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["email"]}>
           <RadioQuestions
+            disabled={true}
             question={
               "If your product / service were a person, what kind of impact it would want to create?"
             }
@@ -187,6 +196,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["email"]}>
           <TextQuestions
+            disabled={true}
             question={"What is the color of the dress you wore yesterday?"}
             onInputChange={setDressColor}
             value={dressColor}
@@ -194,6 +204,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            disabled={true}
             question={
               "If your product / service were a person, how would you DECENTLY LIKE it to come across as?"
             }
@@ -241,6 +252,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["text-2"]}>
           <CheckBoxQuestions
+            disabled={true}
             question={
               "If your product / service were a person, how would you DECENTLY NOT LIKE it to come across as?"
             }
@@ -288,6 +300,7 @@ function SecondFormPage() {
         </div>
         <div className={styles["email"]}>
           <TextQuestions
+            disabled={true}
             question={"What was the object you last took a photo of?"}
             onInputChange={setLastPhotoDetails}
             value={lastPhotoDetails}
@@ -298,4 +311,4 @@ function SecondFormPage() {
   );
 }
 
-export default SecondFormPage;
+export default ClientSecondFormPage;

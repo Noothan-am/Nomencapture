@@ -1,6 +1,12 @@
 const styles = require("../styles/text-questions.module.css").default;
 
-const TextQuestions = ({ question, onInputChange, value, showLink }: any) => {
+const TextQuestions = ({
+  question,
+  onInputChange,
+  value,
+  showLink,
+  disabled,
+}: any) => {
   const handleChange = (event: any) => {
     const data = event.target.value;
     onInputChange(data);
@@ -26,6 +32,7 @@ const TextQuestions = ({ question, onInputChange, value, showLink }: any) => {
           onChange={handleChange}
           value={value}
           type="text"
+          disabled={disabled}
         />
       </div>
     </>

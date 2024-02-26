@@ -1,17 +1,9 @@
 import React, { useEffect, useCallback, useState, useRef } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
-import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import SideBar from "../components/SideBar";
-import Tabs from "../components/Tabs";
-import client from "../utils/sanity-client";
 import { FaRegCirclePause } from "react-icons/fa6";
-import FlagStepper from "../components/FlagStepper";
-import { ToastContainer, toast } from "react-toastify";
-import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+import client from "../../utils/sanity-client";
 
-const styles = require("../styles/audio-page.module.css").default;
+const styles = require("../../styles/audio-page.module.css").default;
 
 const Paragraph = ({ data }: any) => {
   return (
@@ -50,7 +42,10 @@ const AudioComponent = ({
           Your browser does not support the audio tag.
         </audio>
         <div className={styles["audio-spikes"]}>
-          <img src={require("../assets/svg/Playy-voice.svg").default} alt="" />
+          <img
+            src={require("../../assets/svg/Playy-voice.svg").default}
+            alt=""
+          />
         </div>
       </div>
       <div className={styles["audio-input"]}>
@@ -59,6 +54,7 @@ const AudioComponent = ({
             type="text"
             className={styles["input-arrow"]}
             placeholder="Type what you heard"
+            disabled
             value={voiceHeard[soundNo] || ""}
             onChange={(e) => handleChange(e, soundNo)}
           />
@@ -68,71 +64,9 @@ const AudioComponent = ({
   );
 };
 
-const AudioPage = () => {
+const ClientAudioPage = ({ allUserFeedbackData }: any) => {
   const [audioPageDetails, setAudioPageDetails] = useState<any>([]);
   const [voiceHeard, setHeardVoice] = useState<any>({});
-  const { getItem }: any = useLocalStorageForUserDetails();
-
-  const navigate = useNavigate();
-  const handleClickToNextPage = useCallback(async () => {
-    const userData = getItem();
-    const { email } = userData.user;
-    // const { email } = await JSON.parse(
-    //   localStorage.getItem("userDetails") || ""
-    // );
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
-        {
-          method: "PATCH",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            value: [voiceHeard[0], voiceHeard[1], voiceHeard[2]],
-            columnToUpdate: "E",
-          }),
-        }
-      );
-      if (response.status === 200 || response.status === 201) {
-        toast.success("Response submitted!", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        navigate("/naming-set");
-      } else {
-        toast.error("Failed to submit!", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      }
-    } catch (error) {
-      console.log("VoiceHeard not");
-      toast.error("Internal Server Error!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      console.log(error);
-    }
-    navigate("/naming-set");
-  }, [navigate, voiceHeard]);
 
   const getAudioPageData = useCallback(() => {
     client
@@ -161,32 +95,23 @@ const AudioPage = () => {
   }, []);
 
   useEffect(() => {
+    if (allUserFeedbackData) {
+      setHeardVoice({
+        0: allUserFeedbackData["Hear it First - Voice One"],
+        1: allUserFeedbackData["Hear it First - Voice One"],
+        2: allUserFeedbackData["Hear it First - Voice One"],
+      });
+    }
+
     getAudioPageData();
   }, [getAudioPageData]);
 
-  const handleChange = (e: any, no: any) => {
-    setHeardVoice((prev: any) => ({
-      ...prev,
-      [no]: e.target.value,
-    }));
-  };
-
   return (
     <>
-      <ToastContainer />
       <div className={styles["naming-set"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["hero"]}>
-          <div className={styles["sidebar"]}>
-            <SideBar isLogin={false}>
-              <Tabs show={3} />
-            </SideBar>
-          </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper isDisabled={false} currentPage={"Home"} />
               <div className={styles["inital"]}>
                 <h3>Market Considerations</h3>
               </div>
@@ -218,18 +143,11 @@ const AudioPage = () => {
                                 key={index}
                                 soundNo={index}
                                 voiceHeard={voiceHeard}
-                                handleChange={handleChange}
                                 audiofile={audioFile}
                               />
                             );
                           }
                         )}
-                    </div>
-                    <div className={styles["audio-page-button"]}>
-                      <Button
-                        handleClick={handleClickToNextPage}
-                        buttonValue={"PROCEED"}
-                      />
                     </div>
                   </div>
                 </div>
@@ -242,4 +160,4 @@ const AudioPage = () => {
   );
 };
 
-export default AudioPage;
+export default ClientAudioPage;

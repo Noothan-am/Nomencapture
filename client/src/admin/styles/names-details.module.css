@@ -3,7 +3,7 @@
   overflow-y: scroll;
 }
 .tables {
-  width: 74vw;
+  width: 64vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -3,8 +3,6 @@ import Rows from "../components/Rows";
 import moment from "moment";
 const styles = require("../styles/client-details.module.css").default;
 function ClientDetails({ allUsersData }: any) {
-  console.log(allUsersData);
-
   return (
     <div className={styles["client-details"]}>
       <div className={styles["tables"]}>
@@ -26,10 +24,11 @@ function ClientDetails({ allUsersData }: any) {
               allUsersData[name][
                 "Which sector does your product / service belong to?"
               ],
-              "INAI",
-              "0",
+              allUsersData[name]["Name Given"],
+              allUsersData[name]["Pricing"],
             ]}
-            navigate={name}
+            navigate={`/admin/form/${allUsersData[name]["Your Email"]}`}
+            // navigate={"/form"}
           />
         );
       })}

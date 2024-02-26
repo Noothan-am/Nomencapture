@@ -5,10 +5,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { FormContext } from "./context/FormContext";
 import { UserDataContext } from "./context/UserDataContext";
 import { AuthContext } from "./context/AuthContext";
-import {
-  AllNamesDataContext,
-  AllUsersDataContextProvider,
-} from "./context/AdminContext";
+import { AllUsersDataContextProvider } from "./context/AdminContext";
+import { AllNamesDataContext } from "./context/AllNamesDataContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,13 +16,13 @@ root.render(
     <Router>
       <UserDataContext>
         <FormContext>
-          <AuthContext>
+          <AllUsersDataContextProvider>
             <AllNamesDataContext>
-              <AllUsersDataContextProvider>
+              <AuthContext>
                 <App />
-              </AllUsersDataContextProvider>
+              </AuthContext>
             </AllNamesDataContext>
-          </AuthContext>
+          </AllUsersDataContextProvider>
         </FormContext>
       </UserDataContext>
     </Router>

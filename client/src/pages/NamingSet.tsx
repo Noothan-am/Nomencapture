@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
@@ -8,12 +8,17 @@ import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
 import NameList from "./NameList";
 import Nomen from "./Nomen";
+import client from "../utils/sanity-client";
 
 const styles = require("../styles/naming-set.module.css").default;
 
 function NamingSet() {
   const [currentFormPage, setCurrentFormPage] = useState(1);
   const [currentData, setCurrentData] = useState(1);
+  const SamplesImage = useRef<any>(null);
+  const GraphImage = useRef<any>(null);
+  const [name, setNameDetais] = useState<any>({});
+  const [allNamesDetais, setAllNamesDetais] = useState<any>({});
 
   const navigate = useNavigate();
   const handleNomenButtonClick = (number: any) => {
@@ -27,16 +32,58 @@ function NamingSet() {
   const handlePreviousButtonClick = () => {
     setCurrentFormPage(currentFormPage - 1);
   };
+
+  const query = `*[_type == "NameDetails"]{
+      Name,
+      Related,
+      Syllable,
+      NameDescription,
+      LLPNameAvailability,
+      Trademarkability,
+      "GraphImage": GraphImage.asset->url,
+      "SamplesImage": SamplesImage.asset->url,
+      MultilingualNames,
+      NameBenefits,
+      ChatDescription,
+      DomainExtensions,
+      Domains,
+      Dropdown
+    }`;
+
+  const getAudioPageData = useCallback(
+    (currentData: any) => {
+      client
+        .fetch(query)
+        .then((users) => {
+          GraphImage.current = users[currentData].GraphImage;
+          SamplesImage.current = users[currentData].SamplesImage;
+          setNameDetais(users[currentData]);
+          setAllNamesDetais(users);
+        })
+        .catch((error) => {
+          console.error("Error fetching users:", error);
+        });
+    },
+    [query]
+  );
+
   useEffect(() => {
-    console.log(currentData);
-  }, [currentData]);
+    getAudioPageData(currentData);
+  }, [getAudioPageData, currentData]);
 
   const currentPage = () => {
     switch (currentFormPage) {
       case 1:
         return <NameList />;
       case 2:
-        return <Nomen currentData={currentData} />;
+        return (
+          <Nomen
+            currentData={name}
+            GraphImage={GraphImage}
+            SamplesImage={SamplesImage}
+            allNamesDetais={allNamesDetais}
+          />
+        );
       case 3:
         navigate("/review");
         return;

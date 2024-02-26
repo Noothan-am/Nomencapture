@@ -29,7 +29,7 @@ function Admin() {
           </div>
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
-              {renderComponent == 2 ? (
+              {renderComponent === 2 ? (
                 <ClientDetails data={"data"} />
               ) : (
                 <NamesDetails data={"data"} />

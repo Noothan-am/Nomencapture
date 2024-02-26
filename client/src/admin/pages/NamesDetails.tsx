@@ -22,6 +22,18 @@ function NamesDetails({ handleTabClick }: any) {
           "Sector",
           "Captured",
         ]}
+        navigate={"Unava"}
+      />
+      <Rows
+        rows={[
+          "Unavanu",
+          "Name Type",
+          "Syllables",
+          "Class Availability",
+          "Sector",
+          "Captured",
+        ]}
+        navigate={"Unava"}
       />
       <Rows
         rows={[
@@ -32,16 +44,7 @@ function NamesDetails({ handleTabClick }: any) {
           "Sector",
           "Captured",
         ]}
-      />
-      <Rows
-        rows={[
-          "Names",
-          "Name Type",
-          "Syllables",
-          "Class Availability",
-          "Sector",
-          "Captured",
-        ]}
+        navigate={"Unava"}
       />
     </div>
   );

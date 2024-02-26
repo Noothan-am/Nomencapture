@@ -1,0 +1,288 @@
+.hero {
+  display: flex;
+  flex-direction: row;
+}
+
+.nomen-container {
+  width: 100%;
+}
+
+.div {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-height: 50%; */
+  margin: auto;
+  padding: 2rem 1rem;
+  height: 90%;
+}
+
+.form-content {
+  width: 100%;
+}
+
+.nomen-name-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  border: 1.5px solid black;
+  padding: 0px 12px;
+  border-left: none;
+  border-right: none;
+  height: 6.6rem;
+  margin-top: 1rem;
+}
+
+.name h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: "newsreader";
+}
+
+.nomen-leftpart {
+  display: flex;
+  flex: 2 1;
+  flex-direction: row;
+  border: 1.5px solid black;
+  justify-content: space-between;
+  padding-right: 1rem;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.nomen-leftpart ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nomen-leftpart li {
+  list-style: none;
+  color: #626262;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.nomen-leftpart p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  margin-top: 1.2rem;
+}
+
+.nomen-rightpart {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.top-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-info {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  border: 1.5px solid;
+  border-top: none;
+  padding: 6.4px 0rem;
+  border-left: none;
+  border-right: none;
+}
+.name-info p {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+}
+
+.bottom-part p {
+  font-size: 0.65rem;
+}
+
+.available-domains {
+  text-align: start;
+}
+/* .available-domains > span {
+  position: absolute;
+  margin-top: 7rem;
+} */
+.names-more-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.domains-preview h4 {
+  font-size: 0.5rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.domain-box {
+  border: 1px solid rgb(255, 255, 255);
+  background-color: white;
+  padding: -3px 2px;
+  border-radius: 0.5rem;
+}
+
+.domain-box p {
+  font-size: 0.5rem;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+}
+
+.domains-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.name-availability {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.3rem;
+  border: 1.5px solid;
+  border-top: none;
+  padding: 6.4px 0rem;
+  border-left: none;
+  border-right: none;
+}
+
+.availability-info h5 {
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+
+.name-availability h4 {
+  font-size: 0.6rem;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+}
+
+.availability-info h5 {
+  font-size: 0.56rem;
+  font-weight: 600;
+}
+
+.availability-info p {
+  font-size: 0.5rem;
+  font-weight: 400;
+  color: #000000a7;
+}
+
+.chat-box-text {
+  margin-top: -2rem;
+  width: 80%;
+  margin: auto;
+}
+.chat-box-text p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.chatbox {
+  padding-top: 7px;
+  border-bottom: 1.5px solid;
+}
+
+.middlepart {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  height: fit-content;
+  border: 1.5px solid;
+  padding: 0px 0px;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+
+.lastpart {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  height: 100%;
+}
+
+.trademarkability {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 0.6rem;
+  border: 1.5px solid;
+  border-top: none;
+  padding: 3.6px 0rem;
+  border-left: none;
+  border-right: none;
+}
+
+.trademarkability p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 0.5rem;
+}
+.trademarkability h5 {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 0.6rem;
+  margin-top: 7px;
+}
+
+.graph-image img,
+.name-product-preview img {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  position: relative;
+}
+
+.container img {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 0.5rem;
+}
+
+.text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1.2rem;
+  margin-top: -1rem;
+}
+
+.text-container p {
+  text-align: start;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1rem;
+}

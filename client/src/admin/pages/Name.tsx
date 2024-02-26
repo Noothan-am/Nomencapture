@@ -1,25 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import { IoLockClosed } from "react-icons/io5";
-import client from "../utils/sanity-client";
+import client from "../../utils/sanity-client";
+import { useParams } from "react-router-dom";
 
-const styles = require("../styles/nomen.module.css").default;
+const styles = require("../styles/name.module.css").default;
 
-const NomenContentTemplate = ({
-  currentData,
-  SamplesImage,
-  GraphImage,
-}: any) => {
-  // const SamplesImage = useRef<any>(null);
-  // const GraphImage = useRef<any>(null);
-  // const [name, setNameDetais] = useState<any>({});
-  // const [allNamesDetais, setAllNamesDetais] = useState<any>({});
+const Name = () => {
+  const SamplesImage = useRef<any>(null);
+  const GraphImage = useRef<any>(null);
+  const [nameDetails, setNameDetais] = useState<any>({});
 
-  useEffect(() => {
-    console.log(currentData);
-  }, [currentData]);
+  const { name } = useParams();
 
-  const query = `*[_type == "NameDetails"]{
+  const query = `*[_type == "NameDetails" && Name == "${name}"]{
       Name,
       Related,
       Syllable,
@@ -36,26 +30,23 @@ const NomenContentTemplate = ({
       Dropdown
     }`;
 
-  // const getAudioPageData = useCallback(
-  //   (currentData: any) => {
-  //     client
-  //       .fetch(query)
-  //       .then((users) => {
-  //         GraphImage.current = users[currentData].GraphImage;
-  //         SamplesImage.current = users[currentData].SamplesImage;
-  //         setNameDetais(users[currentData]);
-  //         setAllNamesDetais(users);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching users:", error);
-  //       });
-  //   },
-  //   [query]
-  // );
+  const getAudioPageData = useCallback(() => {
+    client
+      .fetch(query)
+      .then((users) => {
+        console.log("Users", users[0]);
+        GraphImage.current = users[0].GraphImage;
+        SamplesImage.current = users[0].SamplesImage;
+        setNameDetais(users[0]);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, [query]);
 
-  // useEffect(() => {
-  //   getAudioPageData(currentData);
-  // }, [getAudioPageData, currentData]);
+  useEffect(() => {
+    getAudioPageData();
+  }, [getAudioPageData]);
 
   return (
     <>
@@ -63,32 +54,32 @@ const NomenContentTemplate = ({
         <section className={styles["nomen-name-container"]}>
           <div className={styles["nomen-leftpart"]}>
             <div className={styles["name"]}>
-              <h1>{currentData.Name}</h1>
+              <h1>{nameDetails.Name}</h1>
             </div>
             <ul>
-              {currentData.MultilingualNames &&
-                Object.keys(currentData.MultilingualNames).map((key: any) => {
+              {nameDetails.MultilingualNames &&
+                Object.keys(nameDetails.MultilingualNames).map((key: any) => {
                   return (
                     <>
-                      <li>{currentData.MultilingualNames[key]}</li>
+                      <li>{nameDetails.MultilingualNames[key]}</li>
                     </>
                   );
                 })}
             </ul>
-            <p>{currentData.Related}</p>
+            <p>{nameDetails.Related}</p>
           </div>
           <div className={styles["nomen-rightpart"]}>
             <div className={styles["top-part"]}>
-              <div className={styles["values"]}>{currentData.Dropdown}</div>
+              <div className={styles["values"]}>{nameDetails.Dropdown}</div>
               <div className={styles["syllables"]}>
                 <p>
-                  <span>{currentData.Syllable}</span> Syllables
+                  <span>{nameDetails.Syllable}</span> Syllables
                 </p>
               </div>
               <div className={styles["available-domains"]}>
                 <p>
-                  {currentData.DomainExtensions &&
-                  currentData.DomainExtensions.includes(".com") ? (
+                  {nameDetails.DomainExtensions &&
+                  nameDetails.DomainExtensions.includes(".com") ? (
                     <IoMdRadioButtonOn />
                   ) : (
                     <IoMdRadioButtonOff />
@@ -96,8 +87,8 @@ const NomenContentTemplate = ({
                   <span>.com</span>
                 </p>
                 <p>
-                  {currentData.DomainExtensions &&
-                  currentData.DomainExtensions.includes(".in") ? (
+                  {nameDetails.DomainExtensions &&
+                  nameDetails.DomainExtensions.includes(".in") ? (
                     <IoMdRadioButtonOn />
                   ) : (
                     <IoMdRadioButtonOff />
@@ -116,11 +107,11 @@ const NomenContentTemplate = ({
           </div>
         </section>
         <section className={styles["name-info"]}>
-          {currentData.NameBenefits &&
-            Object.keys(currentData.NameBenefits).map((key: any) => {
+          {nameDetails.NameBenefits &&
+            Object.keys(nameDetails.NameBenefits).map((key: any) => {
               return (
                 <>
-                  <p>+ {currentData.NameBenefits[key]}</p>
+                  <p>+ {nameDetails.NameBenefits[key]}</p>
                 </>
               );
             })}
@@ -130,37 +121,37 @@ const NomenContentTemplate = ({
             <div className={styles["chatbox"]}>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-1.png")}
+                  src={require("../../assets/images/chatbox-1.png")}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
                   <p>
-                    {currentData.ChatDescription &&
-                      currentData.ChatDescription.Chatbox1}
+                    {nameDetails.ChatDescription &&
+                      nameDetails.ChatDescription.Chatbox1}
                   </p>
                 </div>
               </div>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-2.png")}
+                  src={require("../../assets/images/chatbox-2.png")}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
                   <p>
-                    {currentData.ChatDescription &&
-                      currentData.ChatDescription.Chatbox2}
+                    {nameDetails.ChatDescription &&
+                      nameDetails.ChatDescription.Chatbox2}
                   </p>
                 </div>
               </div>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-3.png")}
+                  src={require("../../assets/images/chatbox-3.png")}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
                   <p>
-                    {currentData.ChatDescription &&
-                      currentData.ChatDescription.Chatbox3}
+                    {nameDetails.ChatDescription &&
+                      nameDetails.ChatDescription.Chatbox3}
                   </p>
                 </div>
               </div>
@@ -172,7 +163,7 @@ const NomenContentTemplate = ({
                   <span>
                     <IoLockClosed />
                   </span>
-                  {currentData.Domains && currentData.Domains.Domain1}
+                  {nameDetails.Domains && nameDetails.Domains.Domain1}
                 </p>
               </div>
               <div className={styles["domain-box"]}>
@@ -180,7 +171,7 @@ const NomenContentTemplate = ({
                   <span>
                     <IoLockClosed />
                   </span>
-                  {currentData.Domains && currentData.Domains.Domain2}
+                  {nameDetails.Domains && nameDetails.Domains.Domain2}
                 </p>
               </div>
             </div>
@@ -189,7 +180,7 @@ const NomenContentTemplate = ({
             <div className={styles["name-availability"]}>
               <h4>LLP NAME AVAILABILITY</h4>
               <div className={styles["availability-info"]}>
-                <h5>{currentData.LLPNameAvailability}</h5>
+                <h5>{nameDetails.LLPNameAvailability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
               </div>
             </div>
@@ -204,7 +195,7 @@ const NomenContentTemplate = ({
                 <h5>CLASS 29,30,31,32</h5>
               </div>
               <div className={styles["availability-info"]}>
-                <h5>{currentData.Trademarkability}</h5>
+                <h5>{nameDetails.Trademarkability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
               </div>
             </div>
@@ -218,4 +209,4 @@ const NomenContentTemplate = ({
   );
 };
 
-export default NomenContentTemplate;
+export default Name;

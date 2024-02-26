@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoutes from "./ProtectedRoutes";
+import { ClientProtectedRoutes, AdminProtectedRoutes } from "./ProtectedRoutes";
 import AudioPage from "./pages/AudioPage";
 import AuditPage from "./pages/AuditPage";
 import FinalGreetings from "./pages/FinalGreetings";
@@ -16,14 +16,18 @@ import YourName from "./pages/YourName";
 
 import "./index.css";
 import Admin from "./admin/pages/Admin";
+import Name from "./admin/pages/Name";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/admin" element={<Admin />} />
-      <Route element={<ProtectedRoutes />}>
+      <Route element={<AdminProtectedRoutes />}>
+        <Route path="/admin/home" element={<Admin />} />
+        <Route path="/admin/name/:name" element={<Name />} />
+      </Route>
+      <Route element={<ClientProtectedRoutes />}>
         <Route path="/thankyou" element={<Thankyou />} />
         <Route path="/form" element={<Forms />} />
         <Route path="/home" element={<Home />} />

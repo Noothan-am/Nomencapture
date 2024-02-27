@@ -26,6 +26,7 @@ export const AllNamesDataContext = ({ children }: any) => {
     client
       .fetch(query)
       .then((allNames) => {
+        console.log("sanity function running");
         var data: any = {};
         allNames.map((eachName: any) => {
           data[eachName.Name] = eachName;
@@ -54,20 +55,42 @@ export const useAllNamesData = () => {
   return context;
 };
 
-// export const AllUsersDataContextProvider = ({ children }: any) => {
-//   const [allUsersData, setAllUsersData] = useState<any>(null);
+export const AllUsersDataContextProvider = ({ children }: any) => {
+  const [allUsersData, setAllUsersData] = useState<any>(null);
 
-//   return (
-//     <AllUsersDataContext.Provider value={{ allUsersData, setAllUsersData }}>
-//       {children}
-//     </AllUsersDataContext.Provider>
-//   );
-// };
+  useEffect(() => {
+    (async () => {
+      fetch("https://sheetdb.io/api/v1/9njehnbkbt0z9?sheet=form-responses", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((allUserFormData) => {
+          var data: any = {};
+          allUserFormData.map((eachName: any) => {
+            data[eachName["Your Name"]] = eachName;
+          });
+          setAllUsersData(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    })();
+  }, []);
 
-// export const useAllUsersData = () => {
-//   const context = useContext(AllUsersDataContext);
-//   if (context === undefined) {
-//     throw new Error("Auth context must be used within a AuthProvider");
-//   }
-//   return context;
-// };
+  return (
+    <AllUsersData.Provider value={{ allUsersData }}>
+      {children}
+    </AllUsersData.Provider>
+  );
+};
+
+export const useAllUsersData = () => {
+  const context = useContext(AllUsersData);
+  if (context === undefined) {
+    throw new Error("Auth context must be used within a AuthProvider");
+  }
+  return context;
+};

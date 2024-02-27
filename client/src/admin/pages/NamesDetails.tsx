@@ -1,7 +1,7 @@
 import Rows from "../components/Rows";
 const styles = require("../styles/names-details.module.css").default;
 
-function NamesDetails({ allNamesData }: any) {
+function NamesDetails({ allNamesData, allUsersData }: any) {
   return (
     <div className={styles["names-details"]}>
       <div className={styles["tables"]}>

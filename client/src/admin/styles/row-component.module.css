@@ -4,14 +4,14 @@
 }
 
 .values {
-  width: 70vw;
+  width: 75vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
 .values > p {
-  width: 10rem;
+  width: 16rem;
   cursor: pointer;
   font-weight: 400;
   font-family: "Inter", sans-serif;

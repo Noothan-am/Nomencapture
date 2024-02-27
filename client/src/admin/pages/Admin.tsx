@@ -4,13 +4,14 @@ import SideBar from "../../components/SideBar";
 import AdminTabs from "../components/AdminTabs";
 import ClientDetails from "./ClientDetails";
 import NamesDetails from "./NamesDetails";
-import { useAllNamesData } from "../../context/AdminContext";
+import { useAllNamesData, useAllUsersData } from "../../context/AdminContext";
 
 const styles = require("../styles/admin.module.css").default;
 
 function Admin() {
   const [renderComponent, setRenderComponent] = useState(1);
   const allNamesData: any = useAllNamesData();
+  const allUsersData: any = useAllUsersData();
 
   const handleTabClick = (tabNumber: number) => {
     setRenderComponent(tabNumber);
@@ -34,9 +35,15 @@ function Admin() {
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
               {renderComponent === 2 ? (
-                <ClientDetails data={"data"} />
+                <ClientDetails
+                  data={"data"}
+                  allUsersData={allUsersData.allUsersData}
+                />
               ) : (
-                <NamesDetails allNamesData={allNamesData} />
+                <NamesDetails
+                  allNamesData={allNamesData}
+                  allUsersData={allUsersData}
+                />
               )}
             </div>
           </div>

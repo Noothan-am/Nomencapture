@@ -1,5 +1,6 @@
 .names-details {
   width: 100%;
+  overflow-y: scroll;
 }
 .tables {
   width: 70vw;

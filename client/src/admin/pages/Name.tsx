@@ -3,6 +3,7 @@ import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 import { IoLockClosed } from "react-icons/io5";
 import client from "../../utils/sanity-client";
 import { useParams } from "react-router-dom";
+import { useAllNamesData } from "../../context/AdminContext";
 
 const styles = require("../styles/name.module.css").default;
 
@@ -11,42 +12,50 @@ const Name = () => {
   const GraphImage = useRef<any>(null);
   const [nameDetails, setNameDetais] = useState<any>({});
 
-  const { name } = useParams();
-
-  const query = `*[_type == "NameDetails" && Name == "${name}"]{
-      Name,
-      Related,
-      Syllable,
-      NameDescription,
-      LLPNameAvailability,
-      Trademarkability,
-      "GraphImage": GraphImage.asset->url,
-      "SamplesImage": SamplesImage.asset->url,
-      MultilingualNames,
-      NameBenefits,
-      ChatDescription,
-      DomainExtensions,
-      Domains,
-      Dropdown
-    }`;
-
-  const getAudioPageData = useCallback(() => {
-    client
-      .fetch(query)
-      .then((users) => {
-        console.log("Users", users[0]);
-        GraphImage.current = users[0].GraphImage;
-        SamplesImage.current = users[0].SamplesImage;
-        setNameDetais(users[0]);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
-  }, [query]);
+  const allNamesData: any = useAllNamesData();
+  const { name }: any = useParams();
 
   useEffect(() => {
-    getAudioPageData();
-  }, [getAudioPageData]);
+    const nameData = allNamesData[name];
+    GraphImage.current = allNamesData[name].GraphImage;
+    SamplesImage.current = allNamesData[name].SamplesImage;
+    setNameDetais(nameData);
+  }, [allNamesData, name]);
+
+  // const query = `*[_type == "NameDetails" && Name == "${name}"]{
+  //     Name,
+  //     Related,
+  //     Syllable,
+  //     NameDescription,
+  //     LLPNameAvailability,
+  //     Trademarkability,
+  //     "GraphImage": GraphImage.asset->url,
+  //     "SamplesImage": SamplesImage.asset->url,
+  //     MultilingualNames,
+  //     NameBenefits,
+  //     ChatDescription,
+  //     DomainExtensions,
+  //     Domains,
+  //     Dropdown
+  //   }`;
+
+  // const getAudioPageData = useCallback(() => {
+  //   client
+  //     .fetch(query)
+  //     .then((users) => {
+  //       console.log("Users", users[0]);
+  //       GraphImage.current = users[0].GraphImage;
+  //       SamplesImage.current = users[0].SamplesImage;
+  //       setNameDetais(users[0]);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching users:", error);
+  //     });
+  // }, [query]);
+
+  // useEffect(() => {
+  //   getAudioPageData();
+  // }, [getAudioPageData]);
 
   return (
     <>

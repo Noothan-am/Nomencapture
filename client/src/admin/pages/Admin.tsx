@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import AdminTabs from "../components/AdminTabs";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
+import AdminTabs from "../components/AdminTabs";
 import ClientDetails from "./ClientDetails";
 import NamesDetails from "./NamesDetails";
+import { useAllNamesData } from "../../context/AdminContext";
 
 const styles = require("../styles/admin.module.css").default;
 
 function Admin() {
   const [renderComponent, setRenderComponent] = useState(1);
+  const allNamesData: any = useAllNamesData();
+
   const handleTabClick = (tabNumber: number) => {
     setRenderComponent(tabNumber);
   };
+
   return (
     <>
       <div className={styles["forms"]}>
@@ -32,7 +36,7 @@ function Admin() {
               {renderComponent === 2 ? (
                 <ClientDetails data={"data"} />
               ) : (
-                <NamesDetails data={"data"} />
+                <NamesDetails allNamesData={allNamesData} />
               )}
             </div>
           </div>

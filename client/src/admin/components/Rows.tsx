@@ -6,8 +6,6 @@ function Rows({ rows, navigate }: any) {
   return (
     <div className={styles["row-component"]}>
       <div className={styles["values"]}>
-        {/* {rows.map((row: any) => (
-         ))} */}
         <Link to={`/admin/name/${navigate}`}>
           <p className={styles["heading"]}>{rows[0]}</p>
         </Link>

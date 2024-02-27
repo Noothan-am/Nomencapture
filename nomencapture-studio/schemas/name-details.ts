@@ -35,8 +35,9 @@ export default {
       type: 'string',
       options: {
         list: [
-          {title: 'English', value: 'en'},
-          {title: 'Spanish', value: 'es'},
+          {title: 'Descriptive', value: 'Descriptive'},
+          {title: 'Suggestive', value: 'Suggestive'},
+          {title: 'Abstract', value: 'Abstract'},
         ],
       },
     },

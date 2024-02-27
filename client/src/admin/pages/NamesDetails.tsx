@@ -1,8 +1,7 @@
-import React from "react";
 import Rows from "../components/Rows";
 const styles = require("../styles/names-details.module.css").default;
 
-function NamesDetails({ handleTabClick }: any) {
+function NamesDetails({ allNamesData }: any) {
   return (
     <div className={styles["names-details"]}>
       <div className={styles["tables"]}>
@@ -13,39 +12,22 @@ function NamesDetails({ handleTabClick }: any) {
         <p>Sector</p>
         <p>Captured</p>
       </div>
-      <Rows
-        rows={[
-          "Names",
-          "Name Type",
-          "Syllables",
-          "Class Availability",
-          "Sector",
-          "Captured",
-        ]}
-        navigate={"Unava"}
-      />
-      <Rows
-        rows={[
-          "Unavanu",
-          "Name Type",
-          "Syllables",
-          "Class Availability",
-          "Sector",
-          "Captured",
-        ]}
-        navigate={"Unava"}
-      />
-      <Rows
-        rows={[
-          "Names",
-          "Name Type",
-          "Syllables",
-          "Class Availability",
-          "Sector",
-          "Captured",
-        ]}
-        navigate={"Unava"}
-      />
+
+      {Object.keys(allNamesData).map((name: any) => {
+        return (
+          <Rows
+            rows={[
+              name,
+              allNamesData[name].Dropdown,
+              allNamesData[name].Syllable,
+              allNamesData[name].Trademarkability,
+              "sector",
+              "Captured",
+            ]}
+            navigate={name}
+          />
+        );
+      })}
     </div>
   );
 }

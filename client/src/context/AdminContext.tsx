@@ -15,8 +15,6 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
       })
         .then((res) => res.json())
         .then((allUserFormData) => {
-          console.log(allUserFormData);
-
           setAllUsersData(allUserFormData);
         })
         .catch((error) => {
@@ -35,8 +33,6 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
       })
         .then((res) => res.json())
         .then((allUserFeedbackData) => {
-          console.log(allUserFeedbackData);
-
           setAllUserFeedbackData(allUserFeedbackData);
         })
         .catch((error) => {

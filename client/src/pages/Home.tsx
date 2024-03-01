@@ -16,15 +16,13 @@ function Home() {
   const { getItem }: any = useLocalStorageForUserDetails();
   const userData = getItem();
   const { name, email } = userData.user;
+  console.log(email);
 
-  const query =
-    '*[_type == "Greetings" && User->Name == "noothan"]{Intro, FirstPoint, SecondPoint, Outro}';
+  const query = `*[_type == "Greetings" && User->Email == "${email}"]{Intro, FirstPoint, SecondPoint, Outro}`;
   const fetchGreetingsData = useCallback(async () => {
     client
       .fetch(query)
       .then((users) => {
-        console.log({ users });
-
         setGreetingsData({
           intro: users[0].Intro,
           firstPoint: users[0].FirstPoint,

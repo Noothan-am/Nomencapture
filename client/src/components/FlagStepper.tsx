@@ -21,20 +21,20 @@ function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
       <div className={styles["nomen-sections"]}>
         <ul>
           <button
-            disabled={isDisabled === 1}
-            onClick={() => handleNomenButtonClick(1)}
+            disabled={isDisabled === 0}
+            onClick={() => handleNomenButtonClick(0)}
           >
             <li>NOMEN 1 /</li>
           </button>
           <button
-            disabled={isDisabled === 1}
-            onClick={() => handleNomenButtonClick(2)}
+            disabled={isDisabled === 0}
+            onClick={() => handleNomenButtonClick(1)}
           >
             <li>NOMEN 2 /</li>
           </button>
           <button
-            disabled={isDisabled === 1}
-            onClick={() => handleNomenButtonClick(3)}
+            disabled={isDisabled === 0}
+            onClick={() => handleNomenButtonClick(2)}
           >
             <li>NOMEN 3</li>
           </button>

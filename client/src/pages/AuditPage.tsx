@@ -57,13 +57,16 @@ function AuditPage() {
       await submitReview();
     }
   };
-  const query =
-    '*[_type == "AuditPage" && User->Name == "noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
+    const userData = getItem();
+
+    const query = `*[_type == "AuditPage" && User->Email == "${userData.user.email}"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}`;
     client
       .fetch(query)
       .then((users: any) => {
+        console.log({ users });
+
         let accordionData: any = Object.entries(users[0]).map((data: any) => {
           return {
             title: data[1].question,
@@ -80,9 +83,6 @@ function AuditPage() {
   const submitReview = useCallback(async () => {
     const userData = getItem();
     const { email } = userData.user;
-    // const { email } = await JSON.parse(
-    //   localStorage.getItem("userDetails") || ""
-    // );
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,

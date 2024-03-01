@@ -72,14 +72,10 @@ const AudioPage = () => {
   const [audioPageDetails, setAudioPageDetails] = useState<any>([]);
   const [voiceHeard, setHeardVoice] = useState<any>({});
   const { getItem }: any = useLocalStorageForUserDetails();
-
+  const userData = getItem();
+  const { email } = userData.user;
   const navigate = useNavigate();
   const handleClickToNextPage = useCallback(async () => {
-    const userData = getItem();
-    const { email } = userData.user;
-    // const { email } = await JSON.parse(
-    //   localStorage.getItem("userDetails") || ""
-    // );
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
@@ -119,7 +115,6 @@ const AudioPage = () => {
         });
       }
     } catch (error) {
-      console.log("VoiceHeard not");
       toast.error("Internal Server Error!", {
         position: "top-right",
         autoClose: 2000,
@@ -137,22 +132,11 @@ const AudioPage = () => {
   const getAudioPageData = useCallback(() => {
     client
       .fetch(
-        `
-      *[_type == "NamingSet" && User->Name == "noothan"] {
-          MainDescription,
-          Description1,
-          Description2,
-          Description3,
-          Description4,
-          "audioFiles": [
-            Audio1.asset->url,
-            Audio2.asset->url,
-            Audio3.asset->url
-          ]
-      }
-    `
+        `*[_type == "NamingSet" && User->Email == "${email}"] {MainDescription,Description1,Description2,Description3,Description4,"audioFiles": [Audio1.asset->url,Audio2.asset->url,Audio3.asset->url]}`
       )
       .then((users) => {
+        console.log("users", users);
+
         setAudioPageDetails(users[0]);
       })
       .catch((error) => {

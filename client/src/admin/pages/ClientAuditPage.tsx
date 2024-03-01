@@ -40,7 +40,7 @@ function ClientAuditPage({
   const [comments, setComments] = useState("");
 
   const query =
-    '*[_type == "AuditPage" && User->Name == "noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+    '*[_type == "AuditPage" && User->Email == "noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
 
   const fetchUser = useCallback(async () => {
     setSelectedDot(

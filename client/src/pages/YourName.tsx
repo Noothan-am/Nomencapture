@@ -8,6 +8,7 @@ import { FaGreaterThan } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 const styles = require("../styles/your-name.module.css").default;
 
 function YourName() {
@@ -17,7 +18,9 @@ function YourName() {
 
   const audioRef = useRef<any>(null);
   const { name } = useParams();
-
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
   const navigate = useNavigate();
 
   const handleNextButtonClick = () => {
@@ -34,7 +37,7 @@ function YourName() {
   };
 
   const fetchFavoriteNameDetails = useCallback(() => {
-    const query = `*[_type == "NameDetails" && User->Name == "noothan" && Name == "${name}"]{
+    const query = `*[_type == "NameDetails" && User->Email == "${email}" && Name == "${name}"]{
       Name,
       PhonemicSymbol,
       ShortDescription,

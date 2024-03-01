@@ -22,7 +22,6 @@ export function AuthContext({ children }: any) {
         setUserInfo({ data, isValid: data.isValid });
         return { data, isValid: data.isValid };
       } else {
-        console.log("user is not valid");
         const data = {};
         setUserInfo({ data, isValid: false });
         return { data, isValid: false };

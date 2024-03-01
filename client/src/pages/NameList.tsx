@@ -1,13 +1,17 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import client from "../utils/sanity-client";
 import FlagStepper from "../components/FlagStepper";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/name-list.module.css").default;
 
 function NameList() {
   const nameListImg = useRef<any>(null);
-  const query =
-    '*[_type == "NamingSet" && User->Name == "noothan"]{"PlayersNames": PlayersNames.asset->url}';
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
+
+  const query = `*[_type == "NamingSet" && User->Email == "${email}"]{"PlayersNames": PlayersNames.asset->url}`;
   const getAudioPageData = useCallback(() => {
     client
       .fetch(query)

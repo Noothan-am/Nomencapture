@@ -5,8 +5,6 @@ const DotsRow = ({ index, selectedDot, setSelectedDot, disabled }: any) => {
   const handleDotClick = (value: any) => {
     setSelectedDot({ ...selectedDot, [index]: value + 1 });
   };
-  console.log({ selectedDot });
-
   return (
     <div className={styles["dots-container"]}>
       {Array.from({ length: 5 }, (_, currentIndex) => (

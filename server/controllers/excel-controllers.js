@@ -199,7 +199,6 @@ const setFeedbackData = async (req, res) => {
 };
 
 const updateFeedbackData = async (req, res) => {
-  console.log("i am here from ");
   const { email, columnToUpdate, value } = req.body;
   const client = await auth.getClient();
 

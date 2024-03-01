@@ -9,16 +9,20 @@ import Tabs from "../components/Tabs";
 import NameList from "./NameList";
 import Nomen from "./Nomen";
 import client from "../utils/sanity-client";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/naming-set.module.css").default;
 
 function NamingSet() {
   const [currentFormPage, setCurrentFormPage] = useState(1);
-  const [currentData, setCurrentData] = useState(1);
+  const [currentData, setCurrentData] = useState(0);
   const SamplesImage = useRef<any>(null);
   const GraphImage = useRef<any>(null);
   const [name, setNameDetais] = useState<any>({});
   const [allNamesDetais, setAllNamesDetais] = useState<any>({});
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
 
   const navigate = useNavigate();
   const handleNomenButtonClick = (number: any) => {
@@ -33,7 +37,7 @@ function NamingSet() {
     setCurrentFormPage(currentFormPage - 1);
   };
 
-  const query = `*[_type == "NameDetails"]{
+  const query = `*[_type == "NameDetails" && User->Email == "${email}"]{
       Name,
       Related,
       Syllable,
@@ -55,6 +59,10 @@ function NamingSet() {
       client
         .fetch(query)
         .then((users) => {
+          console.log(currentData);
+
+          console.log(users[currentData]);
+
           GraphImage.current = users[currentData].GraphImage;
           SamplesImage.current = users[currentData].SamplesImage;
           setNameDetais(users[currentData]);

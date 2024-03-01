@@ -27,7 +27,6 @@ export const AllNamesDataContext = ({ children }: any) => {
     client
       .fetch(query)
       .then((allNames: any) => {
-        console.log("sanity function running", allNames);
         var data: any = {};
         allNames.map((eachName: any) => {
           data[eachName.Name] = eachName;

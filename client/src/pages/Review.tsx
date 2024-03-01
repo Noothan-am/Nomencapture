@@ -119,7 +119,7 @@ export default function Review() {
           progress: undefined,
           theme: "dark",
         });
-        navigate("/naming-set");
+        // navigate("/naming-set");
       } else {
         toast.error("Failed to submit!", {
           position: "top-right",
@@ -197,14 +197,14 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "noothan"]{
-      Name,
-    }`;
+  const query = `*[_type == "NameDetails" && User->Email == "${email}"]{Name}`;
 
   const fetchAllNames = useCallback(async () => {
     client
       .fetch(query)
       .then(async (users) => {
+        console.log(users);
+
         setAllNames(users);
       })
       .catch((error) => {

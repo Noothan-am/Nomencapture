@@ -168,8 +168,6 @@ function ClientFormFirstPage({ allUsersData, usermail }: any) {
     // if (allUsersData) {
     // const value = allUsersData[usermail];
     if (allUsersData) {
-      console.log({ allUsersData });
-
       setName(allUsersData["Your Name"]);
       setEmail(allUsersData["Your Email"]);
       setGoToPlace(allUsersData["Your favourite go to place for peace?"]);

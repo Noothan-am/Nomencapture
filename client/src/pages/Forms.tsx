@@ -369,7 +369,6 @@ function Forms() {
       "no",
       "yes",
     ];
-    console.log(dataArray);
 
     try {
       const response = await fetch(

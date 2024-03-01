@@ -50,7 +50,6 @@ function UserFormsData() {
     if (allUsersData) {
       const userDetails = allUsersData[usermail];
       const userFeedbackData = allUserFeedbackData[usermail];
-      console.log({ userFeedbackData });
       switch (currentFormPage) {
         case 1:
           return (

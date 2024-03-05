@@ -10,6 +10,11 @@ export default {
       to: [{type: 'User'}],
     },
     {
+      name: 'Round',
+      type: 'number',
+      title: 'Round',
+    },
+    {
       name: 'Name',
       type: 'string',
       title: 'Brand Name',

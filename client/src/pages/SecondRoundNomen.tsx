@@ -9,6 +9,7 @@ import SecondroundStepper from "../components/SecondRoundStepper";
 import Button from "../components/Button";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
 const styles = require("../styles/nomen.module.css").default;
 
@@ -19,12 +20,15 @@ const SecondRoundNomen = () => {
   const [allNamesDetais, setAllNamesDetais] = useState<any>({});
   const [currentFormPage, setCurrentFormPage] = useState<any>(1);
   const [currentData, setCurrentData] = useState(1);
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
 
   const navigation = useNavigate();
 
   const handleNextButtonClick = () => {
     setCurrentFormPage(currentFormPage + 1);
-    if (currentData >= 2) {
+    if (currentData >= 1) {
       navigation("/second-round-review");
     }
     setCurrentData((prev) => prev + 1);
@@ -32,13 +36,13 @@ const SecondRoundNomen = () => {
 
   const handlePreviousButtonClick = () => {
     setCurrentFormPage(currentFormPage - 1);
-    if (currentData < 2) {
+    if (currentData < 1) {
       return;
     }
     setCurrentData((prev) => prev - 1);
   };
 
-  const query = `*[_type == "NameDetails"  ]{
+  const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 2 ]{
       Name,
       Related,
       Syllable,
@@ -60,6 +64,8 @@ const SecondRoundNomen = () => {
       client
         .fetch(query)
         .then((users) => {
+          console.log({ users });
+
           GraphImage.current = users[currentData].GraphImage;
           SamplesImage.current = users[currentData].SamplesImage;
           setNameDetais(users[currentData]);
@@ -72,6 +78,8 @@ const SecondRoundNomen = () => {
     [query]
   );
   const handleNomenButtonClick = (number: any) => {
+    console.log({ number });
+
     setCurrentData(number);
   };
 
@@ -93,7 +101,7 @@ const SecondRoundNomen = () => {
           </div>
           <div className={styles["nomen-hero-container"]}>
             <SecondroundStepper
-              isDisabled={0}
+              isDisabled={1}
               currentPage={"Home"}
               handleNomenButtonClick={handleNomenButtonClick}
             />

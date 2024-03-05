@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoMdHome } from "react-icons/io";
 import { TiFlag } from "react-icons/ti";
 const styles = require("../styles/second-stepper.module.css").default;
@@ -8,6 +8,9 @@ function SecondroundStepper({
   isDisabled,
   currentPage,
 }: any) {
+  useEffect(() => {
+    console.log(currentPage);
+  }, []);
   return (
     // <div className={styles["flag-stepper"]}>
     //   <div className={styles["nomen-sections"]}>
@@ -34,14 +37,14 @@ function SecondroundStepper({
       <div className={styles["nomen-sections"]}>
         <ul>
           <button
-            disabled={isDisabled === 1}
-            onClick={() => handleNomenButtonClick(1)}
+            disabled={isDisabled === 0}
+            onClick={() => handleNomenButtonClick(0)}
           >
             <li>NOMEN 1 /</li>
           </button>
           <button
-            disabled={isDisabled === 1}
-            onClick={() => handleNomenButtonClick(2)}
+            disabled={isDisabled === 0}
+            onClick={() => handleNomenButtonClick(1)}
           >
             <li>NOMEN 2 /</li>
           </button>

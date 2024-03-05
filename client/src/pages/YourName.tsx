@@ -76,7 +76,7 @@ function YourName() {
             </SideBar>
           </div>
           <div className={styles["div"]}>
-            <FlagStepper isDisabled={1} currentPage={"Final"} />
+            <FlagStepper isDisabled={0} currentPage={"Final"} />
             <div className={styles["form-content"]}>
               <div className={styles["content"]}>
                 <div className={styles["top-part"]}>

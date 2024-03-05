@@ -37,7 +37,7 @@ function NamingSet() {
     setCurrentFormPage(currentFormPage - 1);
   };
 
-  const query = `*[_type == "NameDetails" && User->Email == "${email}"]{
+  const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 1 ]{
       Name,
       Related,
       Syllable,
@@ -51,7 +51,8 @@ function NamingSet() {
       ChatDescription,
       DomainExtensions,
       Domains,
-      Dropdown
+      Dropdown,
+      Round
     }`;
 
   const getAudioPageData = useCallback(
@@ -59,7 +60,7 @@ function NamingSet() {
       client
         .fetch(query)
         .then((users) => {
-          console.log(currentData);
+          console.log({ users });
 
           console.log(users[currentData]);
 
@@ -95,10 +96,6 @@ function NamingSet() {
       case 3:
         navigate("/review");
         return;
-      // case 4:
-      //   return <YourName />;
-      // case 5:
-      //   return <FinalGreetings />;
     }
   };
   return (

@@ -153,8 +153,6 @@ export default function Review() {
   ]);
 
   const handleSubmitButtonClick = useCallback(() => {
-    // const data: any = localStorage.getItem("userDetails");
-    // const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
         if (nextRoundPreference === "No") {
@@ -197,7 +195,7 @@ export default function Review() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Email == "${email}"]{Name}`;
+  const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 1 ]{Name}`;
 
   const fetchAllNames = useCallback(async () => {
     client
@@ -240,7 +238,7 @@ export default function Review() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper isDisabled={1} currentPage={"Home"} />
+              <FlagStepper isDisabled={0} currentPage={"Home"} />
               <div className={styles["form-content"]}>
                 <div className={styles["form-content"]}>
                   <div className={styles["first-part"]}>

@@ -72,7 +72,7 @@ export default function SecondRoundReview() {
     // );
     try {
       const response = await fetch(
-        `https://sheetdb.io/api/v1/9njehnbkbt0z9/Email/${email}?sheet=feedback-sheet`,
+        `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
         {
           method: "PATCH",
           headers: {
@@ -80,20 +80,18 @@ export default function SecondRoundReview() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            data: [
-              {
-                Elaborate: elaborate,
-                "Name set One Rating": selectedDot[0],
-                "Name set Two Rating": selectedDot[1],
-                "Name set Three Rating": selectedDot[2],
-                "Name Set One - Suggestion/Feedback": feedback[0],
-                "Name Set Two - Suggestion/Feedback": feedback[1],
-                "Name Set Three - Suggestion/Feedback": feedback[2],
-                "Which naming set you like the most": favoriteName,
-                "Do you prefer another round?": nextRoundPreference,
-                "Are you completely satisfied with the name?": nameSatisfied,
-              },
+            email,
+            value: [
+              selectedDot[0],
+              selectedDot[1],
+              feedback[0],
+              feedback[1],
+              favoriteName,
+              nameSatisfied,
+              nextRoundPreference,
+              elaborate,
             ],
+            columnToUpdate: "R",
           }),
         }
       );
@@ -168,7 +166,7 @@ export default function SecondRoundReview() {
     setNextRoundPreference(value);
   };
 
-  const query = `*[_type == "NameDetails" && User->Name == "noothan"]{
+  const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 2]{
       Name,
     }`;
 
@@ -249,7 +247,6 @@ export default function SecondRoundReview() {
                           options={[
                             `${allNames[0] && allNames[0]["Name"]}`,
                             `${allNames[1] && allNames[1]["Name"]}`,
-                            `${allNames[2] && allNames[2]["Name"]}`,
                           ]}
                         />
                       </div>

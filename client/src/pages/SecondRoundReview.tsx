@@ -75,6 +75,7 @@ export default function SecondRoundReview() {
           method: "PATCH",
           headers: {
             Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

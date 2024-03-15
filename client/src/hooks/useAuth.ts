@@ -6,6 +6,7 @@ const useAuth = async () => {
         method: "POST",
         headers: {
           Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
         credentials: "include",

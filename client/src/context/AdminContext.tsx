@@ -10,6 +10,7 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
       fetch(`${process.env.REACT_APP_API_URL}/api/get-form-data`, {
         method: "GET",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       })
@@ -28,6 +29,7 @@ export const AllUsersDataContextProvider = ({ children }: any) => {
       fetch(`${process.env.REACT_APP_API_URL}/api/get-feedback-data`, {
         method: "GET",
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       })

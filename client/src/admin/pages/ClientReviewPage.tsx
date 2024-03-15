@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import DotsRow from "../../components/DotRows";
 import SelectQuestions from "../../components/SelectQuestions";
 import client from "../../utils/sanity-client";
+import { useLocalStorageForUserDetails } from "../../hooks/useLocalStorage";
 
 const styles = require("../../styles/review.module.css").default;
 
@@ -32,7 +33,11 @@ export default function ClientReviewPage({ allUserFeedbackData }: any) {
   const [selectedDot, setSelectedDot] = useState<any>({});
   const [allNames, setAllNames] = useState([]);
 
-  const query = `*[_type == "NameDetails" && User->Name == "noothan"]{
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
+
+  const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 1 ]{
       Name,
     }`;
 

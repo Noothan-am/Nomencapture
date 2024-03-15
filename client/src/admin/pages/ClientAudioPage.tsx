@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState, useRef } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaRegCirclePause } from "react-icons/fa6";
 import client from "../../utils/sanity-client";
+import { useLocalStorageForUserDetails } from "../../hooks/useLocalStorage";
 
 const styles = require("../../styles/audio-page.module.css").default;
 
@@ -68,11 +69,15 @@ const ClientAudioPage = ({ allUserFeedbackData }: any) => {
   const [audioPageDetails, setAudioPageDetails] = useState<any>([]);
   const [voiceHeard, setHeardVoice] = useState<any>({});
 
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
+
   const getAudioPageData = useCallback(() => {
     client
       .fetch(
         `
-      *[_type == "NamingSet" && User->Name == "noothan"] {
+      *[_type == "NamingSet" && User->Email == "${email}"] {
           MainDescription,
           Description1,
           Description2,

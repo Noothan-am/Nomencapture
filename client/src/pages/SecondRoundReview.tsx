@@ -1,17 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import SelectQuestions from "../components/SelectQuestions";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import Button from "../components/Button";
 import DotsRow from "../components/DotRows";
 import Navbar from "../components/Navbar";
-import Tabs from "../components/Tabs";
-import SideBar from "../components/SideBar";
-import { useNavigate } from "react-router-dom";
-import FlagStepper from "../components/FlagStepper";
-import client from "../utils/sanity-client";
-import { sendMailFromUser } from "../utils/mail";
 import SecondroundStepper from "../components/SecondRoundStepper";
-import { ToastContainer, toast } from "react-toastify";
+import SelectQuestions from "../components/SelectQuestions";
+import SideBar from "../components/SideBar";
+import Tabs from "../components/Tabs";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+import { sendMailFromUser } from "../utils/mail";
+import client from "../utils/sanity-client";
 
 const styles = require("../styles/review.module.css").default;
 
@@ -60,6 +59,8 @@ export default function SecondRoundReview() {
   const [currentFormPage, setCurrentFormPage] = useState(3);
   const [allNames, setAllNames] = useState([]);
   const [currentData, setCurrentData] = useState(0);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const { getItem }: any = useLocalStorageForUserDetails();
@@ -67,9 +68,6 @@ export default function SecondRoundReview() {
   const { name, email } = userData.user;
 
   const setDataToExcel = useCallback(async () => {
-    // const { email } = await JSON.parse(
-    //   localStorage.getItem("userDetails") || ""
-    // );
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
@@ -105,7 +103,6 @@ export default function SecondRoundReview() {
           progress: undefined,
           theme: "dark",
         });
-        navigate("/naming-set");
       } else {
         toast.error("Failed to submit!", {
           position: "top-right",
@@ -139,15 +136,16 @@ export default function SecondRoundReview() {
   ]);
 
   const handleSubmitButtonClick = () => {
-    // const data: any = localStorage.getItem("userDetails");
-    // const { name } = JSON.parse(data);
     setDataToExcel()
       .then(() => {
+        setLoading(true);
         sendMailFromUser({
           userMailMessage: "Thankyou for your reviews.",
           teamMailMessage: `${name} Has given reviews on new names ${new Date()}`,
         })
           .then(() => {
+            setLoading(true);
+
             navigate(`/final-name/${favoriteName}`);
           })
           .catch((error) => {
@@ -174,6 +172,7 @@ export default function SecondRoundReview() {
     client
       .fetch(query)
       .then(async (users) => {
+        setLoading(false);
         setAllNames(users);
       })
       .catch((error) => {
@@ -197,6 +196,9 @@ export default function SecondRoundReview() {
   const handleNomenButtonClick = (number: any) => {
     setCurrentData(number);
   };
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>

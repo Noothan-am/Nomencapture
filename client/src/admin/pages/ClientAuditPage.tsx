@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
-import SideBar from "../../components/SideBar";
-import Tabs from "../../components/Tabs";
-import Navbar from "../../components/Navbar";
-import Button from "../../components/Button";
-import DotsRow from "../../components/DotRows";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DotsRow from "../../components/DotRows";
 import client from "../../utils/sanity-client";
+import { useLocalStorageForUserDetails } from "../../hooks/useLocalStorage";
+import { useAllUsersData } from "../../context/AdminContext";
 
 const styles = require("../../styles/audit.module.css").default;
 
@@ -28,21 +24,22 @@ const Accordion = ({ title, content }: any) => {
   );
 };
 
-function ClientAuditPage({
-  allUserFeedbackData,
-  next,
-  currentFormPage,
-  handleChangeCurrentPageToNext,
-  handleChangeCurrentPageToPrevious,
-}: any) {
+function ClientAuditPage({ allUserFeedbackData }: any) {
   const [accordion, setAccordion] = useState([]);
   const [selectedDot, setSelectedDot] = useState([]);
   const [comments, setComments] = useState("");
 
-  const query =
-    '*[_type == "AuditPage" && User->Email == "noothan"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}';
+  const { getItem }: any = useLocalStorageForUserDetails();
+  const userData = getItem();
+  const { email } = userData.user;
+
+  // const { allUserFeedbackData } = useAllUsersData();
+
+  const query = `*[_type == "AuditPage" && User->Email == "${email}"]{ Title1 {question,description},Title2 {question,description}, Title3 {question,description},Title4 {question,description}}`;
 
   const fetchUser = useCallback(async () => {
+    console.log(allUserFeedbackData["How aligned are you on our Observation"]);
+
     setSelectedDot(
       allUserFeedbackData["How aligned are you on our Observation"]
     );

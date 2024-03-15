@@ -58,6 +58,7 @@ export default function Review() {
   const [selectedDot, setSelectedDot] = useState<any>({});
   const [currentFormPage, setCurrentFormPage] = useState(3);
   const [allNames, setAllNames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
   const { getItem }: any = useLocalStorageForUserDetails();
@@ -65,9 +66,6 @@ export default function Review() {
   const { email, name } = userData.user;
 
   const setDataToExcel = useCallback(async () => {
-    // const { email } = await JSON.parse(
-    //   localStorage.getItem("userDetails") || ""
-    // );
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
@@ -78,20 +76,6 @@ export default function Review() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            // data: [
-            //   {
-            //     Elaborate: elaborate,
-            //     "Name set One Rating": selectedDot[0],
-            //     "Name set Two Rating": selectedDot[1],
-            //     "Name set Three Rating": selectedDot[2],
-            //     "Name Set One - Suggestion/Feedback": feedback[0],
-            //     "Name Set Two - Suggestion/Feedback": feedback[1],
-            //     "Name Set Three - Suggestion/Feedback": feedback[2],
-            //     "Which naming set you like the most": favoriteName,
-            //     "Do you prefer another round?": nextRoundPreference,
-            //     "Are you completely satisfied with the name?": nameSatisfied,
-            //   },
-            // ],
             email,
             value: [
               selectedDot[0],
@@ -119,7 +103,6 @@ export default function Review() {
           progress: undefined,
           theme: "dark",
         });
-        // navigate("/naming-set");
       } else {
         toast.error("Failed to submit!", {
           position: "top-right",
@@ -155,12 +138,14 @@ export default function Review() {
   const handleSubmitButtonClick = useCallback(() => {
     setDataToExcel()
       .then(() => {
+        setLoading(true);
         if (nextRoundPreference === "No") {
           sendMailFromUser({
             userMailMessage: "Thankyou for your reviews.",
             teamMailMessage: `${name} Has given reviews on suggested names ${new Date()}`,
           })
             .then(() => {
+              setLoading(false);
               console.log("mail sent to user");
               navigate(`/final-name/${favoriteName}`);
             })
@@ -212,7 +197,9 @@ export default function Review() {
 
   useEffect(() => {
     fetchAllNames()
-      .then(() => {})
+      .then(() => {
+        setLoading(false);
+      })
       .catch(() => {});
   }, [fetchAllNames]);
 
@@ -222,6 +209,10 @@ export default function Review() {
     nextRoundPreference,
     selectedDot,
   ]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>

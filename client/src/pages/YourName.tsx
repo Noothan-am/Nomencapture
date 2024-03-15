@@ -80,7 +80,7 @@ function YourName() {
             <div className={styles["form-content"]}>
               <div className={styles["content"]}>
                 <div className={styles["top-part"]}>
-                  <h3>Congratulations, Samshritha!</h3>
+                  <h3>Congratulations {userData.user.name}!</h3>
                   <ul>
                     <li>Download PDF &#62;</li>
                     <li>Request Domain Names &#62;</li>

@@ -19,7 +19,7 @@ function RadioQuestions({
   };
 
   const handleOthersChange = (event: any) => {
-    onInputChange({ Others: othersInputValue });
+    onInputChange({ Others: event.target.value });
   };
 
   return (

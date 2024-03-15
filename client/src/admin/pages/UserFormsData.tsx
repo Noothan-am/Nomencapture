@@ -33,6 +33,7 @@ function UserFormsData() {
   const { allUsersData, allUserFeedbackData }: any = useAllUsersData();
 
   const { usermail }: any = useParams();
+  console.log(allUserFeedbackData);
 
   const handleChangeCurrentPageToPrevious = () => {
     setCurrentFormPage((currentFormPage) => currentFormPage - 1);

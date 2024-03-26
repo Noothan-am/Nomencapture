@@ -15,12 +15,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.CLIENT_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     maxAge: 3600 * 24,
   })
 );
+
 app.use("/api", authRouter);
 app.use("/api", mailRouter);
 app.use("/api", excelRouter);

@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import Tabs from "../components/Tabs";
-import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
 // import { addUserToSpreadsheet } from "../utils/sheet-api";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 import client from "../utils/sanity-client";
@@ -16,7 +16,6 @@ function Home() {
   const { getItem }: any = useLocalStorageForUserDetails();
   const userData = getItem();
   const { name, email } = userData.user;
-  console.log(email);
 
   const query = `*[_type == "Greetings" && User->Email == "${email}"]{Intro, FirstPoint, SecondPoint, Outro}`;
   const fetchGreetingsData = useCallback(async () => {

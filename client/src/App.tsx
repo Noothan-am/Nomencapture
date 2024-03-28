@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { ClientProtectedRoutes, AdminProtectedRoutes } from "./ProtectedRoutes";
+import { AdminProtectedRoutes, ClientProtectedRoutes } from "./ProtectedRoutes";
+import UserFormsData from "./admin/pages/UserFormsData";
+import AdminDashboard from "./pages/AdminDashboard";
 import AudioPage from "./pages/AudioPage";
 import AuditPage from "./pages/AuditPage";
 import FinalGreetings from "./pages/FinalGreetings";
@@ -13,11 +15,10 @@ import SecondRoundNomen from "./pages/SecondRoundNomen";
 import SecondRoundReview from "./pages/SecondRoundReview";
 import Thankyou from "./pages/Thankyou";
 import YourName from "./pages/YourName";
-import UserFormsData from "./admin/pages/UserFormsData";
 
-import "./index.css";
 import Admin from "./admin/pages/Admin";
 import Name from "./admin/pages/Name";
+import "./index.css";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route element={<AdminProtectedRoutes />}>
+      <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/home" element={<Admin />} />
         <Route path="/admin/name/:name" element={<Name />} />
         <Route path="/admin/form/:usermail" element={<UserFormsData />} />

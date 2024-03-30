@@ -138,10 +138,15 @@
   gap: 1.5rem;
 }
 
-/* .psw {
-  display: flex;
-  flex-direction: row;
-} */
+
+.heading {
+  font-size: 2rem;
+  margin: 2px 2rem;
+  text-align: left;
+  width: 80%;
+  font-weight: bold;
+  margin-top: 2rem;
+}
 
 .button {
   display: flex;

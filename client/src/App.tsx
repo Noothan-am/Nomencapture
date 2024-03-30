@@ -25,8 +25,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
-      <Route element={<AdminProtectedRoutes />}>
       <Route path="/admin" element={<AdminDashboard />} />
+      <Route element={<AdminProtectedRoutes />}>
         <Route path="/admin/home" element={<Admin />} />
         <Route path="/admin/name/:name" element={<Name />} />
         <Route path="/admin/form/:usermail" element={<UserFormsData />} />

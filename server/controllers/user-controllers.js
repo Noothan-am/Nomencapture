@@ -64,4 +64,35 @@ const handleVerifyAuth = async (req, res) => {
   }
 };
 
-module.exports = { userLogin, makeuser, handleVerifyAuth };
+
+const handleAddNewUser = async (req, res) => {
+  try {
+    const {userEmail,userPassword, userName} = req.body;
+    const data = {
+        "name": userName,
+        "email": userEmail,
+        "password": userPassword,
+        "accessedPages": {
+          "forms": false,
+          "auditPage": false,
+          "namingSet": false,
+          "firstName": false,
+          "secondName": {
+            "isRequired": false,
+            "hasSeen": false
+          },
+          "selectedName": false
+        },
+    }
+    const user = new userDetails(data);
+    await user.save();
+    return res.status(200).send("successfully added new user");
+  } catch (error) {
+    console.log("error while adding new User", error);
+    return res.status(500).send("Internal server error");
+
+  }
+}
+
+
+module.exports = { userLogin, makeuser, handleVerifyAuth, handleAddNewUser };

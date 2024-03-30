@@ -1,18 +1,70 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
 import TextQuestions from "../components/TextQuestions";
-// import { addUserToSpreadsheet } from "../utils/sheet-api";
 const styles = require("../styles/forms.module.css").default;
 
 function AdminDashboard() {
   const [userMail, setUserMail] = useState("");
-  const [userPassword, setUserPassword] = useState<String>("");
+  const [userPassword, setUserPassword] = useState<any>("");
+  const [userName, setUserName] = useState<any>("");
 
-  const saveUser = () => {
-    
+  const saveUser = async () => {    
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/add-user`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName: userName,
+            userEmail: userMail,
+            userPassword: userPassword
+          }),
+        }
+      );
+      if (response.ok) {
+        console.log("Success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleCopyClick = async () => {
+    try {
+        await navigator.clipboard.writeText(userPassword);
+        toast.success("copied to clipboard", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+    } catch (err) {
+        console.error(
+            "Unable to copy to clipboard.",
+            err
+        );
+        toast.error("error occurred while copying", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+    }
+};
 
   const generatePassword = () => {
     if(!userMail.trim()) {
@@ -22,7 +74,7 @@ function AdminDashboard() {
     const username = userMail.split("@")[0];
     const strongPassword = generateStrongPassword(username);
     console.log("Generated strong password:", strongPassword);
-    setUserPassword(username+strongPassword);
+    setUserPassword(strongPassword);
   };
 
   function generateStrongPassword(username: String) {
@@ -31,14 +83,12 @@ function AdminDashboard() {
     const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
     const numberChars = "0123456789";
 
-    
-
     const allChars =
       specialChars + uppercaseChars + lowercaseChars + numberChars;
 
     let password = username;
 
-    while (password.length < 12) {
+    while (password.length < 15) {
       const randomIndex = Math.floor(Math.random() * allChars.length);
       password += allChars[randomIndex];
     }
@@ -53,6 +103,7 @@ function AdminDashboard() {
 
   return (
     <>
+      <ToastContainer />
       <div className={styles["forms"]}>
         <div className={styles["navbar"]}>
           <Navbar />
@@ -63,8 +114,13 @@ function AdminDashboard() {
           </div>
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
-              User Details
+              <div className={styles["heading"]}>User Details</div>
               <div className={styles["name"]}>
+                <TextQuestions
+                  value={userName}
+                  onInputChange={setUserName}
+                  question={"User Name"}
+                />
                 <TextQuestions
                   value={userMail}
                   onInputChange={setUserMail}
@@ -83,7 +139,8 @@ function AdminDashboard() {
                     handleClick={generatePassword}
                     buttonValue={"Generate Password"}
                   />
-                  <Button handleClick={saveUser} buttonValue={"Save"} />
+                  <Button handleClick={handleCopyClick} buttonValue={"Copy Password"} />
+                  <Button handleClick={saveUser} buttonValue={"Add User"} />
                 </div>
               </div>
             </div>
@@ -95,3 +152,12 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
+
+
+
+
+
+
+
+
+

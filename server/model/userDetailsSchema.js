@@ -29,7 +29,11 @@ const userDetails = new Schema({
         type: Boolean,
         default: false,
       },
-      finalName: {
+      firstName: {
+        type: Boolean,
+        default: false,
+      },
+      secondName: {
         type: Object,
         properties: {
           isRequired: {
@@ -42,33 +46,13 @@ const userDetails = new Schema({
           },
         },
       },
-      finalName: {
+      selectedName: {
         type: Boolean,
         default: false,
       },
     },
   },
 });
-// const userDetails = new Schema({
-//   email: {
-//     type: String,
-//     required: true,
-//   },
-//   password: {
-//     type: String,
-//     required: true,
-//   },
-//   accessPages: {
-//     type: Object,
-//     required: true,
-//     default: {
-//       forms: false,
-//       auditPage: false,
-//       names: false,
-//       finalName: false,
-//     },
-//   },
-// });
 
 const UserSchema = model("userDetails", userDetails);
 

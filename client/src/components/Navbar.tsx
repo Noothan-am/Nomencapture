@@ -1,6 +1,6 @@
-import React from "react";
 const styles = require("../styles/navbar.module.css").default;
 function Navbar() {
+  
   return (
     <>
       <header>
@@ -13,7 +13,7 @@ function Navbar() {
               <a href="/ram">Packages</a>
             </li>
             <li className={styles["li"]}>
-              <a href="/ram">Log Out</a>
+              <a href="/login">Log Out</a>
             </li>
           </ul>
         </nav>

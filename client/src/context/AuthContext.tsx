@@ -35,8 +35,12 @@ export function AuthContext({ children }: any) {
     }
   };
 
+  const logout = () => {
+    // cookies.remove();
+  }
+
   return (
-    <AuthContextProvider.Provider value={{ userInfo, setUserInfo, login }}>
+    <AuthContextProvider.Provider value={{ userInfo, setUserInfo, login, logout }}>
       {children}
     </AuthContextProvider.Provider>
   );

@@ -41,16 +41,6 @@ const userLogin = async (req, res) => {
   }
 };
 
-const makeuser = async (req, res) => {
-  try {
-    const user = new userDetails({ email: "hello", password: "hello" });
-    await user.save();
-    return res.status(200).send({ message: "User created successfully" });
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const handleVerifyAuth = async (req, res) => {
   try {
     const user = await userDetails.findById(req.id, "-password");
@@ -64,35 +54,37 @@ const handleVerifyAuth = async (req, res) => {
   }
 };
 
-
 const handleAddNewUser = async (req, res) => {
   try {
-    const {userEmail,userPassword, userName} = req.body;
+    const { userEmail, userPassword, userName } = req.body;
     const data = {
-        "name": userName,
-        "email": userEmail,
-        "password": userPassword,
-        "accessedPages": {
-          "forms": false,
-          "auditPage": false,
-          "namingSet": false,
-          "firstName": false,
-          "secondName": {
-            "isRequired": false,
-            "hasSeen": false
-          },
-          "selectedName": false
+      name: userName,
+      email: userEmail,
+      password: userPassword,
+      accessedPages: {
+        forms: false,
+        auditPage: false,
+        namingSet: false,
+        firstName: false,
+        secondName: {
+          isRequired: false,
+          hasSeen: false,
         },
-    }
+        selectedName: false,
+      },
+    };
     const user = new userDetails(data);
     await user.save();
     return res.status(200).send("successfully added new user");
   } catch (error) {
     console.log("error while adding new User", error);
     return res.status(500).send("Internal server error");
-
   }
-}
+};
 
+const userLogout = (req, res) => {
+  res.clearCookie("authToken");
+  return res.status(200).send({ message: "Successfully logged out" });
+};
 
-module.exports = { userLogin, makeuser, handleVerifyAuth, handleAddNewUser };
+module.exports = { userLogin, handleVerifyAuth, handleAddNewUser, userLogout };

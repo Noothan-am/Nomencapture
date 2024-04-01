@@ -89,7 +89,7 @@ function CheckBoxQuestions({
                 <input
                   type="checkbox"
                   onChange={(e) => handleCheckboxChange(e)}
-                  id={`${index}`}
+                  id={`${option}`}
                   name={`${option}`}
                   value={option}
                   checked={value && value[option] ? value[option] : false}

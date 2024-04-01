@@ -29,7 +29,6 @@ function NameList() {
 
   return (
     <>
-      {/* <FlagStepper /> */}
       <div className={styles["name-list-2-container"]}>
         <div className={styles["heading"]}>
           <p>

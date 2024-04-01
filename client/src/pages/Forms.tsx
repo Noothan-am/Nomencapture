@@ -150,7 +150,7 @@ function Forms() {
 
   const handleChangeCurrentPageToNext = () => {
     const isValid = checkFields();
-    if (isValid) {
+    if (true) {
       const data = getItem();
       setItem({ ...data, ...form });
       setCurrentFormPage((currentFormPage) => currentFormPage + 1);

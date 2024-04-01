@@ -31,7 +31,7 @@ function RadioQuestions({
             <div className={styles["select-inputs"]} key={index}>
               <input
                 type="radio"
-                id={`${index}`}
+                id={`${question}`}
                 name={question}
                 checked={value && Object.keys(value)[0] === option}
                 onChange={(e) => {
@@ -41,7 +41,9 @@ function RadioQuestions({
                 disabled={disabled}
                 value={option}
               />
-              <label htmlFor={`${index}`}>{option}</label>
+              <label aria-disabled htmlFor={`${index}`}>
+                {option}
+              </label>
             </div>
           ))}
         </span>
@@ -49,6 +51,7 @@ function RadioQuestions({
           <>
             <div className={styles["select-inputs"]} key={10}>
               <input
+                id={`${question}`}
                 onChange={(e) => {
                   setInputValue(e.target.value);
                   handleOthersChange(e);

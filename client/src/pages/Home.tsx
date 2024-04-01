@@ -7,11 +7,14 @@ import Tabs from "../components/Tabs";
 // import { addUserToSpreadsheet } from "../utils/sheet-api";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 import client from "../utils/sanity-client";
+import Loading from "../components/Loading";
 const styles = require("../styles/home.module.css").default;
 const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
 
 function Home() {
   const [greetingsData, setGreetingsData] = useState({} as any);
+  const [loading, isLoading] = useState(true);
+
   const navigate = useNavigate();
   const { getItem }: any = useLocalStorageForUserDetails();
   const userData = getItem();
@@ -86,10 +89,15 @@ function Home() {
   useEffect(() => {
     fetchGreetingsData().then(() => {
       addUserToSpreadsheet().then(() => {
+        isLoading(false);
         console.log("added user to spreadsheet");
       });
     });
   }, [addUserToSpreadsheet, fetchGreetingsData]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>

@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+import Loading from "../components/Loading";
 
 const styles = require("../styles/login.module.css").default;
 
@@ -32,12 +33,11 @@ const Login = () => {
         progress: undefined,
         theme: "dark",
       });
-      setIsLoading(false);
       return;
     }
 
     try {
-      setIsLoading(false);
+      setIsLoading(true);
       const result = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: {
@@ -63,6 +63,7 @@ const Login = () => {
           navigate("/home");
         }, 1000);
       } else {
+        setIsLoading(false);
         toast.error("please enter valid credentials", {
           position: "top-right",
           autoClose: 2000,
@@ -119,7 +120,7 @@ const Login = () => {
     checkUserValidity();
   }, []);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loading />;
   return (
     <>
       <ToastContainer />

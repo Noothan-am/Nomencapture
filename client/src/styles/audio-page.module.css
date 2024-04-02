@@ -1,21 +1,33 @@
 .hero {
   display: flex;
   flex-direction: row;
+  width: 95%;
+  margin: auto;
+}
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
 }
 
 .naming-set-container {
   width: 100%;
+  display: flex;
 }
 
 .div {
   border-radius: 20px;
   background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 10px solid #f0f353;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 83vh;
+  width: 59%;
+  padding: 0rem 2rem;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
-  padding: 2rem 3rem;
-  height: 90%;
 }
 
 .play-button {
@@ -23,6 +35,20 @@
   width: fit-content;
   border: none;
   cursor: pointer;
+}
+.audio-rating-container {
+  border-radius: 20px;
+  background-color: #f0f353;
+  border: 1px solid #ccc;
+  border-top: 10px solid #f0f353;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 83vh;
+  width: 30%;
+  padding: 0rem 1rem;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
+  margin: auto;
 }
 
 .form-content {
@@ -62,15 +88,21 @@
 }
 
 .audio-page-content-main-heading h4 {
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 22px;
   margin-bottom: 0.5rem;
   line-height: 2rem;
 }
 
 .audio-page-content-paragraph {
-  width: 70%;
+  width: 100%;
+}
+
+.audio-page-content-audio {
+  width: 80%;
+  margin: auto;
 }
 
 .inital {
@@ -80,9 +112,10 @@
 .inital > h3 {
   color: black;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
   font-size: 22px;
-  margin: 0;
+  margin-bottom: 2rem;
   text-align: left;
   margin-top: 2rem;
   /* position: absolute; */
@@ -96,7 +129,15 @@
   width: 45%;
   font-family: "inter", sans-serif;
   font-size: 0.9rem;
-  line-height: 1.3rem;
+  margin-top: 2rem;
+  border-top: 0.5px solid rgb(100, 100, 100);
+}
+
+.audio-page-paragraph p {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 17px;
+  line-height: 1.5rem;
 }
 
 .input-arrow > IoIosArrowRoundForward {
@@ -120,7 +161,9 @@
 }
 
 .audio-heading h3 {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 22px;
   font-size: 0.9rem;
   font-weight: bold;
   width: 85%;

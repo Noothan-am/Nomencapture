@@ -11,19 +11,20 @@ import client from "../utils/sanity-client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+const img = require("../assets/images/audit.png");
 
 const styles = require("../styles/audit.module.css").default;
 
-const Accordion = ({ title, content }: any) => {
+const Accordion = ({ title, content, index }: any) => {
   const [isActive, setIsActive] = useState(false);
   useEffect(() => console.log(title, content, []));
   return (
     <div className={styles["question"]} onClick={() => setIsActive(!isActive)}>
       <div className={styles["accordion-title"]}>
-        {title}
+        {index} {title}
         {isActive ? <RxCross2 /> : <FiPlus />}
       </div>
-      {isActive && <p className="accordion-content">{content}</p>}
+      {isActive && <p className={styles["accordion-content"]}>{content}</p>}
       <hr />
     </div>
   );
@@ -154,16 +155,23 @@ function AuditPage() {
               <Tabs show={2} />
             </SideBar>
           </div>
-          <div className={styles["audit-content"]}>
-            <div className={styles["audit-questions"]}>
-              <h2>Brand Fundamentals</h2>
-              <div className={styles["audit-each-question"]}>
-                {accordion.map(({ title, content }: any) => (
-                  <Accordion title={title} content={content} />
-                ))}
+          <div className={styles["div"]}>
+            <div className={styles["audit-content"]}>
+              <div className={styles["audit-questions"]}>
+                <h2>Brand Fundamentals</h2>
+                <div className={styles["audit-each-question"]}>
+                  {accordion.map(({ title, content }: any, index) => (
+                    <Accordion title={title} indx={index} content={content} />
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
+          <div className={styles["audit-rating-container"]}>
             <div className={styles["audit-rating"]}>
+              <div className={styles["audit-rating-image"]}>
+                <img src={img} alt="" />
+              </div>
               <p className={styles["audit-rating-question"]}>
                 On scale of 1-5, how aligned are you on this overall?
               </p>

@@ -5,14 +5,14 @@
 }
 
 .select-questions > label {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 0.7rem;
   width: 100%;
 }
 .select-questions > select {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   width: 100%;
   font-size: 13px;
   padding: 0.5rem;

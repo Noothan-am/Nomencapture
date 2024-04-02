@@ -1,18 +1,43 @@
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.content-middle {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: start;
+}
+.content-middle > ul {
+  padding: 0;
+  width: 70%;
+  margin: 3rem 0rem;
+}
+
 .div {
   border-radius: 20px;
   background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 10px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 50%;
+  height: 80vh;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
 }
+
 .home {
   display: flex;
+  width: 95%;
+  margin: auto;
   flex-direction: row;
 }
 .column-2-img img {
-  height: 15rem;
+  height: 25rem;
+  margin-top: 2rem;
 }
 .div-2 {
   width: 90%;
@@ -64,7 +89,7 @@
   justify-content: space-around;
   align-items: center;
   width: 28%;
-  gap: 7rem;
+  gap: 2rem;
   margin-left: 20px;
 }
 @media (max-width: 991px) {

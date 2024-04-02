@@ -1,9 +1,15 @@
 body {
-  margin: 0;
-  padding: 0;
-  width: 95%;
-  margin: 2rem auto;
-  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(183, 206, 241),
+    rgb(209, 218, 229),
+    rgb(228, 232, 238),
+    rgb(255, 255, 255)
+  );
 }
 textarea {
   resize: none;

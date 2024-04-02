@@ -8,31 +8,36 @@
 }
 
 .select-questions > span {
-  font-family: "Inter", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 3rem;
   max-width: 75%;
   flex-wrap: wrap;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
 }
 
 .select-questions > label {
-  font-family: "Inter", sans-serif;
-  font-weight: bold;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-optical-sizing: auto;
   margin-bottom: 0.7rem;
-  font-size: 14px;
   line-height: 1.3rem;
 }
+
 .select-inputs > label {
   color: #5c5b5b;
   margin-bottom: 4px;
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-size: 13px;
 }
 .select-questions > input {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 13px;
   padding: 0.5rem;
   border-radius: 5px;

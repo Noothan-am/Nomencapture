@@ -123,8 +123,8 @@ const Login = () => {
   if (isLoading) return <Loading />;
   return (
     <>
-      <ToastContainer />
       <div className={styles["login"]}>
+        <ToastContainer />
         <div className={styles["login-sidebar"]}>
           <SideBar isLogin={true}>
             <p className={styles["sidebar-text-nomencapture"]}>NOMENCAPTURE</p>
@@ -153,7 +153,7 @@ const Login = () => {
                   className={styles["login__form-password-label"]}
                   htmlFor=""
                 >
-                  Password
+                  Enter Password
                 </label>
                 <input
                   type="password"

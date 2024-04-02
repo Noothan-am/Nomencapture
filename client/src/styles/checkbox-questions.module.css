@@ -5,15 +5,16 @@
 }
 
 .checkbox-questions > label {
-  font-family: "Inter", sans-serif;
-  font-weight: bold;
-  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-optical-sizing: auto;
   width: 100%;
   line-height: 1.3rem;
 }
 
 .checkbox-inputs > label {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 14px;
   margin-bottom: 0.7rem;
   width: 100%;
@@ -22,9 +23,9 @@
 }
 
 .checkbox-questions > p {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
   width: 100%;
   line-height: 1.3rem;
 }
@@ -34,11 +35,13 @@
   flex-direction: column;
   flex-wrap: wrap;
   max-height: 15rem;
+  font-family: "Inter", sans-serif;
+
   gap: 4px;
 }
 
 .checkbox-questions > input {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 13px;
   padding: 0.5rem;
   border-radius: 5px;

@@ -5,16 +5,17 @@
 }
 
 .text-questions > label {
-  font-family: "Inter", sans-serif;
-  font-weight: bold;
-  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-optical-sizing: auto;
   width: 70%;
   line-height: 1.3rem;
   margin-bottom: 0.5rem;
 }
 
 .text-questions > p {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: bold;
   font-size: 12.4px;
   width: 70%;
@@ -27,7 +28,8 @@
 }
 
 .text-questions > input {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
+
   font-size: 13px;
   padding: 0.5rem;
   border-radius: 5px;

@@ -1,13 +1,13 @@
 .login {
   display: flex;
+  width: 95%;
+  margin: 2rem auto;
+  overflow-x: hidden;
+  height: 100vh;
 }
 
 .login-sidebar {
   /* Styles for the login sidebar container go here */
-}
-
-.sidebar-text-nomencapture {
-  /* Styles for the NOMENCAPTURE text go here */
 }
 
 .sidebar-description {
@@ -36,8 +36,13 @@
 
 .login__form-email-label,
 .login__form-password-label {
-  margin-top: 1rem;
+  margin: 0.2rem 0rem;
+  margin-top: 1.5rem;
   color: rgb(0 0 0 / 80%);
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.1em;
 }
 
 .login__form-email-input,
@@ -51,13 +56,17 @@
 }
 
 .sidebar-text-nomencapture {
-  /* font-size: 2rem; */
-  font-weight: bold;
-  font-family: "Oxygen", sans-serif;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
 }
+
 .sidebar-description {
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.644);
+  width: 12rem;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.952);
   font-size: 13px;
   font-family: "Inter", sans-serif;
 }

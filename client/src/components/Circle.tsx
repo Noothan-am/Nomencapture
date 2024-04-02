@@ -1,5 +1,5 @@
 import React from "react";
-require("../styles/circle.module.css");
+const styles = require("../styles/circle.module.css");
 
 const Circle = ({
   question,
@@ -27,7 +27,7 @@ const Circle = ({
           {options.map((option: any, index: number) => {
             return (
               <td key={index}>
-                <div>{option}</div>{" "}
+                <div className={styles["heading"]}>{option}</div>{" "}
                 <input
                   onChange={(e) => handleChange(e)}
                   type="radio"

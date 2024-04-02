@@ -9,7 +9,7 @@ import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 import client from "../utils/sanity-client";
 import Loading from "../components/Loading";
 const styles = require("../styles/home.module.css").default;
-const homeImg = require("../assets/istockphoto-628162588-612x612_1-removebg-preview.png");
+const homeImg = require("../assets/images/greeting.png");
 
 function Home() {
   const [greetingsData, setGreetingsData] = useState({} as any);
@@ -101,7 +101,7 @@ function Home() {
 
   return (
     <>
-      <div className="navbar">
+      <div className={styles["navbar"]}>
         <Navbar />
       </div>
       <div className={styles["home"]}>
@@ -115,15 +115,17 @@ function Home() {
             <div className={styles["div-3"]}>
               <div className={styles["column"]}>
                 <div className={styles["div-4"]}>
-                  <span
+                  <div
                     style={{
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: "bold",
-                      marginBottom: "10px",
+                      fontFamily: "Mulish, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "35px",
+                      lineHeight: "26px",
+                      width: "600px",
                     }}
                   >
                     {`Greetings, ${name}!`}
-                  </span>
+                  </div>
                   <span
                     style={{
                       fontFamily: "Inter, sans-serif",
@@ -132,73 +134,79 @@ function Home() {
                   >
                     <br />
                   </span>
-                  <span
+                  <div
                     style={{
-                      fontSize: "13px",
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: 400,
-                      lineHeight: "normal",
+                      fontFamily: "Mulish, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "17px",
+                      lineHeight: "26px",
+                      width: "600px",
                     }}
                   >
                     {greetingsData.intro}
-                  </span>
-                  <ul>
-                    <li
-                      style={{
-                        listStyle: "none",
-                      }}
-                    >
-                      <span
+                  </div>
+                  <div className={styles["content-middle"]}>
+                    <ul>
+                      <li
                         style={{
-                          fontSize: "13px",
-                          fontFamily: "Inter, sans-serif",
-                          fontWeight: 600,
-                          lineHeight: "normal",
+                          listStyle: "none",
                         }}
                       >
-                        1. {greetingsData.firstPoint}
-                      </span>
-                    </li>
-                  </ul>
-                  <ul>
-                    <li
-                      style={{
-                        listStyle: "none",
-                      }}
-                    >
-                      <span
+                        <span
+                          style={{
+                            fontFamily: "Mulish, sans-serif",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "26px",
+                            width: "600px",
+                          }}
+                        >
+                          {greetingsData.firstPoint}
+                        </span>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li
                         style={{
-                          fontFamily: "Inter, sans-serif",
-                          fontSize: "13px",
-                          fontWeight: 600,
-                          lineHeight: "normal",
+                          listStyle: "none",
                         }}
                       >
-                        2. {greetingsData.secondPoint}
-                      </span>
-                    </li>
-                  </ul>
-                  <span
+                        <span
+                          style={{
+                            fontFamily: "Mulish, sans-serif",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "26px",
+                            width: "600px",
+                          }}
+                        >
+                          {greetingsData.secondPoint}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
                     style={{
-                      fontSize: "13px",
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: 600,
-                      lineHeight: "normal",
+                      fontFamily: "Mulish, sans-serif",
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                      width: "680px",
                     }}
                   >
                     {greetingsData.outro}
-                  </span>
+                  </div>
                 </div>
               </div>
               <div className={styles["column-2"]}>
+                <div className={styles["column-2-img"]}>
+                  <img src={homeImg} alt="" />
+                </div>
                 <div className={styles["column-2-btn"]}>
                   <Button
                     handleClick={handleLoginSubmit}
                     buttonValue={"CLICK TO BEGIN"}
                   />
-                </div>
-                <div className={styles["column-2-img"]}>
-                  <img src={homeImg} alt="" />
                 </div>
               </div>
             </div>

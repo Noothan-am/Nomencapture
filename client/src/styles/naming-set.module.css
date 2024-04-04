@@ -1,43 +1,56 @@
 .hero {
   display: flex;
   flex-direction: row;
+  width: 95%;
+  margin: auto;
 }
 
 .naming-set-container {
   width: 100%;
 }
 
+.stepper {
+  position: absolute;
+  top: 13vh;
+}
+
 .div {
   border-radius: 20px;
   background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 60px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 50%; */
+  height: 78vh;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
-  padding: 2rem 3rem;
-  height: 90%;
 }
 
 .form-content {
   width: 100%;
   margin-top: 1rem;
 }
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
 
 .nameset-2-arrows {
   display: flex;
   flex-direction: row;
   width: 7%;
-  bottom: 0.5rem;
-  position: absolute;
-  right: 2rem;
   align-items: flex-end;
   gap: 0.1rem;
-  margin-bottom: -1.5rem;
+  position: absolute;
+  top: 13vh;
+  right: 2vw;
 }
+
 .nameset-2-arrows > button {
-  width: 3.4rem;
-  padding: 0.4rem 0rem;
-  right: 2rem;
   border-radius: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }

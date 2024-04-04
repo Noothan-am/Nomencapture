@@ -4,10 +4,6 @@ import { TiFlag } from "react-icons/ti";
 const styles = require("../styles/flag-stepper.module.css").default;
 
 function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
-  // const handleNameSwitch = (currentName: any) => {
-  //   console.log("clicked", currentName);
-  // };
-
   return (
     <div className={styles["flag-stepper"]}>
       <IoMdHome

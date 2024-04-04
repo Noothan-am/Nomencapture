@@ -11,6 +11,7 @@ import FlagStepper from "../components/FlagStepper";
 import { ToastContainer, toast } from "react-toastify";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
 
+const audioImage = require("../assets/images/audio.png");
 const styles = require("../styles/audio-page.module.css").default;
 
 const Paragraph = ({ data }: any) => {
@@ -171,7 +172,6 @@ const AudioPage = () => {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              {/* <FlagStepper isDisabled={false} currentPage={"Home"} /> */}
               <div className={styles["inital"]}>
                 <h3>Market Considerations</h3>
               </div>
@@ -194,10 +194,11 @@ const AudioPage = () => {
               </div>
             </div>
             <div className={styles["audio-rating-container"]}>
+              <div className={styles["audio-heading"]}>
+                <img src={audioImage} alt="" />
+                <h3>HEAR IT FIRST</h3>
+              </div>
               <div className={styles["audio-page-content-audio"]}>
-                <div className={styles["audio-heading"]}>
-                  <h3>HEAR IT FIRST</h3>
-                </div>
                 <div className={styles["audio-content"]}>
                   {audioPageDetails.audioFiles &&
                     audioPageDetails.audioFiles.map(

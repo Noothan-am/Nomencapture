@@ -112,27 +112,27 @@ function NamingSet() {
           </div>
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
-              <FlagStepper
-                isDisabled={currentFormPage}
-                currentPage={currentFormPage === 1 ? "Home" : ""}
-                handleNomenButtonClick={handleNomenButtonClick}
-              />
-              <div className={styles["form-content"]}>{currentPage()}</div>
+              <div className={styles["stepper"]}>
+                <FlagStepper
+                  isDisabled={currentFormPage}
+                  currentPage={currentFormPage === 1 ? "Home" : ""}
+                  handleNomenButtonClick={handleNomenButtonClick}
+                />
+              </div>
               <div
                 style={{
                   display: currentFormPage === 5 ? "none" : "flex",
                 }}
                 className={styles["nameset-2-arrows"]}
               >
-                <Button
-                  handleClick={handlePreviousButtonClick}
-                  buttonValue={<FaLessThan />}
-                />
-                <Button
-                  handleClick={handleNextButtonClick}
-                  buttonValue={<FaGreaterThan />}
-                />
+                <button onClick={handlePreviousButtonClick}>
+                  <FaLessThan />
+                </button>
+                <button onClick={handleNextButtonClick}>
+                  <FaGreaterThan />
+                </button>
               </div>
+              <div className={styles["form-content"]}>{currentPage()}</div>
             </div>
           </div>
         </div>

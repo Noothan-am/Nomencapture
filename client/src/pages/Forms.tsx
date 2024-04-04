@@ -453,7 +453,7 @@ function Forms() {
               <div className={styles["stepper"]}>
                 {currentFormPage !== 5 && (
                   <Stepper
-                    style={{ color: "black" }}
+                    style={{ color: "yellow" }}
                     activeStep={currentFormPage - 1}
                   >
                     {steps.map((label, index) => (

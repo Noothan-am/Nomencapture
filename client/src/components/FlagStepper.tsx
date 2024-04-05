@@ -32,18 +32,25 @@ function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
             disabled={isDisabled === 0}
             onClick={() => handleNomenButtonClick(2)}
           >
-            <li>NOMEN 3</li>
+            <li>NOMEN 3 /</li>
+          </button>
+          <button
+            disabled
+            // disabled={isDisabled === 0}
+            // onClick={() => handleNomenButtonClick(3)}
+          >
+            <li>FEEDBACK</li>
           </button>
         </ul>
       </div>
-      <TiFlag
+      {/* <TiFlag
         style={
           currentPage === "Final"
             ? { color: "#000000" }
             : { color: "rgba(31, 31, 32, 0.658)" }
         }
         className={styles["flag"]}
-      />
+      /> */}
     </div>
   );
 }

@@ -4,26 +4,39 @@
   width: 95%;
   margin: auto;
 }
-
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
+.naming-set-container {
+  font-family: "Mulish", sans-serif;
+}
 .review-container {
   width: 100%;
+}
+
+.stepper {
+  position: absolute;
+  top: 13vh;
 }
 
 .div {
   border-radius: 20px;
   background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 60px solid #f0f353;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 78vh;
+  width: 145vh;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
-  padding: 2rem 2rem;
-  height: 90%;
-  width: 100%;
 }
 
 .form-content {
   width: 100%;
-  margin-top: 1rem;
 }
 
 .first-part {
@@ -31,19 +44,24 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 2rem;
 }
 
 .select {
   width: 30%;
+}
+.second-question {
+  display: flex;
+  margin-top: -1rem;
+  gap: 2rem;
 }
 
 .options {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 0.9rem;
+  align-items: center;
 }
 
 .options > button {
@@ -57,34 +75,59 @@
 }
 
 .question > p {
-  font-family: "Inter", sans-serif;
-  font-weight: bold;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  width: 12rem;
+  line-height: 1.5rem;
   margin-bottom: -0.3rem;
 }
 
+.select-inputs > label {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  line-height: 1.3rem;
+}
+
 .top-part {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 18rem;
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
   margin-bottom: 1.5rem;
 }
-.third-part input {
-  width: 95%;
-  padding: 0.5rem;
-  margin-bottom: 2rem;
+.third-part textarea {
+  font-family: "Mulish", sans-serif;
+  width: 75%;
+  margin-left: 1.5rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: auto;
 }
 
 .btn {
+  margin-top: 1rem;
   width: 20%;
-  margin: auto;
 }
 
 .names-feedback {
   display: flex;
+  padding: 2rem;
   flex-direction: column;
-  /* gap: 1rem; */
-  width: 100%;
+  width: 80%;
+  border: 3px solid #f0f353;
   margin: 0rem;
 }
 .names-feedback h1 {
@@ -104,19 +147,57 @@
 }
 
 .names-feedback > p {
-  font-family: "Inter", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 15px;
   color: rgba(0, 0, 0, 0.651);
   margin: 1rem 0rem;
 }
 
-.feedback-input > label {
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
-  margin-top: 1rem;
+.select-questions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  width: 25rem;
+  position: relative;
+  gap: 1rem;
 }
-.feedback-input > input {
-  width: 80%;
-  padding: 0.3rem;
+
+.select-questions > label {
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  margin-bottom: 4px;
+  line-height: 1.6rem;
+}
+
+.select-questions > select {
+  width: 19rem;
+  border-radius: 2rem;
+  padding: 0rem 1rem;
+  height: 2.5rem;
+  margin-top: 0.2rem;
+  /* border-right: 16px solid black; */
+  appearance: none;
+}
+.select-questions::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 9px;
+  right: 10px;
+  position: absolute;
+}
+
+.feedback-input > label {
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+.feedback-input > textarea {
+  font-family: "Mulish", sans-serif;
+
+  width: 95%;
+  padding: 0.5rem;
+  border-radius: 1rem;
 }

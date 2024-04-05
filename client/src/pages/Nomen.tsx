@@ -64,18 +64,23 @@ const NomenContentTemplate = ({
           <div className={styles["nomen-leftpart"]}>
             <div className={styles["name"]}>
               <h1>{currentData.Name}</h1>
+              <span>listen to songs</span>
             </div>
-            <ul>
-              {currentData.MultilingualNames &&
-                Object.keys(currentData.MultilingualNames).map((key: any) => {
-                  return (
-                    <>
-                      <li>{currentData.MultilingualNames[key]}</li>
-                    </>
-                  );
-                })}
-            </ul>
-            <p>{currentData.Related}</p>
+            <div className={styles["mul"]}>
+              <ul>
+                {currentData.MultilingualNames &&
+                  Object.keys(currentData.MultilingualNames).map((key: any) => {
+                    return (
+                      <>
+                        <li>{currentData.MultilingualNames[key]}</li>
+                      </>
+                    );
+                  })}
+              </ul>
+            </div>
+            <div className={styles["rel"]}>
+              <p>{currentData.Related}</p>
+            </div>
           </div>
           <div className={styles["nomen-rightpart"]}>
             <div className={styles["top-part"]}>
@@ -130,7 +135,7 @@ const NomenContentTemplate = ({
             <div className={styles["chatbox"]}>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-1.png")}
+                  src={require("../assets/svg/chatbox-1.svg").default}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
@@ -142,7 +147,7 @@ const NomenContentTemplate = ({
               </div>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-2.png")}
+                  src={require("../assets/svg/chatbox-2.svg").default}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
@@ -154,7 +159,7 @@ const NomenContentTemplate = ({
               </div>
               <div className={styles["container"]}>
                 <img
-                  src={require("../assets/images/chatbox-3.png")}
+                  src={require("../assets/svg/chatbox-3.svg").default}
                   alt={"alt"}
                 />
                 <div className={styles["text-container"]}>
@@ -165,32 +170,32 @@ const NomenContentTemplate = ({
                 </div>
               </div>
             </div>
-            <div className={styles["domains-preview"]}>
-              <h4>DOMAINS</h4>
-              <div className={styles["domain-box"]}>
-                <p>
-                  <span>
-                    <IoLockClosed />
-                  </span>
-                  {currentData.Domains && currentData.Domains.Domain1}
-                </p>
-              </div>
-              <div className={styles["domain-box"]}>
-                <p>
-                  <span>
-                    <IoLockClosed />
-                  </span>
-                  {currentData.Domains && currentData.Domains.Domain2}
-                </p>
-              </div>
-            </div>
           </div>
           <div className={styles["middlepart"]}>
             <div className={styles["name-availability"]}>
-              <h4>LLP NAME AVAILABILITY</h4>
+              {/* <h4>LLP NAME AVAILABILITY</h4>
               <div className={styles["availability-info"]}>
                 <h5>{currentData.LLPNameAvailability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
+              </div> */}
+              <div className={styles["domains-preview"]}>
+                <h4>DOMAINS</h4>
+                <div className={styles["domain-box"]}>
+                  <p>
+                    <span>
+                      <IoLockClosed />
+                    </span>
+                    {currentData.Domains && currentData.Domains.Domain1}
+                  </p>
+                </div>
+                <div className={styles["domain-box"]}>
+                  <p>
+                    <span>
+                      <IoLockClosed />
+                    </span>
+                    {currentData.Domains && currentData.Domains.Domain2}
+                  </p>
+                </div>
               </div>
             </div>
             <div className={styles["graph-image"]}>
@@ -204,6 +209,10 @@ const NomenContentTemplate = ({
                 <h5>CLASS 29,30,31,32</h5>
               </div>
               <div className={styles["availability-info"]}>
+                <h5>{currentData.LLPNameAvailability}</h5>
+                <p>(As per Ministry of Commerce LLP Database)</p>
+              </div>
+              <div className={styles["availability-info"]}>
                 <h5>{currentData.Trademarkability}</h5>
                 <p>(As per Ministry of Commerce LLP Database)</p>
               </div>
@@ -212,6 +221,14 @@ const NomenContentTemplate = ({
               <img ref={SamplesImage} src={`${SamplesImage.current}`} alt="" />
             </div>
           </div>
+        </div>
+        <div className={styles["name-description"]}>
+          <h2>Areas of Possible Concern:</h2>
+          <span>
+            Unavanu makes delicious & healthy food super affordable. Harnessing
+            the inherent power of grains is evident in their range of
+            health-conscious offerings.
+          </span>
         </div>
       </div>
     </>

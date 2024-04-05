@@ -18,7 +18,7 @@
   border-radius: 20px;
   background-color: #fafafa;
   border: 1px solid #ccc;
-  border-top: 60px solid yellow;
+  border-top: 60px solid #f0f353;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +29,6 @@
 
 .form-content {
   width: 100%;
-  margin-top: 1rem;
 }
 .navbar {
   width: 95%;

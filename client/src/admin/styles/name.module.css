@@ -258,6 +258,10 @@
 
 .container {
   position: relative;
+  width: 90%;
+  margin: auto;
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
 .container img {

@@ -7,6 +7,7 @@
 }
 .dots-container > button {
   border: none;
+  border: 1px solid black;
 }
 .dots {
   width: 16px;
@@ -15,6 +16,7 @@
   margin: 3px 6px 0px 0px;
   background-color: #ffffff;
 }
+
 .dots:hover {
   cursor: pointer;
 }

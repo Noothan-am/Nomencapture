@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import SelectQuestions from "../components/SelectQuestions";
 import Button from "../components/Button";
 import DotsRow from "../components/DotRows";
 import Navbar from "../components/Navbar";
@@ -68,6 +67,23 @@ export default function Review() {
 
   const setDataToExcel = useCallback(async () => {
     try {
+      console.log({
+        email,
+        value: [
+          selectedDot[0],
+          selectedDot[1],
+          selectedDot[2],
+          feedback[0],
+          feedback[1],
+          feedback[2],
+          favoriteName,
+          nameSatisfied,
+          nextRoundPreference,
+          elaborate,
+        ],
+        columnToUpdate: "H",
+      });
+
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/update-feedback-data`,
         {
@@ -141,7 +157,7 @@ export default function Review() {
     setDataToExcel()
       .then(() => {
         setLoading(true);
-        if (nextRoundPreference === "No") {
+        if (nextRoundPreference === "Yes") {
           sendMailFromUser({
             userMailMessage: "Thankyou for your reviews.",
             teamMailMessage: `${name} Has given reviews on suggested names ${new Date()}`,
@@ -174,12 +190,13 @@ export default function Review() {
       });
   }, [favoriteName, name, navigate, nextRoundPreference, setDataToExcel]);
 
-  const handleSatisfiedClick = (value: string) => {
-    setNameSatisfied(value);
-  };
+  // const handleSatisfiedClick = (value: string) => {
+  //   setNameSatisfied(value);
+  // };
 
   const handleNextRoundClick = (value: string) => {
     setNextRoundPreference(value);
+    setNameSatisfied(value);
   };
 
   const query = `*[_type == "NameDetails" && User->Email == "${email}" && Round == 1 ]{Name}`;
@@ -268,15 +285,21 @@ export default function Review() {
                         <label htmlFor="">
                           {"Which of the names you like the most ?"}
                         </label>
-                        <select>
+                        <select
+                          onChange={(e) => setFavoriteName(e.target.value)}
+                        >
                           <option>Choose</option>
-                          {/* {options.map((option: string, index: number) => {
-                            return ( */}
-                          <option key={"index"} value={"option"}>
-                            {""}
-                          </option>
-                          {/* );
-                          })} */}
+                          {[
+                            `${allNames[0] && allNames[0]["Name"]}`,
+                            `${allNames[1] && allNames[1]["Name"]}`,
+                            `${allNames[2] && allNames[2]["Name"]}`,
+                          ].map((option: string, index: number) => {
+                            return (
+                              <option key={index} value={option}>
+                                {option}
+                              </option>
+                            );
+                          })}
                         </select>
                       </div>
                     </div>
@@ -295,11 +318,19 @@ export default function Review() {
                         >
                           <p>Yes</p> */}
                         <div className={styles["select-inputs"]} key={"index"}>
-                          <input type="radio" name={"question"} />
+                          <input
+                            onChange={() => handleNextRoundClick("Yes")}
+                            type="radio"
+                            name={"question"}
+                          />
                           <label aria-disabled>Yes</label>
                         </div>
                         <div className={styles["select-inputs"]} key={"index"}>
-                          <input type="radio" name={"question"} />
+                          <input
+                            onChange={() => handleNextRoundClick("No")}
+                            type="radio"
+                            name={"question"}
+                          />
                           <label aria-disabled>No</label>
                         </div>
                         {/* <button

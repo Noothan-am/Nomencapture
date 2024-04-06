@@ -25,6 +25,7 @@
   gap: 0.1rem;
   margin-top: 2rem;
 }
+
 .nameset-2-arrows > button {
   width: 3.4rem;
   padding: 0.4rem 0rem;
@@ -32,57 +33,137 @@
   border-radius: 0;
 }
 
-.div {
+.audit-rating-container {
   border-radius: 20px;
-  background-color: #fafafa;
+  background-color: #f0f353;
+  border: 1px solid #ccc;
+  border-top: 10px solid #f0f353;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 50%; */
+  height: 83vh;
+  width: 22%;
+  padding: 0rem 1rem;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
-  padding: 3rem 2rem;
-  height: 90%;
+}
+
+.div {
+  border-radius: 20px;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 10px solid #f0f353;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 83vh;
+  width: 47%;
+  padding: 0rem 3rem;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
+  margin: auto;
 }
 
 .content h3 {
-  font-family: "Inter", sans-serif;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 2rem;
+  line-height: 2.1rem;
+  margin-top: 3rem;
+  width: 22rem;
 }
+.content p {
+  font-family: "Mulish", sans-serif;
+  line-height: 1.6rem;
+  font-weight: 400;
+  margin-top: 3rem;
+}
+
+.alt {
+  width: 100%;
+}
+
 .alt > p {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 1.7rem;
   color: rgb(0, 0, 0);
-  margin-top: 0.7rem;
-  margin-bottom: 2rem;
+  margin-top: 0.85rem;
 }
-.alt > span {
+
+.alt > p > span {
   width: 2rem;
   height: 2rem;
   margin-top: 2rem;
+  margin-left: 1rem;
 }
 
-.content > p {
-  font-family: "Inter", sans-serif;
+.middle-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.middle-part > img {
+  width: 13rem;
+  height: 24rem;
+  margin-top: -7rem;
+  margin-left: 1.5rem;
+}
+
+.middle-part > p {
+  font-family: "Mulish", sans-serif;
   font-weight: 400;
+  width: 25rem;
   font-size: 0.9rem;
   line-height: 1.4rem;
-  color: rgba(0, 0, 0, 0.619);
-  width: 75%;
+  color: black;
+  margin-top: 1rem;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 5rem;
+  padding: 0;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.download > button > span {
+  position: absolute;
+  margin-top: -1.4rem;
+  margin-left: 0.7rem;
+}
+
+.download > button > span > img {
+  width: 40px;
+  height: 40px;
+}
+
+.bottom > button {
+  font-size: 13px;
+  font-family: "Mulish", sans-serif;
+  background: none;
+  border: none;
+  text-align: start;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.4rem;
 }
 
 .content h1 {
-  font-size: 8rem;
+  font-size: 7rem;
   margin: 0rem;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
+  font-family: "Mulish", sans-serif;
+  font-weight: 800;
 }
 
 .top-part {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16rem;
+  gap: 8rem;
   width: 100%;
 }
 
@@ -97,4 +178,74 @@
 }
 .top-part li:hover {
   cursor: pointer;
+}
+
+.audit-rating {
+  width: 90%;
+  margin: auto;
+  margin-top: 1.2rem;
+}
+
+.audit-rating > p {
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  color: rgba(0, 0, 0, 0.468);
+  margin-top: 1rem;
+  margin-bottom: -1.8rem;
+  text-align: center;
+}
+
+.beyond-img > img {
+  width: 17.5rem;
+  margin-bottom: 1.2rem;
+  height: 15rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  margin-top: 0.8rem;
+  font-family: "Mulish", sans-serif;
+  color: rgba(0, 0, 0, 0.459);
+}
+
+/* .list > button > span {
+  margin-left: 1.6rem;
+} */
+
+.list > button {
+  display: flex;
+  width: 121%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  list-style: none;
+  background: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: rgb(0, 0, 0);
+  text-align: start;
+  padding: 0.9rem 3rem;
+}
+
+.list-border {
+  /* border-bottom: 1px solid red; */
+  border-top: 1px solid rgb(0, 0, 0);
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+}
+
+.list-no-border {
+  border: none;
+}
+
+.arrow > span {
+  margin-top: 20rem;
+  margin-top: 1.5rem;
 }

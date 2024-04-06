@@ -36,8 +36,11 @@ function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
           </button>
           <button
             disabled
-            // disabled={isDisabled === 0}
-            // onClick={() => handleNomenButtonClick(3)}
+            style={
+              currentPage === "feedback"
+                ? { color: "#000000", fontWeight: 600 }
+                : { color: "rgba(31, 31, 32, 0.658)" }
+            }
           >
             <li>FEEDBACK</li>
           </button>

@@ -9,6 +9,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import FlagStepper from "../components/FlagStepper";
 import client from "../utils/sanity-client";
 import { useLocalStorageForUserDetails } from "../hooks/useLocalStorage";
+import { GoArrowUpRight } from "react-icons/go";
+import { MdArrowForwardIos } from "react-icons/md";
+
 const styles = require("../styles/your-name.module.css").default;
 
 function YourName() {
@@ -76,17 +79,14 @@ function YourName() {
             </SideBar>
           </div>
           <div className={styles["div"]}>
-            <FlagStepper isDisabled={0} currentPage={"Final"} />
             <div className={styles["form-content"]}>
               <div className={styles["content"]}>
                 <div className={styles["top-part"]}>
-                  <h3>Congratulations {userData.user.name}!</h3>
-                  <ul>
-                    <li>Download PDF &#62;</li>
-                    <li>Request Domain Names &#62;</li>
-                    <li>Request Tademark &#62;</li>
-                    <li>Request Brand Identity &#62;</li>
-                  </ul>
+                  <h3>Congratulations, {userData.user.name}!</h3>
+                  <p>
+                    Celebrating the first sound produced when your dream became
+                    a reality!
+                  </p>
                 </div>
                 <h1>{name}</h1>
                 <div className={styles["alt"]}>
@@ -117,7 +117,24 @@ function YourName() {
                     </audio>
                   </p>
                 </div>
-                <p>{finalNameDetails && finalNameDetails.ShortDescription}</p>
+                <div className={styles["middle-part"]}>
+                  <p>{finalNameDetails && finalNameDetails.ShortDescription}</p>
+                  <img src={require("../assets/images/women.png")} alt="" />
+                </div>
+                <div className={styles["bottom"]}>
+                  <button className={styles["download"]}>
+                    Download your Nomencard{" "}
+                    <span>
+                      <img src={require("../assets/images/doc.png")} alt="" />
+                    </span>
+                  </button>
+                  <button className={styles["arrow"]}>
+                    Share your experience{" "}
+                    <span>
+                      <MdArrowForwardIos />
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
             <div className={styles["nameset-2-arrows"]}>
@@ -127,7 +144,52 @@ function YourName() {
               />
             </div>
           </div>
-          {/* </div> */}
+          <div className={styles["audit-rating-container"]}>
+            <div className={styles["audit-rating"]}>
+              <p>Looking</p>
+              <div className={styles["beyond-img"]}>
+                <img src={require("../assets/images/Beyond-Name.png")} alt="" />
+              </div>
+              <div className={styles["list"]}>
+                <button className={styles["list-no-border"]}>
+                  Terms & Conditions{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+                <button className={styles["list-border"]}>
+                  Request Domain Names{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+                <button className={styles["list-border"]}>
+                  Request for Trademark{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+                <button className={styles["list-border"]}>
+                  Need Verbal Strategy{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+                <button className={styles["list-border"]}>
+                  Need a Brand Identity{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+                <button className={styles["list-border"]}>
+                  Need a Pitch deck{" "}
+                  <span>
+                    <GoArrowUpRight />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

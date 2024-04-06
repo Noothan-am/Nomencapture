@@ -12,3 +12,71 @@
   margin: auto;
   font-size: 2rem;
 }
+.hero {
+  display: flex;
+  flex-direction: row;
+  height: 82vh;
+  scroll-behavior: smooth;
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.forms-container {
+  width: 80%;
+}
+
+.div {
+  border-radius: 20px;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 85vh;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
+  margin: auto;
+}
+
+.SecondRoundGreetings {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 60%;
+}
+.SecondRoundGreetings > h2 {
+  font-size: 2.2rem;
+  line-height: 45px;
+  font-family: "Mulish", sans-serif;
+  text-align: center;
+}
+
+.stepper {
+  position: absolute;
+  top: 13vh;
+}
+
+.SecondRoundGreetings > img {
+  position: absolute;
+  transform: translate(18%, -40%);
+  z-index: -1;
+  width: 28rem;
+  height: 38rem;
+  opacity: 0.9;
+}
+
+.form-content {
+  height: 100%;
+  width: 100%;
+}
+
+.forms-tabs {
+  width: 100%;
+  text-align: start;
+  margin-bottom: 1.7rem;
+}

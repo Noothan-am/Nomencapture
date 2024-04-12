@@ -95,7 +95,7 @@ function CheckBoxQuestions({
                 disabled={disabled}
                 checked={
                   (value && value[option] ? value[option] : false) ||
-                  (value.length && value.includes(option))
+                  (value && value.length && value.includes(option))
                 }
               />
               <label htmlFor={`${index}`}>{option}</label>

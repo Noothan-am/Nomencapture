@@ -13,11 +13,11 @@ const NamesFeedBack = ({ index, feedback, selectedDot, name }: any) => {
         <h1>{name}</h1>
         <p>How aligned are you on this overall?</p>
         <div className={styles["audit-rating-bar"]}>
-          <DotsRow index={index} selectedDot={selectedDot} />
+          <DotsRow disabled={true} index={index} selectedDot={selectedDot} />
         </div>
         <div className={styles["feedback-input"]}>
           <label htmlFor="">Suggestion/Feedback</label>
-          <input type="text" value={feedback && feedback[index]} disabled />
+          <textarea rows={5} cols={30} disabled value={feedback[index]} />
         </div>
       </div>
     </>
@@ -84,106 +84,143 @@ export default function ClientReviewPage({ allUserFeedbackData }: any) {
     <>
       <div className={styles["naming-set"]}>
         <div className={styles["hero"]}>
-          <div className={styles["naming-set-container"]}>
-            <div className={styles["div"]}>
+          <div className={styles["naming-set-container-2"]}>
+            <div className={styles["div-2"]}>
               <div className={styles["form-content"]}>
-                <div className={styles["form-content"]}>
-                  <div className={styles["first-part"]}>
-                    {allNames &&
-                      allNames.map(({ Name }, index) => (
-                        <>
-                          <NamesFeedBack
-                            key={index}
-                            index={index}
-                            feedback={feedback}
-                            setFeedback={setFeedback}
-                            selectedDot={selectedDot}
-                            setSelectedDot={setSelectedDot}
-                            name={Name}
-                          />
-                        </>
-                      ))}
-                  </div>
-                  <div className={styles["second-part"]}>
-                    <div className={styles["top-part"]}>
-                      <div className={styles["select"]}>
-                        <SelectQuestions
-                          value={favoriteName}
-                          disabled={true}
-                          onInputChange={setFavoriteName}
-                          question={"Which one you like the most"}
-                          options={[
+                <div className={styles["first-part"]}>
+                  {allNames &&
+                    allNames.map(({ Name }, index) => (
+                      <>
+                        <NamesFeedBack
+                          key={index}
+                          index={index}
+                          feedback={feedback}
+                          setFeedback={setFeedback}
+                          selectedDot={selectedDot}
+                          setSelectedDot={setSelectedDot}
+                          name={Name}
+                        />
+                      </>
+                    ))}
+                </div>
+                <div className={styles["second-part"]}>
+                  <div className={styles["top-part"]}>
+                    <div className={styles["select"]}>
+                      {/* <SelectQuestions
+                        value={favoriteName}
+                        onInputChange={setFavoriteName}
+                        question={"Which one you like the most"}
+                        options={[
+                          `${allNames[0] && allNames[0]["Name"]}`,
+                          `${allNames[1] && allNames[1]["Name"]}`,
+                          `${allNames[2] && allNames[2]["Name"]}`,
+                        ]}
+                      /> */}
+                      <div className={styles["select-questions"]}>
+                        <label htmlFor="">
+                          {"Which of the names you like the most ?"}
+                        </label>
+                        <select disabled>
+                          <option>Choose</option>
+                          {[
                             `${allNames[0] && allNames[0]["Name"]}`,
                             `${allNames[1] && allNames[1]["Name"]}`,
                             `${allNames[2] && allNames[2]["Name"]}`,
-                          ]}
-                        />
-                      </div>
-                      <div className={styles["second-question"]}>
-                        <div className={styles["question"]}>
-                          <p>Are you completely satisfied with the name?</p>
-                        </div>
-                        <div className={styles["options"]}>
-                          <button
-                            disabled
-                            style={
-                              nameSatisfied === "Yes"
-                                ? { color: "black", fontWeight: "bold" }
-                                : {}
-                            }
-                          >
-                            <p>Yes</p>
-                          </button>
-                          <button
-                            disabled
-                            style={
-                              nameSatisfied === "No"
-                                ? { color: "black", fontWeight: "bold" }
-                                : {}
-                            }
-                          >
-                            <p>No</p>
-                          </button>
-                        </div>
-                      </div>
-                      <div className={styles["third-question"]}>
-                        <div className={styles["question"]}>
-                          <p>Do you prefer another round?</p>
-                        </div>
-                        <div className={styles["options"]}>
-                          <button
-                            disabled
-                            style={
-                              nextRoundPreference === "Yes"
-                                ? { color: "black", fontWeight: "bold" }
-                                : {}
-                            }
-                          >
-                            <p>Yes</p>
-                          </button>
-                          <button
-                            disabled
-                            style={
-                              nextRoundPreference === "No"
-                                ? { color: "black", fontWeight: "bold" }
-                                : {}
-                            }
-                          >
-                            <p>No</p>
-                          </button>
-                        </div>
+                          ].map((option: string, index: number) => {
+                            return (
+                              <option
+                                key={index}
+                                selected={favoriteName === option}
+                                value={option}
+                              >
+                                {option}
+                              </option>
+                            );
+                          })}
+                        </select>
                       </div>
                     </div>
+                    <div className={styles["second-question"]}>
+                      <div className={styles["question"]}>
+                        <p>Are you completely satisfied with the name?</p>
+                      </div>
+                      <div className={styles["options"]}>
+                        {/* <button
+                          onClick={() => handleNextRoundClick("Yes")}
+                          style={
+                            nameSatisfied === "Yes"
+                              ? { color: "black", fontWeight: "bold" }
+                              : {}
+                          }
+                        >
+                          <p>Yes</p> */}
+                        <div className={styles["select-inputs"]} key={"index"}>
+                          <input
+                            type="radio"
+                            name={"question"}
+                            disabled
+                            checked={nameSatisfied === "Yes"}
+                          />
+                          <label aria-disabled>Yes</label>
+                        </div>
+                        <div className={styles["select-inputs"]} key={"index"}>
+                          <input
+                            type="radio"
+                            name={"question"}
+                            disabled
+                            checked={nameSatisfied === "No"}
+                          />
+                          <label aria-disabled>No</label>
+                        </div>
+                        {/* <button
+                          onClick={() => handleNextRoundClick("No")}
+                          style={
+                            nameSatisfied === "No"
+                              ? { color: "black", fontWeight: "bold" }
+                              : {}
+                          }
+                        >
+                          <p>No</p>
+                        </button> */}
+                      </div>
+                    </div>
+                    {/* <div className={styles["third-question"]}>
+                      <div className={styles["question"]}>
+                        <p>Do you prefer another round?</p>
+                      </div>
+                      <div className={styles["options"]}>
+                        <button
+                          onClick={() => handleNextRoundClick("Yes")}
+                          style={
+                            nextRoundPreference === "Yes"
+                              ? { color: "black", fontWeight: "bold" }
+                              : {}
+                          }
+                        >
+                          <p>Yes</p>
+                        </button>
+                        <button
+                          onClick={() => handleNextRoundClick("No")}
+                          style={
+                            nextRoundPreference === "No"
+                              ? { color: "black", fontWeight: "bold" }
+                              : {}
+                          }
+                        >
+                          <p>No</p>
+                        </button>
+                      </div>
+                    </div> */}
                   </div>
-                  <div className={styles["third-part"]}>
-                    <input
-                      type="text"
-                      disabled
-                      value={elaborate}
-                      onChange={(e: any) => setElaborate(e.target.value)}
-                      placeholder="Elaborate"
-                    />
-                  </div>
+                </div>
+                <div className={styles["third-part"]}>
+                  <textarea
+                    rows={4}
+                    cols={50}
+                    disabled
+                    value={elaborate}
+                    placeholder="| Feel free to elaborate in detail"
+                  />
                 </div>
               </div>
             </div>

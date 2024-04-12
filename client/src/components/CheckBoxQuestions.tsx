@@ -6,6 +6,7 @@ function CheckBoxQuestions({
   onInputChange,
   value,
   showSubHeading,
+  disabled,
 }: any) {
   const [checkedItems, setCheckedItems] = useState<any>({});
   const [inputData, setInputData] = useState("");
@@ -85,17 +86,19 @@ function CheckBoxQuestions({
                   />
                 </>
               ) : ( */}
-              <>
-                <input
-                  type="checkbox"
-                  onChange={(e) => handleCheckboxChange(e)}
-                  id={`${option}`}
-                  name={`${option}`}
-                  value={option}
-                  checked={value && value[option] ? value[option] : false}
-                />
-                <label htmlFor={`${index}`}>{option}</label>
-              </>
+              <input
+                type="checkbox"
+                onChange={(e) => handleCheckboxChange(e)}
+                id={`${option}`}
+                name={`${option}`}
+                value={option}
+                disabled={disabled}
+                checked={
+                  (value && value[option] ? value[option] : false) ||
+                  (value.length && value.includes(option))
+                }
+              />
+              <label htmlFor={`${index}`}>{option}</label>
               {/* )} */}
             </div>
           ))}

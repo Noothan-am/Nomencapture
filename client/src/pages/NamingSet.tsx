@@ -114,6 +114,7 @@ function NamingSet() {
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 <FlagStepper
+                  totalNames={3}
                   isDisabled={currentFormPage}
                   currentPage={currentFormPage === 1 ? "Home" : ""}
                   handleNomenButtonClick={handleNomenButtonClick}

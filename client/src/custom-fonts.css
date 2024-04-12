@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "prospectus-bold";
+  src: local("prospectus-bold"),
+    url("./assets/fonts/ProspectusSTDDEMO-Bold.otf") format("otf");
+}

@@ -31,7 +31,11 @@ function SecondRoundGreetings() {
           <div className={styles["forms-container"]}>
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
-                <FlagStepper isDisabled={0} currentPage={"feedback"} />
+                <FlagStepper
+                  isDisabled={0}
+                  currentPage={"feedback"}
+                  totalNames={3}
+                />
               </div>
               <div className={styles["form-content"]}>
                 <div className={styles["SecondRoundGreetings"]}>

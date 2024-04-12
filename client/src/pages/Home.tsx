@@ -117,11 +117,12 @@ function Home() {
                 <div className={styles["div-4"]}>
                   <div
                     style={{
-                      fontFamily: "Mulish, sans-serif",
+                      fontFamily: "prospectus-bold",
                       fontWeight: 700,
-                      fontSize: "35px",
-                      lineHeight: "26px",
+                      fontSize: "32px",
+                      lineHeight: "27px",
                       width: "600px",
+                      margin: "5px 0px",
                     }}
                   >
                     {`Greetings, ${name}!`}

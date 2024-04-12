@@ -21,6 +21,12 @@
   color: #535353;
   cursor: pointer;
 }
+.checkbox-inputs > input {
+  cursor: pointer;
+}
+.checkbox-inputs > label {
+  cursor: default;
+}
 
 .checkbox-questions > p {
   font-family: "Mulish", sans-serif;

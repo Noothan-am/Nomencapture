@@ -11,7 +11,7 @@ function AdminDashboard() {
   const [userPassword, setUserPassword] = useState<any>("");
   const [userName, setUserName] = useState<any>("");
 
-  const saveUser = async () => {    
+  const saveUser = async () => {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/add-user`,
@@ -25,49 +25,64 @@ function AdminDashboard() {
           body: JSON.stringify({
             userName: userName,
             userEmail: userMail,
-            userPassword: userPassword
+            userPassword: userPassword,
           }),
         }
       );
       if (response.ok) {
         console.log("Success");
+        toast.success("User Added Successfully", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.log(error);
+      toast.error("error while adding user", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
   const handleCopyClick = async () => {
     try {
-        await navigator.clipboard.writeText(userPassword);
-        toast.success("copied to clipboard", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+      await navigator.clipboard.writeText(userPassword);
+      toast.success("copied to clipboard", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (err) {
-        console.error(
-            "Unable to copy to clipboard.",
-            err
-        );
-        toast.error("error occurred while copying", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+      console.error("Unable to copy to clipboard.", err);
+      toast.error("error occurred while copying", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
-};
+  };
 
   const generatePassword = () => {
-    if(!userMail.trim()) {
+    if (!userMail.trim()) {
       alert("enter user email");
       return;
     }
@@ -139,7 +154,10 @@ function AdminDashboard() {
                     handleClick={generatePassword}
                     buttonValue={"Generate Password"}
                   />
-                  <Button handleClick={handleCopyClick} buttonValue={"Copy Password"} />
+                  <Button
+                    handleClick={handleCopyClick}
+                    buttonValue={"Copy Password"}
+                  />
                   <Button handleClick={saveUser} buttonValue={"Add User"} />
                 </div>
               </div>
@@ -152,12 +170,3 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
-
-
-
-
-
-
-
-
-

@@ -64,6 +64,17 @@
   margin: auto;
   margin-top: -1.5rem;
 }
+.audio-page-container-2 {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-top: -1.5rem;
+  gap: 7rem;
+  padding-right: 2rem;
+}
 
 .audio-page-heading h3 {
   font-family: "Mulish", sans-serif;

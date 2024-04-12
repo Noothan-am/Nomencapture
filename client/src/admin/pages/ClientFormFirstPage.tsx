@@ -159,19 +159,17 @@ function ClientFormFirstPage({ allUsersData, usermail }: any) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [goToPlace, setGoToPlace] = useState("");
-  const [naming, setNaming] = useState({});
+  const [naming, setNaming] = useState<any>({});
   const [productDescription, setProductDescription] = useState("");
   const [productSector, setProductSector] = useState("");
   const [trademark, setTrademark] = useState("");
 
   const setDataFromLocalStorage = useCallback(() => {
-    // if (allUsersData) {
-    // const value = allUsersData[usermail];
     if (allUsersData) {
       setName(allUsersData["Your Name"]);
       setEmail(allUsersData["Your Email"]);
       setGoToPlace(allUsersData["Your favourite go to place for peace?"]);
-      setNaming(allUsersData["What are we naming?"]);
+      setNaming(JSON.parse(allUsersData["What are we naming?"]));
       setProductDescription(allUsersData["Describe your Product/Service?"]);
       setProductSector(
         allUsersData["Which sector does your product / service belong to?"]

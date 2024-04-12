@@ -46,6 +46,16 @@
   margin-top: 2rem;
 }
 
+.audit-container-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-right: 2rem;
+  margin-bottom: 1rem;
+}
+
 .audit-container {
   display: flex;
   flex-direction: row;
@@ -101,10 +111,11 @@
   width: 100%;
 }
 
-.audit-comments-textarea textarea {
+.audit-comments-textarea > textarea {
   padding: 8px;
   height: 5rem;
   border-radius: 8px;
+  font-family: "Mulish", sans-serif;
   width: 95%;
 }
 .audit-comments-textarea textarea::placeholder {

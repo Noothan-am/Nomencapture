@@ -8,7 +8,7 @@ import FourthFormPage from "./FourthFormPage";
 import SecondFormPage from "./SecondFormPage";
 import Thankyou from "./Thankyou";
 import ThirdFormPage from "./ThirdFormPage";
-import { StepButton } from "@mui/material";
+import { StepButton, StepLabel } from "@mui/material";
 import Step from "@mui/material/Step";
 import Stepper from "@mui/material/Stepper";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useFormData from "../context/FormContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { sendMailFromUser } from "../utils/mail";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const steps = [
   "Understand the basics",
@@ -39,6 +40,47 @@ function Forms() {
   const checkBoxValidCheck = (data: any) => {
     return Object.keys(data).filter((key) => data[key]).length;
   };
+
+  const yellowTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#ffff00", // Your desired yellow color
+      },
+    },
+    components: {
+      MuiStepper: {
+        styleOverrides: {
+          connector: {
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              backgroundColor: "#ffff00", // Change the color of the connector line here
+              width: 12, // Increase the width of the connector line
+              height: 12, // Increase the height of the connector line
+              top: "calc(50% - 6px)", // Adjust position to center the line vertically
+              left: "calc(50% - 6px)", // Adjust position to center the line horizontally
+              zIndex: 1, // Ensure the line stays above the steps
+            },
+          },
+        },
+      },
+      MuiStepIcon: {
+        styleOverrides: {
+          label: {
+            color: "#000000",
+          },
+        },
+      },
+    },
+    typography: {
+      fontFamily: ["prospectus-bold"].join(","),
+      fontSize: 17,
+      fontWeightMedium: 700,
+      fontWeightRegular: 700,
+      fontWeightBold: 700,
+      color: "#000000",
+    },
+  } as any);
 
   const checkFields = () => {
     switch (currentFormPage) {
@@ -350,12 +392,12 @@ function Forms() {
       hero,
       brandNameScale["Clever / Straightforward"],
       brandNameScale["Global / Local"],
+      brandNameScale["Formal / Friendly"],
       brandNameScale["Modern / Traditional"],
       brandNameScale["Emotional / Logical"],
       brandNameScale["Scientific / General"],
       brandNameScale["Whimsical / Serious"],
       brandNameScale["Mature / Youthful"],
-      brandNameScale["Formal / Friendly"],
       competitors,
       likedCompetitorNames,
       dislikedCompetitorNames,
@@ -365,9 +407,9 @@ function Forms() {
       nameIdeas,
       avoidedConnotations,
       blankImagination,
-      2,
+      "nil",
+      "nil",
       "no",
-      "yes",
     ];
 
     try {
@@ -452,25 +494,17 @@ function Forms() {
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 {currentFormPage !== 5 && (
-                  <Stepper
-                    style={{ color: "yellow" }}
-                    activeStep={currentFormPage - 1}
-                  >
-                    {steps.map((label, index) => (
-                      <Step
-                        key={index}
-                        style={{ color: "black" }}
-                        completed={completed[index]}
-                      >
-                        <StepButton
-                          style={{ color: "black" }}
-                          onClick={handleStep(index)}
-                        >
-                          {label}
-                        </StepButton>
-                      </Step>
-                    ))}
-                  </Stepper>
+                  <ThemeProvider theme={yellowTheme}>
+                    <Stepper activeStep={currentFormPage - 1}>
+                      {steps.map((label, index) => (
+                        <Step key={index} completed={completed[index]}>
+                          <StepButton onClick={handleStep(index)}>
+                            {label}
+                          </StepButton>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </ThemeProvider>
                 )}
               </div>
               <div className={styles["form-content"]}>

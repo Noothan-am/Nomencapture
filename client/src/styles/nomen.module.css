@@ -9,18 +9,53 @@
   width: 100%;
 }
 
+.naming-set-container {
+  width: 100%;
+}
+
+.stepper {
+  position: absolute;
+  top: 13vh;
+}
+
 .div {
   border-radius: 20px;
   background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-top: 60px solid #f0f353;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 78vh;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
-  padding: 2rem 1rem;
-  height: 90%;
-  font-family: "Mulish", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+}
+
+.form-content {
+  width: 100%;
+}
+.navbar {
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.nameset-2-arrows {
+  display: flex;
+  flex-direction: row;
+  width: 7%;
+  align-items: flex-end;
+  gap: 0.1rem;
+  position: absolute;
+  top: 13vh;
+  right: 2vw;
+}
+
+.nameset-2-arrows > button {
+  border-radius: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .form-content {

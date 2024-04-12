@@ -11,13 +11,13 @@ function ClientSecondFormPage({ allUsersData }: any) {
   const [productCater, setProductCater] = useState("");
   const [productValues, setProductValues] = useState("");
   const [productImpact, setProductImpact] = useState("");
-  const [productSegment, setProductSegment] = useState({});
+  const [productSegment, setProductSegment] = useState<any>({});
   const [productLikeness, setProductLikeness] = useState([]);
   const [productExpansion, setProductExpansion] = useState("");
   const [lastPhotoDetails, setLastPhotoDetails] = useState("");
   const [productUnLikeness, setProductUnLikeness] = useState([]);
   const [productAchievement, setProductAchievement] = useState("");
-  const [productImpactAsPerson, setProductImpactAsPerson] = useState({});
+  const [productImpactAsPerson, setProductImpactAsPerson] = useState<any>({});
   const [productFocusOnCity, setProductFocusOnCity] = useState("");
 
   const setDataFromLocalStorage = useCallback(() => {
@@ -32,7 +32,9 @@ function ClientSecondFormPage({ allUsersData }: any) {
         ]
       );
       setProductSegment(
-        allUsersData["What price segment does your product/service fall in?"]
+        JSON.parse(
+          allUsersData["What price segment does your product/service fall in?"]
+        )
       );
       setProductExpansion(
         allUsersData[
@@ -45,20 +47,22 @@ function ClientSecondFormPage({ allUsersData }: any) {
       setProductLikeness(
         allUsersData[
           "If your product / service were a person, how would you definitely like it to come across as?"
-        ]
+        ].split(",")
       );
       setProductUnLikeness(
         allUsersData[
           "If your product / service were a person, how would you definitely not like it to come across as?"
-        ]
+        ].split(",")
       );
       setDressColor(
         allUsersData["What is the color of the dress you wore yesterday?"]
       );
       setProductImpactAsPerson(
-        allUsersData[
-          "If your product / service were a person, what kind of impact it would want to create?"
-        ]
+        JSON.parse(
+          allUsersData[
+            "If your product / service were a person, what kind of impact it would want to create?"
+          ]
+        )
       );
       setProductAchievement(
         allUsersData[

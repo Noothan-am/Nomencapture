@@ -36,6 +36,10 @@
   font-weight: 400;
   font-size: 13px;
 }
+.select-inputs > input {
+  cursor: pointer;
+}
+
 .select-questions > input {
   font-family: "Mulish", sans-serif;
   font-size: 13px;

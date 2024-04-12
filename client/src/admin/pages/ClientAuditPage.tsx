@@ -67,7 +67,7 @@ function ClientAuditPage({ allUserFeedbackData }: any) {
   return (
     <>
       <div className={styles["audit-page"]}>
-        <div className={styles["audit-container"]}>
+        <div className={styles["audit-container-2"]}>
           <div className={styles["audit-content"]}>
             <div className={styles["audit-questions"]}>
               <h2>Brand Fundamentals</h2>

@@ -12,6 +12,8 @@ function SelectQuestions({
     const value = event.target.value;
     onInputChange(value);
   };
+  console.log({ value });
+
   return (
     <>
       <div className={styles["select-questions"]}>

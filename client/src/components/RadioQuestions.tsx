@@ -20,7 +20,10 @@ function RadioQuestions({
 
   const handleOthersChange = (event: any) => {
     onInputChange({ Others: event.target.value });
+    setOthersInputValue(event.target.value);
   };
+
+  console.log({ value });
 
   return (
     <>
@@ -53,12 +56,12 @@ function RadioQuestions({
               <input
                 id={`${question}`}
                 onChange={(e) => {
-                  setInputValue(e.target.value);
+                  setInputValue("Others");
                   handleOthersChange(e);
                 }}
                 type="radio"
+                value={""}
                 name={question}
-                value="Others"
                 disabled={disabled}
                 checked={value && Object.keys(value)[0] === "Others"}
               />
@@ -70,8 +73,7 @@ function RadioQuestions({
                   setOthersInputValue(e.target.value);
                   handleOthersChange(e);
                 }}
-                value={value["Others"]}
-                // disabled={inputValue.trim() !== "Others"}
+                value={value["Others"] ? value["Others"] : ""}
                 type="text"
                 disabled={disabled}
                 name={question}

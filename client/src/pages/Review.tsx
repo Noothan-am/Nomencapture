@@ -249,7 +249,11 @@ export default function Review() {
           <div className={styles["naming-set-container"]}>
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
-                <FlagStepper isDisabled={0} currentPage={"Home"} />
+                <FlagStepper
+                  isDisabled={0}
+                  currentPage={"Home"}
+                  totalNames={3}
+                />
               </div>
               <div className={styles["form-content"]}>
                 <div className={styles["first-part"]}>

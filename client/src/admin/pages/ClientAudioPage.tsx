@@ -113,54 +113,52 @@ const ClientAudioPage = ({ allUserFeedbackData }: any) => {
 
   return (
     <>
-      <div className={styles["naming-set"]}>
+      {/* <div className={styles["naming-set"]}>
         <div className={styles["hero"]}>
           <div className={styles["naming-set-container"]}>
-            <div className={styles["div"]}>
-              <div className={styles["inital"]}>
-                <h3>Market Considerations</h3>
-              </div>
-              <div className={styles["form-content"]}>
-                <div className={styles["audio-page-container"]}>
-                  <div className={styles["audio-page-content-paragraph"]}>
-                    <div className={styles["audio-page-content-main-heading"]}>
-                      <h4>{audioPageDetails.MainDescription}</h4>
-                    </div>
-                    <div
-                      className={styles["audio-page-content-main-paragraph"]}
-                    >
-                      <Paragraph data={audioPageDetails.Description1} />
-                      <Paragraph data={audioPageDetails.Description2} />
-                      <Paragraph data={audioPageDetails.Description3} />
-                      <Paragraph data={audioPageDetails.Description4} />
-                    </div>
-                  </div>
-                  <div className={styles["audio-page-content-audio"]}>
-                    <div className={styles["audio-heading"]}>
-                      <h3>HEAR IT FIRST</h3>
-                    </div>
-                    <div className={styles["audio-content"]}>
-                      {audioPageDetails.audioFiles &&
-                        audioPageDetails.audioFiles.map(
-                          (audioFile: any, index: any) => {
-                            return (
-                              <AudioComponent
-                                key={index}
-                                soundNo={index}
-                                voiceHeard={voiceHeard}
-                                audiofile={audioFile}
-                              />
-                            );
-                          }
-                        )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className={styles["div"]}> */}
+      <div className={styles["inital"]}>
+        <h3>Market Considerations</h3>
+      </div>
+      <div className={styles["form-content"]}>
+        <div className={styles["audio-page-container-2"]}>
+          <div className={styles["audio-page-content-paragraph"]}>
+            <div className={styles["audio-page-content-main-heading"]}>
+              <h4>{audioPageDetails.MainDescription}</h4>
+            </div>
+            <div className={styles["audio-page-content-main-paragraph"]}>
+              <Paragraph data={audioPageDetails.Description1} />
+              <Paragraph data={audioPageDetails.Description2} />
+              <Paragraph data={audioPageDetails.Description3} />
+              <Paragraph data={audioPageDetails.Description4} />
+            </div>
+          </div>
+          <div className={styles["audio-page-content-audio"]}>
+            <div className={styles["audio-heading"]}>
+              <h3>HEAR IT FIRST</h3>
+            </div>
+            <div className={styles["audio-content"]}>
+              {audioPageDetails.audioFiles &&
+                audioPageDetails.audioFiles.map(
+                  (audioFile: any, index: any) => {
+                    return (
+                      <AudioComponent
+                        key={index}
+                        soundNo={index}
+                        voiceHeard={voiceHeard}
+                        audiofile={audioFile}
+                      />
+                    );
+                  }
+                )}
             </div>
           </div>
         </div>
       </div>
+      {/* </div> */}
+      {/* //     </div> */}
+      {/* //   </div> */}
+      {/* // </div> */}
     </>
   );
 };

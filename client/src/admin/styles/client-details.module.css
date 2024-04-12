@@ -1,9 +1,8 @@
 .client-details {
   width: 100%;
-  overflow-y: scroll;
 }
 .tables {
-  width: 62vw;
+  width: 52vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

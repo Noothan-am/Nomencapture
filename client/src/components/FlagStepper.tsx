@@ -3,7 +3,12 @@ import { IoMdHome } from "react-icons/io";
 import { TiFlag } from "react-icons/ti";
 const styles = require("../styles/flag-stepper.module.css").default;
 
-function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
+function FlagStepper({
+  handleNomenButtonClick,
+  isDisabled,
+  currentPage,
+  totalNames,
+}: any) {
   return (
     <div className={styles["flag-stepper"]}>
       <IoMdHome
@@ -28,12 +33,14 @@ function FlagStepper({ handleNomenButtonClick, isDisabled, currentPage }: any) {
           >
             <li>NOMEN 2 /</li>
           </button>
-          <button
-            disabled={isDisabled === 0}
-            onClick={() => handleNomenButtonClick(2)}
-          >
-            <li>NOMEN 3 /</li>
-          </button>
+          {totalNames === 3 && (
+            <button
+              disabled={isDisabled === 0}
+              onClick={() => handleNomenButtonClick(2)}
+            >
+              <li>NOMEN 3 /</li>
+            </button>
+          )}
           <button
             disabled
             style={

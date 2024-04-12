@@ -159,7 +159,6 @@ function SecondFormPage() {
               "Social Media",
               "E-Commerce Platform / App",
               "Directly on Website",
-              "Other",
             ]}
             onInputChange={setProductAvailability}
             value={productAvailability}
@@ -185,7 +184,6 @@ function SecondFormPage() {
               "Cutting-edge and innovative.",
               "A group of miracle-workers.",
               "Helpful and service-minded.",
-              "Other",
             ]}
             onInputChange={setMemorableImpression}
             value={memorableImpression}

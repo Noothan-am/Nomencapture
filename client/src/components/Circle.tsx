@@ -8,6 +8,7 @@ const Circle = ({
   finalText,
   onInputChange,
   value,
+  disabled,
 }: any) => {
   const handleChange = (event: any) => {
     const data = event.target.value;
@@ -32,6 +33,7 @@ const Circle = ({
                   onChange={(e) => handleChange(e)}
                   type="radio"
                   name={question}
+                  disabled={disabled}
                   value={option}
                   checked={value && value[question] === option}
                 />

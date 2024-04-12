@@ -4,7 +4,7 @@
 }
 
 .values {
-  width: 78vw;
+  width: 67vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -12,7 +12,6 @@
 
 .values > p {
   width: 20rem;
-  border: 1px solid rgba(255, 255, 255);
   cursor: pointer;
   font-weight: 400;
   font-family: "Inter", sans-serif;

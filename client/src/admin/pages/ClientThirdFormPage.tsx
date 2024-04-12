@@ -39,9 +39,9 @@ function ClientThirdFormPage({ allUsersData }: any) {
       );
       setHero(allUsersData["A hero you look upto?"]);
       setTargetAudienceGender(
-        allUsersData[
-          "What is the age bracket of your Target Audience Group (TG)?"
-        ]
+        JSON.parse(
+          allUsersData["Which gender of TG is your product / service for?"]
+        )
       );
       setTargetAudienceInfo(
         allUsersData["Do you have any additional information about your TG?"]
@@ -58,7 +58,9 @@ function ClientThirdFormPage({ allUsersData }: any) {
         allUsersData["Where will your TG find your product / service?"]
       );
       setProductPurchaseFrequency(
-        allUsersData["How often do you think your product will be purchased?"]
+        JSON.parse(
+          allUsersData["How often do you think your product will be purchased?"]
+        )
       );
       setTargetAudienceOccupation(
         allUsersData["What occupation your TG may have?"]

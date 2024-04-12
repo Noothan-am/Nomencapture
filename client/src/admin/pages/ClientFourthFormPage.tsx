@@ -56,7 +56,16 @@ function ClientFourthFormPage({ allUsersData }: any) {
     // window.location.hash = "#fourthpage";
 
     if (allUsersData) {
-      setBrandNameScale(allUsersData.brandNameScale);
+      setBrandNameScale({
+        "Clever / Straightforward": allUsersData["Clever / Straightforward"],
+        "Global / Local": allUsersData["Global / Local"],
+        "Formal / Friendly": allUsersData["Formal / Friendly"],
+        "Modern / Traditional": allUsersData["Modern / Traditional"],
+        "Emotional / Logical": allUsersData["Emotional / Logical"],
+        "Scientific / General": allUsersData["Scientific / General"],
+        "Whimsical / Serious": allUsersData["Whimsical / Serious"],
+        "Mature / Youthful": allUsersData["Mature / Youthful"],
+      });
       setCompetitors(
         allUsersData[
           "List your competitors (mention website links if available)"
@@ -74,7 +83,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
         ]
       );
       setDesiredAllure(
-        allUsersData["What appeal do you want the name to have?"]
+        JSON.parse(allUsersData["What appeal do you want the name to have?"])
       );
       setIdeas(allUsersData["Emotions or ideas you want the name to evoke?"]);
       setAvoidedConnotations(
@@ -108,6 +117,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 finalText={"Straightforward"}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
+                disabled={true}
               />
             </div>
             <div className={styles["radio"]}>
@@ -118,6 +128,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 finalText={"Local"}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
+                disabled={true}
               />
             </div>
             <div className={styles["radio"]}>
@@ -128,6 +139,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 finalText={"Friendly"}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
+                disabled={true}
               />
             </div>
             <div className={styles["radio"]}>
@@ -137,6 +149,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 initialText={"Modern"}
                 finalText={"Traditional"}
                 onInputChange={setBrandNameScale}
+                disabled={true}
                 value={brandNameScale}
               />
             </div>
@@ -147,6 +160,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 initialText={"Emotional"}
                 finalText={"Logical"}
                 onInputChange={setBrandNameScale}
+                disabled={true}
                 value={brandNameScale}
               />
             </div>
@@ -156,6 +170,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 options={["1", "2", "3", "4", "5"]}
                 initialText={"Scientific"}
                 finalText={"General"}
+                disabled={true}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
               />
@@ -168,6 +183,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 finalText={"Serious"}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
+                disabled={true}
               />
             </div>
             <div className={styles["radio"]}>
@@ -178,6 +194,7 @@ function ClientFourthFormPage({ allUsersData }: any) {
                 finalText={"Youthful"}
                 onInputChange={setBrandNameScale}
                 value={brandNameScale}
+                disabled={true}
               />
             </div>
           </div>

@@ -23,6 +23,7 @@ import "./index.css";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin" element={<AdminDashboard />} />
       <Route element={<AdminProtectedRoutes />}>

@@ -16,6 +16,38 @@
   margin: 3rem 0rem;
 }
 
+.main-container {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 0;
+  height: 2rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e2e2e2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #525252;
+}
+
+.home-sidebar {
+  margin-top: 5rem;
+  margin-left: 2rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
+
 .div {
   border-radius: 20px;
   background-color: #fafafa;
@@ -24,14 +56,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  height: auto;
+  width: 75vw;
+  margin-right: 1.5rem;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
 }
 
 .home {
   display: flex;
-  width: 95%;
   margin: auto;
   flex-direction: row;
 }
@@ -41,7 +74,7 @@
 }
 .div-2 {
   width: 90%;
-  padding: 2rem;
+  padding: 3.5rem 2rem;
 }
 @media (max-width: 991px) {
   .div-2 {

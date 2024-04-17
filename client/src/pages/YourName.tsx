@@ -105,7 +105,7 @@ function YourName() {
                         />
                       )}
                     </span>
-                    <audio ref={audioRef}>
+                    <audio aria-disabled={true} ref={audioRef}>
                       <source
                         src={`${
                           finalNameDetails.audioFiles &&

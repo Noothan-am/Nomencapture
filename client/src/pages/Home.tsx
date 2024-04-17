@@ -101,113 +101,117 @@ function Home() {
 
   return (
     <>
-      <div className={styles["navbar"]}>
-        <Navbar />
-      </div>
-      <div className={styles["home"]}>
-        <div className="home-sidebar">
-          <SideBar isLogin={false}>
-            <Tabs show={1} />
-          </SideBar>
-        </div>
-        <div className={styles["div"]}>
-          <div className={styles["div-2"]}>
-            <div className={styles["div-3"]}>
-              <div className={styles["column"]}>
-                <div className={styles["div-4"]}>
-                  <div
-                    style={{
-                      fontFamily: "prospectus-bold",
-                      fontWeight: 700,
-                      fontSize: "32px",
-                      lineHeight: "27px",
-                      width: "600px",
-                      margin: "5px 0px",
-                    }}
-                  >
-                    {`Greetings, ${name}!`}
-                  </div>
-                  <span
-                    style={{
-                      fontFamily: "Inter, sans-serif",
-                      fontWeight: 500,
-                    }}
-                  >
-                    <br />
-                  </span>
-                  <div
-                    style={{
-                      fontFamily: "Mulish, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "17px",
-                      lineHeight: "26px",
-                      width: "600px",
-                    }}
-                  >
-                    {greetingsData.intro}
-                  </div>
-                  <div className={styles["content-middle"]}>
-                    <ul>
-                      <li
+      <div className={styles["home-container"]}>
+        <div className={styles["home"]}>
+          <div className={styles["home-sidebar"]}>
+            <SideBar isLogin={false}>
+              <Tabs show={1} />
+            </SideBar>
+          </div>
+          <div className={styles["main-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
+            <div className={styles["div"]}>
+              <div className={styles["div-2"]}>
+                <div className={styles["div-3"]}>
+                  <div className={styles["column"]}>
+                    <div className={styles["div-4"]}>
+                      <div
                         style={{
-                          listStyle: "none",
+                          fontFamily: "prospectus-bold",
+                          fontWeight: 700,
+                          fontSize: "32px",
+                          lineHeight: "27px",
+                          width: "600px",
+                          margin: "5px 0px",
                         }}
                       >
-                        <span
-                          style={{
-                            fontFamily: "Mulish, sans-serif",
-                            fontWeight: 400,
-                            fontSize: "16px",
-                            lineHeight: "26px",
-                            width: "600px",
-                          }}
-                        >
-                          {greetingsData.firstPoint}
-                        </span>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li
+                        {`Greetings, ${name}!`}
+                      </div>
+                      <span
                         style={{
-                          listStyle: "none",
+                          fontFamily: "Inter, sans-serif",
+                          fontWeight: 500,
                         }}
                       >
-                        <span
-                          style={{
-                            fontFamily: "Mulish, sans-serif",
-                            fontWeight: 400,
-                            fontSize: "16px",
-                            lineHeight: "26px",
-                            width: "600px",
-                          }}
-                        >
-                          {greetingsData.secondPoint}
-                        </span>
-                      </li>
-                    </ul>
+                        <br />
+                      </span>
+                      <div
+                        style={{
+                          fontFamily: "Mulish, sans-serif",
+                          fontWeight: 600,
+                          fontSize: "17px",
+                          lineHeight: "26px",
+                          width: "600px",
+                        }}
+                      >
+                        {greetingsData.intro}
+                      </div>
+                      <div className={styles["content-middle"]}>
+                        <ul>
+                          <li
+                            style={{
+                              listStyle: "none",
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontFamily: "Mulish, sans-serif",
+                                fontWeight: 400,
+                                fontSize: "16px",
+                                lineHeight: "26px",
+                                width: "600px",
+                              }}
+                            >
+                              {greetingsData.firstPoint}
+                            </span>
+                          </li>
+                        </ul>
+                        <ul>
+                          <li
+                            style={{
+                              listStyle: "none",
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontFamily: "Mulish, sans-serif",
+                                fontWeight: 400,
+                                fontSize: "16px",
+                                lineHeight: "26px",
+                                width: "600px",
+                              }}
+                            >
+                              {greetingsData.secondPoint}
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "Mulish, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "16px",
+                          lineHeight: "24px",
+                          width: "680px",
+                        }}
+                      >
+                        {greetingsData.outro}
+                      </div>
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      fontFamily: "Mulish, sans-serif",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      width: "680px",
-                    }}
-                  >
-                    {greetingsData.outro}
+                  <div className={styles["column-2"]}>
+                    <div className={styles["column-2-img"]}>
+                      <img src={homeImg} alt="" />
+                    </div>
+                    <div className={styles["column-2-btn"]}>
+                      <Button
+                        handleClick={handleLoginSubmit}
+                        buttonValue={"CLICK TO BEGIN"}
+                      />
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className={styles["column-2"]}>
-                <div className={styles["column-2-img"]}>
-                  <img src={homeImg} alt="" />
-                </div>
-                <div className={styles["column-2-btn"]}>
-                  <Button
-                    handleClick={handleLoginSubmit}
-                    buttonValue={"CLICK TO BEGIN"}
-                  />
                 </div>
               </div>
             </div>

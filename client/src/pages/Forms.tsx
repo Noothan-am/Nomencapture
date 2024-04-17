@@ -481,9 +481,7 @@ function Forms() {
       <div className={styles["forms-containers"]}>
         <div className={styles["forms"]}>
           <ToastContainer />
-          <div className={styles["navbar"]}>
-            <Navbar />
-          </div>
+
           <div className={styles["hero"]}>
             <div className={styles["sidebar"]}>
               <SideBar isLogin={false}>
@@ -491,6 +489,9 @@ function Forms() {
               </SideBar>
             </div>
             <div className={styles["forms-container"]}>
+              <div className={styles["navbar"]}>
+                <Navbar />
+              </div>
               <div className={styles["div"]}>
                 <div className={styles["stepper"]}>
                   {currentFormPage !== 5 && (

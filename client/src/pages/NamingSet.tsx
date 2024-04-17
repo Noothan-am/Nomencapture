@@ -101,9 +101,6 @@ function NamingSet() {
   return (
     <>
       <div className={styles["naming-set"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
@@ -111,6 +108,9 @@ function NamingSet() {
             </SideBar>
           </div>
           <div className={styles["naming-set-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 <FlagStepper

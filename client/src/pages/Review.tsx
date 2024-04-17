@@ -237,9 +237,6 @@ export default function Review() {
     <>
       <ToastContainer />
       <div className={styles["naming-set"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
@@ -247,6 +244,9 @@ export default function Review() {
             </SideBar>
           </div>
           <div className={styles["naming-set-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 <FlagStepper

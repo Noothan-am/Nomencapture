@@ -5,7 +5,6 @@
   scroll-behavior: smooth;
 }
 .forms {
-  width: 95%;
   margin: auto;
 }
 .navbar {
@@ -54,6 +53,7 @@
   align-items: center;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
+  margin-right: 2rem;
 }
 .name {
   width: 80%;

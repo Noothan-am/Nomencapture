@@ -1,7 +1,6 @@
 .hero {
   display: flex;
   flex-direction: row;
-  width: 95%;
   margin: auto;
 }
 .navbar {
@@ -10,9 +9,18 @@
   margin-top: 2rem;
 }
 
+.naming-set-main-container {
+  height: 100vh;
+  width: 100%;
+  padding-right: 1.4rem;
+  overflow-y: scroll;
+}
+
 .naming-set-container {
   width: 100%;
+  height: auto;
   display: flex;
+  gap: 2rem;
 }
 
 .div {
@@ -23,9 +31,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 83vh;
+  height: auto;
   width: 59%;
-  padding: 0rem 2rem;
+  padding: 2.5rem 2rem;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
 }
@@ -36,6 +44,7 @@
   border: none;
   cursor: pointer;
 }
+
 .audio-rating-container {
   border-radius: 20px;
   background-color: #f0f353;
@@ -44,9 +53,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 83vh;
+  height: auto;
   width: 30%;
-  padding: 0rem 1rem;
+  padding: 0rem 2rem;
+  padding-bottom: 5rem;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
 }

@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  min-height: 74vh;
+  height: auto;
+  min-height: 35rem;
 }
 
 .name-list-2-hero {
@@ -41,7 +42,13 @@
   border-radius: 0;
 }
 
+.nameset-2-names-img {
+  width: 95%;
+  height: 95%;
+}
+
 .nameset-2-names-img img {
-  width: 50rem;
-  height: 22rem;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }

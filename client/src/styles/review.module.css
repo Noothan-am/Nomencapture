@@ -1,8 +1,9 @@
 .hero {
   display: flex;
   flex-direction: row;
-  width: 95%;
   margin: auto;
+  width: 100%;
+  height: 100vh;
 }
 .navbar {
   width: 95%;
@@ -11,6 +12,9 @@
 }
 .naming-set-container {
   font-family: "Mulish", sans-serif;
+  width: 100%;
+  overflow-y: scroll;
+  padding-bottom: 3rem;
 }
 .review-container {
   width: 100%;
@@ -34,9 +38,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 78vh;
-  width: 145vh;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
+  width: 76vw;
   margin: auto;
 }
 

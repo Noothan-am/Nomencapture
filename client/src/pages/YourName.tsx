@@ -69,124 +69,132 @@ function YourName() {
   return (
     <>
       <div className={styles["naming-set"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
               <Tabs show={currentFormPage >= 3 ? currentFormPage + 1 : 3} />
             </SideBar>
           </div>
-          <div className={styles["div"]}>
-            <div className={styles["form-content"]}>
-              <div className={styles["content"]}>
-                <div className={styles["top-part"]}>
-                  <h3>Congratulations, {userData.user.name}!</h3>
-                  <p>
-                    Celebrating the first sound produced when your dream became
-                    a reality!
-                  </p>
-                </div>
-                <h1>{name}</h1>
-                <div className={styles["alt"]}>
-                  <p>
-                    {finalNameDetails && finalNameDetails.PhonemicSymbol}
-                    <span onClick={handlePlayBtnClick}>
-                      {isPlaying ? (
-                        <FaRegCirclePause
-                          style={{ marginBottom: "-.3rem" }}
-                          className={styles["audio-btn"]}
-                        />
-                      ) : (
-                        <FaRegCirclePlay
-                          style={{ marginBottom: "-.3rem" }}
-                          className={styles["audio-btn"]}
-                        />
-                      )}
-                    </span>
-                    <audio aria-disabled={true} ref={audioRef}>
-                      <source
-                        src={`${
-                          finalNameDetails.audioFiles &&
-                          finalNameDetails.audioFiles[0]
-                        }`}
-                        type="audio/mp3"
-                      />
-                      Your browser does not support the audio files.
-                    </audio>
-                  </p>
-                </div>
-                <div className={styles["middle-part"]}>
-                  <p>{finalNameDetails && finalNameDetails.ShortDescription}</p>
-                  <img src={require("../assets/images/women.png")} alt="" />
-                </div>
-                <div className={styles["bottom"]}>
-                  <button className={styles["download"]}>
-                    Download your Nomencard{" "}
-                    <span>
-                      <img src={require("../assets/images/doc.png")} alt="" />
-                    </span>
-                  </button>
-                  <button className={styles["arrow"]}>
-                    Share your experience{" "}
-                    <span>
-                      <MdArrowForwardIos />
-                    </span>
-                  </button>
+          <div className={styles["your-name-main-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
+            <div className={styles["your-name-container"]}>
+              <div className={styles["div"]}>
+                <div className={styles["form-content"]}>
+                  <div className={styles["content"]}>
+                    <div className={styles["top-part"]}>
+                      <h3>Congratulations, {userData.user.name}!</h3>
+                      <p>
+                        Celebrating the first sound produced when your dream
+                        became a reality!
+                      </p>
+                    </div>
+                    <h1>{name}</h1>
+                    <div className={styles["alt"]}>
+                      <p>
+                        {finalNameDetails && finalNameDetails.PhonemicSymbol}
+                        <span onClick={handlePlayBtnClick}>
+                          {isPlaying ? (
+                            <FaRegCirclePause
+                              style={{ marginBottom: "-.3rem" }}
+                              className={styles["audio-btn"]}
+                            />
+                          ) : (
+                            <FaRegCirclePlay
+                              style={{ marginBottom: "-.3rem" }}
+                              className={styles["audio-btn"]}
+                            />
+                          )}
+                        </span>
+                        <audio aria-disabled={true} ref={audioRef}>
+                          <source
+                            src={`${
+                              finalNameDetails.audioFiles &&
+                              finalNameDetails.audioFiles[0]
+                            }`}
+                            type="audio/mp3"
+                          />
+                          Your browser does not support the audio files.
+                        </audio>
+                      </p>
+                    </div>
+                    <div className={styles["middle-part"]}>
+                      <p>
+                        {finalNameDetails && finalNameDetails.ShortDescription}
+                        Celebrating the first sound produced when your dream
+                        became a reality!
+                      </p>
+                      <img src={require("../assets/images/women.png")} alt="" />
+                    </div>
+                    <div className={styles["bottom"]}>
+                      <button className={styles["download"]}>
+                        Download your Nomencard{" "}
+                        <span>
+                          <img
+                            src={require("../assets/images/doc.png")}
+                            alt=""
+                          />
+                        </span>
+                      </button>
+                      <button className={styles["arrow"]}>
+                        Share your experience{" "}
+                        <span>
+                          <MdArrowForwardIos />
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles["nameset-2-arrows"]}>
-              <Button
-                handleClick={handleNextButtonClick}
-                buttonValue={<FaGreaterThan />}
-              />
-            </div>
-          </div>
-          <div className={styles["audit-rating-container"]}>
-            <div className={styles["audit-rating"]}>
-              <p>Looking</p>
-              <div className={styles["beyond-img"]}>
-                <img src={require("../assets/images/Beyond-Name.png")} alt="" />
-              </div>
-              <div className={styles["list"]}>
-                <button className={styles["list-no-border"]}>
-                  Terms & Conditions{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
-                <button className={styles["list-border"]}>
-                  Request Domain Names{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
-                <button className={styles["list-border"]}>
-                  Request for Trademark{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
-                <button className={styles["list-border"]}>
-                  Need Verbal Strategy{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
-                <button className={styles["list-border"]}>
-                  Need a Brand Identity{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
-                <button className={styles["list-border"]}>
-                  Need a Pitch deck{" "}
-                  <span>
-                    <GoArrowUpRight />
-                  </span>
-                </button>
+              <div className={styles["audit-rating-container"]}>
+                <div className={styles["audit-rating"]}>
+                  <p>Looking</p>
+                  <div className={styles["beyond-img"]}>
+                    <img
+                      src={require("../assets/images/Beyond-Name.png")}
+                      alt=""
+                    />
+                  </div>
+                  <div className={styles["list"]}>
+                    <button className={styles["list-no-border"]}>
+                      Terms & Conditions{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                    <button className={styles["list-border"]}>
+                      Request Domain Names{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                    <button className={styles["list-border"]}>
+                      Request for Trademark{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                    <button className={styles["list-border"]}>
+                      Need Verbal Strategy{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                    <button className={styles["list-border"]}>
+                      Need a Brand Identity{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                    <button className={styles["list-border"]}>
+                      Need a Pitch deck{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

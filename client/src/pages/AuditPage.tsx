@@ -146,57 +146,65 @@ function AuditPage() {
     <>
       <ToastContainer />
       <div className={styles["audit-page"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["audit-container"]}>
           <div className={styles["sidebar"]}>
             <SideBar>
               <Tabs show={2} />
             </SideBar>
           </div>
-          <div className={styles["div"]}>
-            <div className={styles["audit-content"]}>
-              <div className={styles["audit-questions"]}>
-                <h2>Brand Fundamentals</h2>
-                <div className={styles["audit-each-question"]}>
-                  {accordion.map(({ title, content }: any, index) => (
-                    <Accordion title={title} indx={index} content={content} />
-                  ))}
+          <div className={styles["your-name-main-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
+            <div className={styles["your-name-container"]}>
+              <div className={styles["div"]}>
+                <div className={styles["audit-content"]}>
+                  <div className={styles["audit-questions"]}>
+                    <h2>Brand Fundamentals</h2>
+                    <div className={styles["audit-each-question"]}>
+                      {accordion.map(({ title, content }: any, index) => (
+                        <Accordion
+                          title={title}
+                          indx={index}
+                          content={content}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className={styles["audit-rating-container"]}>
-            <div className={styles["audit-rating"]}>
-              <div className={styles["audit-rating-image"]}>
-                <img src={img} alt="" />
-              </div>
-              <p className={styles["audit-rating-question"]}>
-                On scale of 1-5, how aligned are you on this overall?
-              </p>
-              <div className={styles["audit-rating-bar"]}>
-                <DotsRow
-                  index={0}
-                  selectedDot={selectedDot}
-                  setSelectedDot={setSelectedDot}
-                />
-              </div>
-              <div className={styles["audit-comments-textarea"]}>
-                <textarea
-                  placeholder="COMMENTS"
-                  id=""
-                  cols={40}
-                  rows={3}
-                  value={comments}
-                  onChange={(e: any) => setComments(e.target.value)}
-                ></textarea>
-              </div>
-              <div className={styles["audit-rating-submit"]}>
-                <Button
-                  handleClick={navigateToNamingSet}
-                  buttonValue={"PROCEED AND CONTINUE"}
-                />
+              <div className={styles["audit-rating-container"]}>
+                <div className={styles["audit-rating"]}>
+                  <div className={styles["audit-rating-image"]}>
+                    <img src={img} alt="" />
+                  </div>
+                  <p className={styles["audit-rating-question"]}>
+                    On scale of 1-5, how aligned are you on this overall?
+                  </p>
+                  <div className={styles["audit-rating-bar"]}>
+                    <DotsRow
+                      index={0}
+                      selectedDot={selectedDot}
+                      setSelectedDot={setSelectedDot}
+                    />
+                  </div>
+                  <div className={styles["audit-comments-textarea"]}>
+                    <textarea
+                      placeholder="COMMENTS"
+                      id=""
+                      cols={40}
+                      rows={3}
+                      value={comments}
+                      onChange={(e: any) => setComments(e.target.value)}
+                    ></textarea>
+                  </div>
+                  <div className={styles["audit-rating-submit"]}>
+                    <Button
+                      handleClick={navigateToNamingSet}
+                      buttonValue={"PROCEED AND CONTINUE"}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

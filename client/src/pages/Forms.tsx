@@ -478,63 +478,64 @@ function Forms() {
 
   return (
     <>
-      <ToastContainer />
-      <div className={styles["forms"]}>
-        <ToastContainer />
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
-        <div className={styles["hero"]}>
-          <div className={styles["sidebar"]}>
-            <SideBar isLogin={false}>
-              <Tabs show={1} />
-            </SideBar>
+      <div className={styles["forms-containers"]}>
+        <div className={styles["forms"]}>
+          <ToastContainer />
+          <div className={styles["navbar"]}>
+            <Navbar />
           </div>
-          <div className={styles["forms-container"]}>
-            <div className={styles["div"]}>
-              <div className={styles["stepper"]}>
-                {currentFormPage !== 5 && (
-                  <ThemeProvider theme={yellowTheme}>
-                    <Stepper activeStep={currentFormPage - 1}>
-                      {steps.map((label, index) => (
-                        <Step key={index} completed={completed[index]}>
-                          <StepButton onClick={handleStep(index)}>
-                            {label}
-                          </StepButton>
-                        </Step>
-                      ))}
-                    </Stepper>
-                  </ThemeProvider>
-                )}
-              </div>
-              <div className={styles["form-content"]}>
-                {currentPage()}
-                <div
-                  style={
-                    currentFormPage === 5
-                      ? { display: "none" }
-                      : { display: "flex" }
-                  }
-                  className={styles["forms-next-button"]}
-                >
+          <div className={styles["hero"]}>
+            <div className={styles["sidebar"]}>
+              <SideBar isLogin={false}>
+                <Tabs show={1} />
+              </SideBar>
+            </div>
+            <div className={styles["forms-container"]}>
+              <div className={styles["div"]}>
+                <div className={styles["stepper"]}>
+                  {currentFormPage !== 5 && (
+                    <ThemeProvider theme={yellowTheme}>
+                      <Stepper activeStep={currentFormPage - 1}>
+                        {steps.map((label, index) => (
+                          <Step key={index} completed={completed[index]}>
+                            <StepButton onClick={handleStep(index)}>
+                              {label}
+                            </StepButton>
+                          </Step>
+                        ))}
+                      </Stepper>
+                    </ThemeProvider>
+                  )}
+                </div>
+                <div className={styles["form-content"]}>
+                  {currentPage()}
                   <div
                     style={
-                      currentFormPage === 1
+                      currentFormPage === 5
                         ? { display: "none" }
                         : { display: "flex" }
                     }
-                    className={styles["previous-btn"]}
+                    className={styles["forms-next-button"]}
                   >
-                    <Button
-                      buttonValue={"PREVIOUS"}
-                      handleClick={handleChangeCurrentPageToPrevious}
-                    />
-                  </div>
-                  <div className={styles["next-btn"]}>
-                    <Button
-                      buttonValue={currentFormPage === 4 ? "SUBMIT" : "NEXT"}
-                      handleClick={handleChangeCurrentPageToNext}
-                    />
+                    <div
+                      style={
+                        currentFormPage === 1
+                          ? { display: "none" }
+                          : { display: "flex" }
+                      }
+                      className={styles["previous-btn"]}
+                    >
+                      <Button
+                        buttonValue={"PREVIOUS"}
+                        handleClick={handleChangeCurrentPageToPrevious}
+                      />
+                    </div>
+                    <div className={styles["next-btn"]}>
+                      <Button
+                        buttonValue={currentFormPage === 4 ? "SUBMIT" : "NEXT"}
+                        handleClick={handleChangeCurrentPageToNext}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

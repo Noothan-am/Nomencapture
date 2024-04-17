@@ -101,7 +101,7 @@ function Home() {
 
   return (
     <>
-      <div className={styles["home-container"]}>
+      <div className={styles["home-container "]}>
         <div className={styles["home"]}>
           <div className={styles["home-sidebar"]}>
             <SideBar isLogin={false}>

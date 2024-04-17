@@ -19,9 +19,6 @@ function SecondRoundGreetings() {
   return (
     <>
       <div className={styles["forms"]}>
-        <div className={styles["navbar"]}>
-          <Navbar />
-        </div>
         <div className={styles["hero"]}>
           <div className={styles["sidebar"]}>
             <SideBar isLogin={false}>
@@ -29,6 +26,9 @@ function SecondRoundGreetings() {
             </SideBar>
           </div>
           <div className={styles["forms-container"]}>
+            <div className={styles["navbar"]}>
+              <Navbar />
+            </div>
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 <FlagStepper

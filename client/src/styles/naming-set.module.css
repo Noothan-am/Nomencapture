@@ -1,12 +1,15 @@
 .hero {
   display: flex;
   flex-direction: row;
-  width: 95%;
   margin: auto;
+  height: 100vh;
 }
 
 .naming-set-container {
   width: 100%;
+  padding-right: 2rem;
+  overflow-y: scroll;
+  padding-bottom: 1rem;
 }
 
 .stepper {
@@ -22,7 +25,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 78vh;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.639);
   margin: auto;
 }

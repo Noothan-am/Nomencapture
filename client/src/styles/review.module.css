@@ -21,8 +21,9 @@
 }
 
 .stepper {
-  position: absolute;
-  top: 13vh;
+  position: relative;
+  margin-top: -2rem;
+  margin-right: 2.8rem;
 }
 
 .naming-set-container-2 {
@@ -123,6 +124,8 @@
   justify-content: flex-end;
   width: 100%;
   margin: auto;
+  margin-left: -1rem;
+  margin-bottom: 1rem;
 }
 
 .btn {

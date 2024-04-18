@@ -111,6 +111,7 @@ function NamingSet() {
             <div className={styles["navbar"]}>
               <Navbar />
             </div>
+
             <div className={styles["div"]}>
               <div className={styles["stepper"]}>
                 <FlagStepper

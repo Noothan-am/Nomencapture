@@ -3,6 +3,7 @@
   flex-direction: row;
   margin: auto;
   height: 100vh;
+  overflow: hidden;
 }
 
 .naming-set-container {
@@ -10,11 +11,13 @@
   padding-right: 2rem;
   overflow-y: scroll;
   padding-bottom: 1rem;
+  overflow-x: hidden;
 }
 
 .stepper {
-  position: absolute;
-  top: 13vh;
+  position: relative;
+  margin-top: -2rem;
+  margin-right: 2.8rem;
 }
 
 .div {
@@ -39,14 +42,10 @@
 }
 
 .nameset-2-arrows {
-  display: flex;
-  flex-direction: row;
-  width: 7%;
-  align-items: flex-end;
-  gap: 0.1rem;
-  position: absolute;
-  top: 13vh;
-  right: 2vw;
+  position: relative;
+  width: 100%;
+  top: -1rem;
+  left: 90%;
 }
 
 .nameset-2-arrows > button {
